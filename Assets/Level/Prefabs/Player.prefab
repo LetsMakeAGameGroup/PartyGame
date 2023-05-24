@@ -251,7 +251,7 @@ MonoBehaviour:
   playerName: Player
   walkingSpeed: 7.5
   runningSpeed: 11.5
-  jumpSpeed: 8
+  jumpSpeed: 4
   playerCamera: {fileID: 1913241592568134192}
   lookSpeed: 2
   lookXLimit: 90

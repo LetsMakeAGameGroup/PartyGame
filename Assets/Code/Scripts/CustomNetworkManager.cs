@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
-using UnityEngine.SceneManagement;
 using System.Linq;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 public class CustomNetworkManager : NetworkManager {
     public List<GameObject> players;
@@ -15,13 +13,14 @@ public class CustomNetworkManager : NetworkManager {
         else Instance = this;
     }
 
+    // Add new player to list and spawn them at the spawn points.
     public override void OnServerAddPlayer(NetworkConnectionToClient conn) {
         GameObject player = Instantiate(playerPrefab, FindObjectOfType<NetworkStartPosition>().transform.position, Quaternion.identity);
         player.GetComponent<PlayerController>().playerName = $"Player_{numPlayers + 1}";
         NetworkServer.AddPlayerForConnection(conn, player);
         players.Add(player);
         if (players.Count == GameManager.Instance.minPlayers) {
-            GameManager.Instance.StartGame();
+            GameManager.Instance.StartNextRound();
         }
     }
 

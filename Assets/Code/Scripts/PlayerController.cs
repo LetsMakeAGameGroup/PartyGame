@@ -7,7 +7,7 @@ public class PlayerController : NetworkBehaviour {
 
     public float walkingSpeed = 7.5f;
     public float runningSpeed = 11.5f;
-    public float jumpSpeed = 8.0f;
+    public float jumpSpeed = 4.0f;
 
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
@@ -19,12 +19,26 @@ public class PlayerController : NetworkBehaviour {
     [HideInInspector] public bool canMove = true;
     [HideInInspector] public bool isInteracting = false;
 
-    private void Awake() {
+    private void Start() {
         DontDestroyOnLoad(gameObject);
+        characterController = GetComponent<CharacterController>();
     }
 
-    private void Start() {
-        characterController = GetComponent<CharacterController>();
+    public override void OnStartLocalPlayer() {
+        if (Camera.main.gameObject != null) Camera.main.gameObject.SetActive(false);
+
+        // Lock cursor
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        // Disable meshes of self
+        MeshRenderer[] meshes = GetComponentsInChildren<MeshRenderer>();
+        foreach (MeshRenderer mesh in meshes) {
+            mesh.enabled = false;
+        }
+
+        // Have only self camera enabled
+        playerCamera.gameObject.SetActive(true);
     }
 
     private void Update() {
@@ -50,8 +64,8 @@ public class PlayerController : NetworkBehaviour {
 
         // Press Left Shift to run
         bool isRunning = Input.GetKey(KeyCode.LeftShift);
-        float curSpeedX = canMove ? Input.GetAxis("Vertical") : 0;
-        float curSpeedY = canMove ? Input.GetAxis("Horizontal") : 0;
+        float curSpeedX = canMove ? Input.GetAxisRaw("Vertical") : 0;
+        float curSpeedY = canMove ? Input.GetAxisRaw("Horizontal") : 0;
 
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
@@ -77,27 +91,10 @@ public class PlayerController : NetworkBehaviour {
 
         // Player and Camera rotation
         if (canMove) {
-            rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
+            rotationX += -Input.GetAxisRaw("Mouse Y") * lookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-            transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
+            transform.rotation *= Quaternion.Euler(0, Input.GetAxisRaw("Mouse X") * lookSpeed, 0);
         }
-    }
-
-    public override void OnStartLocalPlayer() {
-        if (Camera.main.gameObject != null) Camera.main.gameObject.SetActive(false);
-
-        // Lock cursor
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-        // Disable meshes of self
-        MeshRenderer[] meshes = GetComponentsInChildren<MeshRenderer>();
-        foreach (MeshRenderer mesh in meshes) {
-            mesh.enabled = false;
-        }
-
-        // Have only self camera enabled
-        playerCamera.gameObject.SetActive(true);
     }
 }

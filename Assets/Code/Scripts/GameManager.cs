@@ -1,7 +1,6 @@
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class GameManager : NetworkBehaviour {
@@ -21,23 +20,17 @@ public class GameManager : NetworkBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
-    public void StartGame() {
-        RpcLoadScene(minigames[round]);
+    public void StartNextRound() {
+        StartCoroutine(CountdownMinigame(minigames[round]));
         round++;
     }
 
-    //[ClientRpc]
-    public void RpcLoadScene(string sceneName) {
-        StartCoroutine(Countdown(sceneName));
-    }
-
-    IEnumerator Countdown(string sceneName) {
+    IEnumerator CountdownMinigame(string sceneName) {
         for (int i = 3; i > 0; i--) {
-            Debug.Log("Changing scenes in " + i);
+            // TODO: Make UI show countdown here
             yield return new WaitForSeconds(1);
         }
 
-        Debug.Log("Now changing scenes to " + sceneName);
         CustomNetworkManager.Instance.ServerChangeScene(sceneName);
     }
 
