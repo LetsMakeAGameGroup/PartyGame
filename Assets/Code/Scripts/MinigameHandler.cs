@@ -1,4 +1,3 @@
-using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +16,7 @@ public class MinigameHandler : MonoBehaviour {
         isRunning = true;
     }
 
+    // Adds player the winners list accordingly.
     public void AddWinner(GameObject player) {
         if (!isRunning) return;
 
@@ -31,6 +31,7 @@ public class MinigameHandler : MonoBehaviour {
         }
     }
 
+    // Called when ready to end the minigame and start the next round.
     public void EndMinigame() {
         if (!isRunning) return;
 
