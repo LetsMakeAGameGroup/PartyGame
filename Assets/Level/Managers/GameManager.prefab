@@ -49,9 +49,14 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   round: 0
+  maxRounds: 5
   minigames:
   - Minigame1Scene
   - Minigame2Scene
+  - Minigame3Scene
+  - Minigame4Scene
+  - Minigame5Scene
+  - Minigame6Scene
 --- !u!114 &4266590026886717783
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -30,6 +30,16 @@ public class GameManager : NetworkBehaviour {
         } else {
             CustomNetworkManager.Instance.ServerChangeScene("LobbyScene");
             round = 0;
+            string winner = "";
+            int winnerAmount = -1;
+            foreach (GameObject player in CustomNetworkManager.Instance.players) {
+                if (player.GetComponent<PlayerController>().points > winnerAmount) {
+                    winner = player.GetComponent<PlayerController>().playerName;
+                    winnerAmount = player.GetComponent<PlayerController>().points;
+                }
+                player.GetComponent<PlayerController>().points = 0;
+            }
+            Debug.Log($"Ultimate winner: {winner} with {winnerAmount} total points.");  // Change this to show winners on screen
             RandomizeCurrentMinigames();
         }
     }

@@ -37,8 +37,19 @@ public class CustomNetworkManager : NetworkManager {
     public override void OnServerSceneChanged(string newSceneName) {
         spawns = FindObjectsOfType<NetworkStartPosition>().Select(spawn => spawn.transform.position).ToList();
 
+        /*        for (int i = 0; i < players.Count; i++) {
+                    GameManager.Instance.TargetTeleportPlayer(players[i].GetComponent<NetworkIdentity>().connectionToClient, spawns[numPlayers % spawns.Count]);
+                }*/
+        Time.timeScale = 0f;
         for (int i = 0; i < players.Count; i++) {
+            //Debug.Log("Teleporting " + players[i].GetComponent<PlayerController>().playerName);
             GameManager.Instance.TargetTeleportPlayer(players[i].GetComponent<NetworkIdentity>().connectionToClient, spawns[numPlayers % spawns.Count]);
+            while (players[i].GetComponent<NetworkIdentity>().isClientOnly && players[i].transform.position != spawns[numPlayers % spawns.Count]) {
+                //Debug.Log("Teleporting " + players[i].GetComponent<PlayerController>().playerName);
+                GameManager.Instance.TargetTeleportPlayer(players[i].GetComponent<NetworkIdentity>().connectionToClient, spawns[numPlayers % spawns.Count]);
+            }
         }
+        Time.timeScale = 1f;
+        //Debug.Log("Finished teleporting");
     }
 }
