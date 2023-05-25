@@ -1,12 +1,13 @@
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : NetworkBehaviour {
-    public int minPlayers = 2;
     public int round = 0;
     public List<string> minigames = new();
+    private List<string> currentMinigames = new();
 
     public static GameManager Instance { get; private set; }
 
@@ -18,20 +19,18 @@ public class GameManager : NetworkBehaviour {
 
     public void Start() {
         DontDestroyOnLoad(gameObject);
+        RandomizeCurrentMinigames();
     }
 
     public void StartNextRound() {
-        StartCoroutine(CountdownMinigame(minigames[round]));
-        round++;
-    }
-
-    IEnumerator CountdownMinigame(string sceneName) {
-        for (int i = 3; i > 0; i--) {
-            // TODO: Make UI show countdown here
-            yield return new WaitForSeconds(1);
+        if (round < currentMinigames.Count) {
+            CustomNetworkManager.Instance.ServerChangeScene(currentMinigames[round]);
+            round++;
+        } else {
+            CustomNetworkManager.Instance.ServerChangeScene("LobbyScene");
+            round = 0;
+            RandomizeCurrentMinigames();
         }
-
-        CustomNetworkManager.Instance.ServerChangeScene(sceneName);
     }
 
     [TargetRpc]
@@ -40,5 +39,9 @@ public class GameManager : NetworkBehaviour {
         player.GetComponent<CharacterController>().enabled = false;
         player.transform.position = telePos;
         player.GetComponent<CharacterController>().enabled = true;
+    }
+
+    private void RandomizeCurrentMinigames() {
+        currentMinigames = minigames.OrderBy(x => Random.value).ToList();
     }
 }

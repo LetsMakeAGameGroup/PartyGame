@@ -5,6 +5,7 @@ using System.Linq;
 
 public class CustomNetworkManager : NetworkManager {
     public List<GameObject> players;
+    public List<Vector3> spawns;
     public static CustomNetworkManager Instance { get; private set; }
 
     public override void Awake() {
@@ -13,24 +14,31 @@ public class CustomNetworkManager : NetworkManager {
         else Instance = this;
     }
 
+    public override void Start() {
+        spawns = FindObjectsOfType<NetworkStartPosition>().Select(spawn => spawn.transform.position).ToList();
+    }
+
     // Add new player to list and spawn them at the spawn points.
     public override void OnServerAddPlayer(NetworkConnectionToClient conn) {
-        GameObject player = Instantiate(playerPrefab, FindObjectOfType<NetworkStartPosition>().transform.position, Quaternion.identity);
+        // Prevent player from joining if the game has already started.
+        if (GameManager.Instance.round > 0) {
+            conn.Disconnect();
+            return;
+        }
+
+        GameObject player = Instantiate(playerPrefab, spawns[numPlayers % spawns.Count], Quaternion.identity);
         player.GetComponent<PlayerController>().playerName = $"Player_{numPlayers + 1}";
         NetworkServer.AddPlayerForConnection(conn, player);
         players.Add(player);
-        if (players.Count == GameManager.Instance.minPlayers) {
-            GameManager.Instance.StartNextRound();
-        }
     }
 
 
     // After loading a new scene, teleport the players to the scene's spawn points.
     public override void OnServerSceneChanged(string newSceneName) {
-        List<Vector3> spawns = FindObjectsOfType<NetworkStartPosition>().Select(spawn => spawn.transform.position).ToList();
+        spawns = FindObjectsOfType<NetworkStartPosition>().Select(spawn => spawn.transform.position).ToList();
 
         for (int i = 0; i < players.Count; i++) {
-            GameManager.Instance.TargetTeleportPlayer(players[i].GetComponent<NetworkIdentity>().connectionToClient, spawns[i]);
+            GameManager.Instance.TargetTeleportPlayer(players[i].GetComponent<NetworkIdentity>().connectionToClient, spawns[numPlayers % spawns.Count]);
         }
     }
 }

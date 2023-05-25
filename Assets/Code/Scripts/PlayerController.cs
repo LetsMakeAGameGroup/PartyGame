@@ -4,6 +4,7 @@ using Mirror;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : NetworkBehaviour {
     public string playerName = "Player";
+    public int points = 0;
 
     public float walkingSpeed = 7.5f;
     public float runningSpeed = 11.5f;
@@ -25,8 +26,6 @@ public class PlayerController : NetworkBehaviour {
     }
 
     public override void OnStartLocalPlayer() {
-        if (Camera.main.gameObject != null) Camera.main.gameObject.SetActive(false);
-
         // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -43,6 +42,11 @@ public class PlayerController : NetworkBehaviour {
 
     private void Update() {
         if (!isLocalPlayer) return;
+
+        // Allow the host to start the game when in the lobby.
+        if (GameManager.Instance.round == 0 && isServer && Input.GetKeyDown(KeyCode.M)) {
+            GameManager.Instance.StartNextRound();
+        }
 
         //playerCamera.gameObject.SetActive(true);
         // Press escape key to "pause" and "unpause" the game
