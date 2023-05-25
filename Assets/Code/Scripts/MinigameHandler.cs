@@ -42,7 +42,7 @@ public class MinigameHandler : MonoBehaviour {
             assignPoints--;
         }
 
-        Debug.Log($"Winner: {winners[0].GetComponent<PlayerController>().name} with {winners[0].GetComponent<PlayerController>().points} points.");  // Change this to show winners on screen
+        Debug.Log($"Winner: {winners[0].GetComponent<PlayerController>().playerName} with now {winners[0].GetComponent<PlayerController>().points} points.");  // Change this to show winners on screen
 
         GameManager.Instance.StartNextRound();
     }

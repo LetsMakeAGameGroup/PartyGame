@@ -476,6 +476,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 317fec66f1acc7f4eb655af8e503c7bf, type: 3}
+--- !u!114 &1661191901 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4677680826974001741, guid: 361035ff13bd68b4d964d9f97b7f9449,
+    type: 3}
+  m_PrefabInstance: {fileID: 4677680827878622834}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4677680827878622834
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -593,6 +605,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4677680827536345518, guid: 361035ff13bd68b4d964d9f97b7f9449,
+        type: 3}
+      propertyPath: codeInputField
+      value: 
+      objectReference: {fileID: 1661191901}
     - target: {fileID: 4677680827536345518, guid: 361035ff13bd68b4d964d9f97b7f9449,
         type: 3}
       propertyPath: networkManager

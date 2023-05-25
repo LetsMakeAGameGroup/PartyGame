@@ -1,6 +1,7 @@
 using Mirror;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : NetworkBehaviour {
@@ -8,6 +9,7 @@ public class GameManager : NetworkBehaviour {
     public int maxRounds = 5;
     public List<string> minigames = new();
     private List<string> currentMinigames = new();
+    
 
     public static GameManager Instance { get; private set; }
 
@@ -46,10 +48,11 @@ public class GameManager : NetworkBehaviour {
 
     // Tell the player to teleport to a location. We do this because player has position authority(position is sent from client to server).
     [TargetRpc]
-    public void TargetTeleportPlayer(NetworkConnectionToClient target, Vector3 telePos) {
+    public void TargetTeleportPlayer(NetworkConnectionToClient target, Vector3 telePos, Quaternion teleRot) {
         GameObject player = target.identity.gameObject;
         player.GetComponent<CharacterController>().enabled = false;
         player.transform.position = telePos;
+        player.transform.rotation = teleRot;
         player.GetComponent<CharacterController>().enabled = true;
     }
 
@@ -57,5 +60,10 @@ public class GameManager : NetworkBehaviour {
     private void RandomizeCurrentMinigames() {
         // TODO: Maybe there is a more efficient way of picking random minigames that fall under maxRounds. Once we have a LOT of minigames to randomize, there might be a better way.
         currentMinigames = minigames.OrderBy(x => Random.value).ToList();
+    }
+
+    [TargetRpc]
+    public void TargetSetCodeUI(NetworkConnectionToClient target, string code) {
+        FindObjectOfType<LobbyUIController>().codeText.text = code;
     }
 }
