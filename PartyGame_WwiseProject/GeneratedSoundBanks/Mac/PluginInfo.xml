@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PluginInfo Platform="Mac" BasePlatform="Mac">
+	<PluginLibs>
+		<PluginLib LibName="System" LibId="11403271" Type="AudioDevice"/>
+	</PluginLibs>
+	<FileHash>{37C332E4-CF0C-22C7-F43E-A3C885E926EB}</FileHash>
+</PluginInfo>
