@@ -49,11 +49,12 @@ public class GameManager : NetworkBehaviour {
     // Tell the player to teleport to a location. We do this because player has position authority(position is sent from client to server).
     [TargetRpc]
     public void TargetTeleportPlayer(NetworkConnectionToClient target, Vector3 telePos, Quaternion teleRot) {
-        GameObject player = target.identity.gameObject;
+        /*GameObject player = target.identity.gameObject;
         player.GetComponent<CharacterController>().enabled = false;
         player.transform.position = telePos;
         player.transform.rotation = teleRot;
-        player.GetComponent<CharacterController>().enabled = true;
+        player.GetComponent<CharacterController>().enabled = true;*/
+        //target.identity.GetComponent<PlayerController>().Teleport(telePos, teleRot);
     }
 
     // Randomize list of minigames available order chosen into the current set.

@@ -9,17 +9,13 @@ using System.Threading.Tasks;
 
 public class CustomNetworkManager : NetworkManager {
     public List<GameObject> players;
-    public List<Transform> spawns;
+
     public static CustomNetworkManager Instance { get; private set; }
 
     public override void Awake() {
         // If there is an instance, and it's not me, delete myself.
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
-    }
-
-    public override void Start() {
-        spawns = FindObjectsOfType<NetworkStartPosition>().Select(spawn => spawn.transform).ToList();
     }
 
     // Add new player to list and spawn them at the spawn points.
@@ -30,7 +26,9 @@ public class CustomNetworkManager : NetworkManager {
             return;
         }
 
-        GameObject player = Instantiate(playerPrefab, spawns[numPlayers % spawns.Count].position, spawns[numPlayers % spawns.Count].rotation);
+        SpawnHolder spawnHolder = FindObjectOfType<SpawnHolder>();
+
+        GameObject player = Instantiate(playerPrefab, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.position, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.rotation);
         player.GetComponent<PlayerController>().playerName = $"Player_{numPlayers + 1}";
         NetworkServer.AddPlayerForConnection(conn, player);
         GameManager.Instance.TargetSetCodeUI(conn, ConvertIPAddressToCode(GetExternalIpAddress()));
@@ -40,23 +38,12 @@ public class CustomNetworkManager : NetworkManager {
 
     // After loading a new scene, teleport the players to the scene's spawn points.
     public override void OnServerSceneChanged(string newSceneName) {
-        spawns = FindObjectsOfType<NetworkStartPosition>().Select(spawn => spawn.transform).ToList();
+        SpawnHolder spawnHolder = FindObjectOfType<SpawnHolder>();
 
-        /*        for (int i = 0; i < players.Count; i++) {
-                    GameManager.Instance.TargetTeleportPlayer(players[i].GetComponent<NetworkIdentity>().connectionToClient, spawns[numPlayers % spawns.Count]);
-                }*/
-        Time.timeScale = 0f;
         for (int i = 0; i < players.Count; i++) {
             if (newSceneName == "LobbyScene") GameManager.Instance.TargetSetCodeUI(players[i].GetComponent<NetworkIdentity>().connectionToClient, ConvertIPAddressToCode(GetExternalIpAddress()));
-            //Debug.Log("Teleporting " + players[i].GetComponent<PlayerController>().playerName);
-            GameManager.Instance.TargetTeleportPlayer(players[i].GetComponent<NetworkIdentity>().connectionToClient, spawns[numPlayers % spawns.Count].position, spawns[numPlayers % spawns.Count].rotation);
-            while (players[i].GetComponent<NetworkIdentity>().isClientOnly && players[i].transform.position != spawns[numPlayers % spawns.Count].position) {
-                //Debug.Log("Teleporting " + players[i].GetComponent<PlayerController>().playerName);
-                GameManager.Instance.TargetTeleportPlayer(players[i].GetComponent<NetworkIdentity>().connectionToClient, spawns[numPlayers % spawns.Count].position, spawns[numPlayers % spawns.Count].rotation);
-            }
+            players[i].GetComponent<PlayerController>().TargetTeleport(spawnHolder.currentSpawns[i % spawnHolder.currentSpawns.Length].transform.position, spawnHolder.currentSpawns[i % spawnHolder.currentSpawns.Length].transform.rotation);
         }
-        Time.timeScale = 1f;
-        //Debug.Log("Finished teleporting");
     }
 
     public string ConvertIPAddressToCode(string ipAddress) {
