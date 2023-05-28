@@ -22,7 +22,6 @@ public class PlayerController : NetworkBehaviour {
     [HideInInspector] public bool isInteracting = false;
 
     private void Start() {
-        DontDestroyOnLoad(gameObject);
         characterController = GetComponent<CharacterController>();
     }
 
