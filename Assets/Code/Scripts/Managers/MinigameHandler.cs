@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>Handles that status of a minigame. Will slightly change how this works soon.</summary>
+// TODO: Instead of handling this on every indivdual minigame, only one instance throughout the game would be better.
 public class MinigameHandler : MonoBehaviour {
     public List<GameObject> winners = new();
 
@@ -11,12 +13,13 @@ public class MinigameHandler : MonoBehaviour {
         StartCoroutine(CountdownTillStart());
     }
 
+    /// <summary>Buffer for starting a minigame. Might be depricated soon.</summary>
     IEnumerator CountdownTillStart() {
         yield return new WaitForSeconds(3);
         isRunning = true;
     }
 
-    // Adds player the winners list accordingly.
+    /// <summary>Adds player to the winners list according to position placed.</summary>
     public void AddWinner(GameObject player) {
         if (!isRunning) return;
 
@@ -31,7 +34,7 @@ public class MinigameHandler : MonoBehaviour {
         }
     }
 
-    // Called when ready to end the minigame and start the next round.
+    /// <summary>Ready to end the minigame and start the next round.</summary>
     public void EndMinigame() {
         if (!isRunning) return;
 

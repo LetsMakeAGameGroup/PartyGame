@@ -253,7 +253,7 @@ MonoBehaviour:
   points: 0
   walkingSpeed: 7.5
   runningSpeed: 11.5
-  jumpSpeed: 6
+  jumpSpeed: 8
   playerCamera: {fileID: 1913241592568134192}
   lookSpeed: 2
   lookXLimit: 90

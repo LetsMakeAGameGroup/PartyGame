@@ -4,9 +4,6 @@ using Mirror;
 using System.Linq;
 using System.Net;
 using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using System.Collections;
 
 public class CustomNetworkManager : NetworkManager {
     public List<GameObject> players = new();
@@ -41,16 +38,6 @@ public class CustomNetworkManager : NetworkManager {
         initialSceneChange = false;
     }
 
-    public override void ServerChangeScene(string newSceneName) {
-/*        foreach (GameObject player in players) {
-            if (player.GetComponent<NetworkIdentity>().connectionToClient != null) Debug.Log("True!!");
-            else Debug.Log("False!!");
-            connections.Add(player.GetComponent<NetworkIdentity>().connectionToClient);
-            NetworkServer.DestroyPlayerForConnection(connections[connections.Count() - 1]);
-        }*/
-        base.ServerChangeScene(newSceneName);
-    }
-
     // After loading a new scene, teleport the players to the scene's spawn points.
     // TODO: This needs proper syncing to account for clients still loading scenes. AKA loading screen needed.
     public override void OnServerSceneChanged(string newSceneName) {
@@ -62,16 +49,20 @@ public class CustomNetworkManager : NetworkManager {
             GameObject player = Instantiate(playerPrefab, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.position, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.rotation);
             player.GetComponent<PlayerController>().playerName = $"Player_{i + 1}";
 
+            if (!NetworkClient.ready) NetworkClient.Ready();
+            // TODO: Fix "There is already a player for this connection." error here. This is most likely because the connected clients haven't switched scenes yet.
             NetworkServer.ReplacePlayerForConnection(connections[i], player);
         }
     }
 
+    /// <summary>Converts an IP address to bytes, then returns it as a string that can be used as a code to join the server.</summary>
     public string ConvertIPAddressToCode(string ipAddress) {
         IPAddress address = IPAddress.Parse(ipAddress);
         byte[] bytes = address.GetAddressBytes();
         return BitConverter.ToString(bytes).Replace("-", string.Empty);
     }
 
+    /// <summary>Converts a code(converted IP address) into an array of bytes to return the IP address.</summary>
     public string ConvertCodeToIPAddress(string code) {
         string[] tempArray = new string[code.Length / 2];
         for (int i = 0; i < tempArray.Length; i++) {
@@ -86,6 +77,7 @@ public class CustomNetworkManager : NetworkManager {
         return String.Join(".", bytes);
     }
 
+    /// <summary>Uses a website's JSON string to find the host's public ip.</summary>
     public string GetExternalIpAddress() {
         string externalIpString = new WebClient().DownloadString("http://icanhazip.com").Replace("\\r\\n", "").Replace("\\n", "").Trim();
         var externalIp = IPAddress.Parse(externalIpString);

@@ -1,6 +1,5 @@
 using UnityEngine;
 using Mirror;
-using System.Collections;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : NetworkBehaviour {
@@ -9,7 +8,7 @@ public class PlayerController : NetworkBehaviour {
 
     public float walkingSpeed = 7.5f;
     public float runningSpeed = 11.5f;
-    public float jumpSpeed = 4.0f;
+    public float jumpSpeed = 8.0f;
 
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
@@ -40,6 +39,7 @@ public class PlayerController : NetworkBehaviour {
         playerCamera.gameObject.SetActive(true);
     }
 
+    // TODO: Should be broken up into independent functions.
     private void Update() {
         if (!isLocalPlayer) return;
 
@@ -100,29 +100,5 @@ public class PlayerController : NetworkBehaviour {
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxisRaw("Mouse X") * lookSpeed, 0);
         }
-    }
-
-    // Tell the player to teleport themselves to the position.
-    [TargetRpc]
-    public void TargetTeleport(Vector3 telePos, Quaternion teleRot) {
-        StartCoroutine(TeleportSync(telePos, teleRot));
-    }
-
-    
-    IEnumerator TeleportSync(Vector3 telePos, Quaternion teleRot) {
-        GetComponent<CharacterController>().enabled = false;
-
-        // Makes sure that the teleportation is synced with the server and not ignored. Continues to attempt to teleport until successful.
-        while (transform.position != telePos) {
-            transform.position = telePos;
-            transform.rotation = teleRot;
-            playerCamera.transform.rotation = teleRot;
-            yield return null;
-        }
-
-        // TODO: Used a countdown buffer for the round to start. Obviously needs visualiation to the player but should be independent from this function.
-        yield return new WaitForSeconds(3);
-
-        GetComponent<CharacterController>().enabled = true;
     }
 }

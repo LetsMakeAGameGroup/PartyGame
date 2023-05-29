@@ -1,9 +1,15 @@
 using UnityEngine;
 
 public class FinishLineCollider : MonoBehaviour {
+    private MinigameHandler minigameHandler;
+
+    private void Start() {
+        minigameHandler = FindObjectOfType<MinigameHandler>();
+    }
+
     private void OnTriggerEnter(Collider other) {
         if (!other.CompareTag("Player")) return;
 
-        FindObjectOfType<MinigameHandler>().AddWinner(other.gameObject);
+        minigameHandler.AddWinner(other.gameObject);
     }
 }

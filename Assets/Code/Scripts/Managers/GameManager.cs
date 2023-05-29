@@ -24,14 +24,16 @@ public class GameManager : NetworkBehaviour {
         RandomizeCurrentMinigames();
     }
 
-    // Cycle to the next round, go back to the lobby once finished with the minigame set.
+    /// <summary>Cycle to the next round, go back to the lobby once finished with the minigame set.</summary>
     public void StartNextRound() {
         if (round < currentMinigames.Count && round < maxRounds) {
             CustomNetworkManager.Instance.ServerChangeScene(currentMinigames[round]);
             round++;
         } else {
+            // maxRounds have been reached and sending players back to the lobby
             CustomNetworkManager.Instance.ServerChangeScene("LobbyScene");
             round = 0;
+
             string winner = "";
             int winnerAmount = -1;
             foreach (GameObject player in CustomNetworkManager.Instance.players) {
@@ -42,27 +44,19 @@ public class GameManager : NetworkBehaviour {
                 player.GetComponent<PlayerController>().points = 0;
             }
             Debug.Log($"Ultimate winner: {winner} with {winnerAmount} total points.");  // Change this to show winners on screen
+
             RandomizeCurrentMinigames();
         }
     }
 
-    // Tell the player to teleport to a location. We do this because player has position authority(position is sent from client to server).
-    [TargetRpc]
-    public void TargetTeleportPlayer(NetworkConnectionToClient target, Vector3 telePos, Quaternion teleRot) {
-        /*GameObject player = target.identity.gameObject;
-        player.GetComponent<CharacterController>().enabled = false;
-        player.transform.position = telePos;
-        player.transform.rotation = teleRot;
-        player.GetComponent<CharacterController>().enabled = true;*/
-        //target.identity.GetComponent<PlayerController>().Teleport(telePos, teleRot);
-    }
-
-    // Randomize list of minigames available order chosen into the current set.
+    /// <summary>Randomize list of minigames available order chosen into the current set.</summary>
     private void RandomizeCurrentMinigames() {
-        // TODO: Maybe there is a more efficient way of picking random minigames that fall under maxRounds. Once we have a LOT of minigames to randomize, there might be a better way.
+        // TODO: There should be a more efficient way of picking random minigames that fall under maxRounds. Once we have a LOT of minigames to randomize, there should be a better way. Look more into this later.
         currentMinigames = minigames.OrderBy(x => Random.value).ToList();
     }
 
+    /// <summary>Set the lobby code in the player's UI.</summary>
+    // TODO: Change this once we have a better UI system.
     [TargetRpc]
     public void TargetSetCodeUI(NetworkConnectionToClient target, string code) {
         FindObjectOfType<LobbyUIController>().codeText.text = code;
