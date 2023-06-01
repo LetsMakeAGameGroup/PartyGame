@@ -1,27 +1,26 @@
 using UnityEngine;
 using Mirror;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(PlayerMovementComponent))]
 public class PlayerController : NetworkBehaviour {
+
+    PlayerMovementComponent playerMovementComponent;
+
     public string playerName = "Player";
     public int points = 0;
-
-    public float walkingSpeed = 7.5f;
-    public float runningSpeed = 11.5f;
-    public float jumpSpeed = 8.0f;
 
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 90.0f;
 
-    CharacterController characterController;
-    Vector3 moveDirection = Vector3.zero;
+    //CharacterController characterController;
+    //Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
-    [HideInInspector] public bool canMove = true;
     [HideInInspector] public bool isInteracting = false;
 
     private void Start() {
-        characterController = GetComponent<CharacterController>();
+        //characterController = GetComponent<CharacterController>();
+        playerMovementComponent = GetComponent<PlayerMovementComponent>();
     }
 
     public override void OnStartLocalPlayer() {
@@ -51,50 +50,27 @@ public class PlayerController : NetworkBehaviour {
         //playerCamera.gameObject.SetActive(true);
         // Press escape key to "pause" and "unpause" the game
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            if (canMove) {
-                canMove = false;
+            if (playerMovementComponent.CanMove) {
+                playerMovementComponent.CanMove = false;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             } else {
-                canMove = true;
+                playerMovementComponent.CanMove = true;
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
         }
 
-        // We are grounded, so recalculate move direction based on axes
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        Vector3 right = transform.TransformDirection(Vector3.right);
+        Vector2 playerInputs = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        playerMovementComponent.AddMovementInput(playerInputs);
 
-        // Press Left Shift to run
-        bool isRunning = Input.GetKey(KeyCode.LeftShift);
-        float curSpeedX = canMove ? Input.GetAxisRaw("Vertical") : 0;
-        float curSpeedY = canMove ? Input.GetAxisRaw("Horizontal") : 0;
-
-        float movementDirectionY = moveDirection.y;
-        moveDirection = (forward * curSpeedX) + (right * curSpeedY);
-        moveDirection.Normalize();
-        moveDirection.x *= (isRunning ? runningSpeed : walkingSpeed);
-        moveDirection.z *= (isRunning ? runningSpeed : walkingSpeed);
-
-        if (Input.GetButton("Jump") && canMove && characterController.isGrounded) {
-            moveDirection.y = jumpSpeed;
-        } else {
-            moveDirection.y = movementDirectionY;
+        if (Input.GetButton("Jump")) 
+        {
+            playerMovementComponent.Jump();
         }
-
-        // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
-        // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
-        // as an acceleration (ms^-2)
-        if (!characterController.isGrounded) {
-            moveDirection += Physics.gravity * Time.deltaTime;
-        }
-
-        // Move the controller
-        if (characterController.enabled) characterController.Move(moveDirection * Time.deltaTime);
 
         // Player and Camera rotation
-        if (canMove) {
+        if (playerMovementComponent.CanMove) {
             rotationX += -Input.GetAxisRaw("Mouse Y") * lookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);

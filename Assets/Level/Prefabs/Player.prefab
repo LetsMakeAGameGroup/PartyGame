@@ -108,7 +108,6 @@ GameObject:
   - component: {fileID: 1913241591649834014}
   - component: {fileID: 1913241591649834003}
   - component: {fileID: 1913241591649834000}
-  - component: {fileID: 1913241591649834001}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -181,20 +180,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1913241591649834001
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1913241591649834015}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1913241591815720157
 GameObject:
   m_ObjectHideFlags: 0
@@ -205,6 +190,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1913241591815720158}
   - component: {fileID: 1913241591815720159}
+  - component: {fileID: 3807872867980839782}
   - component: {fileID: 1913241591815720156}
   - component: {fileID: 1160618003541792385}
   - component: {fileID: 3823173292657186391}
@@ -251,14 +237,25 @@ MonoBehaviour:
   syncInterval: 0
   playerName: Player
   points: 0
-  walkingSpeed: 7.5
-  runningSpeed: 11.5
-  jumpSpeed: 8
   playerCamera: {fileID: 1913241592568134192}
   lookSpeed: 2
   lookXLimit: 90
-  canMove: 1
   isInteracting: 0
+--- !u!114 &3807872867980839782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913241591815720157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f15f83b0079d5e428a9f8cf1b5518fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkingSpeed: 7.5
+  runningSpeed: 11.5
+  jumpSpeed: 8
 --- !u!143 &1913241591815720156
 CharacterController:
   m_ObjectHideFlags: 0
