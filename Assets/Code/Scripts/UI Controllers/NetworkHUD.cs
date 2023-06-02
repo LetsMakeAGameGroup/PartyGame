@@ -12,13 +12,15 @@ public class NetworkHUD : MonoBehaviour {
     [Header("UI")]
     [SerializeField] private TMP_InputField codeInputField = null;
 
+    private void Start() => networkManager.UnityLogin();
+
     public void HostLobby() {
-        networkManager.StartHost();
-        Debug.Log("code: " + networkManager.ConvertIPAddressToCode(networkManager.GetExternalIpAddress()));
+        networkManager.StartRelayHost(networkManager.maxConnections);
+        //Debug.Log("code: " + networkManager.ConvertIPAddressToCode(networkManager.GetExternalIpAddress()));
     }
 
     public void JoinLobby() {
-        networkManager.networkAddress = codeInputField.text != "" ? networkManager.ConvertCodeToIPAddress(codeInputField.text) : "localhost";  // Default to localhost if code inputfield is empty.
-        networkManager.StartClient();
+        networkManager.relayJoinCode = codeInputField.text != "" ? codeInputField.text : "localhost";  // Default to localhost if code inputfield is empty.
+        networkManager.JoinRelayServer();
     }
 }
