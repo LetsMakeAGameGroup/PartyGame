@@ -18,6 +18,12 @@ public class PlayerController : NetworkBehaviour {
     float rotationX = 0;
     [HideInInspector] public bool isInteracting = false;
 
+    [SerializeField] float sightRayLenght = 5f;
+    [SerializeField] LayerMask interactableLayerMask;
+    RaycastHit sightRayHit;
+    Transform interactableInSightTransform;
+    IInteractable interactableInSight;
+
     private void Start() {
         //characterController = GetComponent<CharacterController>();
         playerMovementComponent = GetComponent<PlayerMovementComponent>();
@@ -75,6 +81,52 @@ public class PlayerController : NetworkBehaviour {
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxisRaw("Mouse X") * lookSpeed, 0);
+        }
+
+        //Interaction Ray
+        //Should be refactor probably in a different class
+
+        Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
+
+        if (Physics.Raycast(ray, out sightRayHit, sightRayLenght, interactableLayerMask, QueryTriggerInteraction.Ignore))
+        {
+            if (interactableInSightTransform != sightRayHit.transform)
+            {
+                if (interactableInSight == null)
+                {
+                    interactableInSightTransform = sightRayHit.transform;
+                    IInteractable interactable = sightRayHit.transform.GetComponent<IInteractable>();
+
+                    if (interactable != null)
+                    {
+                        interactableInSight = interactable;
+
+                        //Logic to show anything on player screen when looking at the object.
+                        Debug.Log(interactableInSight.InteractableHUDMessege);
+                    }
+                }
+            }
+        }
+        else 
+        {
+            interactableInSight = null;
+            interactableInSightTransform = null;
+        }
+
+        if (Input.GetButtonDown("Interact")) 
+        {
+            Interact();
+        }
+    }
+
+    public void Interact() 
+    {
+        if (interactableInSight != null) 
+        {
+            if (interactableInSight.CanBeInteracted) 
+            {
+                interactableInSight.Interact(this);
+            }
         }
     }
 }

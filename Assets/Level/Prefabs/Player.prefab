@@ -241,6 +241,10 @@ MonoBehaviour:
   lookSpeed: 2
   lookXLimit: 90
   isInteracting: 0
+  sightRayLenght: 5
+  interactableLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &3807872867980839782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +257,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f15f83b0079d5e428a9f8cf1b5518fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
   walkingSpeed: 7.5
   runningSpeed: 11.5
   jumpSpeed: 8
