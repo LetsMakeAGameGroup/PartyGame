@@ -1,9 +1,10 @@
 using UnityEngine;
 using Mirror;
+using TMPro;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : NetworkBehaviour {
-    public string playerName = "Player";
+    [SyncVar(hook = nameof(SetNameTag))] public string playerName = "Player";
     public int points = 0;
 
     public float walkingSpeed = 7.5f;
@@ -14,6 +15,7 @@ public class PlayerController : NetworkBehaviour {
     public float lookSpeed = 2.0f;
     public float lookXLimit = 90.0f;
 
+    [SerializeField] private TextMeshProUGUI nametagText;
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
@@ -100,5 +102,9 @@ public class PlayerController : NetworkBehaviour {
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxisRaw("Mouse X") * lookSpeed, 0);
         }
+    }
+
+    private void SetNameTag(string oldName, string newName) {
+        nametagText.text = newName;
     }
 }
