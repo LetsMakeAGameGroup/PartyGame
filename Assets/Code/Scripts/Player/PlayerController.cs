@@ -107,4 +107,13 @@ public class PlayerController : NetworkBehaviour {
     private void SetNameTag(string oldName, string newName) {
         nametagText.text = newName;
     }
+
+    public override void OnStartAuthority() {
+        CmdSetDisplayName(PlayerPrefs.GetString("PlayerName"));
+    }
+
+    [Command]
+    private void CmdSetDisplayName(string displayName) {
+        this.playerName = displayName;
+    }
 }

@@ -40,7 +40,7 @@ public class CustomNetworkManager : RelayNetworkManager {
         SpawnHolder spawnHolder = FindObjectOfType<SpawnHolder>();
 
         GameObject player = Instantiate(playerPrefab, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.position, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.rotation);
-        player.GetComponent<PlayerController>().playerName = $"Player_{numPlayers + 1}";
+        //player.GetComponent<PlayerController>().playerName = $"Player_{numPlayers + 1}";
         NetworkServer.AddPlayerForConnection(conn, player);
         GameManager.Instance.TargetSetCodeUI(conn, relayJoinCode);
         players.Add(player);
@@ -57,7 +57,7 @@ public class CustomNetworkManager : RelayNetworkManager {
 
         for (int i = 0; i < connections.Count(); i++) {
             GameObject player = Instantiate(playerPrefab, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.position, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.rotation);
-            player.GetComponent<PlayerController>().playerName = $"Player_{i + 1}";
+            //player.GetComponent<PlayerController>().playerName = $"Player_{i + 1}";
 
             if (!NetworkClient.ready) NetworkClient.Ready();
             // TODO: Fix "There is already a player for this connection." error here. This is most likely because the connected clients haven't switched scenes yet.
