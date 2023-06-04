@@ -4,16 +4,26 @@ using Mirror;
 using System.Linq;
 using System.Net;
 using System;
+using Utp;
+using Unity.Services.Authentication;
+using Unity.Services.Core;
 
-public class CustomNetworkManager : NetworkManager {
+public class CustomNetworkManager : RelayNetworkManager {
     public List<GameObject> players = new();
     public List<NetworkConnectionToClient> connections = new();
 
     private bool initialSceneChange = true;
 
+    /// <summary>
+    /// Flag to determine if the user is logged into the backend.
+    /// </summary>
+    public bool isLoggedIn = false;
+
     public static CustomNetworkManager Instance { get; private set; }
 
     public override void Awake() {
+        base.Awake();
+
         // If there is an instance, and it's not me, delete myself.
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
@@ -30,9 +40,9 @@ public class CustomNetworkManager : NetworkManager {
         SpawnHolder spawnHolder = FindObjectOfType<SpawnHolder>();
 
         GameObject player = Instantiate(playerPrefab, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.position, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.rotation);
-        player.GetComponent<PlayerController>().playerName = $"Player_{numPlayers + 1}";
+        //player.GetComponent<PlayerController>().playerName = $"Player_{numPlayers + 1}";
         NetworkServer.AddPlayerForConnection(conn, player);
-        GameManager.Instance.TargetSetCodeUI(conn, ConvertIPAddressToCode(GetExternalIpAddress()));
+        GameManager.Instance.TargetSetCodeUI(conn, relayJoinCode);
         players.Add(player);
         connections.Add(conn);
         initialSceneChange = false;
@@ -47,7 +57,7 @@ public class CustomNetworkManager : NetworkManager {
 
         for (int i = 0; i < connections.Count(); i++) {
             GameObject player = Instantiate(playerPrefab, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.position, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.rotation);
-            player.GetComponent<PlayerController>().playerName = $"Player_{i + 1}";
+            //player.GetComponent<PlayerController>().playerName = $"Player_{i + 1}";
 
             if (!NetworkClient.ready) NetworkClient.Ready();
             // TODO: Fix "There is already a player for this connection." error here. This is most likely because the connected clients haven't switched scenes yet.
@@ -83,5 +93,17 @@ public class CustomNetworkManager : NetworkManager {
         var externalIp = IPAddress.Parse(externalIpString);
 
         return externalIp.ToString();
+    }
+
+    public async void UnityLogin() {
+        try {
+            await UnityServices.InitializeAsync();
+            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            Debug.Log("Logged into Unity, player ID: " + AuthenticationService.Instance.PlayerId);
+            isLoggedIn = true;
+        } catch (Exception e) {
+            isLoggedIn = false;
+            Debug.Log(e);
+        }
     }
 }
