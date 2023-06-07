@@ -13,8 +13,6 @@ public class PlayerController : NetworkBehaviour {
     public float lookSpeed = 2.0f;
     public float lookXLimit = 90.0f;
 
-    //CharacterController characterController;
-    //Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
     [HideInInspector] public bool isInteracting = false;
 
@@ -23,6 +21,10 @@ public class PlayerController : NetworkBehaviour {
     RaycastHit sightRayHit;
     Transform interactableInSightTransform;
     IInteractable interactableInSight;
+
+    bool canUseWeapon;
+    Weapon currentWeapon;
+    [SerializeField] Weapon meleefist;   //Usually he will always have this weapon. When no current weapon, this will be equipped. 
 
     private void Start() {
         //characterController = GetComponent<CharacterController>();
@@ -49,43 +51,50 @@ public class PlayerController : NetworkBehaviour {
         if (!isLocalPlayer) return;
 
         // Allow the host to start the game when in the lobby.
-        if (GameManager.Instance.round == 0 && isServer && Input.GetKeyDown(KeyCode.M)) {
+        if (GameManager.Instance.round == 0 && isServer && Input.GetKeyDown(KeyCode.M)) 
+        {
             GameManager.Instance.StartNextRound();
         }
 
-        //playerCamera.gameObject.SetActive(true);
-        // Press escape key to "pause" and "unpause" the game
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            if (playerMovementComponent.CanMove) {
-                playerMovementComponent.CanMove = false;
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            } else {
-                playerMovementComponent.CanMove = true;
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-            }
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            TogglePause();
         }
 
         Vector2 playerInputs = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         playerMovementComponent.AddMovementInput(playerInputs);
 
-        if (Input.GetButton("Jump")) 
+        if (Input.GetButton("Jump"))
         {
-            playerMovementComponent.Jump();
+            Jump();
         }
 
-        // Player and Camera rotation
         if (playerMovementComponent.CanMove) {
-            rotationX += -Input.GetAxisRaw("Mouse Y") * lookSpeed;
-            rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
-            playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
-            transform.rotation *= Quaternion.Euler(0, Input.GetAxisRaw("Mouse X") * lookSpeed, 0);
+            AddCameraPitch(Input.GetAxisRaw("Mouse Y"));
+            AddCameraYaw(Input.GetAxisRaw("Mouse X"));
         }
 
         //Interaction Ray
-        //Should be refactor probably in a different class
+        InteractionRayOnSight();
 
+        if (Input.GetButtonDown("Interact"))
+        {
+            Interact();
+        }
+
+        //Equipment 
+        if (Input.GetButtonDown("Fire1"))
+        {
+            StartWeaponUse();
+        }
+        else if (Input.GetButtonUp("Fire1")) 
+        {
+            StopWeaponUse();
+        }
+    }
+
+    public void InteractionRayOnSight() 
+    {
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
 
         if (Physics.Raycast(ray, out sightRayHit, sightRayLenght, interactableLayerMask, QueryTriggerInteraction.Ignore))
@@ -107,16 +116,44 @@ public class PlayerController : NetworkBehaviour {
                 }
             }
         }
-        else 
+        else
         {
             interactableInSight = null;
             interactableInSightTransform = null;
         }
+    }
 
-        if (Input.GetButtonDown("Interact")) 
+    public void TogglePause() 
+    {
+        if (playerMovementComponent.CanMove)
         {
-            Interact();
+            playerMovementComponent.CanMove = false;
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
+        else
+        {
+            playerMovementComponent.CanMove = true;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+
+    public void Jump() 
+    {
+        playerMovementComponent?.Jump();
+    }
+
+    public void AddCameraPitch(float inputValue) 
+    {
+        rotationX += -inputValue * lookSpeed;
+        rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
+        playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+    }
+
+    public void AddCameraYaw(float inputValue) 
+    {
+        transform.rotation *= Quaternion.Euler(0, inputValue * lookSpeed, 0);
     }
 
     public void Interact() 
@@ -128,5 +165,54 @@ public class PlayerController : NetworkBehaviour {
                 interactableInSight.Interact(this);
             }
         }
+    }
+
+    public void StartWeaponUse()
+    {
+        if (currentWeapon == null || !canUseWeapon) { return; }
+
+        if (!currentWeapon.weaponInUse)
+        {
+            currentWeapon.StartWeapon();
+        }
+    }
+
+    public void StopWeaponUse()
+    {
+        if (currentWeapon == null || !canUseWeapon) { return; }
+
+        if (currentWeapon.weaponInUse)
+        {
+            currentWeapon.StopWeapon();
+        }
+    }
+
+    public void EquipWeapon(Weapon weaponToEquip) 
+    {
+        if (currentWeapon) 
+        {
+            //UnEquip
+            UnEquipCurrentWeapon();
+        }
+
+        if (currentWeapon.OnWeaponEquip(this))
+        {
+            currentWeapon = weaponToEquip;
+        }
+    }
+
+    public void UnEquipCurrentWeapon() 
+    {
+        //Drop Weapon, or w/e
+        if (currentWeapon.OnWeaponUnEquip(this))
+        {
+            currentWeapon = null;
+        }
+    }
+
+    //Probably should be called by server only
+    public void ForceRemoveCurrentWeapon() 
+    {
+        currentWeapon = null;
     }
 }
