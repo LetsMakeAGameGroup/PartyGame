@@ -103,6 +103,11 @@ public class PlayerController : NetworkBehaviour {
             Weapon weaponTest = Instantiate(weaponToTestPrefab, weaponSocket.position, weaponSocket.rotation, weaponSocket);
             EquipWeapon(weaponTest);
         }
+
+        if (Input.GetKeyDown(KeyCode.Y)) 
+        {
+            playerMovementComponent.LaunchCharacter(transform.TransformDirection(new Vector3(0 * 50, 0, -1 * 50)));
+        }
     }
 
     public void InteractionRayOnSight() 

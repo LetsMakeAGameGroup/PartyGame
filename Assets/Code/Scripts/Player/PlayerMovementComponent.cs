@@ -18,6 +18,8 @@ public class PlayerMovementComponent : NetworkBehaviour
     Vector2 receivedInput = Vector2.zero;
     Vector3 moveDirection = Vector3.zero;
 
+    Vector3 launchVelocity;
+    float launchTimeElapsed;
 
     void Start()
     {
@@ -53,6 +55,13 @@ public class PlayerMovementComponent : NetworkBehaviour
         }
 
         if (characterController.enabled) characterController.Move(moveDirection * Time.deltaTime);
+
+        if (launchVelocity != Vector3.zero)
+        {
+            launchTimeElapsed += Time.deltaTime;
+            characterController.Move(launchVelocity * Time.deltaTime);
+            launchVelocity = Vector3.Slerp(launchVelocity, Vector3.zero, launchTimeElapsed / 4);
+        }
     }
 
     public Vector2 ConsumeInput() 
@@ -73,5 +82,12 @@ public class PlayerMovementComponent : NetworkBehaviour
         {
             moveDirection.y = jumpSpeed;
         }
+    }
+
+    public void LaunchCharacter(Vector3 forceDirection) 
+    {
+        launchVelocity = forceDirection;
+        launchTimeElapsed = 0;
+        moveDirection.y = forceDirection.y;
     }
 }
