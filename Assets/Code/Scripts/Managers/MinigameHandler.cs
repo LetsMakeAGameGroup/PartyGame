@@ -1,21 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>Handles that status of a minigame. Will slightly change how this works soon.</summary>
 // TODO: Instead of handling this on every indivdual minigame, only one instance throughout the game would be better.
 public class MinigameHandler : MonoBehaviour {
+    public float minigameDuration = 120f;
     public List<GameObject> winners = new();
+    [SerializeField] private DisplayTimerUI displayTimerUI = null;
 
     private bool isRunning = false;
 
+    public UnityEvent onMinigameStart = new();
+
     private void Start() {
-        StartCoroutine(CountdownTillStart());
+        Timer timer = gameObject.AddComponent(typeof(Timer)) as Timer;
+        timer.duration = 3f;
+        timer.onTimerEnd.AddListener(StartMinigame);
+
+        displayTimerUI.RpcStartCountdown(3);
     }
 
     /// <summary>Buffer for starting a minigame. Might be depricated soon.</summary>
-    IEnumerator CountdownTillStart() {
-        yield return new WaitForSeconds(3);
+    public void StartMinigame() {
+        Timer timer = gameObject.AddComponent(typeof(Timer)) as Timer;
+        timer.duration = minigameDuration;
+        timer.onTimerEnd.AddListener(EndMinigame);
+
+        displayTimerUI.RpcStartCountdown(minigameDuration);
+
+        onMinigameStart?.Invoke();
+
         isRunning = true;
     }
 

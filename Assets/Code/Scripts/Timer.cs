@@ -6,10 +6,17 @@ using UnityEngine.Events;
 using Mirror;
 
 public class Timer : NetworkBehaviour {
-    [SerializeField] private float duration = 1f;
-    [SerializeField] private bool detonateOnDestroy = false;
-    [SerializeField] private UnityEvent onTimerEnd = new();
-    [SerializeField] private UnityEvent<string> onDisplayTime = new();
+    public float duration = 1f;
+    public bool detonateOnDestroy = false;
+    public UnityEvent onTimerEnd = new();
+    public UnityEvent<string> onDisplayTime = new();
+
+    public void Initialize(float _duration, bool _detonateOnDestroy, UnityEvent _onTimerEnd, UnityEvent<string> _onDisplayTime) {
+        _duration = duration;
+        _detonateOnDestroy = detonateOnDestroy;
+        _onTimerEnd = onTimerEnd;
+        _onDisplayTime = onDisplayTime;
+    }
 
     private void Start() => StartCoroutine(StartTimer());
 

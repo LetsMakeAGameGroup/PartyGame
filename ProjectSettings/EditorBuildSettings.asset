@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level/Scenes/Minigame6Scene.unity
     guid: 116650b01bbfcea4397dabeed39b7893
+  - enabled: 1
+    path: Assets/Level/Scenes/MinigameHedgeHurdlersScene.unity
+    guid: ef300f6744530e94292c2a00c15415f3
   m_configObjects: {}
