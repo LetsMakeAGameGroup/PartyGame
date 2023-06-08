@@ -22,9 +22,14 @@ public class PlayerController : NetworkBehaviour {
     Transform interactableInSightTransform;
     IInteractable interactableInSight;
 
-    bool canUseWeapon;
+    public bool canUseWeapon = true;
     Weapon currentWeapon;
     [SerializeField] Weapon meleefist;   //Usually he will always have this weapon. When no current weapon, this will be equipped. 
+
+    [SerializeField] Transform weaponSocket;
+
+    //Debugging
+    public Weapon weaponToTestPrefab;
 
     private void Start() {
         //characterController = GetComponent<CharacterController>();
@@ -90,6 +95,13 @@ public class PlayerController : NetworkBehaviour {
         else if (Input.GetButtonUp("Fire1")) 
         {
             StopWeaponUse();
+        }
+
+        //Debug
+        if (Input.GetKeyDown(KeyCode.T)) 
+        {
+            Weapon weaponTest = Instantiate(weaponToTestPrefab, weaponSocket.position, weaponSocket.rotation, weaponSocket);
+            EquipWeapon(weaponTest);
         }
     }
 
@@ -189,13 +201,13 @@ public class PlayerController : NetworkBehaviour {
 
     public void EquipWeapon(Weapon weaponToEquip) 
     {
-        if (currentWeapon) 
+        if (currentWeapon != null) 
         {
             //UnEquip
             UnEquipCurrentWeapon();
         }
 
-        if (currentWeapon.OnWeaponEquip(this))
+        if (weaponToEquip.OnWeaponEquip(this))
         {
             currentWeapon = weaponToEquip;
         }
@@ -204,6 +216,7 @@ public class PlayerController : NetworkBehaviour {
     public void UnEquipCurrentWeapon() 
     {
         //Drop Weapon, or w/e
+
         if (currentWeapon.OnWeaponUnEquip(this))
         {
             currentWeapon = null;
@@ -214,5 +227,10 @@ public class PlayerController : NetworkBehaviour {
     public void ForceRemoveCurrentWeapon() 
     {
         currentWeapon = null;
+    }
+
+    public Vector3 GetPlayerCameraSight() 
+    {
+        return playerCamera.transform.forward;
     }
 }

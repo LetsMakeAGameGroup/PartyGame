@@ -15,9 +15,17 @@ public abstract class Weapon : MonoBehaviour
     public bool weaponCanBeEquipped = true;
     public PlayerController weaponOwner;
 
+    protected Coroutine weaponFireCoroutine;
+
     public abstract void Awake();
     public abstract void StartWeapon();
     public abstract void StopWeapon();
+
+    public virtual IEnumerator WeaponFire() 
+    {
+        yield return null;
+    }
+
 
     //OnWeaponEquip returns a bool to see if it was sucesfully equipped
     public virtual bool OnWeaponEquip(PlayerController controller) 

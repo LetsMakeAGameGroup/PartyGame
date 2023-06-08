@@ -11,11 +11,12 @@ public class MeleeWeapon : Weapon
 
     public override void StartWeapon()
     {
-
+        Debug.Log("Melee Attack!");
     }
 
     public override void StopWeapon()
     {
 
     }
+
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RangedWeapon : Weapon
 {
+
     public override void Awake()
     {
         weaponType = EWeaponType.Ranged;
@@ -11,7 +12,7 @@ public class RangedWeapon : Weapon
 
     public override void StartWeapon()
     {
-
+        Debug.Log("Ranged Attack!");
     }
 
     public override void StopWeapon()
