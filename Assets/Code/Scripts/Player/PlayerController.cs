@@ -6,17 +6,15 @@ using TMPro;
 public class PlayerController : NetworkBehaviour {
 
     [SyncVar(hook = nameof(SetNameTag))] public string playerName = "Player";
+    [SerializeField] private TextMeshProUGUI nametagText;
     public int points = 0;
     
     PlayerMovementComponent playerMovementComponent;
-
-    public int points = 0;
 
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 90.0f;
 
-    [SerializeField] private TextMeshProUGUI nametagText;
     float rotationX = 0;
     [HideInInspector] public bool isInteracting = false;
 
