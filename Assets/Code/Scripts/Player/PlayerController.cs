@@ -5,17 +5,18 @@ using TMPro;
 [RequireComponent(typeof(PlayerMovementComponent))]
 public class PlayerController : NetworkBehaviour {
 
+    [SyncVar(hook = nameof(SetNameTag))] public string playerName = "Player";
+    public int points = 0;
+    
     PlayerMovementComponent playerMovementComponent;
 
-    [SyncVar(hook = nameof(SetNameTag))] public string playerName = "Player";
-	[SerializeField] private TextMeshProUGUI nametagText;
-	
     public int points = 0;
 
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 90.0f;
 
+    [SerializeField] private TextMeshProUGUI nametagText;
     float rotationX = 0;
     [HideInInspector] public bool isInteracting = false;
 
@@ -242,19 +243,19 @@ public class PlayerController : NetworkBehaviour {
         return playerCamera.transform.forward;
     }
 	
-	private void SetNameTag(string oldName, string newName) 
-	{
+	  private void SetNameTag(string oldName, string newName) 
+	  {
         nametagText.text = newName;
     }
 
     public override void OnStartAuthority() 
-	{
+    {
         CmdSetDisplayName(PlayerPrefs.GetString("PlayerName"));
     }
 
     [Command]
     private void CmdSetDisplayName(string displayName) 
-	{
-		this.playerName = displayName;
-	}
+	  {
+		  this.playerName = displayName;
+	  }
 }
