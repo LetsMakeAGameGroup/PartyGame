@@ -45,7 +45,8 @@ public class MinigameHandler : MonoBehaviour {
             assignPoints--;
         }
 
-        Debug.Log($"Winner: {winners[0].GetComponent<PlayerController>().playerName} with now {winners[0].GetComponent<PlayerController>().points} points.");  // Change this to show winners on screen
+        if (winners.Count > 0) Debug.Log($"Winner: {winners[0].GetComponent<PlayerController>().playerName} with now {winners[0].GetComponent<PlayerController>().points} points.");  // Change this to show winners on screen
+        else Debug.Log("Round is over! No one has won.");
 
         GameManager.Instance.StartNextRound();
     }
