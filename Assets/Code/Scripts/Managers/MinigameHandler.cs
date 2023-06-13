@@ -8,12 +8,13 @@ using UnityEngine.Events;
 // TODO: Instead of handling this on every indivdual minigame, only one instance throughout the game would be better.
 public class MinigameHandler : MonoBehaviour {
     public float minigameDuration = 120f;
-    public List<GameObject> winners = new();
+    public List<List<GameObject>> winners = new();
     [SerializeField] private DisplayTimerUI displayTimerUI = null;
 
     private bool isRunning = false;
 
     public UnityEvent onMinigameStart = new();
+    public UnityEvent onMinigameEnd = new();
 
     private void Start() {
         Timer timer = gameObject.AddComponent(typeof(Timer)) as Timer;
@@ -37,16 +38,16 @@ public class MinigameHandler : MonoBehaviour {
     }
 
     /// <summary>Adds player to the winners list according to position placed.</summary>
-    public void AddWinner(GameObject player) {
+    public void AddWinner(List<GameObject> players) {
         if (!isRunning) return;
 
-        foreach(GameObject winner in winners) {
-            if (winner == player) return;
-        }
+        //foreach(GameObject[] winner in winners) {
+        //    if (winner == player) return;
+        //}
 
-        winners.Add(player);
+        winners.Add(players);
 
-        if (winners.Count == 3 || winners.Count == CustomNetworkManager.Instance.players.Count) {
+        if (winners.Count == CustomNetworkManager.Instance.players.Count) {
             EndMinigame();
         }
     }
@@ -55,14 +56,18 @@ public class MinigameHandler : MonoBehaviour {
     public void EndMinigame() {
         if (!isRunning) return;
 
+        onMinigameEnd?.Invoke();
+
         // Assign points to winners accordingly
-        int assignPoints = 3;
-        foreach(GameObject winner in winners) {
-            winner.GetComponent<PlayerController>().points += assignPoints;
-            assignPoints--;
+        int assignPoints = CustomNetworkManager.Instance.players.Count;
+        foreach (List<GameObject> position in winners) {
+            foreach (GameObject player in position) {
+                player.GetComponent<PlayerController>().points += assignPoints;
+            }
+            assignPoints -= position.Count;
         }
 
-        if (winners.Count > 0) Debug.Log($"Winner: {winners[0].GetComponent<PlayerController>().playerName} with now {winners[0].GetComponent<PlayerController>().points} points.");  // Change this to show winners on screen
+        if (winners.Count > 0) Debug.Log($"Winner: {winners[0][0].GetComponent<PlayerController>().playerName} with now {winners[0][0].GetComponent<PlayerController>().points} points.");  // Change this to show winners on screen
         else Debug.Log("Round is over! No one has won.");
 
         GameManager.Instance.StartNextRound();

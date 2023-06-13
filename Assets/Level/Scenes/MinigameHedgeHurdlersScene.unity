@@ -2555,6 +2555,66 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1953272850}
     m_Modifications:
+    - target: {fileID: 651124278712162336, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 651124278712162336, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 651124278712162336, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 651124278712162336, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 651124278712162336, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 651124278712162336, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 675407570355499784, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 675407570355499784, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 675407570355499784, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 675407570355499784, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 675407570355499784, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 675407570355499784, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1014782221108021179, guid: be1eaa05afe7dd54586cb31dc5e353c9,
         type: 3}
       propertyPath: m_RootOrder
@@ -2610,12 +2670,352 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1437004914771313661, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437004914771313661, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437004914771313661, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 1437004914771313661, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437004914771313661, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437004914771313661, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1437004914771313661, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1601471357911977748, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: sceneId
+      value: 3892829621
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682482304733519921, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682482304733519921, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682482304733519921, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 1682482304733519921, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682482304733519921, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682482304733519921, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682482304733519921, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2255617410257590758, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067583896151481037, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067583896151481037, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067583896151481037, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 3067583896151481037, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067583896151481037, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3067583896151481037, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3082007215566097187, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: sceneId
+      value: 2843287437
+      objectReference: {fileID: 0}
+    - target: {fileID: 3331005299124058369, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3331005299124058369, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3331005299124058369, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 3331005299124058369, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 3331005299124058369, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3331005299124058369, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788891143416236532, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788891143416236532, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788891143416236532, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 3788891143416236532, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788891143416236532, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788891143416236532, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3788891143416236532, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801633900998009564, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801633900998009564, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801633900998009564, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 3801633900998009564, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801633900998009564, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801633900998009564, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3801633900998009564, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5455828740588345925, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: sceneId
+      value: 933057240
+      objectReference: {fileID: 0}
+    - target: {fileID: 5467434659543642477, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: sceneId
+      value: 3328999626
+      objectReference: {fileID: 0}
+    - target: {fileID: 5777995079942886523, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: sceneId
+      value: 1423110646
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091025104942774199, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: sceneId
+      value: 1880716761
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190015191687780498, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190015191687780498, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190015191687780498, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 6190015191687780498, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190015191687780498, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190015191687780498, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190015191687780498, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6438896545099809417, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6769942328292467013, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7506381231907840622, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7506381231907840622, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7506381231907840622, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 7506381231907840622, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 7506381231907840622, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7506381231907840622, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7528689830102168448, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: sceneId
+      value: 1433663175
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841720665060085836, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: sceneId
+      value: 3162008331
+      objectReference: {fileID: 0}
     - target: {fileID: 7904054453723297164, guid: be1eaa05afe7dd54586cb31dc5e353c9,
         type: 3}
       propertyPath: m_Name
       value: MazeWalls Variant 1
       objectReference: {fileID: 0}
     - target: {fileID: 7904054453723297164, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8582970656252867930, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: sceneId
+      value: 2510811249
+      objectReference: {fileID: 0}
+    - target: {fileID: 8595704665401646706, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: sceneId
+      value: 2622565966
+      objectReference: {fileID: 0}
+    - target: {fileID: 9096728619488086144, guid: be1eaa05afe7dd54586cb31dc5e353c9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108767689904808872, guid: be1eaa05afe7dd54586cb31dc5e353c9,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2634,134 +3034,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 338106051}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &345705547
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 345705553}
-  - component: {fileID: 345705552}
-  - component: {fileID: 345705551}
-  - component: {fileID: 345705550}
-  - component: {fileID: 345705549}
-  - component: {fileID: 345705554}
-  m_Layer: 0
-  m_Name: Finish Line
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &345705549
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345705547}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!23 &345705550
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345705547}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &345705551
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345705547}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &345705552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345705547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 473a9b404d144654eb48ff3b92cae50a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &345705553
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345705547}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: 60}
-  m_LocalScale: {x: 25, y: 4, z: 10}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &345705554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 345705547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 3556252800
-  _assetId: 0
-  serverOnly: 1
-  visible: 0
-  hasSpawned: 0
 --- !u!1 &387077735
 GameObject:
   m_ObjectHideFlags: 0
@@ -3771,6 +4043,116 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1953272850}
     m_Modifications:
+    - target: {fileID: 1209711912550887048, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: sceneId
+      value: 542690662
+      objectReference: {fileID: 0}
+    - target: {fileID: 1380837926689369627, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1616351797443392096, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1616351797443392096, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1616351797443392096, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 1616351797443392096, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1616351797443392096, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 1616351797443392096, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1616351797443392096, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1899878462226544873, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: sceneId
+      value: 930121486
+      objectReference: {fileID: 0}
+    - target: {fileID: 2281260540091863273, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: sceneId
+      value: 1045510861
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545737562849727710, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: sceneId
+      value: 2513132303
+      objectReference: {fileID: 0}
+    - target: {fileID: 2684479345790188621, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783600506191346910, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: sceneId
+      value: 2386772268
+      objectReference: {fileID: 0}
+    - target: {fileID: 3035504700257436204, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3144973334198454428, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3144973334198454428, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3144973334198454428, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 3144973334198454428, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 3144973334198454428, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3144973334198454428, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3185503024485968575, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: sceneId
+      value: 1392270823
+      objectReference: {fileID: 0}
     - target: {fileID: 3200534099463849025, guid: 975860637c09b7840a0ff720a07f3888,
         type: 3}
       propertyPath: m_RootOrder
@@ -3835,6 +4217,216 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917934820027254725, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917934820027254725, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917934820027254725, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 5917934820027254725, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917934820027254725, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5917934820027254725, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174616332956427750, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: sceneId
+      value: 3601021485
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450125361114099567, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450125361114099567, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450125361114099567, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 6450125361114099567, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450125361114099567, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450125361114099567, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6450125361114099567, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6684649670597686036, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719883643114633636, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719883643114633636, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719883643114633636, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 6719883643114633636, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719883643114633636, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6719883643114633636, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956528022540960600, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956528022540960600, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956528022540960600, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 6956528022540960600, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956528022540960600, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956528022540960600, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956528022540960600, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226075249985803667, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226075249985803667, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226075249985803667, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 7226075249985803667, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226075249985803667, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226075249985803667, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7587519030835880401, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: sceneId
+      value: 2970465389
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064792092384640313, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064792092384640313, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064792092384640313, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 8064792092384640313, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064792092384640313, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064792092384640313, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064792092384640313, guid: 975860637c09b7840a0ff720a07f3888,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 975860637c09b7840a0ff720a07f3888, type: 3}
@@ -5233,6 +5825,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1953272850}
     m_Modifications:
+    - target: {fileID: 21709870939953519, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 664598296960405405, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: sceneId
+      value: 1058245269
+      objectReference: {fileID: 0}
+    - target: {fileID: 665701637306066953, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 665701637306066953, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 665701637306066953, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 665701637306066953, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 665701637306066953, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 665701637306066953, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 665701637306066953, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 967999223678638967, guid: 12d88cbef0ecf004296de0de35cab9b3,
         type: 3}
       propertyPath: m_RootOrder
@@ -5288,6 +5925,246 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1677481018910265355, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2176256471975724793, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: sceneId
+      value: 3697894123
+      objectReference: {fileID: 0}
+    - target: {fileID: 2303434130522215533, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: sceneId
+      value: 2260527643
+      objectReference: {fileID: 0}
+    - target: {fileID: 2508348000939426510, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: sceneId
+      value: 164985955
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525285393298215002, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: sceneId
+      value: 3556371061
+      objectReference: {fileID: 0}
+    - target: {fileID: 3062337855341495976, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816330008399631093, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816330008399631093, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816330008399631093, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 3816330008399631093, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816330008399631093, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3816330008399631093, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3874727552126536618, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: sceneId
+      value: 4287825415
+      objectReference: {fileID: 0}
+    - target: {fileID: 4870579279202838909, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5396376332728418191, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: sceneId
+      value: 265837995
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397541145267640347, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397541145267640347, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397541145267640347, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 5397541145267640347, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397541145267640347, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397541145267640347, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5397541145267640347, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709811409327045920, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709811409327045920, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709811409327045920, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 6709811409327045920, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709811409327045920, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6709811409327045920, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6768160413287584127, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6768160413287584127, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6768160413287584127, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 6768160413287584127, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6768160413287584127, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 6768160413287584127, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6768160413287584127, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928236044266171267, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928236044266171267, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928236044266171267, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 6928236044266171267, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928236044266171267, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6928236044266171267, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977577883600013276, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977577883600013276, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977577883600013276, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 6977577883600013276, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977577883600013276, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977577883600013276, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6977577883600013276, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7983451133873744192, guid: 12d88cbef0ecf004296de0de35cab9b3,
         type: 3}
       propertyPath: m_Name
@@ -5297,6 +6174,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8511569246920539064, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: sceneId
+      value: 2438907417
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587437480606655207, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587437480606655207, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587437480606655207, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 8587437480606655207, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587437480606655207, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587437480606655207, guid: 12d88cbef0ecf004296de0de35cab9b3,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12d88cbef0ecf004296de0de35cab9b3, type: 3}
@@ -13472,6 +14384,92 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1770333390}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1777370862
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1953272850}
+    m_Modifications:
+    - target: {fileID: 4050156229535094183, guid: 9ee95ecbd89194d4cad25920bc241d42,
+        type: 3}
+      propertyPath: m_Name
+      value: MazeWalls
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050156229535094183, guid: 9ee95ecbd89194d4cad25920bc241d42,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598027482224764816, guid: 9ee95ecbd89194d4cad25920bc241d42,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598027482224764816, guid: 9ee95ecbd89194d4cad25920bc241d42,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598027482224764816, guid: 9ee95ecbd89194d4cad25920bc241d42,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598027482224764816, guid: 9ee95ecbd89194d4cad25920bc241d42,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598027482224764816, guid: 9ee95ecbd89194d4cad25920bc241d42,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598027482224764816, guid: 9ee95ecbd89194d4cad25920bc241d42,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598027482224764816, guid: 9ee95ecbd89194d4cad25920bc241d42,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598027482224764816, guid: 9ee95ecbd89194d4cad25920bc241d42,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598027482224764816, guid: 9ee95ecbd89194d4cad25920bc241d42,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598027482224764816, guid: 9ee95ecbd89194d4cad25920bc241d42,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598027482224764816, guid: 9ee95ecbd89194d4cad25920bc241d42,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9ee95ecbd89194d4cad25920bc241d42, type: 3}
+--- !u!1 &1777370863 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4050156229535094183, guid: 9ee95ecbd89194d4cad25920bc241d42,
+    type: 3}
+  m_PrefabInstance: {fileID: 1777370862}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1777370864 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6598027482224764816, guid: 9ee95ecbd89194d4cad25920bc241d42,
+    type: 3}
+  m_PrefabInstance: {fileID: 1777370862}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1783625862
 GameObject:
   m_ObjectHideFlags: 0
@@ -15384,6 +16382,8 @@ MonoBehaviour:
   - {fileID: 770222161}
   - {fileID: 500378331}
   - {fileID: 2631709746910488239}
+  startingMaze: {fileID: 1777370863}
+  wisp: {fileID: 6716550575573206128, guid: aae9d59fdc3eb0042a9024800227096c, type: 3}
 --- !u!4 &1953272850
 Transform:
   m_ObjectHideFlags: 0
@@ -15400,8 +16400,9 @@ Transform:
   - {fileID: 770222162}
   - {fileID: 500378332}
   - {fileID: 2631709746910488240}
+  - {fileID: 1777370864}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2002769817
 GameObject:
@@ -16789,7 +17790,7 @@ Transform:
   - {fileID: 2427841037709503020}
   - {fileID: 2427841037288300682}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2427841035761175362
 MonoBehaviour:
@@ -17083,6 +18084,81 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1953272850}
     m_Modifications:
+    - target: {fileID: 173172138691088567, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 263097433081180188, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 263097433081180188, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 263097433081180188, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 263097433081180188, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 263097433081180188, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 263097433081180188, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 398849646329676986, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: sceneId
+      value: 254358193
+      objectReference: {fileID: 0}
+    - target: {fileID: 798045910376646213, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: sceneId
+      value: 4009884811
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270680731675682183, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270680731675682183, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270680731675682183, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 1270680731675682183, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270680731675682183, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270680731675682183, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2304563494170625631, guid: a2babecd3e767a5479af60683063b22c,
         type: 3}
       propertyPath: m_Name
@@ -17092,6 +18168,246 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3200091846246309755, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3200091846246309755, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3200091846246309755, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 3200091846246309755, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3200091846246309755, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 3200091846246309755, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3200091846246309755, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3458784911304971903, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4030675531219878514, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: sceneId
+      value: 2118620103
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139955051404263565, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: sceneId
+      value: 161228874
+      objectReference: {fileID: 0}
+    - target: {fileID: 4498509198883687136, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4498509198883687136, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4498509198883687136, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 4498509198883687136, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4498509198883687136, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 4498509198883687136, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4498509198883687136, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706206045328529745, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: sceneId
+      value: 729189253
+      objectReference: {fileID: 0}
+    - target: {fileID: 5143541155476139511, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5143541155476139511, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5143541155476139511, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 5143541155476139511, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 5143541155476139511, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5143541155476139511, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246114349732860355, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246114349732860355, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246114349732860355, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 5246114349732860355, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246114349732860355, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246114349732860355, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5246114349732860355, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6001932343193029834, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: sceneId
+      value: 3928045397
+      objectReference: {fileID: 0}
+    - target: {fileID: 7404982683356880399, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8050124024274913533, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: sceneId
+      value: 1693241607
+      objectReference: {fileID: 0}
+    - target: {fileID: 8414729993158871956, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432619510354996031, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432619510354996031, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432619510354996031, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 8432619510354996031, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432619510354996031, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432619510354996031, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839115387784468235, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839115387784468235, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839115387784468235, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 8839115387784468235, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839115387784468235, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: AddPoints
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839115387784468235, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839115387784468235, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: onPointsAdd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8961768404580856936, guid: a2babecd3e767a5479af60683063b22c,
         type: 3}
@@ -17148,6 +18464,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9057620633245326694, guid: a2babecd3e767a5479af60683063b22c,
+        type: 3}
+      propertyPath: sceneId
+      value: 151577082
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2babecd3e767a5479af60683063b22c, type: 3}
 --- !u!1 &2631709746910488239 stripped
@@ -17182,7 +18503,7 @@ PrefabInstance:
     - target: {fileID: 5509349590026496924, guid: cdf927ed14e3eed48ac0e349de9ed0cc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5509349590026496924, guid: cdf927ed14e3eed48ac0e349de9ed0cc,
         type: 3}
@@ -17300,12 +18621,32 @@ PrefabInstance:
       objectReference: {fileID: 1826234291}
     - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
         type: 3}
-      propertyPath: onMinigameStart.m_PersistentCalls.m_Calls.Array.size
+      propertyPath: onMinigameEnd.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
         type: 3}
+      propertyPath: onMinigameStart.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
+      propertyPath: onMinigameEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
+      propertyPath: onMinigameEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
       propertyPath: onMinigameStart.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
+      propertyPath: onMinigameStart.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
@@ -17315,7 +18656,27 @@ PrefabInstance:
       objectReference: {fileID: 1953272849}
     - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
         type: 3}
+      propertyPath: onMinigameStart.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1953272849}
+    - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
+      propertyPath: onMinigameEnd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
+      propertyPath: onMinigameEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DetermineWinners
+      objectReference: {fileID: 0}
+    - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
       propertyPath: onMinigameStart.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
+      propertyPath: onMinigameStart.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
@@ -17325,12 +18686,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
         type: 3}
+      propertyPath: onMinigameStart.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: RandomizeMaze
+      objectReference: {fileID: 0}
+    - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
+      propertyPath: onMinigameEnd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
       propertyPath: onMinigameStart.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: MazeManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
         type: 3}
+      propertyPath: onMinigameStart.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: MazeManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
+      propertyPath: onMinigameEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
       propertyPath: onMinigameStart.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
+      propertyPath: onMinigameStart.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6752307203290812873, guid: 3afd7ff16db44e3488141989f06c8a58,

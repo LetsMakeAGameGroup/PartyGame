@@ -60,7 +60,8 @@ MonoBehaviour:
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 6716550575573206128, guid: aae9d59fdc3eb0042a9024800227096c, type: 3}
   snapshotSettings:
     bufferTimeMultiplier: 2
     catchupNegativeThreshold: -1
@@ -74,6 +75,7 @@ MonoBehaviour:
   timeInterpolationGui: 0
   relayJoinCode: 
   players: []
+  isLoggedIn: 0
 --- !u!114 &4429846812453579608
 MonoBehaviour:
   m_ObjectHideFlags: 0
