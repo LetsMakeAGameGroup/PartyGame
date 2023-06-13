@@ -3,7 +3,7 @@ using Mirror;
 using TMPro;
 
 [RequireComponent(typeof(PlayerMovementComponent))]
-public class PlayerController : NetworkBehaviour {
+public class PlayerController : NetworkBehaviour, ICollector {
 
     [SyncVar(hook = nameof(SetNameTag))] public string playerName = "Player";
     [SerializeField] private TextMeshProUGUI nametagText;
@@ -32,6 +32,10 @@ public class PlayerController : NetworkBehaviour {
 
     //Debugging
     public Weapon weaponToTestPrefab;
+
+    
+    public GameObject GetCollectorGameObject { get { return gameObject; } }
+    public PlayerMovementComponent MovementComponent { get { return playerMovementComponent; } }
 
     private void Start() {
         //characterController = GetComponent<CharacterController>();
@@ -256,4 +260,16 @@ public class PlayerController : NetworkBehaviour {
 	  {
 		  this.playerName = displayName;
 	  }
+
+    public bool CanCollect()
+    {
+        return true;
+    }
+
+    public void OnCollectableCollect(ICollectable collected)
+    {
+        //What do we want to do if we collect that collectable
+        //Example:
+        //Collect Animation
+    }
 }
