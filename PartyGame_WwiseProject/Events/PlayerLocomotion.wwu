@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{3E404B8D-BB8D-40F8-930A-BB6912E83EE3}" SchemaVersion="110" RootDocumentID="{D57BDEE3-BAC0-4F6D-BB1E-F9FA5C8CA211}" ParentDocumentID="{D57BDEE3-BAC0-4F6D-BB1E-F9FA5C8CA211}">
+	<Events>
+		<WorkUnit Name="PlayerLocomotion" ID="{3E404B8D-BB8D-40F8-930A-BB6912E83EE3}" OwnerID="{D57BDEE3-BAC0-4F6D-BB1E-F9FA5C8CA211}" PersistMode="Nested">
+			<ChildrenList>
+				<Event Name="Play_PLYR_Footsteps" ID="{C7E14CE1-6F64-4E38-8C31-9BBCD9CB63D5}">
+					<ChildrenList>
+						<Action Name="" ID="{1BAD13C2-A8A6-453A-829B-803DA2C0ACD3}" ShortID="1005211658">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="PLYR_Footsteps_Grass" ID="{63D2ED6A-B92D-4B31-983D-91EC719E55A9}" WorkUnitID="{C03CE2D2-D279-4067-979F-D9E12238DA2B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Play_PLYR_Jump" ID="{6AFDB77A-41AF-4D6B-995E-EDA39BCD6199}">
+					<ChildrenList>
+						<Action Name="" ID="{BD19B9FB-2A7E-4428-B6FF-1B22F947BC9D}" ShortID="706655394">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="PLYR_Jump" ID="{C453BB33-1E16-41DF-9D6B-EB97501C075F}" WorkUnitID="{8243CDE3-B404-4C05-8AD8-A1356D600FBA}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

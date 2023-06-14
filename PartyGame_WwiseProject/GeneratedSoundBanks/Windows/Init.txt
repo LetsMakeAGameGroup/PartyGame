@@ -1,5 +1,27 @@
+State Group	ID	Name			Wwise Object Path	Notes
+	185713839	RoomState			\Default Work Unit\RoomState	
+	1045871717	GameStatus			\Default Work Unit\GameStatus	
+	3285234865	PlayerState			\Default Work Unit\PlayerState	
+
+State	ID	Name	State Group			Notes
+	144697359	Outdoor	RoomState			
+	340398852	Indoor	RoomState			
+	748895195	None	RoomState			
+	748895195	None	GameStatus			
+	984691642	InGame	GameStatus			
+	3374585465	InMenu	GameStatus			
+	655265632	Alive	PlayerState			
+	748895195	None	PlayerState			
+	2044049779	Dead	PlayerState			
+
 Audio Bus	ID	Name			Wwise Object Path	Notes
+	1182634443	AmbientBeds			\Default Work Unit\Master Audio Bus\AmbientMaster\AmbientBeds	
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
+
+Auxiliary Bus	ID	Name			Wwise Object Path	Notes
+	348963605	Reverb			\Default Work Unit\Master Audio Bus\Reverb	
+	2134960294	SmallReverb			\Default Work Unit\Master Audio Bus\Reverb\SmallReverb	
+	3684725634	LargeReverb			\Default Work Unit\Master Audio Bus\Reverb\LargeReverb	
 
 Audio Devices	ID	Name	Type				Notes
 	3859886410	System	System			

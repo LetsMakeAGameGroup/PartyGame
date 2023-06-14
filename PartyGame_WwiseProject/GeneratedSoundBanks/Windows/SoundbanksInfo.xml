@@ -9,7 +9,7 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{63390E6A-D05D-3CD8-7B9B-CF50CBFC5FA7}">
+		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{E268F6AE-5709-CE70-14B2-C4665E7DFF0E}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 			<Plugins>
@@ -18,13 +18,55 @@
 				</AudioDevices>
 			</Plugins>
 			<Busses>
+				<Bus Id="1182634443" Name="AmbientBeds"/>
 				<Bus Id="3803692087" Name="Master Audio Bus"/>
 			</Busses>
-		</SoundBank>
-		<SoundBank Id="2228651116" Type="User" Language="SFX" Hash="{1CDD4BCB-844F-134C-500B-F77E425889C3}">
-			<ShortName>Main_Soundbank</ShortName>
-			<Path>Main_Soundbank.bnk</Path>
+			<AuxBusses>
+				<AuxBus Id="348963605" Name="Reverb"/>
+				<AuxBus Id="2134960294" Name="SmallReverb">
+					<AuxBusRefs>
+						<AuxBusRef Id="348963605" Name="Reverb"/>
+					</AuxBusRefs>
+				</AuxBus>
+				<AuxBus Id="3684725634" Name="LargeReverb">
+					<AuxBusRefs>
+						<AuxBusRef Id="348963605" Name="Reverb"/>
+					</AuxBusRefs>
+				</AuxBus>
+			</AuxBusses>
+			<StateGroups>
+				<StateGroup Id="185713839" Name="RoomState">
+					<States>
+						<State Id="144697359" Name="Outdoor"/>
+						<State Id="340398852" Name="Indoor"/>
+						<State Id="748895195" Name="None"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="1045871717" Name="GameStatus">
+					<States>
+						<State Id="748895195" Name="None"/>
+						<State Id="984691642" Name="InGame"/>
+						<State Id="3374585465" Name="InMenu"/>
+					</States>
+				</StateGroup>
+				<StateGroup Id="3285234865" Name="PlayerState">
+					<States>
+						<State Id="655265632" Name="Alive"/>
+						<State Id="748895195" Name="None"/>
+						<State Id="2044049779" Name="Dead"/>
+					</States>
+				</StateGroup>
+			</StateGroups>
+			<SwitchGroups>
+				<SwitchGroup Id="1044534455" Name="GroundMaterialSwitch">
+					<Switches>
+						<Switch Id="1216965916" Name="Stone"/>
+						<Switch Id="2195636714" Name="Dirt"/>
+						<Switch Id="4248645337" Name="Grass"/>
+					</Switches>
+				</SwitchGroup>
+			</SwitchGroups>
 		</SoundBank>
 	</SoundBanks>
-	<FileHash>{6F42F6F4-4749-7B5C-2A2D-077E6CD03F94}</FileHash>
+	<FileHash>{8B1842E4-3792-5757-918F-559F8C69E051}</FileHash>
 </SoundBanksInfo>

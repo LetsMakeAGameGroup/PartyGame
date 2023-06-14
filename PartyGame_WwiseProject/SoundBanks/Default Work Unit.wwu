@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <WwiseDocument Type="WorkUnit" ID="{5A04BFC9-BBD6-4F48-BB6A-05676E4BD87C}" SchemaVersion="110">
 	<SoundBanks>
-		<WorkUnit Name="Default Work Unit" ID="{5A04BFC9-BBD6-4F48-BB6A-05676E4BD87C}" PersistMode="Standalone"/>
+		<WorkUnit Name="Default Work Unit" ID="{5A04BFC9-BBD6-4F48-BB6A-05676E4BD87C}" PersistMode="Standalone">
+			<ChildrenList>
+				<WorkUnit Name="Main" ID="{2A6C1E34-F8FC-4860-9A6B-6EB4852CBD70}" PersistMode="Reference"/>
+			</ChildrenList>
+		</WorkUnit>
 	</SoundBanks>
 </WwiseDocument>

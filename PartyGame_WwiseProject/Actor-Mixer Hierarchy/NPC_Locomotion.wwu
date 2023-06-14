@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{329231AF-B676-44CB-A974-96234B3DB015}" SchemaVersion="110">
+	<AudioObjects>
+		<WorkUnit Name="NPC_Locomotion" ID="{329231AF-B676-44CB-A974-96234B3DB015}" PersistMode="Standalone">
+			<ChildrenList>
+				<WorkUnit Name="NPCFootsteps" ID="{A7F2EDC5-3391-4DB9-92B9-B71EA3D9F5C3}" PersistMode="Reference"/>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

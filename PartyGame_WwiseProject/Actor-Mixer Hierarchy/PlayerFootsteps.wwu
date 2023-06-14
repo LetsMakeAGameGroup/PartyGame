@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{C03CE2D2-D279-4067-979F-D9E12238DA2B}" SchemaVersion="110" RootDocumentID="{5DB21889-26C7-449A-9022-796D78FBD275}" ParentDocumentID="{5DB21889-26C7-449A-9022-796D78FBD275}">
+	<AudioObjects>
+		<WorkUnit Name="PlayerFootsteps" ID="{C03CE2D2-D279-4067-979F-D9E12238DA2B}" OwnerID="{5DB21889-26C7-449A-9022-796D78FBD275}" PersistMode="Nested">
+			<ChildrenList>
+				<RandomSequenceContainer Name="PLYR_Footsteps_Stone" ID="{BFEE0A21-0A2C-421A-843F-43F05E1ECFA6}" ShortID="640027264">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Stone 1" ID="{D1A500CC-C212-4F8D-A0CF-D964CCFA3E14}" ShortID="946561221">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Stone 1" ID="{D5A089A7-7957-424F-930C-BDC15C5FA461}">
+									<Language>SFX</Language>
+									<AudioFile>Stone 1.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="886264194"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Stone 1" ID="{D5A089A7-7957-424F-930C-BDC15C5FA461}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Stone 2" ID="{90025575-9812-4E93-97C0-9CCB3C9D1169}" ShortID="898694498">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Stone 2" ID="{608922AB-2F8B-4C5A-8504-C2DC922A9E3F}">
+									<Language>SFX</Language>
+									<AudioFile>Stone 2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="296486646"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Stone 2" ID="{608922AB-2F8B-4C5A-8504-C2DC922A9E3F}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Stone 3" ID="{1F769C3F-E62B-4408-AF5E-D7593EAE480F}" ShortID="1046480893">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Stone 3" ID="{342E58D9-8B3B-4495-B690-2DEB9EC362B0}">
+									<Language>SFX</Language>
+									<AudioFile>Stone 3.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="75376755"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Stone 3" ID="{342E58D9-8B3B-4495-B690-2DEB9EC362B0}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Stone 4" ID="{870251FC-DFAA-44AD-9C79-67FF1180CCF0}" ShortID="999864763">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Stone 4" ID="{F8E7027E-9E6E-40DE-808A-E9AE1C1DB1C8}">
+									<Language>SFX</Language>
+									<AudioFile>Stone 4.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="450611654"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Stone 4" ID="{F8E7027E-9E6E-40DE-808A-E9AE1C1DB1C8}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Stone 5" ID="{250EBD3A-71E2-4700-B936-118B1DEEA0E6}" ShortID="232162447">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Stone 5" ID="{B8B22E7D-28F1-4351-BBA1-595627BD5899}">
+									<Language>SFX</Language>
+									<AudioFile>Stone 5.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="523569542"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Stone 5" ID="{B8B22E7D-28F1-4351-BBA1-595627BD5899}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Stone 6" ID="{E8734B00-0F93-47FA-BF14-D425943B05DF}" ShortID="112208883">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Stone 6" ID="{29CE70B9-5447-4D3F-8367-5B0F2F2967CF}">
+									<Language>SFX</Language>
+									<AudioFile>Stone 6.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="354636233"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Stone 6" ID="{29CE70B9-5447-4D3F-8367-5B0F2F2967CF}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Stone 7" ID="{C09918D7-7B9E-41ED-AA95-8104E651AFC6}" ShortID="519175222">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Stone 7" ID="{C4D50C96-2AEE-4886-ABAA-CF76C4E49D44}">
+									<Language>SFX</Language>
+									<AudioFile>Stone 7.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="753851821"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Stone 7" ID="{C4D50C96-2AEE-4886-ABAA-CF76C4E49D44}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Stone 8" ID="{6C397ABC-8CC6-40A3-8ABE-851906E0DFF0}" ShortID="79178306">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Stone 8" ID="{70649777-1E69-42AE-910A-620C98050ED3}">
+									<Language>SFX</Language>
+									<AudioFile>Stone 8.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="430464113"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Stone 8" ID="{70649777-1E69-42AE-910A-620C98050ED3}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Stone 9" ID="{EE760159-4F99-4DAB-907D-FF8536730C0E}" ShortID="69907567">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Stone 9" ID="{6E51108B-1333-405F-992D-A7992014F138}">
+									<Language>SFX</Language>
+									<AudioFile>Stone 9.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="192703315"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Stone 9" ID="{6E51108B-1333-405F-992D-A7992014F138}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Stone 10" ID="{0F9F552D-3635-48D1-9195-3F07E0B8AD14}" ShortID="847698815">
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Stone 10" ID="{0DAC313C-725E-458E-A01B-1DFAD2431B95}">
+									<Language>SFX</Language>
+									<AudioFile>Stone 10.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="474003335"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Stone 10" ID="{0DAC313C-725E-458E-A01B-1DFAD2431B95}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</RandomSequenceContainer>
+				<RandomSequenceContainer Name="PLYR_Footsteps_Grass" ID="{63D2ED6A-B92D-4B31-983D-91EC719E55A9}" ShortID="212274115">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Grass 1" ID="{EAFD699E-D1DE-40C4-A3BC-06289C3CB68B}" ShortID="130451711">
+							<PropertyList>
+								<Property Name="Soundly:ActiveChannels" Type="string" Value="[]"/>
+								<Property Name="Soundly:FileID" Type="string" Value="SND62088"/>
+								<Property Name="Soundly:FileName" Type="string" Value="C:\Users\secon\AppData\Local\Temp\tmpfi2u5lxt\afcache\1426367345Ff4sxqvM_wkFwGSND62088sfy.sfy"/>
+								<Property Name="Soundly:HandleStartTime" Type="string" Value="0"/>
+								<Property Name="Soundly:HandleStopTime" Type="string" Value="30.829882252371497"/>
+								<Property Name="Soundly:LibraryID" Type="string" Value="1426367345Ff4sxqvM_wkFwG"/>
+								<Property Name="Soundly:LibraryLocation" Type="string" Value="Cloud"/>
+								<Property Name="Soundly:PlaybackSpeed" Type="string" Value="1.0"/>
+								<Property Name="Soundly:ProcessList" Type="string" Value="[]"/>
+								<Property Name="Soundly:RenderedFileBitRate" Type="string" Value="3"/>
+								<Property Name="Soundly:RenderedFilePath" Type="string" Value="C:\Users\secon\Soundly Audio\Footsteps, Human, Walk, Grass, Mono SND62088 4.wav"/>
+								<Property Name="Soundly:RenderedFileSampleRate" Type="string" Value="96000"/>
+								<Property Name="Soundly:SelectionStartTime" Type="string" Value="0.0006618133686300463"/>
+								<Property Name="Soundly:SelectionStopTime" Type="string" Value="0.01654533421575116"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Footsteps, Human, Walk, Grass, Mono SND62088 4" ID="{95134BD5-C979-4E69-B4AD-3591616EAD18}">
+									<PropertyList>
+										<Property Name="Soundly:FileIDForAudioSource" Type="string" Value="SND62088"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.0331952900948599"/>
+										<Property Name="TrimEnd" Type="Real64" Value="0.829882252371498"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Soundly Audio\Footsteps, Human, Walk, Grass, Mono SND62088 4.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="314738856"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Footsteps, Human, Walk, Grass, Mono SND62088 4" ID="{95134BD5-C979-4E69-B4AD-3591616EAD18}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Grass 2" ID="{F8B853DE-E538-4317-BC47-0C92ED9DB0DE}" ShortID="987679253">
+							<PropertyList>
+								<Property Name="Soundly:ActiveChannels" Type="string" Value="[]"/>
+								<Property Name="Soundly:FileID" Type="string" Value="SND62088"/>
+								<Property Name="Soundly:FileName" Type="string" Value="C:\Users\secon\AppData\Local\Temp\tmpfi2u5lxt\afcache\1426367345Ff4sxqvM_wkFwGSND62088sfy.sfy"/>
+								<Property Name="Soundly:HandleStartTime" Type="string" Value="0"/>
+								<Property Name="Soundly:HandleStopTime" Type="string" Value="32.82159965806309"/>
+								<Property Name="Soundly:LibraryID" Type="string" Value="1426367345Ff4sxqvM_wkFwG"/>
+								<Property Name="Soundly:LibraryLocation" Type="string" Value="Cloud"/>
+								<Property Name="Soundly:PlaybackSpeed" Type="string" Value="1.0"/>
+								<Property Name="Soundly:ProcessList" Type="string" Value="[]"/>
+								<Property Name="Soundly:RenderedFileBitRate" Type="string" Value="3"/>
+								<Property Name="Soundly:RenderedFilePath" Type="string" Value="C:\Users\secon\Soundly Audio\Footsteps, Human, Walk, Grass, Mono SND62088 11.wav"/>
+								<Property Name="Soundly:RenderedFileSampleRate" Type="string" Value="96000"/>
+								<Property Name="Soundly:SelectionStartTime" Type="string" Value="0.04103242885506287"/>
+								<Property Name="Soundly:SelectionStopTime" Type="string" Value="0.05625413633355394"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Footsteps, Human, Walk, Grass, Mono SND62088 11" ID="{BA83A7A5-6AC3-44CE-B517-3D7B397597D8}">
+									<PropertyList>
+										<Property Name="Soundly:FileIDForAudioSource" Type="string" Value="SND62088"/>
+										<Property Name="TrimBegin" Type="Real64" Value="2.05810798588131"/>
+										<Property Name="TrimEnd" Type="Real64" Value="2.82159965806309"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Soundly Audio\Footsteps, Human, Walk, Grass, Mono SND62088 11.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="177554610"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Footsteps, Human, Walk, Grass, Mono SND62088 11" ID="{BA83A7A5-6AC3-44CE-B517-3D7B397597D8}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Grass 3" ID="{C8F9F0BA-5405-4D2A-8679-F94FCE2B82E5}" ShortID="66632425">
+							<PropertyList>
+								<Property Name="Soundly:ActiveChannels" Type="string" Value="[]"/>
+								<Property Name="Soundly:FileID" Type="string" Value="SND62088"/>
+								<Property Name="Soundly:FileName" Type="string" Value="C:\Users\secon\AppData\Local\Temp\tmpfi2u5lxt\afcache\1426367345Ff4sxqvM_wkFwGSND62088sfy.sfy"/>
+								<Property Name="Soundly:HandleStartTime" Type="string" Value="0"/>
+								<Property Name="Soundly:HandleStopTime" Type="string" Value="31.560178634458417"/>
+								<Property Name="Soundly:LibraryID" Type="string" Value="1426367345Ff4sxqvM_wkFwG"/>
+								<Property Name="Soundly:LibraryLocation" Type="string" Value="Cloud"/>
+								<Property Name="Soundly:PlaybackSpeed" Type="string" Value="1.0"/>
+								<Property Name="Soundly:ProcessList" Type="string" Value="[]"/>
+								<Property Name="Soundly:RenderedFileBitRate" Type="string" Value="3"/>
+								<Property Name="Soundly:RenderedFilePath" Type="string" Value="C:\Users\secon\Soundly Audio\Footsteps, Human, Walk, Grass, Mono SND62088 12.wav"/>
+								<Property Name="Soundly:RenderedFileSampleRate" Type="string" Value="96000"/>
+								<Property Name="Soundly:SelectionStartTime" Type="string" Value="0.020516214427531435"/>
+								<Property Name="Soundly:SelectionStopTime" Type="string" Value="0.031105228325612178"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Footsteps, Human, Walk, Grass, Mono SND62088 12" ID="{B406FB0F-B388-47C3-AFC3-FB30CC43411E}">
+									<PropertyList>
+										<Property Name="Soundly:FileIDForAudioSource" Type="string" Value="SND62088"/>
+										<Property Name="TrimBegin" Type="Real64" Value="1.02905399294066"/>
+										<Property Name="TrimEnd" Type="Real64" Value="1.56017863445842"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Soundly Audio\Footsteps, Human, Walk, Grass, Mono SND62088 12.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="819333578"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Footsteps, Human, Walk, Grass, Mono SND62088 12" ID="{B406FB0F-B388-47C3-AFC3-FB30CC43411E}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Grass 4" ID="{73BB7BA6-50E3-4C63-8B56-9E9EFB8EA780}" ShortID="494866560">
+							<PropertyList>
+								<Property Name="Soundly:ActiveChannels" Type="string" Value="[]"/>
+								<Property Name="Soundly:FileID" Type="string" Value="SND62088"/>
+								<Property Name="Soundly:FileName" Type="string" Value="C:\Users\secon\AppData\Local\Temp\tmpfi2u5lxt\afcache\1426367345Ff4sxqvM_wkFwGSND62088sfy.sfy"/>
+								<Property Name="Soundly:HandleStartTime" Type="string" Value="0"/>
+								<Property Name="Soundly:HandleStopTime" Type="string" Value="33.65148191043459"/>
+								<Property Name="Soundly:LibraryID" Type="string" Value="1426367345Ff4sxqvM_wkFwG"/>
+								<Property Name="Soundly:LibraryLocation" Type="string" Value="Cloud"/>
+								<Property Name="Soundly:PlaybackSpeed" Type="string" Value="1.0"/>
+								<Property Name="Soundly:ProcessList" Type="string" Value="[]"/>
+								<Property Name="Soundly:RenderedFileBitRate" Type="string" Value="3"/>
+								<Property Name="Soundly:RenderedFilePath" Type="string" Value="C:\Users\secon\Soundly Audio\Footsteps, Human, Walk, Grass, Mono SND62088 14.wav"/>
+								<Property Name="Soundly:RenderedFileSampleRate" Type="string" Value="96000"/>
+								<Property Name="Soundly:SelectionStartTime" Type="string" Value="0.0628722700198544"/>
+								<Property Name="Soundly:SelectionStopTime" Type="string" Value="0.07279947054930509"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Footsteps, Human, Walk, Grass, Mono SND62088 14" ID="{4D4C717A-633A-4133-A71E-031AFF843995}">
+									<PropertyList>
+										<Property Name="Soundly:FileIDForAudioSource" Type="string" Value="SND62088"/>
+										<Property Name="TrimBegin" Type="Real64" Value="3.15355255901169"/>
+										<Property Name="TrimEnd" Type="Real64" Value="3.65148191043459"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Soundly Audio\Footsteps, Human, Walk, Grass, Mono SND62088 14.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="296081412"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Footsteps, Human, Walk, Grass, Mono SND62088 14" ID="{4D4C717A-633A-4133-A71E-031AFF843995}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Grass 5" ID="{4A587816-5B7B-476A-B38C-56B99E80DF3B}" ShortID="530134114">
+							<PropertyList>
+								<Property Name="Soundly:ActiveChannels" Type="string" Value="[]"/>
+								<Property Name="Soundly:FileID" Type="string" Value="SND62088"/>
+								<Property Name="Soundly:FileName" Type="string" Value="C:\Users\secon\AppData\Local\Temp\tmpfi2u5lxt\afcache\1426367345Ff4sxqvM_wkFwGSND62088sfy.sfy"/>
+								<Property Name="Soundly:HandleStartTime" Type="string" Value="0"/>
+								<Property Name="Soundly:HandleStopTime" Type="string" Value="40.456516379880874"/>
+								<Property Name="Soundly:LibraryID" Type="string" Value="1426367345Ff4sxqvM_wkFwG"/>
+								<Property Name="Soundly:LibraryLocation" Type="string" Value="Cloud"/>
+								<Property Name="Soundly:PlaybackSpeed" Type="string" Value="1.0"/>
+								<Property Name="Soundly:ProcessList" Type="string" Value="[]"/>
+								<Property Name="Soundly:RenderedFileBitRate" Type="string" Value="3"/>
+								<Property Name="Soundly:RenderedFilePath" Type="string" Value="C:\Users\secon\Soundly Audio\Footsteps, Human, Walk, Grass, Mono SND62088 15.wav"/>
+								<Property Name="Soundly:RenderedFileSampleRate" Type="string" Value="96000"/>
+								<Property Name="Soundly:SelectionStartTime" Type="string" Value="0.1972203838517538"/>
+								<Property Name="Soundly:SelectionStopTime" Type="string" Value="0.2084712111184646"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Footsteps, Human, Walk, Grass, Mono SND62088 15" ID="{1FE805D5-C4F4-49CA-8759-4104F31F64E0}">
+									<PropertyList>
+										<Property Name="Soundly:FileIDForAudioSource" Type="string" Value="SND62088"/>
+										<Property Name="TrimBegin" Type="Real64" Value="9.89219644826825"/>
+										<Property Name="TrimEnd" Type="Real64" Value="10.4565163798809"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Soundly Audio\Footsteps, Human, Walk, Grass, Mono SND62088 15.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="970579134"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Footsteps, Human, Walk, Grass, Mono SND62088 15" ID="{1FE805D5-C4F4-49CA-8759-4104F31F64E0}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Grass 6" ID="{D7823CB7-C77B-49A5-BD9D-BBD6139E710F}" ShortID="762773106">
+							<PropertyList>
+								<Property Name="Soundly:ActiveChannels" Type="string" Value="[]"/>
+								<Property Name="Soundly:FileID" Type="string" Value="SND62088"/>
+								<Property Name="Soundly:FileName" Type="string" Value="C:\Users\secon\AppData\Local\Temp\tmpfi2u5lxt\afcache\1426367345Ff4sxqvM_wkFwGSND62088sfy.sfy"/>
+								<Property Name="Soundly:HandleStartTime" Type="string" Value="0"/>
+								<Property Name="Soundly:HandleStopTime" Type="string" Value="43.47728777851312"/>
+								<Property Name="Soundly:LibraryID" Type="string" Value="1426367345Ff4sxqvM_wkFwG"/>
+								<Property Name="Soundly:LibraryLocation" Type="string" Value="Cloud"/>
+								<Property Name="Soundly:PlaybackSpeed" Type="string" Value="1.0"/>
+								<Property Name="Soundly:ProcessList" Type="string" Value="[]"/>
+								<Property Name="Soundly:RenderedFileBitRate" Type="string" Value="3"/>
+								<Property Name="Soundly:RenderedFilePath" Type="string" Value="C:\Users\secon\Soundly Audio\Footsteps, Human, Walk, Grass, Mono SND62088 16.wav"/>
+								<Property Name="Soundly:RenderedFileSampleRate" Type="string" Value="96000"/>
+								<Property Name="Soundly:SelectionStartTime" Type="string" Value="0.2561217736598279"/>
+								<Property Name="Soundly:SelectionStopTime" Type="string" Value="0.2686962276637988"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Footsteps, Human, Walk, Grass, Mono SND62088 16" ID="{3395E4FF-084C-4ADD-8AA3-40E5A598EDB2}">
+									<PropertyList>
+										<Property Name="Soundly:FileIDForAudioSource" Type="string" Value="SND62088"/>
+										<Property Name="TrimBegin" Type="Real64" Value="12.8465772667108"/>
+										<Property Name="TrimEnd" Type="Real64" Value="13.4772877785131"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Soundly Audio\Footsteps, Human, Walk, Grass, Mono SND62088 16.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="986376141"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Footsteps, Human, Walk, Grass, Mono SND62088 16" ID="{3395E4FF-084C-4ADD-8AA3-40E5A598EDB2}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</RandomSequenceContainer>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

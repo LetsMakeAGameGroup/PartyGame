@@ -29,29 +29,43 @@
 	<ValidationCacheItem File="D:\Unity\PartyGame_WwiseIntegrationTemp\PartyGame_WwiseProject\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
 	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Virtual Acoustics\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
 	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Triggers\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
-	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Switches\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
-	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\States\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Switches\Default Work Unit.wwu" DateLow="1686595925" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\States\Default Work Unit.wwu" DateLow="1686595786" DateHigh="0"/>
 	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Soundcaster Sessions\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
-	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\SoundBanks\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\SoundBanks\SFX.wwu" DateLow="1685556268" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\SoundBanks\Default Work Unit.wwu" DateLow="1685058950" DateHigh="0"/>
 	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Queries\Factory Queries.wwu" DateLow="1685057108" DateHigh="0"/>
 	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Queries\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
 	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Presets\Factory Spatial Audio.wwu" DateLow="1685057108" DateHigh="0"/>
 	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Presets\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
-	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\PartyGame_WwiseProject.wproj" DateLow="1685058422" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\PartyGame_WwiseProject.wproj" DateLow="1686595307" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\PartyGame_WwiseProject.secon.wsettings" DateLow="1686745260" DateHigh="0"/>
 	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Modulators\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
 	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Mixing Sessions\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
 	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Metadata\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
-	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Master-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Master-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1686593828" DateHigh="0"/>
 	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Interactive Music Hierarchy\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
 	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Game Parameters\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Events\TestEvents.wwu" DateLow="1686594910" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Events\PlayerLocomotion.wwu" DateLow="1686595384" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Events\Player.wwu" DateLow="1686595325" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Events\NPC.wwu" DateLow="1686593809" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Events\Locomotion.wwu" DateLow="1686593826" DateHigh="0"/>
 	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Events\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
 	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Effects\Factory Effects.wwu" DateLow="1685057108" DateHigh="0"/>
 	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Effects\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
 	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Dynamic Dialogue\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
 	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Conversion Settings\Factory Conversion Settings.wwu" DateLow="1685057108" DateHigh="0"/>
 	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Conversion Settings\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
-	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Control Surface Sessions\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
-	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Audio Devices\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Control Surface Sessions\Default Work Unit.wwu" DateLow="1685058802" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Audio Devices\Default Work Unit.wwu" DateLow="1685058802" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Attenuations\PlayerLocomotion.wwu" DateLow="1686595307" DateHigh="0"/>
 	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Attenuations\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
-	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1685058368" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Attenuations\att_Generic.wwu" DateLow="1686595179" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Actor-Mixer Hierarchy\TestFiles.wwu" DateLow="1686595242" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Actor-Mixer Hierarchy\PlayerFootsteps.wwu" DateLow="1686745259" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Actor-Mixer Hierarchy\Player_Locomotion.wwu" DateLow="1686593930" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Actor-Mixer Hierarchy\NPCFootsteps.wwu" DateLow="1686593955" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Actor-Mixer Hierarchy\NPC_Locomotion.wwu" DateLow="1686593958" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Unity\PartyGame\PartyGame_WwiseProject\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1686593883" DateHigh="0"/>
 </ValidationCache>

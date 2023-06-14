@@ -9,6 +9,35 @@
 							<ObjectRef Name="System" ID="{E69DBD20-8120-42DA-BCAD-307826918955}" WorkUnitID="{CA3A4D14-AC0B-4CD5-8C6F-5385A3288094}"/>
 						</Reference>
 					</ReferenceList>
+					<ChildrenList>
+						<Folder Name="PlayerMaster" ID="{484F5D53-A78B-4245-A72A-A2CE4613DDA6}" ShortID="126071724">
+							<ChildrenList>
+								<Folder Name="PlayerLocomotion" ID="{D5329CA8-3DAA-497E-A72F-F2CCFB9BCB0A}" ShortID="547252208">
+									<ChildrenList>
+										<Folder Name="PlayerFootsteps" ID="{4EE2D84A-18B9-4CEF-A8F2-C0052B6F33BA}" ShortID="1064601372"/>
+									</ChildrenList>
+								</Folder>
+							</ChildrenList>
+						</Folder>
+						<Folder Name="NPCMaster" ID="{D0D77EEA-BAB0-4486-8A70-7D48752FBF4D}" ShortID="431236986"/>
+						<Folder Name="AmbientMaster" ID="{C96602C6-4168-40A5-9443-54E24EF179AE}" ShortID="181457301">
+							<ChildrenList>
+								<Bus Name="AmbientBeds" ID="{371471CA-B9D5-481B-8156-D09AE2E911FA}">
+									<ChildrenList>
+										<Folder Name="2dAmbienctBeds" ID="{F4B02764-AD7A-41FF-BE70-21C1F1BEE1A2}" ShortID="751638968"/>
+									</ChildrenList>
+								</Bus>
+								<Folder Name="3dAmbience" ID="{7AAC61FB-D078-4072-96C1-60B8DCEF578A}" ShortID="150603482"/>
+								<Folder Name="2dAmbience" ID="{3E7402B0-58FB-422E-93EB-4ED7908B12C7}" ShortID="668503395"/>
+							</ChildrenList>
+						</Folder>
+						<AuxBus Name="Reverb" ID="{C7E65BDA-A3F0-4BE3-838C-2402A7182083}">
+							<ChildrenList>
+								<AuxBus Name="LargeReverb" ID="{FECE6457-9112-4AA3-B447-D49334087C6B}"/>
+								<AuxBus Name="SmallReverb" ID="{B4BB0B08-C7D7-46F5-B74A-364042671BA0}"/>
+							</ChildrenList>
+						</AuxBus>
+					</ChildrenList>
 				</Bus>
 			</ChildrenList>
 		</WorkUnit>

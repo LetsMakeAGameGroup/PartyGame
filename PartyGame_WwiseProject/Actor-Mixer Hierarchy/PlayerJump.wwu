@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{8243CDE3-B404-4C05-8AD8-A1356D600FBA}" SchemaVersion="110" RootDocumentID="{5DB21889-26C7-449A-9022-796D78FBD275}" ParentDocumentID="{5DB21889-26C7-449A-9022-796D78FBD275}">
+	<AudioObjects>
+		<WorkUnit Name="PlayerJump" ID="{8243CDE3-B404-4C05-8AD8-A1356D600FBA}" OwnerID="{5DB21889-26C7-449A-9022-796D78FBD275}" PersistMode="Nested">
+			<ChildrenList>
+				<RandomSequenceContainer Name="PLYR_Jump" ID="{C453BB33-1E16-41DF-9D6B-EB97501C075F}" ShortID="514786783">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<Sound Name="Jump 3" ID="{22893016-842E-49B4-8D8A-3DA2E27FE144}" ShortID="643347582">
+							<PropertyList>
+								<Property Name="Soundly:ActiveChannels" Type="string" Value="[]"/>
+								<Property Name="Soundly:FileID" Type="string" Value="SND62075"/>
+								<Property Name="Soundly:FileName" Type="string" Value="C:\Users\secon\AppData\Local\Temp\tmpfi2u5lxt\afcache\1426367345Ff4sxqvM_wkFwGSND62075sfy.sfy"/>
+								<Property Name="Soundly:HandleStartTime" Type="string" Value="0"/>
+								<Property Name="Soundly:HandleStopTime" Type="string" Value="8.272604166666667"/>
+								<Property Name="Soundly:LibraryID" Type="string" Value="1426367345Ff4sxqvM_wkFwG"/>
+								<Property Name="Soundly:LibraryLocation" Type="string" Value="Cloud"/>
+								<Property Name="Soundly:PlaybackSpeed" Type="string" Value="1.0"/>
+								<Property Name="Soundly:ProcessList" Type="string" Value="[]"/>
+								<Property Name="Soundly:RenderedFileBitRate" Type="string" Value="3"/>
+								<Property Name="Soundly:RenderedFilePath" Type="string" Value="C:\Users\secon\Soundly Audio\Footsteps, Human, Grass, Jump, Start SND62075 5.wav"/>
+								<Property Name="Soundly:RenderedFileSampleRate" Type="string" Value="96000"/>
+								<Property Name="Soundly:SelectionStartTime" Type="string" Value="0.3070814030443415"/>
+								<Property Name="Soundly:SelectionStopTime" Type="string" Value="0.3454665784248842"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Footsteps, Human, Grass, Jump, Start SND62075 5" ID="{434E90EF-78ED-47EB-908F-E16DA6CC8940}">
+									<PropertyList>
+										<Property Name="Soundly:FileIDForAudioSource" Type="string" Value="SND62075"/>
+										<Property Name="TrimBegin" Type="Real64" Value="2.54036289433047"/>
+										<Property Name="TrimEnd" Type="Real64" Value="2.85790825612177"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Soundly Audio\Footsteps, Human, Grass, Jump, Start SND62075 5.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="540289728"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Footsteps, Human, Grass, Jump, Start SND62075 5" ID="{434E90EF-78ED-47EB-908F-E16DA6CC8940}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Jump 2" ID="{1FB1BE56-5DDF-4F15-8C88-22DB155755A3}" ShortID="198698371">
+							<PropertyList>
+								<Property Name="Soundly:ActiveChannels" Type="string" Value="[]"/>
+								<Property Name="Soundly:FileID" Type="string" Value="SND62075"/>
+								<Property Name="Soundly:FileName" Type="string" Value="C:\Users\secon\AppData\Local\Temp\tmpfi2u5lxt\afcache\1426367345Ff4sxqvM_wkFwGSND62075sfy.sfy"/>
+								<Property Name="Soundly:HandleStartTime" Type="string" Value="0"/>
+								<Property Name="Soundly:HandleStopTime" Type="string" Value="8.272604166666667"/>
+								<Property Name="Soundly:LibraryID" Type="string" Value="1426367345Ff4sxqvM_wkFwG"/>
+								<Property Name="Soundly:LibraryLocation" Type="string" Value="Cloud"/>
+								<Property Name="Soundly:PlaybackSpeed" Type="string" Value="1.0"/>
+								<Property Name="Soundly:ProcessList" Type="string" Value="[]"/>
+								<Property Name="Soundly:RenderedFileBitRate" Type="string" Value="3"/>
+								<Property Name="Soundly:RenderedFilePath" Type="string" Value="C:\Users\secon\Soundly Audio\Footsteps, Human, Grass, Jump, Start SND62075 2.wav"/>
+								<Property Name="Soundly:RenderedFileSampleRate" Type="string" Value="96000"/>
+								<Property Name="Soundly:SelectionStartTime" Type="string" Value="0.2097948378557247"/>
+								<Property Name="Soundly:SelectionStopTime" Type="string" Value="0.2600926538716082"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Footsteps, Human, Grass, Jump, Start SND62075 2" ID="{A9FA4760-8BDC-470A-94E2-E04F1ACF031D}">
+									<PropertyList>
+										<Property Name="Soundly:FileIDForAudioSource" Type="string" Value="SND62075"/>
+										<Property Name="TrimBegin" Type="Real64" Value="1.73554964979043"/>
+										<Property Name="TrimEnd" Type="Real64" Value="2.15164357213766"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Soundly Audio\Footsteps, Human, Grass, Jump, Start SND62075 2.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="835907066"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Footsteps, Human, Grass, Jump, Start SND62075 2" ID="{A9FA4760-8BDC-470A-94E2-E04F1ACF031D}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Jump 1" ID="{6681E412-3019-4F17-B3DF-BD951454B8CD}" ShortID="543068393">
+							<PropertyList>
+								<Property Name="Soundly:ActiveChannels" Type="string" Value="[]"/>
+								<Property Name="Soundly:FileID" Type="string" Value="SND62075"/>
+								<Property Name="Soundly:FileName" Type="string" Value="C:\Users\secon\AppData\Local\Temp\tmpfi2u5lxt\afcache\1426367345Ff4sxqvM_wkFwGSND62075sfy.sfy"/>
+								<Property Name="Soundly:HandleStartTime" Type="string" Value="0"/>
+								<Property Name="Soundly:HandleStopTime" Type="string" Value="8.272604166666667"/>
+								<Property Name="Soundly:LibraryID" Type="string" Value="1426367345Ff4sxqvM_wkFwG"/>
+								<Property Name="Soundly:LibraryLocation" Type="string" Value="Cloud"/>
+								<Property Name="Soundly:PlaybackSpeed" Type="string" Value="1.0"/>
+								<Property Name="Soundly:ProcessList" Type="string" Value="[]"/>
+								<Property Name="Soundly:RenderedFileBitRate" Type="string" Value="3"/>
+								<Property Name="Soundly:RenderedFilePath" Type="string" Value="C:\Users\secon\Soundly Audio\Footsteps, Human, Grass, Jump, Start SND62075.wav"/>
+								<Property Name="Soundly:RenderedFileSampleRate" Type="string" Value="96000"/>
+								<Property Name="Soundly:SelectionStartTime" Type="string" Value="0.10258107213765719"/>
+								<Property Name="Soundly:SelectionStopTime" Type="string" Value="0.1654533421575116"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Footsteps, Human, Grass, Jump, Start SND62075" ID="{EDC46EBB-E349-4E31-A6B5-0AEB506CD11E}">
+									<PropertyList>
+										<Property Name="Soundly:FileIDForAudioSource" Type="string" Value="SND62075"/>
+										<Property Name="TrimBegin" Type="Real64" Value="0.848612604787117"/>
+										<Property Name="TrimEnd" Type="Real64" Value="1.36873000772116"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Soundly Audio\Footsteps, Human, Grass, Jump, Start SND62075.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="678273795"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Footsteps, Human, Grass, Jump, Start SND62075" ID="{EDC46EBB-E349-4E31-A6B5-0AEB506CD11E}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="Jump 4" ID="{4CC64B60-4BC1-48ED-9205-0C170E78A938}" ShortID="703995393">
+							<PropertyList>
+								<Property Name="Soundly:ActiveChannels" Type="string" Value="[]"/>
+								<Property Name="Soundly:FileID" Type="string" Value="SND62075"/>
+								<Property Name="Soundly:FileName" Type="string" Value="C:\Users\secon\AppData\Local\Temp\tmpfi2u5lxt\afcache\1426367345Ff4sxqvM_wkFwGSND62075sfy.sfy"/>
+								<Property Name="Soundly:HandleStartTime" Type="string" Value="0"/>
+								<Property Name="Soundly:HandleStopTime" Type="string" Value="8.272604166666667"/>
+								<Property Name="Soundly:LibraryID" Type="string" Value="1426367345Ff4sxqvM_wkFwG"/>
+								<Property Name="Soundly:LibraryLocation" Type="string" Value="Cloud"/>
+								<Property Name="Soundly:PlaybackSpeed" Type="string" Value="1.0"/>
+								<Property Name="Soundly:ProcessList" Type="string" Value="[]"/>
+								<Property Name="Soundly:RenderedFileBitRate" Type="string" Value="3"/>
+								<Property Name="Soundly:RenderedFilePath" Type="string" Value="C:\Users\secon\Soundly Audio\Footsteps, Human, Grass, Jump, Start SND62075 6.wav"/>
+								<Property Name="Soundly:RenderedFileSampleRate" Type="string" Value="96000"/>
+								<Property Name="Soundly:SelectionStartTime" Type="string" Value="0.41561879549966907"/>
+								<Property Name="Soundly:SelectionStopTime" Type="string" Value="0.4632693580410324"/>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{06FC8F73-43E9-4EC2-9964-3F99B3427221}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{603E23CB-0E72-41B4-884A-12B13C306F21}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="Footsteps, Human, Grass, Jump, Start SND62075 6" ID="{729A495E-0771-4918-84B1-A42EE124CD00}">
+									<PropertyList>
+										<Property Name="Soundly:FileIDForAudioSource" Type="string" Value="SND62075"/>
+										<Property Name="TrimBegin" Type="Real64" Value="3.43824977939554"/>
+										<Property Name="TrimEnd" Type="Real64" Value="3.83244402161924"/>
+									</PropertyList>
+									<Language>SFX</Language>
+									<AudioFile>Soundly Audio\Footsteps, Human, Grass, Jump, Start SND62075 6.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="59230096"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="Footsteps, Human, Grass, Jump, Start SND62075 6" ID="{729A495E-0771-4918-84B1-A42EE124CD00}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+					</ChildrenList>
+				</RandomSequenceContainer>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>
