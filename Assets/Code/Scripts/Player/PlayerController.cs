@@ -3,7 +3,7 @@ using Mirror;
 using TMPro;
 
 [RequireComponent(typeof(PlayerMovementComponent))]
-public class PlayerController : NetworkBehaviour {
+public class PlayerController : NetworkBehaviour, IDamagable {
 
     [SyncVar(hook = nameof(SetNameTag))] public string playerName = "Player";
     [SerializeField] private TextMeshProUGUI nametagText;
@@ -32,6 +32,9 @@ public class PlayerController : NetworkBehaviour {
 
     //Debugging
     public Weapon weaponToTestPrefab;
+
+    public bool CanBeDamaged { get { return true; } }
+    public GameObject GetDamagableGameObject { get { return gameObject; } }
 
     private void Start() {
         //characterController = GetComponent<CharacterController>();
@@ -256,4 +259,9 @@ public class PlayerController : NetworkBehaviour {
 	  {
 		  this.playerName = displayName;
 	  }
+
+    public void TakeDamage(float damage)
+    {
+        //Take damage logic here
+    }
 }
