@@ -22,6 +22,6 @@ public class DisplayTimerUI : NetworkBehaviour {
     }
 
     public void DisableUI() {
-        timerText.enabled = false;
+        timerText.text = "";
     }
 }

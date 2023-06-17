@@ -21,10 +21,10 @@ public class MinigameHandler : MonoBehaviour {
         timer.duration = 3f;
         timer.onTimerEnd.AddListener(StartMinigame);
 
-        displayTimerUI.RpcStartCountdown(3);
+        //displayTimerUI.RpcStartCountdown(3);
     }
 
-    /// <summary>Buffer for starting a minigame. Might be depricated soon.</summary>
+    /// <summary>Buffer for starting a minigame.</summary>
     public void StartMinigame() {
         Timer timer = gameObject.AddComponent(typeof(Timer)) as Timer;
         timer.duration = minigameDuration;
