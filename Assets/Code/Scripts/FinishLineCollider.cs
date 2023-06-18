@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FinishLineCollider : MonoBehaviour {
@@ -10,6 +11,9 @@ public class FinishLineCollider : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         if (!other.CompareTag("Player")) return;
 
-        minigameHandler.AddWinner(other.gameObject);
+        List<GameObject> player = new() {
+            other.gameObject
+        };
+        minigameHandler.AddWinner(player);
     }
 }
