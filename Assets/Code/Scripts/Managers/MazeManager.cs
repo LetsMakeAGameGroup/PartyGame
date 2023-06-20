@@ -47,6 +47,7 @@ public class MazeManager : NetworkBehaviour {
         for (int i = 0; i < wispsPerMaze; i++) {
             Vector3 randomSpawn = new Vector3(Random.Range(-5, 6)*10-5, 2, Random.Range(-5, 6)*10-5);
             GameObject currentWisp = Instantiate(wisp, randomSpawn, Quaternion.identity);
+            currentWisp.GetComponent<CollectiblePoint>().onPointsAdd.AddListener(AddPoints);
             NetworkServer.Spawn(currentWisp);
         }
 
