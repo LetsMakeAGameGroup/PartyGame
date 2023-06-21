@@ -268,20 +268,19 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   playerName: Player
+  nametagText: {fileID: 2149150474526092221}
   points: 0
   playerCamera: {fileID: 1913241592568134192}
   lookSpeed: 2
   lookXLimit: 90
-  nametagText: {fileID: 2149150474526092221}
-  canMove: 1
   isInteracting: 0
   sightRayLenght: 5
   interactableLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  meleefist: {fileID: 0}
+  canUseWeapon: 1
   weaponSocket: {fileID: 1922153315750786845}
-  weaponToTestPrefab: {fileID: 879440826152006055, guid: 51c96f858cfd74849a6b1783276c779d,
+  debugWeaponPrefab: {fileID: 879440826152006055, guid: 51c96f858cfd74849a6b1783276c779d,
     type: 3}
 --- !u!114 &3807872867980839782
 MonoBehaviour:

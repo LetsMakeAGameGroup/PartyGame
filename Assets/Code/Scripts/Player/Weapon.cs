@@ -48,6 +48,10 @@ public abstract class Weapon : MonoBehaviour
         if (weaponOwner != controller) { return false; }
 
         weaponOwner = null;
+
+        //Remove parents
+        transform.SetParent(null);
+
         return true;
     }
 
@@ -59,5 +63,10 @@ public abstract class Weapon : MonoBehaviour
     public virtual void ApplyOnHitEffect(IDamagable damagableObject) 
     {
 
+    }
+
+    public bool IsWeaponActive() 
+    {
+        return gameObject.activeSelf;
     }
 }

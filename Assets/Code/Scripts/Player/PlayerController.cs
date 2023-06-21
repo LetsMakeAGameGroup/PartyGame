@@ -26,12 +26,11 @@ public class PlayerController : NetworkBehaviour, IDamagable {
 
     public bool canUseWeapon = true;
     Weapon currentWeapon;
-    [SerializeField] Weapon meleefist;   //Usually he will always have this weapon. When no current weapon, this will be equipped. 
 
     [SerializeField] Transform weaponSocket;
 
-    //Debugging
-    public Weapon weaponToTestPrefab;
+    //Debug
+    public Weapon debugWeaponPrefab;
 
     public bool CanBeDamaged { get { return true; } }
     public GameObject GetDamagableGameObject { get { return gameObject; } }
@@ -39,6 +38,7 @@ public class PlayerController : NetworkBehaviour, IDamagable {
     private void Start() {
         //characterController = GetComponent<CharacterController>();
         playerMovementComponent = GetComponent<PlayerMovementComponent>();
+
     }
 
     public override void OnStartLocalPlayer() {
@@ -102,11 +102,15 @@ public class PlayerController : NetworkBehaviour, IDamagable {
             StopWeaponUse();
         }
 
-        //Debug
-        if (Input.GetKeyDown(KeyCode.T)) 
+        if (Input.GetKeyDown(KeyCode.U))
         {
-            Weapon weaponTest = Instantiate(weaponToTestPrefab, weaponSocket.position, weaponSocket.rotation, weaponSocket);
-            EquipWeapon(weaponTest);
+            Weapon weaponToDebug = Instantiate(debugWeaponPrefab, weaponSocket.position, weaponSocket.rotation, weaponSocket);
+            EquipWeapon(weaponToDebug);
+        }
+
+        if (Input.GetKeyDown(KeyCode.I)) 
+        {
+            UnEquipCurrentWeapon();
         }
 
         if (Input.GetKeyDown(KeyCode.Y)) 
@@ -193,7 +197,7 @@ public class PlayerController : NetworkBehaviour, IDamagable {
     {
         if (currentWeapon == null || !canUseWeapon) { return; }
 
-        if (!currentWeapon.weaponInUse)
+        if (!currentWeapon.weaponInUse && currentWeapon.IsWeaponActive())
         {
             currentWeapon.StartWeapon();
         }
@@ -211,6 +215,9 @@ public class PlayerController : NetworkBehaviour, IDamagable {
 
     public void EquipWeapon(Weapon weaponToEquip) 
     {
+        //We cant equip a weapon we already have equipped
+        if (currentWeapon == weaponToEquip) { return; }
+
         if (currentWeapon != null) 
         {
             //UnEquip
@@ -223,20 +230,14 @@ public class PlayerController : NetworkBehaviour, IDamagable {
         }
     }
 
-    public void UnEquipCurrentWeapon() 
+    public void UnEquipCurrentWeapon()
     {
+        if (currentWeapon == null) { return; }
         //Drop Weapon, or w/e
-
         if (currentWeapon.OnWeaponUnEquip(this))
         {
             currentWeapon = null;
         }
-    }
-
-    //Probably should be called by server only
-    public void ForceRemoveCurrentWeapon() 
-    {
-        currentWeapon = null;
     }
 
     public Vector3 GetPlayerCameraSight() 
@@ -244,7 +245,7 @@ public class PlayerController : NetworkBehaviour, IDamagable {
         return playerCamera.transform.forward;
     }
 	
-	  private void SetNameTag(string oldName, string newName) 
+	private void SetNameTag(string oldName, string newName) 
 	  {
         nametagText.text = newName;
     }
