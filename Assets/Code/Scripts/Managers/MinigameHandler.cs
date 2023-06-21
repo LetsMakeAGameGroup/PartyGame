@@ -19,12 +19,12 @@ public class MinigameHandler : MonoBehaviour {
     public UnityEvent onMinigameStart = new();
     public UnityEvent onMinigameEnd = new();
 
-    private void Start() {
+    public void StartCountdown() {
         Timer timer = gameObject.AddComponent(typeof(Timer)) as Timer;
-        timer.duration = 3f;
+        timer.duration = 5f;
         timer.onTimerEnd.AddListener(StartMinigame);
 
-        //displayTimerUI.RpcStartCountdown(3);
+        displayTimerUI.RpcStartCountdown(5);
     }
 
     /// <summary>Buffer for starting a minigame.</summary>
@@ -64,6 +64,8 @@ public class MinigameHandler : MonoBehaviour {
                 player.GetComponent<PlayerController>().points += assignPoints;
                 CustomNetworkManager.Instance.connectionScores[player.GetComponent<NetworkIdentity>().connectionToClient] += assignPoints;
                 scoreScreenController.RpcAddScoreCard(player.GetComponent<PlayerController>().playerName, assignPoints);
+                
+                Debug.Log("Player " + player.GetComponent<PlayerController>().playerName + " now has " + CustomNetworkManager.Instance.connectionScores[player.GetComponent<NetworkIdentity>().connectionToClient] + " points.");
             }
             assignPoints -= position.Count;
         }

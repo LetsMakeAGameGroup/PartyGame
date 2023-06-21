@@ -67,14 +67,11 @@ public class MazeManager : NetworkBehaviour {
 
     /// <summary>Gives a player points in the current minigame.</summary>
     public void AddPoints(GameObject player, int points) {
-        Debug.Log("before adding playerpoints: " + playerPoints.Count);
-        Debug.Log("Adding " + points + " to " + player.GetComponent<PlayerController>().playerName);
         if (playerPoints.ContainsKey(player)) {
             playerPoints[player] += points;
         } else {
             playerPoints.Add(player, points);
         }
-        Debug.Log("after adding playerpoints: " + playerPoints.Count);
     }
 
     /// <summary>Determine order of most points to assign standings in the MinigameHandler.</summary>
