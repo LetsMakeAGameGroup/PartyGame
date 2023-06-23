@@ -20,6 +20,8 @@ public class MinigameHandler : MonoBehaviour {
     public UnityEvent onMinigameEnd = new();
 
     public void StartCountdown() {
+        FindObjectOfType<MinigameStartScreenController>().RpcSetPlayerController(true);
+
         Timer timer = gameObject.AddComponent(typeof(Timer)) as Timer;
         timer.duration = 5f;
         timer.onTimerEnd.AddListener(StartMinigame);
