@@ -55,7 +55,7 @@ public class CustomNetworkManager : RelayNetworkManager {
         SpawnHolder spawnHolder = FindObjectOfType<SpawnHolder>();
 
         foreach (NetworkConnectionToClient conn in connectionScores.Keys) {
-            GameObject player = Instantiate(playerPrefab, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.position, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.rotation);
+            GameObject player = Instantiate((spawnHolder.playerPrefab != null ? spawnHolder.playerPrefab : playerPrefab), spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.position, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.rotation);
             player.GetComponent<PlayerController>().playerName = connectionNames[conn];
 
             if (!NetworkClient.ready) NetworkClient.Ready();
