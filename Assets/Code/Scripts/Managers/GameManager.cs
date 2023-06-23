@@ -54,16 +54,4 @@ public class GameManager : NetworkBehaviour {
         // TODO: There should be a more efficient way of picking random minigames that fall under maxRounds. Once we have a LOT of minigames to randomize, there should be a better way. Look more into this later.
         currentMinigames = minigames.OrderBy(x => Random.value).ToList();
     }
-
-    /// <summary>Set the lobby code in the player's UI.</summary>
-    [TargetRpc]
-    public void TargetSetCodeUI(NetworkConnectionToClient target, string code) {
-        FindObjectOfType<LobbyUIController>().codeText.text = code;
-    }
-
-    /// <summary>Set the lobby code in the everyones UI.</summary>
-    [ClientRpc]
-    public void RpcSetCodeUI(string code) {
-        FindObjectOfType<LobbyUIController>().codeText.text = code;
-    }
 }
