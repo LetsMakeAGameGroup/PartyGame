@@ -23,6 +23,7 @@ public class MinigameHandler : MonoBehaviour {
         Timer timer = gameObject.AddComponent(typeof(Timer)) as Timer;
         timer.duration = 5f;
         timer.onTimerEnd.AddListener(StartMinigame);
+        timer.onTimerEnd.AddListener(delegate { FindObjectOfType<MinigameStartScreenController>().RpcSetMovement(true); });
 
         displayTimerUI.RpcStartCountdown(5);
     }

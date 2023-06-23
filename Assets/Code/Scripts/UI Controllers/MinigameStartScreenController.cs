@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using Mirror;
 using UnityEngine.Events;
+using Unity.VisualScripting;
 
 public class MinigameStartScreenController : NetworkBehaviour {
     [SerializeField] private TextMeshProUGUI playersReadyText = null;
@@ -14,7 +15,14 @@ public class MinigameStartScreenController : NetworkBehaviour {
     [SyncVar] private int totalPlayers = 0;
 
     private void Start() {
-        if (isServer) totalPlayers = CustomNetworkManager.Instance.numPlayers;
+        if (isClient) {
+            Debug.Log("helloooo");
+            NetworkClient.localPlayer.GetComponent<PlayerMovementComponent>().enabled = false;
+        }
+
+        if (isServer) {
+            totalPlayers = CustomNetworkManager.Instance.numPlayers;
+        }
 
         UpdatePlayersReady();
 
@@ -51,5 +59,10 @@ public class MinigameStartScreenController : NetworkBehaviour {
         GetComponent<Canvas>().enabled = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    [ClientRpc]
+    public void RpcSetMovement(bool canMove) {
+        NetworkClient.localPlayer.GetComponent<PlayerMovementComponent>().enabled = canMove;
     }
 }

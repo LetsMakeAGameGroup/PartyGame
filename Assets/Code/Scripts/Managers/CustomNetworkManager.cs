@@ -11,6 +11,7 @@ using Unity.Services.Core;
 public class CustomNetworkManager : RelayNetworkManager {
     public List<GameObject> players = new();
     public Dictionary<NetworkConnectionToClient, int> connectionScores = new();
+    public Dictionary<NetworkConnectionToClient, string> connectionNames = new();
 
     private bool initialSceneChange = true;
 
@@ -43,6 +44,7 @@ public class CustomNetworkManager : RelayNetworkManager {
         GameManager.Instance.TargetSetCodeUI(conn, relayJoinCode);
         players.Add(player);
         connectionScores.Add(conn, 0);
+        player.GetComponent<PlayerController>().TargetGetDisplayName();
         initialSceneChange = false;
     }
 
@@ -55,11 +57,15 @@ public class CustomNetworkManager : RelayNetworkManager {
 
         foreach (NetworkConnectionToClient conn in connectionScores.Keys) {
             GameObject player = Instantiate(playerPrefab, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.position, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.rotation);
-            //player.GetComponent<PlayerController>().playerName = $"Player_{i + 1}";
+            player.GetComponent<PlayerController>().playerName = connectionNames[conn];
 
             if (!NetworkClient.ready) NetworkClient.Ready();
             // TODO: Fix "There is already a player for this connection." error here. This is most likely because the connected clients haven't switched scenes yet.
             NetworkServer.ReplacePlayerForConnection(conn, player);
+        }
+
+        if (newSceneName == "LobbyScene") {
+            GameManager.Instance.RpcSetCodeUI(relayJoinCode);
         }
     }
 
