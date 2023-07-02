@@ -3,6 +3,7 @@ using Mirror;
 using TMPro;
 
 [RequireComponent(typeof(PlayerMovementComponent))]
+[RequireComponent(typeof(ItemController))]
 public class PlayerController : NetworkBehaviour, ICollector {
 
     [SyncVar(hook = nameof(SetNameTag))] public string playerName = "Player";
@@ -23,16 +24,6 @@ public class PlayerController : NetworkBehaviour, ICollector {
     RaycastHit sightRayHit;
     Transform interactableInSightTransform;
     IInteractable interactableInSight;
-
-    public bool canUseWeapon = true;
-    Weapon currentWeapon;
-    [SerializeField] Weapon meleefist;   //Usually he will always have this weapon. When no current weapon, this will be equipped. 
-
-    [SerializeField] Transform weaponSocket;
-
-    //Debugging
-    public Weapon weaponToTestPrefab;
-
     
     public GameObject GetCollectorGameObject { get { return gameObject; } }
     public PlayerMovementComponent MovementComponent { get { return playerMovementComponent; } }
@@ -50,11 +41,14 @@ public class PlayerController : NetworkBehaviour, ICollector {
         // Disable meshes of self
         MeshRenderer[] meshes = GetComponentsInChildren<MeshRenderer>();
         foreach (MeshRenderer mesh in meshes) {
+            // TODO: Make this look cleaner once the player model is a single mesh and more polished
+            if (mesh.gameObject != this.gameObject && mesh.gameObject.transform.parent.gameObject != this.gameObject && mesh.gameObject.transform.parent.gameObject.transform.parent.gameObject == GetComponent<ItemController>().itemHolder) continue;  // Doesn't hide the gun model from local player
             mesh.enabled = false;
         }
 
-        // Have only self camera enabled
-        playerCamera.gameObject.SetActive(true);
+        // Have only self camera/audio enabled
+        playerCamera.enabled = true;
+        playerCamera.GetComponent<AudioBehaviour>().enabled = true;
     }
 
     // TODO: Should be broken up into independent functions.
@@ -91,28 +85,6 @@ public class PlayerController : NetworkBehaviour, ICollector {
         if (Input.GetButtonDown("Interact"))
         {
             Interact();
-        }
-
-        //Equipment 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            StartWeaponUse();
-        }
-        else if (Input.GetButtonUp("Fire1")) 
-        {
-            StopWeaponUse();
-        }
-
-        //Debug
-        if (Input.GetKeyDown(KeyCode.T)) 
-        {
-            Weapon weaponTest = Instantiate(weaponToTestPrefab, weaponSocket.position, weaponSocket.rotation, weaponSocket);
-            EquipWeapon(weaponTest);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Y)) 
-        {
-            playerMovementComponent.LaunchCharacter(transform.TransformDirection(new Vector3(0 * 50, 0, -1 * 50)));
         }
     }
 
@@ -188,56 +160,6 @@ public class PlayerController : NetworkBehaviour, ICollector {
                 interactableInSight.Interact(this);
             }
         }
-    }
-
-    public void StartWeaponUse()
-    {
-        if (currentWeapon == null || !canUseWeapon) { return; }
-
-        if (!currentWeapon.weaponInUse)
-        {
-            currentWeapon.StartWeapon();
-        }
-    }
-
-    public void StopWeaponUse()
-    {
-        if (currentWeapon == null || !canUseWeapon) { return; }
-
-        if (currentWeapon.weaponInUse)
-        {
-            currentWeapon.StopWeapon();
-        }
-    }
-
-    public void EquipWeapon(Weapon weaponToEquip) 
-    {
-        if (currentWeapon != null) 
-        {
-            //UnEquip
-            UnEquipCurrentWeapon();
-        }
-
-        if (weaponToEquip.OnWeaponEquip(this))
-        {
-            currentWeapon = weaponToEquip;
-        }
-    }
-
-    public void UnEquipCurrentWeapon() 
-    {
-        //Drop Weapon, or w/e
-
-        if (currentWeapon.OnWeaponUnEquip(this))
-        {
-            currentWeapon = null;
-        }
-    }
-
-    //Probably should be called by server only
-    public void ForceRemoveCurrentWeapon() 
-    {
-        currentWeapon = null;
     }
 
     public Vector3 GetPlayerCameraSight() 
