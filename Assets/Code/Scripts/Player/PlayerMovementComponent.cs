@@ -23,6 +23,7 @@ public class PlayerMovementComponent : NetworkBehaviour
 
     void Start()
     {
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Player"));
         characterController = GetComponent<CharacterController>();
     }
 

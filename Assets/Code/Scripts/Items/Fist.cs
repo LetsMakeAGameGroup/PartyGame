@@ -7,7 +7,7 @@ public class Fist : MeleeWeapon {
     [SerializeField] private float verticalForce = 5f;
     public override void HitTarget(GameObject target) {
         if (target.GetComponent<PlayerMovementComponent>()) {
-            target.GetComponent<PlayerMovementComponent>().TargetKnockbackCharacter(transform.TransformDirection(new Vector3(0, verticalForce, 1f * knockbackForce)));
+            target.GetComponent<PlayerMovementComponent>().TargetKnockbackCharacter(transform.TransformDirection(new Vector3(0, verticalForce, knockbackForce)));
         }
     }
 }

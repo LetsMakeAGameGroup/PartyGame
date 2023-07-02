@@ -51,7 +51,6 @@ public class PlayerController : NetworkBehaviour, ICollector {
         playerCamera.GetComponent<AudioBehaviour>().enabled = true;
     }
 
-    // TODO: Should be broken up into independent functions.
     private void Update() {
         if (!isLocalPlayer) return;
 
@@ -167,8 +166,8 @@ public class PlayerController : NetworkBehaviour, ICollector {
         return playerCamera.transform.forward;
     }
 	
-	  private void SetNameTag(string oldName, string newName) 
-	  {
+	private void SetNameTag(string oldName, string newName) 
+	{
         nametagText.text = newName;
     }
 

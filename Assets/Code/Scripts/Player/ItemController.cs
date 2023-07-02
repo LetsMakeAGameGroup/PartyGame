@@ -4,11 +4,13 @@ using Mirror;
 
 [RequireComponent(typeof(PlayerController))]
 public class ItemController : NetworkBehaviour {
-    public GameObject itemHolder;
-    public GameObject holdingItem;
+    public GameObject itemHolder = null;
+    public GameObject holdingItem = null;
+
+    [SerializeField] private ItemHUDController itemHUDController = null;
 
     private bool canUse = true;
-    private PlayerController playerController;
+    private PlayerController playerController = null;
 
     private void Start() {
         playerController = GetComponent<PlayerController>();
@@ -56,6 +58,7 @@ public class ItemController : NetworkBehaviour {
     IEnumerator StartUsing() {
         canUse = false;
         CmdUseItem();
+        StartCoroutine(itemHUDController.EnableCooldownIndicator(holdingItem.GetComponent<Item>().useCooldown));
         yield return new WaitForSeconds(holdingItem.GetComponent<Item>().useCooldown);
         canUse = true;
     }
