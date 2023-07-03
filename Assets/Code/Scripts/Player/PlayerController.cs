@@ -9,6 +9,8 @@ public class PlayerController : NetworkBehaviour, ICollector {
     [SyncVar(hook = nameof(SetNameTag))] public string playerName = "Player";
     [SerializeField] private TextMeshProUGUI nametagText;
     public int points = 0;
+    [SyncVar(hook = nameof(SetColor))] public string playerColor = "N/A";
+    [SerializeField] private Renderer colorMaterial = null;
     
     PlayerMovementComponent playerMovementComponent;
 
@@ -192,5 +194,10 @@ public class PlayerController : NetworkBehaviour, ICollector {
         //What do we want to do if we collect that collectable
         //Example:
         //Collect Animation
+    }
+
+    private void SetColor(string oldColor, string newColor) {
+        Debug.Log("Changing color to " + newColor);
+        colorMaterial.material.color = CustomNetworkManager.Instance.colorOptions[newColor];
     }
 }

@@ -12,6 +12,9 @@ public class CustomNetworkManager : RelayNetworkManager {
     public List<GameObject> players = new();
     public Dictionary<NetworkConnectionToClient, int> connectionScores = new();
     public Dictionary<NetworkConnectionToClient, string> connectionNames = new();
+    public Dictionary<NetworkConnectionToClient, string> connectionColors = new();
+
+    public Dictionary<string, Color> colorOptions = new() {{"Red", Color.red}, {"Blue", Color.blue}, {"Green", Color.green}, {"Pink", new Color(1f, 0.6f, 1f)}, {"Orange", new Color(1f, 0.6f, 0f)}, {"Yellow", Color.yellow}, {"Purple", new Color(0.6f, 0f, 0.6f)}, {"Cyan", Color.cyan}};
 
     private bool initialSceneChange = true;
 
@@ -44,6 +47,13 @@ public class CustomNetworkManager : RelayNetworkManager {
         players.Add(player);
         connectionScores.Add(conn, 0);
         player.GetComponent<PlayerController>().TargetGetDisplayName();
+        foreach (var colorOption in colorOptions) {
+            if (!connectionColors.ContainsValue(colorOption.Key)) {
+                connectionColors.Add(conn, colorOption.Key);
+                player.GetComponent<PlayerController>().playerColor = colorOption.Key;
+                break;
+            }
+        }
         initialSceneChange = false;
     }
 
@@ -57,6 +67,7 @@ public class CustomNetworkManager : RelayNetworkManager {
         foreach (NetworkConnectionToClient conn in connectionScores.Keys) {
             GameObject player = Instantiate((spawnHolder.playerPrefab != null ? spawnHolder.playerPrefab : playerPrefab), spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.position, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.rotation);
             player.GetComponent<PlayerController>().playerName = connectionNames[conn];
+            player.GetComponent<PlayerController>().playerColor = connectionColors[conn];
 
             if (!NetworkClient.ready) NetworkClient.Ready();
             // TODO: Fix "There is already a player for this connection." error here. This is most likely because the connected clients haven't switched scenes yet.
