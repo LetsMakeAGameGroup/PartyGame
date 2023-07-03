@@ -20,8 +20,8 @@ public class ItemController : NetworkBehaviour {
         if (!isLocalPlayer) return;
 
         // Shoot when the player presses the Fire1 button.
-        if (canUse && playerController.MovementComponent.CanMove) {
-            if (holdingItem && holdingItem.GetComponent<MeleeWeapon>()) {
+        if (holdingItem && canUse && playerController.MovementComponent.CanMove) {
+            if (holdingItem.GetComponent<MeleeWeapon>()) {
                 if (Input.GetButtonDown("Fire1")) {
                     StartCoroutine(StartUsing());
                 }

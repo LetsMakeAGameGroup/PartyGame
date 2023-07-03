@@ -14,8 +14,6 @@ public class CustomNetworkManager : RelayNetworkManager {
     public Dictionary<NetworkConnectionToClient, string> connectionNames = new();
     public Dictionary<NetworkConnectionToClient, string> connectionColors = new();
 
-    public Dictionary<string, Color> colorOptions = new() {{"Red", Color.red}, {"Blue", Color.blue}, {"Green", Color.green}, {"Pink", new Color(1f, 0.6f, 1f)}, {"Orange", new Color(1f, 0.6f, 0f)}, {"Yellow", Color.yellow}, {"Purple", new Color(0.6f, 0f, 0.6f)}, {"Cyan", Color.cyan}};
-
     private bool initialSceneChange = true;
 
     /// <summary>Flag to determine if the user is logged into the backend.</summary>
@@ -47,13 +45,7 @@ public class CustomNetworkManager : RelayNetworkManager {
         players.Add(player);
         connectionScores.Add(conn, 0);
         player.GetComponent<PlayerController>().TargetGetDisplayName();
-        foreach (var colorOption in colorOptions) {
-            if (!connectionColors.ContainsValue(colorOption.Key)) {
-                connectionColors.Add(conn, colorOption.Key);
-                player.GetComponent<PlayerController>().playerColor = colorOption.Key;
-                break;
-            }
-        }
+        player.GetComponent<PlayerController>().TargetGetPlayerColorPref();
         initialSceneChange = false;
     }
 
@@ -114,6 +106,21 @@ public class CustomNetworkManager : RelayNetworkManager {
         } catch (Exception e) {
             isLoggedIn = false;
             Debug.Log(e);
+        }
+    }
+
+    public void DeterminePlayerColor(GameObject player, string playerColor) {
+        if (!connectionColors.ContainsValue(playerColor)) {
+            connectionColors.Add(player.GetComponent<NetworkIdentity>().connectionToClient, playerColor);
+            player.GetComponent<PlayerController>().playerColor = playerColor;
+        } else {
+            foreach (var colorOption in PlayerColorOptions.options) {
+                if (!connectionColors.ContainsValue(colorOption.Key)) {
+                    connectionColors.Add(player.GetComponent<NetworkIdentity>().connectionToClient, colorOption.Key);
+                    player.GetComponent<PlayerController>().playerColor = colorOption.Key;
+                    break;
+                }
+            }
         }
     }
 }

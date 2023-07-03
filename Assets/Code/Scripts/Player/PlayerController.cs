@@ -184,6 +184,17 @@ public class PlayerController : NetworkBehaviour, ICollector {
         CustomNetworkManager.Instance.connectionNames.Add(GetComponent<NetworkIdentity>().connectionToClient, playerName);
     }
 
+    [TargetRpc]
+    public void TargetGetPlayerColorPref() {
+        CmdTellPlayerColorPref(PlayerPrefs.GetString("PlayerColor"));
+    }
+
+    [Command]
+    private void CmdTellPlayerColorPref(string _playerColor) {
+        this.playerColor = _playerColor;
+        CustomNetworkManager.Instance.DeterminePlayerColor(gameObject, _playerColor);
+    }
+
     public bool CanCollect()
     {
         return true;
@@ -197,7 +208,6 @@ public class PlayerController : NetworkBehaviour, ICollector {
     }
 
     private void SetColor(string oldColor, string newColor) {
-        Debug.Log("Changing color to " + newColor);
-        colorMaterial.material.color = CustomNetworkManager.Instance.colorOptions[newColor];
+        colorMaterial.material.color = PlayerColorOptions.options[newColor];
     }
 }
