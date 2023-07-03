@@ -97,4 +97,10 @@ public class PlayerMovementComponent : NetworkBehaviour
         launchTimeElapsed = 0;
         moveDirection.y = forceDirection.y;
     }
+
+    public IEnumerator StunPlayer(float timeStunned) {
+        canMove = false;
+        yield return new WaitForSeconds(timeStunned);
+        canMove = true;
+    }
 }
