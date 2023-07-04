@@ -18,6 +18,7 @@ public class MinigameStartScreenController : NetworkBehaviour {
         if (isClient) {
             NetworkClient.localPlayer.GetComponent<PlayerMovementComponent>().enabled = false;
             NetworkClient.localPlayer.GetComponent<PlayerController>().enabled = false;
+            NetworkClient.localPlayer.GetComponent<ItemController>().enabled = false;
         }
 
         if (isServer) {
@@ -66,6 +67,7 @@ public class MinigameStartScreenController : NetworkBehaviour {
     public void RpcSetMovement(bool canMove) {
         NetworkClient.localPlayer.GetComponent<PlayerMovementComponent>().enabled = canMove;
         NetworkClient.localPlayer.GetComponent<PlayerController>().enabled = canMove;
+        NetworkClient.localPlayer.GetComponent<ItemController>().enabled = canMove;
     }
 
     [ClientRpc]

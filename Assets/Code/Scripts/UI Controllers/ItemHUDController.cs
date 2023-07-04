@@ -4,7 +4,7 @@ using Mirror;
 using UnityEngine.UI;
 
 public class ItemHUDController : NetworkBehaviour {
-    [SerializeField] private Canvas canvas = null;
+    public Canvas canvas = null;
     [SerializeField] private GameObject cooldownIndicator = null;
     [SerializeField] private GameObject cooldownBackground = null;
 

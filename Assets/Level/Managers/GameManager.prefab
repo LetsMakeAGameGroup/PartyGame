@@ -58,6 +58,7 @@ MonoBehaviour:
   - Minigame5Scene
   - Minigame6Scene
   - MinigameHedgeHurdlersScene
+  - MinigameClaimGameScene
 --- !u!114 &4266590026886717783
 MonoBehaviour:
   m_ObjectHideFlags: 0

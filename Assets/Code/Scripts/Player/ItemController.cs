@@ -12,6 +12,9 @@ public class ItemController : NetworkBehaviour {
     private bool canUse = true;
     private PlayerController playerController = null;
 
+    private void OnEnable() => itemHUDController.canvas.enabled = true;
+    private void OnDisable() => itemHUDController.canvas.enabled = false;
+
     private void Start() {
         playerController = GetComponent<PlayerController>();
     }
@@ -20,7 +23,7 @@ public class ItemController : NetworkBehaviour {
         if (!isLocalPlayer) return;
 
         // Shoot when the player presses the Fire1 button.
-        if (holdingItem && canUse && playerController.MovementComponent.CanMove) {
+        if (holdingItem && canUse && playerController.MovementComponent && playerController.MovementComponent.CanMove) {
             if (holdingItem.GetComponent<MeleeWeapon>()) {
                 if (Input.GetButtonDown("Fire1")) {
                     StartCoroutine(StartUsing());
