@@ -1,3 +1,4 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -10,18 +11,23 @@ public class MinigameHandler : MonoBehaviour {
     public float minigameDuration = 120f;
     public List<List<GameObject>> winners = new();
     [SerializeField] private DisplayTimerUI displayTimerUI = null;
+    [SerializeField] private MinigameScoreScreenController scoreScreenController = null;
 
     private bool isRunning = false;
+    [SerializeField] private bool canEndGameEarly = true;
 
     public UnityEvent onMinigameStart = new();
     public UnityEvent onMinigameEnd = new();
 
-    private void Start() {
-        Timer timer = gameObject.AddComponent(typeof(Timer)) as Timer;
-        timer.duration = 3f;
-        timer.onTimerEnd.AddListener(StartMinigame);
+    public void StartCountdown() {
+        FindObjectOfType<MinigameStartScreenController>().RpcSetPlayerController(true);
 
-        //displayTimerUI.RpcStartCountdown(3);
+        Timer timer = gameObject.AddComponent(typeof(Timer)) as Timer;
+        timer.duration = 5f;
+        timer.onTimerEnd.AddListener(StartMinigame);
+        timer.onTimerEnd.AddListener(delegate { FindObjectOfType<MinigameStartScreenController>().RpcSetMovement(true); });
+
+        displayTimerUI.RpcStartCountdown(5);
     }
 
     /// <summary>Buffer for starting a minigame.</summary>
@@ -41,13 +47,9 @@ public class MinigameHandler : MonoBehaviour {
     public void AddWinner(List<GameObject> players) {
         if (!isRunning) return;
 
-        //foreach(GameObject[] winner in winners) {
-        //    if (winner == player) return;
-        //}
-
         winners.Add(players);
 
-        if (winners.Count == CustomNetworkManager.Instance.players.Count) {
+        if (canEndGameEarly && winners.Count == CustomNetworkManager.Instance.players.Count) {
             EndMinigame();
         }
     }
@@ -63,12 +65,21 @@ public class MinigameHandler : MonoBehaviour {
         foreach (List<GameObject> position in winners) {
             foreach (GameObject player in position) {
                 player.GetComponent<PlayerController>().points += assignPoints;
+                CustomNetworkManager.Instance.connectionScores[player.GetComponent<NetworkIdentity>().connectionToClient] += assignPoints;
+                scoreScreenController.RpcAddScoreCard(player.GetComponent<PlayerController>().playerName, assignPoints);
+                
+                Debug.Log("Player " + player.GetComponent<PlayerController>().playerName + " now has " + CustomNetworkManager.Instance.connectionScores[player.GetComponent<NetworkIdentity>().connectionToClient] + " points.");
             }
             assignPoints -= position.Count;
         }
 
-        if (winners.Count > 0) Debug.Log($"Winner: {winners[0][0].GetComponent<PlayerController>().playerName} with now {winners[0][0].GetComponent<PlayerController>().points} points.");  // Change this to show winners on screen
-        else Debug.Log("Round is over! No one has won.");
+        StartCoroutine(EndGameTransition());
+    }
+
+    IEnumerator EndGameTransition() {
+        scoreScreenController.RpcEnableUI();
+
+        yield return new WaitForSeconds(5f);
 
         GameManager.Instance.StartNextRound();
     }

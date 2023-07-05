@@ -10,13 +10,12 @@ using Unity.Services.Core;
 
 public class CustomNetworkManager : RelayNetworkManager {
     public List<GameObject> players = new();
-    public List<NetworkConnectionToClient> connections = new();
+    public Dictionary<NetworkConnectionToClient, int> connectionScores = new();
+    public Dictionary<NetworkConnectionToClient, string> connectionNames = new();
 
     private bool initialSceneChange = true;
 
-    /// <summary>
-    /// Flag to determine if the user is logged into the backend.
-    /// </summary>
+    /// <summary>Flag to determine if the user is logged into the backend.</summary>
     public bool isLoggedIn = false;
 
     public static CustomNetworkManager Instance { get; private set; }
@@ -40,11 +39,11 @@ public class CustomNetworkManager : RelayNetworkManager {
         SpawnHolder spawnHolder = FindObjectOfType<SpawnHolder>();
 
         GameObject player = Instantiate(playerPrefab, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.position, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.rotation);
-        //player.GetComponent<PlayerController>().playerName = $"Player_{numPlayers + 1}";
         NetworkServer.AddPlayerForConnection(conn, player);
-        GameManager.Instance.TargetSetCodeUI(conn, relayJoinCode);
+
         players.Add(player);
-        connections.Add(conn);
+        connectionScores.Add(conn, 0);
+        player.GetComponent<PlayerController>().TargetGetDisplayName();
         initialSceneChange = false;
     }
 
@@ -55,13 +54,13 @@ public class CustomNetworkManager : RelayNetworkManager {
 
         SpawnHolder spawnHolder = FindObjectOfType<SpawnHolder>();
 
-        for (int i = 0; i < connections.Count(); i++) {
-            GameObject player = Instantiate(playerPrefab, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.position, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.rotation);
-            //player.GetComponent<PlayerController>().playerName = $"Player_{i + 1}";
+        foreach (NetworkConnectionToClient conn in connectionScores.Keys) {
+            GameObject player = Instantiate((spawnHolder.playerPrefab != null ? spawnHolder.playerPrefab : playerPrefab), spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.position, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.rotation);
+            player.GetComponent<PlayerController>().playerName = connectionNames[conn];
 
             if (!NetworkClient.ready) NetworkClient.Ready();
             // TODO: Fix "There is already a player for this connection." error here. This is most likely because the connected clients haven't switched scenes yet.
-            NetworkServer.ReplacePlayerForConnection(connections[i], player);
+            NetworkServer.ReplacePlayerForConnection(conn, player);
         }
     }
 

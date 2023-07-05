@@ -10,7 +10,7 @@ public class Billboard : MonoBehaviour {
     }
 
     private void LateUpdate() {
-        if (currentCamera == null) currentCamera = Camera.allCameras[0];  // Get the new current camera.
+        if (currentCamera == null && Camera.allCameras.Length > 0) currentCamera = Camera.allCameras[0];  // Get the new current camera.
         if (currentCamera == null) return;  // If still cannot get the current camera, do nothing further.
 
         Vector3 newRotation = currentCamera.transform.eulerAngles;

@@ -250,16 +250,16 @@ public class PlayerController : NetworkBehaviour, ICollector {
         nametagText.text = newName;
     }
 
-    public override void OnStartAuthority() 
-    {
+    [TargetRpc]
+    public void TargetGetDisplayName() {
         CmdSetDisplayName(PlayerPrefs.GetString("PlayerName"));
     }
 
     [Command]
-    private void CmdSetDisplayName(string displayName) 
-	  {
-		  this.playerName = displayName;
-	  }
+    private void CmdSetDisplayName(string displayName) {
+        this.playerName = displayName;
+        CustomNetworkManager.Instance.connectionNames.Add(GetComponent<NetworkIdentity>().connectionToClient, playerName);
+    }
 
     public bool CanCollect()
     {

@@ -45,8 +45,9 @@ public class MazeManager : NetworkBehaviour {
         }
 
         for (int i = 0; i < wispsPerMaze; i++) {
-            Vector3 randomSpawn = new Vector3(Random.Range(-5, 6)*10-5, 2, Random.Range(-5, 6)*10-5);
+            Vector3 randomSpawn = new Vector3(Random.Range(-4, 5)*10-5, 1.5f, Random.Range(-4, 5)*10-5);
             GameObject currentWisp = Instantiate(wisp, randomSpawn, Quaternion.identity);
+            currentWisp.GetComponent<CollectiblePoint>().onPointsAdd.AddListener(AddPoints);
             NetworkServer.Spawn(currentWisp);
         }
 
@@ -66,14 +67,11 @@ public class MazeManager : NetworkBehaviour {
 
     /// <summary>Gives a player points in the current minigame.</summary>
     public void AddPoints(GameObject player, int points) {
-        Debug.Log("before adding playerpoints: " + playerPoints.Count);
-        Debug.Log("Adding " + points + " to " + player.GetComponent<PlayerController>().playerName);
         if (playerPoints.ContainsKey(player)) {
             playerPoints[player] += points;
         } else {
             playerPoints.Add(player, points);
         }
-        Debug.Log("after adding playerpoints: " + playerPoints.Count);
     }
 
     /// <summary>Determine order of most points to assign standings in the MinigameHandler.</summary>
