@@ -3,32 +3,12 @@ guid: e2d2883561189b642a1adb01a2b9870a
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.005
-    second: {fileID: 2100000, guid: 8507836182d10574f9847e9c443a7f6a, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Metal
-    second: {fileID: 2100000, guid: bd3f3fb0001500b4aacd48b025b98afc, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Pine Wood
-    second: {fileID: 2100000, guid: 9dc288eb4c02a1748a185d25b0ce1a51, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Pine Wood.001
-    second: {fileID: 2100000, guid: 9dc288eb4c02a1748a185d25b0ce1a51, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 1
-    materialSearch: 1
-    materialLocation: 1
+    materialSearch: 2
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
