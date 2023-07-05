@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CaptureTarget : NetworkBehaviour {
     public GameObject playerOwner = null;
-    public int pointsPerSec = 1;
+    public int pointsGiven = 1;
 
     [SerializeField] private Renderer colorRenderer = null;
 

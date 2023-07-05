@@ -39,21 +39,6 @@ public class ItemController : NetworkBehaviour {
     // Tell the server the player wants to hit
     [Command]
     private void CmdUseItem() {
-        // TODO: Decide if any ranged weapons will depend on ammo. Commenting this out for now while we don't need it.
-        /*if (holdingWeapon.TryGetComponent(out RangedWeapon rangedWeapon)) {
-            if (rangedWeapon.currentClip <= 0 || rangedWeapon.isReloading) return;
-
-            rangedWeapon.currentClip--;
-            UIManager.Instance.TargetUpdateAmmoUI(GetComponent<NetworkIdentity>().connectionToClient, rangedWeapon.currentClip, rangedWeapon.currentAmmo);
-            holdingWeapon.GetComponent<Weapon>().Attack();
-
-            if (rangedWeapon.currentClip == 0) {
-                StartCoroutine(holdingWeapon.GetComponent<RangedWeapon>().Reload());
-            }
-        } else {
-            holdingWeapon.GetComponent<Weapon>().Attack();
-        }*/
-
         holdingItem.GetComponent<Item>().Use();
     }
 

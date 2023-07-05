@@ -11,7 +11,6 @@ public class ItemHUDController : NetworkBehaviour {
     private float cooldownFullWidth = 75f;
 
     public override void OnStartLocalPlayer() {
-        canvas.enabled = true;
         cooldownFullWidth = cooldownBackground.GetComponent<RectTransform>().sizeDelta.x;
     }
 

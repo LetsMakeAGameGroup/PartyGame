@@ -2,12 +2,17 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class ClaimGameManager : NetworkBehaviour {
     [SerializeField] private MinigameHandler minigameHandler = null;
     [SerializeField] private GameObject[] targets = null;
+    [SerializeField] private float timeBetweenGivenPoints = 0.25f;
     private Dictionary<GameObject, int> playerPoints = new();
+
+    [SerializeField] private Canvas scoreDisplayCanvas = null;
+    [SerializeField] private TextMeshProUGUI scoreDisplayText = null;
 
     // Called by server.
     public void EnableTargets() {
@@ -19,6 +24,8 @@ public class ClaimGameManager : NetworkBehaviour {
     /// <summary>Replace maze presets on all clients.</summary>
     [ClientRpc]
     public void RpcEnableTargets() {
+        scoreDisplayCanvas.enabled = true;
+
         foreach (var target in targets) {
             target.SetActive(true);
         }
@@ -28,17 +35,23 @@ public class ClaimGameManager : NetworkBehaviour {
         foreach (var target in targets) {
             GameObject targetOwner = target.GetComponent<CaptureTarget>().playerOwner;
             if (targetOwner) {
-                int pointsToAdd = target.GetComponent<CaptureTarget>().pointsPerSec;
+                int pointsToAdd = target.GetComponent<CaptureTarget>().pointsGiven;
                 if (playerPoints.ContainsKey(targetOwner)) {
                     playerPoints[targetOwner] += pointsToAdd;
                 } else {
                     playerPoints.Add(targetOwner, pointsToAdd);
                 }
+                TargetSetScoreDisplay(targetOwner.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[targetOwner]);
             }
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(timeBetweenGivenPoints);
         StartCoroutine(AddPointsEverySecond());
+    }
+
+    [TargetRpc]
+    private void TargetSetScoreDisplay(NetworkConnectionToClient target, int score) {
+        scoreDisplayText.text = score.ToString();
     }
 
     /// <summary>Determine order of most points to assign standings in the MinigameHandler.</summary>

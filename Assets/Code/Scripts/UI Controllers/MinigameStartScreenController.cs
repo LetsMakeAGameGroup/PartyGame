@@ -62,7 +62,6 @@ public class MinigameStartScreenController : NetworkBehaviour {
         Cursor.visible = false;
     }
 
-    // TODO: These two functions below shouldn't be here but it's the easiest way as of right now. Surely this will be changed later.
     [ClientRpc]
     public void RpcSetMovement(bool canMove) {
         NetworkClient.localPlayer.GetComponent<PlayerMovementComponent>().enabled = canMove;
