@@ -23,6 +23,7 @@ public class PlayerMovementComponent : NetworkBehaviour
 
     void Start()
     {
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Player"));
         characterController = GetComponent<CharacterController>();
     }
 
@@ -84,10 +85,22 @@ public class PlayerMovementComponent : NetworkBehaviour
         }
     }
 
-    public void LaunchCharacter(Vector3 forceDirection) 
+    /// <summary>Tell the player to knockback themselves.</summary>
+    [TargetRpc]
+    public void TargetKnockbackCharacter(Vector3 forceDirection) {
+        KnockbackCharacter(forceDirection);
+    }
+
+    public void KnockbackCharacter(Vector3 forceDirection) 
     {
         launchVelocity = forceDirection;
         launchTimeElapsed = 0;
         moveDirection.y = forceDirection.y;
+    }
+
+    public IEnumerator StunPlayer(float timeStunned) {
+        canMove = false;
+        yield return new WaitForSeconds(timeStunned);
+        canMove = true;
     }
 }
