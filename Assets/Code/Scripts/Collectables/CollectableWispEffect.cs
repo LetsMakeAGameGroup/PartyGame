@@ -4,6 +4,8 @@ using UnityEngine;
 using Mirror;
 
 public class CollectableWispEffect : NetworkBehaviour {
+    public int pointsToAdd = 2;
+
     private void OnTriggerEnter(Collider other) {
         if (!other.CompareTag("Player") || !isServer || !other.GetComponent<PlayerMovementComponent>() || !other.GetComponent<PlayerMovementComponent>().CanMove) return;
 

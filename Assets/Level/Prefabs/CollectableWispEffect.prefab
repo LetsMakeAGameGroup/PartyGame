@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5876539937914642025}
   - component: {fileID: 7805341095756961872}
   m_Layer: 0
-  m_Name: CollectableWisp
+  m_Name: CollectableWispEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
