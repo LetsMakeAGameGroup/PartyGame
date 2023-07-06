@@ -6,17 +6,21 @@ public class WispEffect : NetworkBehaviour {
 
     [HideInInspector] public GameObject holdingWisp = null;
 
-    [SerializeField] private float distanceDroppedFromGround = 1f;
+    [SerializeField] private float distanceDroppedFromGround = 0.5f;
 
     [ClientRpc]
     public void DropWisp() {
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 100f)) {
-            holdingWisp.transform.parent = null;
-            holdingWisp.transform.position = hit.point + new Vector3(0, distanceDroppedFromGround, 0);
-
-            holdingWisp = null;
+        int excludePlayerLayerMask =~ LayerMask.GetMask("Player");
+        Vector3 dropLocation = Vector3.zero;
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 100f, excludePlayerLayerMask)) {
+            dropLocation = hit.point + new Vector3(0, distanceDroppedFromGround, 0);
         } else {
-            Debug.LogError("Player is no where near the ground to drop Wisp.", transform);
+            dropLocation = transform.position;
         }
+
+        holdingWisp.transform.parent = null;
+        holdingWisp.transform.position = dropLocation;
+
+        holdingWisp = null;
     }
 }
