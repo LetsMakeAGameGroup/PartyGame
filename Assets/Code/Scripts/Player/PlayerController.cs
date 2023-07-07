@@ -181,7 +181,8 @@ public class PlayerController : NetworkBehaviour, ICollector {
     [Command]
     private void CmdSetDisplayName(string displayName) {
         this.playerName = displayName;
-        CustomNetworkManager.Instance.connectionNames.Add(GetComponent<NetworkIdentity>().connectionToClient, playerName);
+        CustomNetworkManager.Instance.DeterminePlayerName(gameObject, displayName);
+        //CustomNetworkManager.Instance.connectionNames.Add(GetComponent<NetworkIdentity>().connectionToClient, playerName);
     }
 
     [TargetRpc]
