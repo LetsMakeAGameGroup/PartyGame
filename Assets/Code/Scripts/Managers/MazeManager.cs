@@ -88,12 +88,10 @@ public class MazeManager : NetworkBehaviour {
 
         // Go down the list of scores and find all players with that score to group together. Once grouped, add to winners.
         foreach (int score in scores) {
-            List<GameObject> currentStanding = new();
-            Debug.Log("Adding for score " + score);
+            List<NetworkConnectionToClient> currentStanding = new();
             foreach (var playerPoint in playerPoints) {
                 if (playerPoint.Value == score) {
-                    currentStanding.Add(playerPoint.Key);
-                    Debug.Log("Player " + playerPoint.Key.GetComponent<PlayerController>().playerName + " with score " + score);
+                    currentStanding.Add(playerPoint.Key.GetComponent<NetworkIdentity>().connectionToClient);
                 }
             }
             minigameHandler.AddWinner(currentStanding);
