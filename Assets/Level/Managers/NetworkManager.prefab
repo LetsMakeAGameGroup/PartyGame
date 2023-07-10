@@ -65,8 +65,10 @@ MonoBehaviour:
   - {fileID: 3452310532601903974, guid: 8066cb79995da8e4f90da9b517eba4bf, type: 3}
   - {fileID: 3452310532601903974, guid: edf1a66a219c8d64b9996979cb0eea33, type: 3}
   - {fileID: 3452310532601903974, guid: 0244f9d70113e044991e2ad8653bf632, type: 3}
+  - {fileID: 3452310532601903974, guid: 6624f024a3ccd26448c31dc77f0e6c3f, type: 3}
   - {fileID: 7524440669711000338, guid: d5009c5ef37e7b04ca20d67569c28f95, type: 3}
   - {fileID: 9187142294380564760, guid: 727070cf41f2f4a4a9393778975def67, type: 3}
+  - {fileID: 9187142294380564760, guid: 9225b341fda57a24abb690f3ada66242, type: 3}
   snapshotSettings:
     bufferTimeMultiplier: 2
     catchupNegativeThreshold: -1

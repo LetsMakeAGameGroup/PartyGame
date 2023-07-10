@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level/Scenes/MinigameWispWhiskScene.unity
     guid: 491692f2cd9482941aa1e7c96e46820c
+  - enabled: 1
+    path: Assets/Level/Scenes/MinigameVeiledThreatScene.unity
+    guid: 68ed18cf00cb5e44298642b87a275925
   m_configObjects: {}

@@ -60,6 +60,7 @@ MonoBehaviour:
   - MinigameHedgeHurdlersScene
   - MinigameClaimGameScene
   - MinigameWispWhiskScene
+  - MinigameVeiledThreatScene
 --- !u!114 &4266590026886717783
 MonoBehaviour:
   m_ObjectHideFlags: 0

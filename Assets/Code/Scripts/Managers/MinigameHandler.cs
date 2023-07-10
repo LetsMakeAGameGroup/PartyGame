@@ -14,6 +14,7 @@ public class MinigameHandler : MonoBehaviour {
     [SerializeField] private MinigameScoreScreenController scoreScreenController = null;
 
     private bool isRunning = false;
+    [SerializeField] private bool timerBasedGame = true;
     [SerializeField] private bool canEndGameEarly = true;
 
     public UnityEvent onMinigameStart = new();
@@ -32,11 +33,13 @@ public class MinigameHandler : MonoBehaviour {
 
     /// <summary>Buffer for starting a minigame.</summary>
     public void StartMinigame() {
-        Timer timer = gameObject.AddComponent(typeof(Timer)) as Timer;
-        timer.duration = minigameDuration;
-        timer.onTimerEnd.AddListener(EndMinigame);
+        if (timerBasedGame) {
+            Timer timer = gameObject.AddComponent(typeof(Timer)) as Timer;
+            timer.duration = minigameDuration;
+            timer.onTimerEnd.AddListener(EndMinigame);
 
-        displayTimerUI.RpcStartCountdown(minigameDuration);
+            displayTimerUI.RpcStartCountdown(minigameDuration);
+        }
 
         onMinigameStart?.Invoke();
 

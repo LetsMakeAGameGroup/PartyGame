@@ -9,7 +9,7 @@ public class WispEffect : NetworkBehaviour {
     [SerializeField] private float distanceDroppedFromGround = 0.5f;
 
     [ClientRpc]
-    public void DropWisp() {
+    public void RpcDropWisp() {
         int excludePlayerLayerMask =~ LayerMask.GetMask("Player");
         Vector3 dropLocation = Vector3.zero;
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 100f, excludePlayerLayerMask)) {
