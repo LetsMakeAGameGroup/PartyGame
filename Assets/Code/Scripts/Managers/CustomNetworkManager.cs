@@ -12,6 +12,7 @@ public class CustomNetworkManager : RelayNetworkManager {
     public List<GameObject> players = new();
     public Dictionary<NetworkConnectionToClient, int> connectionScores = new();
     public Dictionary<NetworkConnectionToClient, string> connectionNames = new();
+    public Dictionary<NetworkConnectionToClient, string> connectionColors = new();
 
     private bool initialSceneChange = true;
 
@@ -44,6 +45,7 @@ public class CustomNetworkManager : RelayNetworkManager {
         players.Add(player);
         connectionScores.Add(conn, 0);
         player.GetComponent<PlayerController>().TargetGetDisplayName();
+        player.GetComponent<PlayerController>().TargetGetPlayerColorPref();
         initialSceneChange = false;
     }
 
@@ -57,6 +59,7 @@ public class CustomNetworkManager : RelayNetworkManager {
         foreach (NetworkConnectionToClient conn in connectionScores.Keys) {
             GameObject player = Instantiate((spawnHolder.playerPrefab != null ? spawnHolder.playerPrefab : playerPrefab), spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.position, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.rotation);
             player.GetComponent<PlayerController>().playerName = connectionNames[conn];
+            player.GetComponent<PlayerController>().playerColor = connectionColors[conn];
 
             if (!NetworkClient.ready) NetworkClient.Ready();
             // TODO: Fix "There is already a player for this connection." error here. This is most likely because the connected clients haven't switched scenes yet.
@@ -103,6 +106,21 @@ public class CustomNetworkManager : RelayNetworkManager {
         } catch (Exception e) {
             isLoggedIn = false;
             Debug.Log(e);
+        }
+    }
+
+    public void DeterminePlayerColor(GameObject player, string playerColor) {
+        if (!connectionColors.ContainsValue(playerColor)) {
+            connectionColors.Add(player.GetComponent<NetworkIdentity>().connectionToClient, playerColor);
+            player.GetComponent<PlayerController>().playerColor = playerColor;
+        } else {
+            foreach (var colorOption in PlayerColorOptions.options) {
+                if (!connectionColors.ContainsValue(colorOption.Key)) {
+                    connectionColors.Add(player.GetComponent<NetworkIdentity>().connectionToClient, colorOption.Key);
+                    player.GetComponent<PlayerController>().playerColor = colorOption.Key;
+                    break;
+                }
+            }
         }
     }
 }

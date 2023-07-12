@@ -1,15 +1,12 @@
-using System;
-using System.Collections;
-using System.Net;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class NetworkHUD : MonoBehaviour {
     [SerializeField] private CustomNetworkManager networkManager = null;
 
     private string playerName = "";
+    private string playerColor = "";
 
     [Header("UI")]
     [SerializeField] private TMP_InputField codeInputField = null;
@@ -17,6 +14,21 @@ public class NetworkHUD : MonoBehaviour {
     [SerializeField] private GameObject nameSelectPanel = null;
     [SerializeField] private TMP_InputField nameInputField = null;
     [SerializeField] private TextMeshProUGUI currentNameText = null;
+
+    [SerializeField] private GameObject colorSelectPanel = null;
+    [SerializeField] private TextMeshProUGUI currentColorText = null;
+    [SerializeField] private Button[] colorOptionButtons = null;
+
+    private void Awake() {
+        int optionIndex = 0;
+        foreach (var option in PlayerColorOptions.options) {
+            colorOptionButtons[optionIndex].onClick.AddListener(delegate { SetColorPref(option.Key); });
+            colorOptionButtons[optionIndex].GetComponentInChildren<TextMeshProUGUI>().text = option.Key;
+            colorOptionButtons[optionIndex].GetComponentInChildren<TextMeshProUGUI>().color = option.Value;
+            colorOptionButtons[optionIndex].interactable = true;
+            optionIndex++;
+        }
+    }
 
     private void Start() {
         networkManager.UnityLogin();
@@ -27,6 +39,14 @@ public class NetworkHUD : MonoBehaviour {
             nameInputField.text = playerName;
         } else {
             nameSelectPanel.SetActive(true);
+        }
+
+        if (PlayerPrefs.HasKey("PlayerColor")) {
+            playerColor = PlayerPrefs.GetString("PlayerColor");
+            currentColorText.text = playerColor;
+            currentColorText.color = PlayerColorOptions.options[playerColor];
+        } else {
+            colorSelectPanel.SetActive(true);
         }
     }
 
@@ -45,5 +65,13 @@ public class NetworkHUD : MonoBehaviour {
         currentNameText.text = $"Hello, {playerName}!";
         nameSelectPanel.SetActive(false);
         PlayerPrefs.SetString("PlayerName", playerName);
+    }
+
+    public void SetColorPref(string colorName) {
+        playerColor = colorName;
+        currentColorText.text = playerColor;
+        currentColorText.color = PlayerColorOptions.options[playerColor];
+        colorSelectPanel.SetActive(false);
+        PlayerPrefs.SetString("PlayerColor", colorName);
     }
 }
