@@ -12,6 +12,9 @@ public class ItemController : NetworkBehaviour {
     private bool canUse = true;
     private PlayerController playerController = null;
 
+    private void OnEnable() => itemHUDController.canvas.enabled = true;
+    private void OnDisable() => itemHUDController.canvas.enabled = false;
+
     private void Start() {
         playerController = GetComponent<PlayerController>();
     }
@@ -20,7 +23,7 @@ public class ItemController : NetworkBehaviour {
         if (!isLocalPlayer) return;
 
         // Shoot when the player presses the Fire1 button.
-        if (holdingItem && canUse && playerController.MovementComponent.CanMove) {
+        if (holdingItem && canUse && playerController.MovementComponent && playerController.MovementComponent.CanMove) {
             if (holdingItem.GetComponent<MeleeWeapon>()) {
                 if (Input.GetButtonDown("Fire1")) {
                     StartCoroutine(StartUsing());
@@ -36,21 +39,6 @@ public class ItemController : NetworkBehaviour {
     // Tell the server the player wants to hit
     [Command]
     private void CmdUseItem() {
-        // TODO: Decide if any ranged weapons will depend on ammo. Commenting this out for now while we don't need it.
-        /*if (holdingWeapon.TryGetComponent(out RangedWeapon rangedWeapon)) {
-            if (rangedWeapon.currentClip <= 0 || rangedWeapon.isReloading) return;
-
-            rangedWeapon.currentClip--;
-            UIManager.Instance.TargetUpdateAmmoUI(GetComponent<NetworkIdentity>().connectionToClient, rangedWeapon.currentClip, rangedWeapon.currentAmmo);
-            holdingWeapon.GetComponent<Weapon>().Attack();
-
-            if (rangedWeapon.currentClip == 0) {
-                StartCoroutine(holdingWeapon.GetComponent<RangedWeapon>().Reload());
-            }
-        } else {
-            holdingWeapon.GetComponent<Weapon>().Attack();
-        }*/
-
         holdingItem.GetComponent<Item>().Use();
     }
 
