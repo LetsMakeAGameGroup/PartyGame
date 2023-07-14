@@ -2597,37 +2597,42 @@ PrefabInstance:
     - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
         type: 3}
       propertyPath: minigames.Array.data[0]
-      value: MinigameClaimGameScene
+      value: MinigameWispWhiskScene
       objectReference: {fileID: 0}
     - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
         type: 3}
       propertyPath: minigames.Array.data[1]
-      value: MinigameClaimGameScene
+      value: MinigameWispWhiskScene
       objectReference: {fileID: 0}
     - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
         type: 3}
       propertyPath: minigames.Array.data[2]
-      value: MinigameClaimGameScene
+      value: MinigameWispWhiskScene
       objectReference: {fileID: 0}
     - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
         type: 3}
       propertyPath: minigames.Array.data[3]
-      value: MinigameClaimGameScene
+      value: MinigameWispWhiskScene
       objectReference: {fileID: 0}
     - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
         type: 3}
       propertyPath: minigames.Array.data[4]
-      value: MinigameClaimGameScene
+      value: MinigameWispWhiskScene
       objectReference: {fileID: 0}
     - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
         type: 3}
       propertyPath: minigames.Array.data[5]
-      value: MinigameClaimGameScene
+      value: MinigameWispWhiskScene
       objectReference: {fileID: 0}
     - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
         type: 3}
       propertyPath: minigames.Array.data[6]
-      value: MinigameClaimGameScene
+      value: MinigameWispWhiskScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
+        type: 3}
+      propertyPath: minigames.Array.data[7]
+      value: MinigameWispWhiskScene
       objectReference: {fileID: 0}
     - target: {fileID: 4266590026886717783, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
         type: 3}

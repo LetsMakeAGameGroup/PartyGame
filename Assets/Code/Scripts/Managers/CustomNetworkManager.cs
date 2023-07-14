@@ -123,4 +123,20 @@ public class CustomNetworkManager : RelayNetworkManager {
             }
         }
     }
+
+    public void DeterminePlayerName(GameObject player, string displayName) {
+        if (!connectionNames.ContainsValue(displayName)) {
+            connectionNames.Add(player.GetComponent<NetworkIdentity>().connectionToClient, displayName);
+            player.GetComponent<PlayerController>().playerName = displayName;
+        } else {
+            for (int i = 2; i < 9; i++) {
+                string newName = displayName + " (" + i.ToString() + ")";
+                if (!connectionNames.ContainsValue(newName)) {
+                    connectionNames.Add(player.GetComponent<NetworkIdentity>().connectionToClient, newName);
+                    player.GetComponent<PlayerController>().playerName = newName;
+                    return;
+                }
+            }
+        }
+    }
 }
