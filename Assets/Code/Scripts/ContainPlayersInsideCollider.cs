@@ -10,11 +10,19 @@ public class ContainPlayersInsideCollider : MonoBehaviour {
         if (!other.CompareTag("Player")) return;
 
         playersInside.Add(other.gameObject);
+
+        if (other.gameObject.TryGetComponent(out GlowDisplay glowDisplay)) {
+            glowDisplay.TargetToggleCanvas(true);
+        }
     }
 
     private void OnTriggerExit(Collider other) {
         if (!other.CompareTag("Player")) return;
 
         playersInside.Remove(other.gameObject);
+
+        if (other.gameObject.TryGetComponent(out GlowDisplay glowDisplay)) {
+            glowDisplay.TargetToggleCanvas(false);
+        }
     }
 }
