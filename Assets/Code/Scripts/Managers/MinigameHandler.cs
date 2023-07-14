@@ -9,11 +9,12 @@ using UnityEngine.Events;
 // TODO: Instead of handling this on every indivdual minigame, only one instance throughout the game would be better.
 public class MinigameHandler : MonoBehaviour {
     public float minigameDuration = 120f;
-    public List<List<GameObject>> winners = new();
-    [SerializeField] private DisplayTimerUI displayTimerUI = null;
+    public List<List<NetworkConnectionToClient>> winners = new();
+    public DisplayTimerUI displayTimerUI = null;
     [SerializeField] private MinigameScoreScreenController scoreScreenController = null;
 
     private bool isRunning = false;
+    [SerializeField] private bool timerBasedGame = true;
     [SerializeField] private bool canEndGameEarly = true;
 
     public UnityEvent onMinigameStart = new();
@@ -32,11 +33,13 @@ public class MinigameHandler : MonoBehaviour {
 
     /// <summary>Buffer for starting a minigame.</summary>
     public void StartMinigame() {
-        Timer timer = gameObject.AddComponent(typeof(Timer)) as Timer;
-        timer.duration = minigameDuration;
-        timer.onTimerEnd.AddListener(EndMinigame);
+        if (timerBasedGame) {
+            Timer timer = gameObject.AddComponent(typeof(Timer)) as Timer;
+            timer.duration = minigameDuration;
+            timer.onTimerEnd.AddListener(EndMinigame);
 
-        displayTimerUI.RpcStartCountdown(minigameDuration);
+            displayTimerUI.RpcStartCountdown(minigameDuration);
+        }
 
         onMinigameStart?.Invoke();
 
@@ -44,7 +47,7 @@ public class MinigameHandler : MonoBehaviour {
     }
 
     /// <summary>Adds player to the winners list according to position placed.</summary>
-    public void AddWinner(List<GameObject> players) {
+    public void AddWinner(List<NetworkConnectionToClient> players) {
         if (!isRunning) return;
 
         winners.Add(players);
@@ -62,13 +65,12 @@ public class MinigameHandler : MonoBehaviour {
 
         // Assign points to winners accordingly
         int assignPoints = CustomNetworkManager.Instance.players.Count;
-        foreach (List<GameObject> position in winners) {
-            foreach (GameObject player in position) {
-                player.GetComponent<PlayerController>().points += assignPoints;
-                CustomNetworkManager.Instance.connectionScores[player.GetComponent<NetworkIdentity>().connectionToClient] += assignPoints;
-                scoreScreenController.RpcAddScoreCard(player.GetComponent<PlayerController>().playerName, assignPoints);
+        foreach (List<NetworkConnectionToClient> position in winners) {
+            foreach (NetworkConnectionToClient player in position) {
+                CustomNetworkManager.Instance.connectionScores[player] += assignPoints;
+                scoreScreenController.RpcAddScoreCard(CustomNetworkManager.Instance.connectionNames[player], assignPoints);
                 
-                Debug.Log("Player " + player.GetComponent<PlayerController>().playerName + " now has " + CustomNetworkManager.Instance.connectionScores[player.GetComponent<NetworkIdentity>().connectionToClient] + " points.");
+                Debug.Log("Player " + CustomNetworkManager.Instance.connectionNames[player] + " now has " + CustomNetworkManager.Instance.connectionScores[player] + " points.");
             }
             assignPoints -= position.Count;
         }

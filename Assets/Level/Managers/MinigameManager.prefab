@@ -46,9 +46,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigameDuration: 120
-  winners: []
   displayTimerUI: {fileID: 0}
+  scoreScreenController: {fileID: 0}
+  timerBasedGame: 1
+  canEndGameEarly: 1
+  spectatorPrefab: {fileID: 1913241591815720157, guid: 387f1a4cc7330be40a6db7e7f463771b,
+    type: 3}
   onMinigameStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onMinigameEnd:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &6752307203290812878

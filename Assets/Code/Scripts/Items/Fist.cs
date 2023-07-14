@@ -13,7 +13,14 @@ public class Fist : MeleeWeapon {
             StartCoroutine(playerMovementComponent.StunPlayer(stunTime));
 
             if (target.TryGetComponent(out WispEffect wispEffect) && wispEffect.holdingWisp) {
-                wispEffect.DropWisp();
+                wispEffect.RpcDropWisp();
+            }
+
+            if (target.TryGetComponent(out BombEffect bombEffect) && !bombEffect.holdingBomb && playerController.GetComponent<BombEffect>().holdingBomb) {
+                bombEffect.RpcEquipBomb(playerController.GetComponent<BombEffect>().holdingBomb);
+
+                playerController.GetComponent<BombEffect>().TargetToggleVisability(true);
+                playerController.GetComponent<BombEffect>().holdingBomb = null;
             }
         }
     }

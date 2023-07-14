@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using Mirror;
+using System.Linq;
 
 [RequireComponent(typeof(PlayerController))]
 public class ItemController : NetworkBehaviour {
@@ -49,5 +50,30 @@ public class ItemController : NetworkBehaviour {
         StartCoroutine(itemHUDController.EnableCooldownIndicator(holdingItem.GetComponent<Item>().useCooldown));
         yield return new WaitForSeconds(holdingItem.GetComponent<Item>().useCooldown);
         canUse = true;
+    }
+
+    [Command]
+    public void CmdEquipItem(string itemName) {
+        itemName = itemName.Replace("(Clone)", "");
+
+        GameObject itemPrefab = CustomNetworkManager.Instance.spawnPrefabs.Where(item => item.name == itemName).SingleOrDefault();
+        if (itemPrefab) {
+            GameObject newItem = Instantiate(itemPrefab, itemHolder.transform, false);
+            newItem.GetComponent<Item>().playerController = GetComponent<PlayerController>();
+            NetworkServer.Spawn(newItem);
+            RpcSetHoldingItem(newItem);
+        } else {
+            Debug.LogError("Cannot equip " + itemName + " on player: " + GetComponent<PlayerController>().playerName, gameObject.transform);
+        }
+    }
+
+    [ClientRpc]
+    public void RpcSetHoldingItem(GameObject item) {
+        if (holdingItem) Destroy(holdingItem);
+
+        if (item.transform.parent != itemHolder) {
+            item.transform.SetParent(itemHolder.transform, false);
+        }
+        holdingItem = item;
     }
 }

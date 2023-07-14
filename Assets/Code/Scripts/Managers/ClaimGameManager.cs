@@ -68,10 +68,10 @@ public class ClaimGameManager : NetworkBehaviour {
 
         // Go down the list of scores and find all players with that score to group together. Once grouped, add to winners.
         foreach (int score in scores) {
-            List<GameObject> currentStanding = new();
+            List<NetworkConnectionToClient> currentStanding = new();
             foreach (var playerPoint in playerPoints) {
                 if (playerPoint.Value == score) {
-                    currentStanding.Add(playerPoint.Key);
+                    currentStanding.Add(playerPoint.Key.GetComponent<NetworkIdentity>().connectionToClient);
                 }
             }
             minigameHandler.AddWinner(currentStanding);
