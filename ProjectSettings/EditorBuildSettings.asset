@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Level/Scenes/MinigameFlowerChildScene.unity
     guid: 9c81b42b90c480942896ce9a313497fe
+  - enabled: 1
+    path: Assets/Level/Scenes/MinigameClaimGameCOPYScene.unity
+    guid: 070e662b2937d0343bcff39d80b3f213
   m_configObjects: {}
