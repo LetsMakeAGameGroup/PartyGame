@@ -30,6 +30,7 @@ public class PlayerMovementComponent : NetworkBehaviour
 
     void Start()
     {
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Player"));  // Not sure why this is needed when they are set to ignore in project settings, but it is.
         characterController = GetComponent<CharacterController>();
     }
 
