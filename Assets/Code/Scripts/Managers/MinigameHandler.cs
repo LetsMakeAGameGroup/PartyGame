@@ -58,7 +58,7 @@ public class MinigameHandler : MonoBehaviour {
 
         winners.Add(players);
 
-        if (winners.Count == CustomNetworkManager.Instance.players.Count) {
+        if (winners.Count == CustomNetworkManager.Instance.ClientDatas.Count) {
             EndMinigame();
         }
     }
@@ -68,11 +68,11 @@ public class MinigameHandler : MonoBehaviour {
         if (!isRunning) return;
 
         // Assign points to winners accordingly
-        int assignPoints = CustomNetworkManager.Instance.players.Count;
+        int assignPoints = CustomNetworkManager.Instance.ClientDatas.Count;
         foreach (List<NetworkConnectionToClient> position in winners) {
             foreach (NetworkConnectionToClient player in position) {
-                CustomNetworkManager.Instance.connectionScores[player] += assignPoints;
-                scoreScreenController.RpcAddScoreCard(CustomNetworkManager.Instance.connectionNames[player], assignPoints);
+                CustomNetworkManager.Instance.ClientDatas[player].score += assignPoints;
+                scoreScreenController.RpcAddScoreCard(CustomNetworkManager.Instance.ClientDatas[player].displayName, assignPoints);
             }
             assignPoints -= position.Count;
         }

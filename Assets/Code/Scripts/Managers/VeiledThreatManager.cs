@@ -34,7 +34,7 @@ public class VeiledThreatManager : NetworkBehaviour {
 
     // Called by server when the minigame starts.
     public void AssignInitialBombCarrier() {
-        List<NetworkConnectionToClient> connections = new(CustomNetworkManager.Instance.connectionNames.Keys);
+        List<NetworkConnectionToClient> connections = new(CustomNetworkManager.Instance.ClientDatas.Keys);
         foreach (NetworkConnectionToClient connection in connections) activePlayerBombCarrierTime.Add(connection.identity.gameObject, 0);
 
         StartCoroutine(AssignBombCarrier());

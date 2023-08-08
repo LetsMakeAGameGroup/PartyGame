@@ -27,14 +27,14 @@ public class WispWhiskManager : NetworkBehaviour {
 
     // Called by server when the minigame starts.
     public void SpawnWisps() {
-        foreach (var player in CustomNetworkManager.Instance.players) {
-            playerPoints.Add(player, 0);
+        foreach (var player in CustomNetworkManager.Instance.ClientDatas.Keys) {
+            playerPoints.Add(player.identity.gameObject, 0);
         }
 
         //Spawnwisps here
         int wispCount = 1;
-        if (CustomNetworkManager.Instance.players.Count > 4) wispCount = 2;
-        if (CustomNetworkManager.Instance.players.Count > 6) wispCount = 3;
+        if (CustomNetworkManager.Instance.ClientDatas.Count > 4) wispCount = 2;
+        if (CustomNetworkManager.Instance.ClientDatas.Count > 6) wispCount = 3;
 
         for (int i = 0; i < wispCount; i++) {
             Vector2 overheadLocation = Vector2.Lerp(minWispSpawnLocation, maxWispSpawnLocation, Random.value);
@@ -60,7 +60,7 @@ public class WispWhiskManager : NetworkBehaviour {
     }
 
     public IEnumerator AddPointsEveryInterval() {
-        foreach (var player in CustomNetworkManager.Instance.connectionNames.Keys) {
+        foreach (var player in CustomNetworkManager.Instance.ClientDatas.Keys) {
             if (player.identity.GetComponent<WispEffect>() && player.identity.GetComponent<WispEffect>().holdingWisp) {
                 int pointsToAdd = player.identity.GetComponent<WispEffect>().holdingWisp.GetComponent<CollectableWispEffect>().pointsToAdd;
                 foreach (var territory in territories) {

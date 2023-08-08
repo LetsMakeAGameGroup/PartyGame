@@ -15093,8 +15093,9 @@ MonoBehaviour:
   - {fileID: 2631709746910488239}
   wisp: {fileID: 6716550575573206128, guid: aae9d59fdc3eb0042a9024800227096c, type: 3}
   randomizeMazeInterval: 15
-  wispsPerRandomization: 50
-  gridCountFromCenter: 5
+  wispsPerRandomization: 2
+  gridSize: 10
+  containerLength: 10
 --- !u!4 &1953272850
 Transform:
   m_ObjectHideFlags: 0

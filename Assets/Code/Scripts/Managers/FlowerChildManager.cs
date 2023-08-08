@@ -24,8 +24,8 @@ public class FlowerChildManager : NetworkBehaviour {
 
     // Called by server when the minigame is started.
     public void StartMovingFlowerSpirit() {
-        foreach (var player in CustomNetworkManager.Instance.players) {
-            playerPoints.Add(player, 0);
+        foreach (var player in CustomNetworkManager.Instance.ClientDatas.Keys) {
+            playerPoints.Add(player.identity.gameObject, 0);
         }
 
         StartCoroutine(flowerSpirit.GetComponent<FlowerSpirit>().MoveTowardsTrans());

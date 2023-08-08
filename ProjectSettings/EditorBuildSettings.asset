@@ -15,24 +15,6 @@ EditorBuildSettings:
     path: Assets/Level/Scenes/FinalScoreScene.unity
     guid: 2f936f2114cdb62439561547ae07dd4a
   - enabled: 1
-    path: Assets/Level/Scenes/Minigame1Scene.unity
-    guid: 94cc45b034f03434b9773087dece1ae2
-  - enabled: 1
-    path: Assets/Level/Scenes/Minigame2Scene.unity
-    guid: 40bedd3a53a6e3d4982df8d3b3db53e3
-  - enabled: 1
-    path: Assets/Level/Scenes/Minigame3Scene.unity
-    guid: 6d3d218316e639c49bcb5eae375779bd
-  - enabled: 1
-    path: Assets/Level/Scenes/Minigame4Scene.unity
-    guid: 3c404dd423068814197bc4071fb028d8
-  - enabled: 1
-    path: Assets/Level/Scenes/Minigame5Scene.unity
-    guid: e7c2f23c8e9803c4cb7acb37faf878ca
-  - enabled: 1
-    path: Assets/Level/Scenes/Minigame6Scene.unity
-    guid: 116650b01bbfcea4397dabeed39b7893
-  - enabled: 1
     path: Assets/Level/Scenes/MinigameHedgeHurdlersScene.unity
     guid: ef300f6744530e94292c2a00c15415f3
   - enabled: 1

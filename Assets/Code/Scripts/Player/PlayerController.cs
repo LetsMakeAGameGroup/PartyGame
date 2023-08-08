@@ -185,7 +185,7 @@ public class PlayerController : NetworkBehaviour, ICollector {
     [Command]
     private void CmdSetDisplayName(string displayName) {
         this.playerName = displayName;
-        CustomNetworkManager.Instance.DeterminePlayerName(gameObject, displayName);
+        CustomNetworkManager.Instance.DeterminePlayerName(GetComponent<NetworkIdentity>().connectionToClient, displayName);
     }
 
     [TargetRpc]
@@ -196,7 +196,7 @@ public class PlayerController : NetworkBehaviour, ICollector {
     [Command]
     private void CmdTellPlayerColorPref(string _playerColor) {
         this.playerColor = _playerColor;
-        CustomNetworkManager.Instance.DeterminePlayerColor(gameObject, _playerColor);
+        CustomNetworkManager.Instance.DeterminePlayerColor(GetComponent<NetworkIdentity>().connectionToClient, _playerColor);
     }
 
     public bool CanCollect()

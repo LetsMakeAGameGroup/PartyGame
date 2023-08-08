@@ -14,7 +14,7 @@ public class FinalScoreScreenController : NetworkBehaviour {
     
     private void Start() {
         if (isServer) {
-            var scoresInOrderTemp = CustomNetworkManager.Instance.connectionScores.OrderByDescending(pair => pair.Value).ToDictionary(pair => pair.Key.identity.GetComponent<PlayerController>().playerName, pair => pair.Value);
+            var scoresInOrderTemp = CustomNetworkManager.Instance.ClientDatas.OrderByDescending(pair => pair.Value.score).ToDictionary(pair => pair.Key.identity.GetComponent<PlayerController>().playerName, pair => pair.Value.score);
             foreach(var scoreCard in scoresInOrderTemp) scoresInOrder.Add(scoreCard);
         }
 

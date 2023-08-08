@@ -50,8 +50,8 @@ public class GameManager : NetworkBehaviour {
 
         round = 0;
 
-        foreach (var key in CustomNetworkManager.Instance.connectionScores.Keys.ToList()) {
-            CustomNetworkManager.Instance.connectionScores[key] = 0;
+        foreach (var clientData in CustomNetworkManager.Instance.ClientDatas.Values) {
+            clientData.score = 0;
         }
 
         RandomizeCurrentMinigames();

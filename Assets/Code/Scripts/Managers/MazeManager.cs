@@ -26,8 +26,8 @@ public class MazeManager : NetworkBehaviour {
 
     /// <summary>Start the timers for maze generation as the minigame starts.</summary>
     public void StartMazeIntervals() {
-        foreach (var player in CustomNetworkManager.Instance.players) {
-            playerPoints.Add(player, 0);
+        foreach (var player in CustomNetworkManager.Instance.ClientDatas.Keys) {
+            playerPoints.Add(player.identity.gameObject, 0);
         }
 
         // Timers for each random maze generation in intervals since game has started.
