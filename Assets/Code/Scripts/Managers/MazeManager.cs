@@ -4,31 +4,36 @@ using System.Linq;
 using UnityEngine;
 
 public class MazeManager : NetworkBehaviour {
-    [SerializeField] private MinigameHandler minigameHandler = null;
-    [SerializeField] private float mazePerSec = 15f;
-    [SerializeField] private GameObject[] mazePresets = null;
-    [SerializeField] private GameObject startingMaze = null;
-    public Dictionary<GameObject, int> playerPoints = new();
+    [Header("References")]
+    [SerializeField] private MinigameHandler minigameHandler;
+    [SerializeField] private GameObject startingMaze;
+    [SerializeField] private GameObject[] mazePresets;
+    [SerializeField] private GameObject wisp;
 
-    [SerializeField] private int wispsPerMaze = 2;
-    [SerializeField] private GameObject wisp = null;
+    [HideInInspector] public Dictionary<GameObject, int> playerPoints = new();
+
+    [Header("Settings")]
+    [Tooltip("How often the maze will randomize.")]
+    [SerializeField] private float randomizeMazeInterval = 15f;
+    [Tooltip("How many wisps should spawn when the maze is randomized.")]
+    [SerializeField] private int wispsPerRandomization = 2;
+    [Tooltip("Assuming the entire grid is a square, this is how many containers fit in one length.")]
+    [SerializeField] private int gridSize = 10;
+    [Tooltip("How long one length is of each container.")]
+    [SerializeField] private float containerLength = 10f;
 
     private int mazeIndex = -1;
 
-    private void Start() {
-        if (!isServer) return;
-
-        // Initial randomized maze
-        //RpcReplaceMazePreset(0, Random.Range(0, mazePresets.Length));
-        //RandomizeMaze();
-    }
-
-    /// <summary>Start the timers for maze generation.</summary>
+    /// <summary>Start the timers for maze generation as the minigame starts.</summary>
     public void StartMazeIntervals() {
+        foreach (var player in CustomNetworkManager.Instance.players) {
+            playerPoints.Add(player, 0);
+        }
+
         // Timers for each random maze generation in intervals since game has started.
-        for (int i = 1; i < minigameHandler.minigameDuration / mazePerSec; i++) {
+        for (int i = 1; i < minigameHandler.minigameDuration / randomizeMazeInterval; i++) {
             Timer timer = gameObject.AddComponent(typeof(Timer)) as Timer;
-            timer.duration = mazePerSec * i;
+            timer.duration = randomizeMazeInterval * i;
             timer.onTimerEnd.AddListener(RandomizeMaze);
         }
     }
@@ -39,13 +44,23 @@ public class MazeManager : NetworkBehaviour {
         mazeIndex = Random.Range(0, mazePresets.Length - 1);
         if (mazeIndex == lastIndex) mazeIndex = (mazeIndex + 1) % mazePresets.Length;
 
-        CollectiblePoint[] newWisps = FindObjectsOfType<CollectiblePoint>();
-        foreach (CollectiblePoint wisp in newWisps) {
-            NetworkServer.Destroy(wisp.gameObject);
-        }
+        for (int i = 0; i < wispsPerRandomization; i++) {
+            Vector3 randomSpawn;
+            while (true) {
+                randomSpawn = new Vector3(Random.Range(-(gridSize/2) + 1, (gridSize/2) + 1)*containerLength-(containerLength/2), 1.5f, Random.Range(-(gridSize/2) + 1, (gridSize/2) + 1)*containerLength-(containerLength/2));
 
-        for (int i = 0; i < wispsPerMaze; i++) {
-            Vector3 randomSpawn = new Vector3(Random.Range(-4, 5)*10-5, 1.5f, Random.Range(-4, 5)*10-5);
+                Collider[] intersectingColliders = Physics.OverlapSphere(new Vector3(2, 4, 0), 0.01f);
+                if (intersectingColliders.Length > 0) {
+                    foreach (var intersectingCollider in intersectingColliders) {
+                        if (intersectingCollider.GetComponent<CollectiblePoint>() != null) {
+                            continue;
+                        }
+                    }
+                }
+
+                break;
+            }
+
             GameObject currentWisp = Instantiate(wisp, randomSpawn, Quaternion.identity);
             currentWisp.GetComponent<CollectiblePoint>().onPointsAdd.AddListener(AddPoints);
             NetworkServer.Spawn(currentWisp);

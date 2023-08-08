@@ -1,10 +1,13 @@
 using Mirror;
-using System.Collections;
 using UnityEngine;
 
 public class RangedWeapon : Weapon {
+    [Header("Ranged Weapon References")]
     public GameObject bulletPrefab;
     public Transform bulletSpawnTrans;
+
+    [Header("Ranged Weapon Settings")]
+    [Tooltip("The forward velocity speed of the bullet.")]
     public float bulletSpeed = 30f;
 
     public override void Use() {

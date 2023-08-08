@@ -1481,6 +1481,7 @@ MonoBehaviour:
   minigameHandler: {fileID: 1317486347}
   bombPrefab: {fileID: 9187142294380564760, guid: 9225b341fda57a24abb690f3ada66242,
     type: 3}
+  spectatorCamera: {fileID: 1109872187}
   bombTimeIntervals:
   - 15
   - 15
@@ -1489,7 +1490,6 @@ MonoBehaviour:
   - 18
   - 20
   - 22
-  spectatorCamera: {fileID: 1109872187}
 --- !u!114 &494031496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5020,6 +5020,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b5dbf28f21b7c4aa40f36f40d95d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 3452310532601903974, guid: 6624f024a3ccd26448c31dc77f0e6c3f,
+    type: 3}
   currentSpawns:
   - {fileID: 2427841035926194024}
   - {fileID: 2427841035615666713}
@@ -5029,8 +5031,6 @@ MonoBehaviour:
   - {fileID: 2427841035669953781}
   - {fileID: 2427841037709503019}
   - {fileID: 2427841037288300681}
-  playerPrefab: {fileID: 3452310532601903974, guid: 6624f024a3ccd26448c31dc77f0e6c3f,
-    type: 3}
 --- !u!1 &2427841035926194024
 GameObject:
   m_ObjectHideFlags: 0
@@ -5555,6 +5555,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
+      propertyPath: isTimerBased
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
         type: 3}
       propertyPath: displayTimerUI

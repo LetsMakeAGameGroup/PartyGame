@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ConstantRotation : MonoBehaviour {
-    [SerializeField] private Vector3 rotateDirection = Vector3.zero;
+    [Header("Settings")]
+    [Tooltip("What axis the object should rotate around. An increased number in a single axis means it will move faster around that axis.")]
+    [SerializeField] private Vector3 rotateDirection;
 
     private void Update() {
-        transform.Rotate(rotateDirection * Time.deltaTime);
+        transform.Rotate(Time.deltaTime * rotateDirection);
     }
 }

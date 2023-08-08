@@ -5,7 +5,7 @@ using Mirror;
 using System.Linq;
 
 public class FinalScoreScreenController : NetworkBehaviour {
-
+    [Header("References")]
     [SerializeField] private Transform finalScoreCardHolderTransform;
     [SerializeField] private GameObject finalScoreCardPrefab;
 

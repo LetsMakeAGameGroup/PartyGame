@@ -305,19 +305,19 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  playerName: Player
   nametagText: {fileID: 2149150474526092221}
-  points: 0
-  playerColor: N/A
   colorMaterial: {fileID: 1913241591649834000}
-  playerCamera: {fileID: 1913241592568134192}
-  lookSpeed: 2
-  lookXLimit: 90
-  isInteracting: 0
-  sightRayLenght: 5
   interactableLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  playerCamera: {fileID: 1913241592568134192}
+  lookSpeed: 2
+  lookXLimit: 90
+  sightRayLength: 5
+  playerName: Player
+  playerColor: N/A
+  points: 0
+  isInteracting: 0
 --- !u!114 &3807872867980839782
 MonoBehaviour:
   m_ObjectHideFlags: 0

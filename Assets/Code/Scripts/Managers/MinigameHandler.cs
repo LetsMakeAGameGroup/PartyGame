@@ -1,25 +1,29 @@
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
 /// <summary>Handles that status of a minigame. Will slightly change how this works soon.</summary>
 // TODO: Instead of handling this on every indivdual minigame, only one instance throughout the game would be better.
 public class MinigameHandler : MonoBehaviour {
-    public float minigameDuration = 120f;
-    public List<List<NetworkConnectionToClient>> winners = new();
-    public DisplayTimerUI displayTimerUI = null;
-    [SerializeField] private MinigameScoreScreenController scoreScreenController = null;
-
-    private bool isRunning = false;
-    [SerializeField] private bool timerBasedGame = true;
-    [SerializeField] private bool canEndGameEarly = true;
-
+    [Header("References")]
+    [SerializeField] private MinigameScoreScreenController scoreScreenController;
+    public DisplayTimerUI displayTimerUI;
     public UnityEvent onMinigameStart = new();
     public UnityEvent onMinigameEnd = new();
 
+    [HideInInspector] public List<List<NetworkConnectionToClient>> winners = new();
+
+    [Header("Settings")]
+    [Tooltip("How many seconds the minigame should last before ending.")]
+    public float minigameDuration = 120f;
+    [Tooltip("If the game should automatically end after MinigameDuration seconds.")]
+    [SerializeField] private bool isTimerBased = true;
+
+    private bool isRunning = false;
+
+    // This is called once all players are ready to start the minigame. Starts a countdown before calling StartMinigame.
     public void StartCountdown() {
         FindObjectOfType<MinigameStartScreenController>().RpcSetPlayerController(true);
 
@@ -32,11 +36,12 @@ public class MinigameHandler : MonoBehaviour {
     }
 
     /// <summary>Buffer for starting a minigame.</summary>
+    /// Called once the countdown from StartCountdown hits zero.
     public void StartMinigame() {
-        if (timerBasedGame) {
+        if (isTimerBased) {
             Timer timer = gameObject.AddComponent(typeof(Timer)) as Timer;
             timer.duration = minigameDuration;
-            timer.onTimerEnd.AddListener(EndMinigame);
+            timer.onTimerEnd = onMinigameEnd;
 
             displayTimerUI.RpcStartCountdown(minigameDuration);
         }
@@ -47,12 +52,13 @@ public class MinigameHandler : MonoBehaviour {
     }
 
     /// <summary>Adds player to the winners list according to position placed.</summary>
+    /// Should be called from a minigame specific manager event.
     public void AddWinner(List<NetworkConnectionToClient> players) {
         if (!isRunning) return;
 
         winners.Add(players);
 
-        if (canEndGameEarly && winners.Count == CustomNetworkManager.Instance.players.Count) {
+        if (winners.Count == CustomNetworkManager.Instance.players.Count) {
             EndMinigame();
         }
     }
@@ -61,16 +67,12 @@ public class MinigameHandler : MonoBehaviour {
     public void EndMinigame() {
         if (!isRunning) return;
 
-        onMinigameEnd?.Invoke();
-
         // Assign points to winners accordingly
         int assignPoints = CustomNetworkManager.Instance.players.Count;
         foreach (List<NetworkConnectionToClient> position in winners) {
             foreach (NetworkConnectionToClient player in position) {
                 CustomNetworkManager.Instance.connectionScores[player] += assignPoints;
                 scoreScreenController.RpcAddScoreCard(CustomNetworkManager.Instance.connectionNames[player], assignPoints);
-                
-                Debug.Log("Player " + CustomNetworkManager.Instance.connectionNames[player] + " now has " + CustomNetworkManager.Instance.connectionScores[player] + " points.");
             }
             assignPoints -= position.Count;
         }

@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Mirror;
 using UnityEngine.Events;
-using Unity.VisualScripting;
 
 public class MinigameStartScreenController : NetworkBehaviour {
-    [SerializeField] private TextMeshProUGUI playersReadyText = null;
-
+    [Header("References")]
+    [SerializeField] private TextMeshProUGUI playersReadyText;
     [SerializeField] private UnityEvent onStartMinigame = new();
 
     [SyncVar] private int playersReady = 0;

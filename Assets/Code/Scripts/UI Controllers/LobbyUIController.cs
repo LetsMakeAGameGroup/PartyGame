@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class LobbyUIController : MonoBehaviour {
-    public TextMeshProUGUI codeText = null;
+    [Header("References")]
+    public TextMeshProUGUI codeText;
 
     private void Start() => FindObjectOfType<LobbyUIController>().codeText.text = CustomNetworkManager.Instance.relayJoinCode.ToUpper();
 }

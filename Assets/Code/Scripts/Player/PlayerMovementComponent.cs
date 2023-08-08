@@ -1,25 +1,28 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovementComponent : NetworkBehaviour
 {
-    CharacterController characterController;
+    [Header("Settings")]
+    [Tooltip("How fast the player walks.")]
+    public float walkingSpeed = 7.5f;
+    [Tooltip("How fast the player runs.")]
+    public float runningSpeed = 11.5f;
+    [Tooltip("The velocity speed upwards when the player jumps.")]
+    public float jumpSpeed = 8.0f;
 
-    bool canMove = true;
+    private CharacterController characterController;
+
+    private bool canMove = true;
     public bool CanMove { get { return canMove; } set { canMove = value; } }
 
-    public float walkingSpeed = 7.5f;
-    public float runningSpeed = 11.5f;
-    public float jumpSpeed = 8.0f;
-    
-    Vector2 receivedInput = Vector2.zero;
-    Vector3 moveDirection = Vector3.zero;
+    private Vector2 receivedInput;
+    private Vector3 moveDirection;
 
-    Vector3 launchVelocity;
-    float launchTimeElapsed;
+    private Vector3 launchVelocity;
+    private float launchTimeElapsed;
 
     void Start()
     {

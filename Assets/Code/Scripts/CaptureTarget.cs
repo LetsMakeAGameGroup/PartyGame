@@ -1,13 +1,15 @@
 using Mirror;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CaptureTarget : NetworkBehaviour {
-    public GameObject playerOwner = null;
-    public int pointsGiven = 1;
+    [Header("References")]
+    [SerializeField] private Renderer colorRenderer;
 
-    [SerializeField] private Renderer colorRenderer = null;
+    [HideInInspector] public GameObject playerOwner;
+
+    [Header("Settings")]
+    [Tooltip("How many points having this target captured will give every interval.")]
+    public int pointsGiven = 1;
 
     public void SetOwner(GameObject player) {
         playerOwner = player;

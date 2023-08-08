@@ -2,22 +2,22 @@ using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
-using Unity.Services.Authentication;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class VeiledThreatManager : NetworkBehaviour {
-    [SerializeField] private MinigameHandler minigameHandler = null;
+    [Header("References")]
+    [SerializeField] private MinigameHandler minigameHandler;
+    [SerializeField] private GameObject bombPrefab;
+    [SerializeField] private GameObject spectatorCamera;
 
-    [SerializeField] private GameObject bombPrefab = null;
-    [SerializeField] private float[] bombTimeIntervals = { 15, 15, 15, 15, 18, 20, 22 };
-
-    private GameObject currentBomb = null;
-    private Dictionary<GameObject, int> activePlayerBombCarrierTime = new();
+    private GameObject currentBomb;
     private List<NetworkConnectionToClient> playerDeaths = new();
 
-    [SerializeField] private GameObject spectatorCamera = null;
+    [Header("Settings")]
+    [Tooltip("The amount of seconds before the bomb explodes. Listed by the amount of players with 2 players being the last in the list. The amount listed should be one less than the max amount of players possible.")]
+    [SerializeField] private float[] bombTimeIntervals = { 15f, 15f, 15f, 15f, 18f, 20f, 22f };
+
+    private Dictionary<GameObject, int> activePlayerBombCarrierTime = new();
 
     private void FixedUpdate() {
         if (!isServer) return;
@@ -32,7 +32,7 @@ public class VeiledThreatManager : NetworkBehaviour {
         spectatorCamera.transform.position = bombPos + new Vector3(0, 30 - bombPos.y, 0);
     }
 
-    // Called by server.
+    // Called by server when the minigame starts.
     public void AssignInitialBombCarrier() {
         List<NetworkConnectionToClient> connections = new(CustomNetworkManager.Instance.connectionNames.Keys);
         foreach (NetworkConnectionToClient connection in connections) activePlayerBombCarrierTime.Add(connection.identity.gameObject, 0);

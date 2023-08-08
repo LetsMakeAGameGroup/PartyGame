@@ -3,23 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.Services.Authentication;
 using UnityEngine;
 
 public class FlowerChildManager : NetworkBehaviour {
-    [SerializeField] private MinigameHandler minigameHandler = null;
-    [SerializeField] private GameObject flowerSpirit = null;
+    [Header("References")]
+    [SerializeField] private MinigameHandler minigameHandler;
+    [SerializeField] private GameObject flowerSpirit;
+    [SerializeField] private Canvas scoreDisplayCanvas;
+    [SerializeField] private TextMeshProUGUI scoreDisplayText;
+
+    [Header("Settings")]
+    [Tooltip("How many seconds between targets assign points to their according player.")]
     [SerializeField] private float timeBetweenGivenPoints = 0.25f;
-    private Dictionary<GameObject, int> playerPoints = new();
-
-    [SerializeField] private Canvas scoreDisplayCanvas = null;
-    [SerializeField] private TextMeshProUGUI scoreDisplayText = null;
-
+    [Tooltip("The amount of speed the FlowerSpirit will increase by.")]
     [SerializeField] private float speedIncrease = 2f;
+    [Tooltip("How many seconds between increasing the FlowerSpirit speed.")]
     [SerializeField] private float speedIncreaseTimeInterval = 30f;
 
-    // Called by server.
+    private Dictionary<GameObject, int> playerPoints = new();
+
+    // Called by server when the minigame is started.
     public void StartMovingFlowerSpirit() {
+        foreach (var player in CustomNetworkManager.Instance.players) {
+            playerPoints.Add(player, 0);
+        }
+
         StartCoroutine(flowerSpirit.GetComponent<FlowerSpirit>().MoveTowardsTrans());
         StartCoroutine(IncreaseSpeedAfterInterval());
 
@@ -43,11 +51,7 @@ public class FlowerChildManager : NetworkBehaviour {
 
     public IEnumerator AddPointsEveryInterval() {
         foreach (var player in flowerSpirit.GetComponent<ContainPlayersInsideCollider>().playersInside) {
-            if (playerPoints.ContainsKey(player)) {
-                playerPoints[player]++;
-            } else {
-                playerPoints.Add(player, 1);
-            }
+            playerPoints[player]++;
 
             TargetSetScoreDisplay(player.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[player]);
         }

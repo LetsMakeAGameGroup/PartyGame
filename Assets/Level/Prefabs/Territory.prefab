@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14113f1bf3b2224dac8acaa4c326997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playersInside: []
   pointsMultiplier: 0.5
+  playersInside: []
 --- !u!33 &3264450802084903083
 MeshFilter:
   m_ObjectHideFlags: 0

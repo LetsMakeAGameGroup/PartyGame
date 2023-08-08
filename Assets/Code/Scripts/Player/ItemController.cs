@@ -5,19 +5,24 @@ using System.Linq;
 
 [RequireComponent(typeof(PlayerController))]
 public class ItemController : NetworkBehaviour {
-    public GameObject itemHolder = null;
-    public GameObject holdingItem = null;
+    [Header("References")]
+    public GameObject itemHolder;
+    public GameObject holdingItem;
+    [SerializeField] private ItemHUDController itemHUDController;
 
-    [SerializeField] private ItemHUDController itemHUDController = null;
+    private PlayerController playerController;
 
     private bool canUse = true;
-    private PlayerController playerController = null;
 
     private void OnEnable() => itemHUDController.canvas.enabled = true;
     private void OnDisable() => itemHUDController.canvas.enabled = false;
 
     private void Start() {
         playerController = GetComponent<PlayerController>();
+
+        if (holdingItem) {
+            holdingItem.GetComponent<Item>().playerController = playerController;
+        }
     }
 
     private void Update() {
