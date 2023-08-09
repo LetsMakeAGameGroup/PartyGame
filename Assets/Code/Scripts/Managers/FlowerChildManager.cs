@@ -9,6 +9,7 @@ public class FlowerChildManager : NetworkBehaviour {
     [Header("References")]
     [SerializeField] private MinigameHandler minigameHandler;
     [SerializeField] private GameObject flowerSpirit;
+    [SerializeField] private GameObject tornado;
     [SerializeField] private Canvas scoreDisplayCanvas;
     [SerializeField] private TextMeshProUGUI scoreDisplayText;
 
@@ -29,6 +30,7 @@ public class FlowerChildManager : NetworkBehaviour {
         }
 
         StartCoroutine(flowerSpirit.GetComponent<RandomlyMovingAgent>().MoveTowardsTrans());
+        StartCoroutine(tornado.GetComponent<RandomlyMovingAgent>().MoveTowardsTrans());
         StartCoroutine(IncreaseSpeedAfterInterval());
 
         RpcEnableScoreDisplay();
@@ -45,6 +47,7 @@ public class FlowerChildManager : NetworkBehaviour {
         yield return new WaitForSeconds(speedIncreaseTimeInterval);
 
         flowerSpirit.GetComponent<RandomlyMovingAgent>().speed += speedIncrease;
+        tornado.GetComponent<RandomlyMovingAgent>().speed += speedIncrease;
 
         StartCoroutine(IncreaseSpeedAfterInterval());
     }
