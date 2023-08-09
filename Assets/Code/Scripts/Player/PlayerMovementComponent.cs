@@ -7,6 +7,10 @@ using Unity.VisualScripting;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovementComponent : NetworkBehaviour
 {
+    [Header("References")]
+    [SerializeField] private Canvas respawnWarningCanvas;
+    [SerializeField] private TMP_Text respawnTimeText;
+
     [Header("Settings")]
     [Tooltip("How fast the player walks.")]
     public float walkingSpeed = 7.5f;
@@ -14,6 +18,10 @@ public class PlayerMovementComponent : NetworkBehaviour
     public float runningSpeed = 11.5f;
     [Tooltip("The velocity speed upwards when the player jumps.")]
     public float jumpSpeed = 8.0f;
+    [Tooltip("Below what Y-Axis will the player be considered in the void.")]
+    [SerializeField] private float voidYAxis = 0f;
+    [Tooltip("How many seconds before the player is respawned while in the void.")]
+    [SerializeField] private int respawnTime = 3;
 
     private CharacterController characterController;
 
@@ -26,11 +34,7 @@ public class PlayerMovementComponent : NetworkBehaviour
     private Vector3 launchVelocity;
     private float launchTimeElapsed;
 
-    [SerializeField] private float voidYAxis = 0f;  // Below what Y-Axis will the player be considered inside the void in order to respawn.
-    [SerializeField] private int respawnTime = 3;
     private bool isAttemptingToRespawn = false;
-    [SerializeField] private Canvas respawnWarningCanvas;
-    [SerializeField] private TMP_Text respawnTimeText;
 
     void Start()
     {
@@ -139,12 +143,11 @@ public class PlayerMovementComponent : NetworkBehaviour
         respawnWarningCanvas.enabled = false;
 
         if (transform.position.y <= voidYAxis) {
-            GameObject[] currentSpawns = FindObjectOfType(typeof(SpawnHolder)).GetComponent<SpawnHolder>().currentSpawns;
+            GameObject[] currentSpawns = FindObjectOfType(typeof(SpawnHolder)).GetComponent<SpawnHolder>().currentSpawns.ToArray();
             GameObject randomSpawn = currentSpawns[Random.Range(0, currentSpawns.Length)];
 
             characterController.enabled = false;
-            transform.position = randomSpawn.transform.position;
-            transform.rotation = randomSpawn.transform.rotation;
+            transform.SetPositionAndRotation(randomSpawn.transform.position, randomSpawn.transform.rotation);
             characterController.enabled = true;
         }
     }
