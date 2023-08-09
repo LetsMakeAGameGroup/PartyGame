@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CharacterSeedTorsoUp
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 1
+  - m_Path: Armature/B_Body
+    m_Weight: 1
+  - m_Path: Armature/B_Body/B_Head
+    m_Weight: 1
+  - m_Path: Armature/B_Body/B_Head/B_BranchStart
+    m_Weight: 1
+  - m_Path: Armature/B_Body/B_Head/B_BranchStart/B_Branch_1
+    m_Weight: 1
+  - m_Path: Armature/B_Body/B_Head/B_BranchStart/B_Branch_1/B_Branch_2
+    m_Weight: 1
+  - m_Path: Armature/B_Body/B_Head/B_BranchStart/B_Branch_1/B_Branch_2/B_Branch_3
+    m_Weight: 1
+  - m_Path: Armature/B_Body/B_Head/B_BranchStart/B_Branch_1/B_Branch_2/B_Branch_3/B_Branch_4
+    m_Weight: 1
+  - m_Path: Armature/B_Body/B_Head/B_BranchStart/B_Branch_1/B_Branch_2/B_Branch_3/B_Branch_4/B_Flower
+    m_Weight: 0
+  - m_Path: Armature/B_Body/B_Head/B_Hand_1.L
+    m_Weight: 1
+  - m_Path: Armature/B_Body/B_Head/B_Hand_1.L/B_Hand_2.L
+    m_Weight: 1
+  - m_Path: Armature/B_Body/B_Head/B_Hand_1.L/B_Hand_2.L/B_Hand_3.L
+    m_Weight: 1
+  - m_Path: Armature/B_Body/B_Head/B_Hand_1.R
+    m_Weight: 1
+  - m_Path: Armature/B_Body/B_Head/B_Hand_1.R/B_Hand_2.R
+    m_Weight: 1
+  - m_Path: Armature/B_Body/B_Head/B_Hand_1.R/B_Hand_2.R/B_Hand_3.R
+    m_Weight: 1
+  - m_Path: Armature/B_Root
+    m_Weight: 0
+  - m_Path: Armature/B_Root/B_UpperLeg.L
+    m_Weight: 0
+  - m_Path: Armature/B_Root/B_UpperLeg.L/B_LowerLeg.L
+    m_Weight: 0
+  - m_Path: Armature/B_Root/B_UpperLeg.R
+    m_Weight: 0
+  - m_Path: Armature/B_Root/B_UpperLeg.R/B_LowerLeg.R
+    m_Weight: 0
+  - m_Path: Mesh
+    m_Weight: 0
