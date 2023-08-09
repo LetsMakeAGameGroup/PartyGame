@@ -28,7 +28,7 @@ public class FlowerChildManager : NetworkBehaviour {
             playerPoints.Add(player.identity.gameObject, 0);
         }
 
-        StartCoroutine(flowerSpirit.GetComponent<FlowerSpirit>().MoveTowardsTrans());
+        StartCoroutine(flowerSpirit.GetComponent<RandomlyMovingAgent>().MoveTowardsTrans());
         StartCoroutine(IncreaseSpeedAfterInterval());
 
         RpcEnableScoreDisplay();
@@ -44,7 +44,7 @@ public class FlowerChildManager : NetworkBehaviour {
     private IEnumerator IncreaseSpeedAfterInterval() {
         yield return new WaitForSeconds(speedIncreaseTimeInterval);
 
-        flowerSpirit.GetComponent<FlowerSpirit>().speed += speedIncrease;
+        flowerSpirit.GetComponent<RandomlyMovingAgent>().speed += speedIncrease;
 
         StartCoroutine(IncreaseSpeedAfterInterval());
     }
