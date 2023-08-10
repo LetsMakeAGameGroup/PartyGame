@@ -70,6 +70,7 @@ MonoBehaviour:
   - {fileID: 7524440669711000338, guid: d5009c5ef37e7b04ca20d67569c28f95, type: 3}
   - {fileID: 9187142294380564760, guid: 727070cf41f2f4a4a9393778975def67, type: 3}
   - {fileID: 9187142294380564760, guid: 9225b341fda57a24abb690f3ada66242, type: 3}
+  - {fileID: 600371996209399883, guid: 6540391edf90e4a44ae5c3f2a3a94493, type: 3}
   snapshotSettings:
     bufferTimeMultiplier: 2
     catchupNegativeThreshold: -1
@@ -82,7 +83,6 @@ MonoBehaviour:
     deliveryTimeEmaDuration: 2
   timeInterpolationGui: 0
   relayJoinCode: 
-  players: []
   isLoggedIn: 0
 --- !u!114 &4429846812453579608
 MonoBehaviour:
