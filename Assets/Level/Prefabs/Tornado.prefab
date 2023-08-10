@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6843013585121841110}
   - component: {fileID: 6843013585121841104}
   - component: {fileID: 6843013585121841107}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Tornado
   m_TagString: Untagged
   m_Icon: {fileID: 0}

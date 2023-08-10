@@ -2184,11 +2184,15 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   minigameHandler: {fileID: 1317486347}
-  flowerSpirit: {fileID: 1603944348}
+  wispPrefab: {fileID: 6716550575573206128, guid: aae9d59fdc3eb0042a9024800227096c,
+    type: 3}
   tornado: {fileID: 960587143}
   scoreDisplayCanvas: {fileID: 1003965091}
   scoreDisplayText: {fileID: 1003965090}
-  timeBetweenGivenPoints: 0.25
+  minWispSpawnLocation: {x: -35, y: -35}
+  maxWispSpawnLocation: {x: 35, y: 35}
+  wispSpawnTimeInterval: 5
+  distanceFromGroundWispSpawn: 0.5
   speedIncrease: 3
   speedIncreaseTimeInterval: 30
 --- !u!1001 &960587142
@@ -2206,7 +2210,7 @@ PrefabInstance:
     - target: {fileID: 6843013585121841130, guid: 838ca1451476b844586631c72e264c41,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 6843013585121841130, guid: 838ca1451476b844586631c72e264c41,
         type: 3}
@@ -2262,6 +2266,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tornado
+      objectReference: {fileID: 0}
+    - target: {fileID: 6843013585276873225, guid: 838ca1451476b844586631c72e264c41,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 838ca1451476b844586631c72e264c41, type: 3}
@@ -3117,86 +3126,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1594748861}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1603944347
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 600371996209399883, guid: b79f17704e785cf4a967649059cef70b,
-        type: 3}
-      propertyPath: m_Name
-      value: FlowerSpirit
-      objectReference: {fileID: 0}
-    - target: {fileID: 600371996209399886, guid: b79f17704e785cf4a967649059cef70b,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 600371996209399886, guid: b79f17704e785cf4a967649059cef70b,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 600371996209399886, guid: b79f17704e785cf4a967649059cef70b,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 600371996209399886, guid: b79f17704e785cf4a967649059cef70b,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 600371996209399886, guid: b79f17704e785cf4a967649059cef70b,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 600371996209399886, guid: b79f17704e785cf4a967649059cef70b,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 600371996209399886, guid: b79f17704e785cf4a967649059cef70b,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 600371996209399886, guid: b79f17704e785cf4a967649059cef70b,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 600371996209399886, guid: b79f17704e785cf4a967649059cef70b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 600371996209399886, guid: b79f17704e785cf4a967649059cef70b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 600371996209399886, guid: b79f17704e785cf4a967649059cef70b,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 600371996209399921, guid: b79f17704e785cf4a967649059cef70b,
-        type: 3}
-      propertyPath: sceneId
-      value: 1674500778
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b79f17704e785cf4a967649059cef70b, type: 3}
---- !u!1 &1603944348 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 600371996209399883, guid: b79f17704e785cf4a967649059cef70b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1603944347}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1671190603
 GameObject:
   m_ObjectHideFlags: 0
@@ -4853,7 +4782,7 @@ PrefabInstance:
     - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
         type: 3}
       propertyPath: onMinigameStart.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartMovingFlowerSpirit
+      value: StartGame
       objectReference: {fileID: 0}
     - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
         type: 3}

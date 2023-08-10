@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 600371996209399922}
   - component: {fileID: 600371996209399924}
   - component: {fileID: 600371996209399927}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FlowerSpirit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 600371996339137964}
   - component: {fileID: 600371996339137966}
   - component: {fileID: 600371996339137967}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5014,7 +5014,7 @@ GameObject:
   - component: {fileID: 600371996646368536}
   - component: {fileID: 600371996646368538}
   - component: {fileID: 600371996646368539}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FloralCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
