@@ -20,8 +20,6 @@ public class WispWhiskManager : NetworkBehaviour {
     [SerializeField] private Vector2 minWispSpawnLocation = Vector2.zero;
     [Tooltip("Maximum or top right 2D vector(X and Z-Axis) of where wisps can spawn in an area.")]
     [SerializeField] private Vector2 maxWispSpawnLocation = Vector2.zero;
-    [Tooltip("How far from the ground the wisp will spawn.")]
-    [SerializeField] private float distanceFromGroundWispSpawn = 0.5f;
 
     private Dictionary<GameObject, int> playerPoints = new();
 
@@ -41,7 +39,7 @@ public class WispWhiskManager : NetworkBehaviour {
 
             int excludePlayerLayerMask = ~LayerMask.GetMask("Player");
             if (Physics.Raycast(new Vector3(overheadLocation.x, 10f, overheadLocation.y), Vector3.down, out RaycastHit hit, 15f, excludePlayerLayerMask)) {
-                GameObject wisp = Instantiate(wispPrefab, hit.point + new Vector3(0, distanceFromGroundWispSpawn, 0), Quaternion.identity);
+                GameObject wisp = Instantiate(wispPrefab, hit.point, Quaternion.identity);
                 NetworkServer.Spawn(wisp);
             } else {
                 Debug.LogError("Unable to find a location to spawn wisp at " + overheadLocation + ". Will attempt to spawn another.", transform);

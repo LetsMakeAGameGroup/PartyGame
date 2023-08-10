@@ -47,7 +47,7 @@ public class MazeManager : NetworkBehaviour {
         for (int i = 0; i < wispsPerRandomization; i++) {
             Vector3 randomSpawn;
             while (true) {
-                randomSpawn = new Vector3(Random.Range(-(gridSize/2) + 1, (gridSize/2) + 1)*containerLength-(containerLength/2), 1.5f, Random.Range(-(gridSize/2) + 1, (gridSize/2) + 1)*containerLength-(containerLength/2));
+                randomSpawn = new Vector3(Random.Range(-(gridSize/2) + 1, (gridSize/2) + 1)*containerLength-(containerLength/2), 0.5f, Random.Range(-(gridSize/2) + 1, (gridSize/2) + 1)*containerLength-(containerLength/2));
 
                 Collider[] intersectingColliders = Physics.OverlapSphere(new Vector3(2, 4, 0), 0.01f);
                 if (intersectingColliders.Length > 0) {
