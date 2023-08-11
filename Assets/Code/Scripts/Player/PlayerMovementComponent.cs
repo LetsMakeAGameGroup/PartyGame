@@ -7,20 +7,34 @@ using Unity.VisualScripting;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovementComponent : NetworkBehaviour
 {
-    CharacterController characterController;
+    [Header("References")]
+    [SerializeField] private Canvas respawnWarningCanvas;
+    [SerializeField] private TMP_Text respawnTimeText;
 
-    bool canMove = true;
+    [Header("Settings")]
+    [Tooltip("How fast the player walks.")]
+    public float walkingSpeed = 7.5f;
+    [Tooltip("How fast the player runs.")]
+    public float runningSpeed = 11.5f;
+    [Tooltip("The velocity speed upwards when the player jumps.")]
+    public float jumpSpeed = 8.0f;
+    [Tooltip("Below what Y-Axis will the player be considered in the void.")]
+    [SerializeField] private float voidYAxis = 0f;
+    [Tooltip("How many seconds before the player is respawned while in the void.")]
+    [SerializeField] private int respawnTime = 3;
+
+    private CharacterController characterController;
+
+    private bool canMove = true;
     public bool CanMove { get { return canMove; } set { canMove = value; } }
 
-    public float walkingSpeed = 7.5f;
-    public float runningSpeed = 11.5f;
-    public float jumpSpeed = 8.0f;
-    
-    Vector2 receivedInput = Vector2.zero;
-    Vector3 moveDirection = Vector3.zero;
+    private Vector2 receivedInput;
+    private Vector3 moveDirection;
 
-    Vector3 launchVelocity;
-    float launchTimeElapsed;
+    private Vector3 launchVelocity;
+    private float launchTimeElapsed;
+
+    private bool isAttemptingToRespawn = false;
 
     [SerializeField] private float voidYAxis = 0f;  // Below what Y-Axis will the player be considered inside the void in order to respawn.
     [SerializeField] private int respawnTime = 3;
@@ -135,12 +149,11 @@ public class PlayerMovementComponent : NetworkBehaviour
         respawnWarningCanvas.enabled = false;
 
         if (transform.position.y <= voidYAxis) {
-            GameObject[] currentSpawns = FindObjectOfType(typeof(SpawnHolder)).GetComponent<SpawnHolder>().currentSpawns;
+            GameObject[] currentSpawns = FindObjectOfType(typeof(SpawnHolder)).GetComponent<SpawnHolder>().currentSpawns.ToArray();
             GameObject randomSpawn = currentSpawns[Random.Range(0, currentSpawns.Length)];
 
             characterController.enabled = false;
-            transform.position = randomSpawn.transform.position;
-            transform.rotation = randomSpawn.transform.rotation;
+            transform.SetPositionAndRotation(randomSpawn.transform.position, randomSpawn.transform.rotation);
             characterController.enabled = true;
         }
     }

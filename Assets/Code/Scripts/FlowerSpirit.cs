@@ -4,9 +4,12 @@ using System.Linq;
 using UnityEngine;
 
 public class FlowerSpirit : NetworkBehaviour {
-    [SerializeField] private Transform[] nodesTrans = null;
-    [SerializeField] private Transform currentNode = null;
+    [Header("References")]
+    [SerializeField] private Transform[] nodesTransforms;
+    [SerializeField] private Transform currentNode;
 
+    [Header("Settings")]
+    [Tooltip("The initial speed this will move. When the speed is increased mid game, this variable will represent that.")]
     [SyncVar] public float speed = 1f;
 
     private void Awake() {

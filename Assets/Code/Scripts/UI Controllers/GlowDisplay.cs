@@ -1,10 +1,9 @@
 using Mirror;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GlowDisplay : NetworkBehaviour {
-    [SerializeField] private Canvas canvas = null;
+    [Header("References")]
+    [SerializeField] private Canvas canvas;
 
     [TargetRpc]
     public void TargetToggleCanvas(bool isEnabled) {

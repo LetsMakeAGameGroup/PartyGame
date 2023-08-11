@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
 public class CollectableWispEffect : NetworkBehaviour {
+    [Header("Settings")]
+    [Tooltip("How many points to give the player when collected.")]
     public int pointsToAdd = 2;
 
     private void OnTriggerEnter(Collider other) {

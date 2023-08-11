@@ -6,16 +6,24 @@ using TMPro;
 using UnityEngine;
 
 public class ClaimGameManager : NetworkBehaviour {
-    [SerializeField] private MinigameHandler minigameHandler = null;
-    [SerializeField] private GameObject[] targets = null;
+    [Header("References")]
+    [SerializeField] private MinigameHandler minigameHandler;
+    [SerializeField] private Canvas scoreDisplayCanvas;
+    [SerializeField] private TextMeshProUGUI scoreDisplayText;
+    [SerializeField] private GameObject[] targets;
+
+    [Header("Settings")]
+    [Tooltip("How many seconds between targets assign points to their according player.")]
     [SerializeField] private float timeBetweenGivenPoints = 0.25f;
+
     private Dictionary<GameObject, int> playerPoints = new();
 
-    [SerializeField] private Canvas scoreDisplayCanvas = null;
-    [SerializeField] private TextMeshProUGUI scoreDisplayText = null;
-
-    // Called by server.
+    // Called by server when the minigame is started.
     public void EnableTargets() {
+        foreach (var player in CustomNetworkManager.Instance.ClientDatas.Keys) {
+            playerPoints.Add(player.identity.gameObject, 0);
+        }
+
         RpcEnableTargets();
 
         StartCoroutine(AddPointsEverySecond());
@@ -36,11 +44,8 @@ public class ClaimGameManager : NetworkBehaviour {
             GameObject targetOwner = target.GetComponent<CaptureTarget>().playerOwner;
             if (targetOwner) {
                 int pointsToAdd = target.GetComponent<CaptureTarget>().pointsGiven;
-                if (playerPoints.ContainsKey(targetOwner)) {
-                    playerPoints[targetOwner] += pointsToAdd;
-                } else {
-                    playerPoints.Add(targetOwner, pointsToAdd);
-                }
+                playerPoints[targetOwner] += pointsToAdd;
+
                 TargetSetScoreDisplay(targetOwner.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[targetOwner]);
             }
         }

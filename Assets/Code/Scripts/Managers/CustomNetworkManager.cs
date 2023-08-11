@@ -2,18 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using System.Linq;
-using System.Net;
 using System;
 using Utp;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 
 public class CustomNetworkManager : RelayNetworkManager {
-    public List<GameObject> players = new();
-    public Dictionary<NetworkConnectionToClient, int> connectionScores = new();
-    public Dictionary<NetworkConnectionToClient, string> connectionNames = new();
-    public Dictionary<NetworkConnectionToClient, string> connectionColors = new();
+    public Dictionary<NetworkConnectionToClient, ClientData> ClientDatas { get; private set; }
 
+    /// <summary>Prevents OnServerSceneChanged from being called when the server first goes online.</summary>
     private bool initialSceneChange = true;
 
     /// <summary>Flag to determine if the user is logged into the backend.</summary>
@@ -29,6 +26,10 @@ public class CustomNetworkManager : RelayNetworkManager {
         else Instance = this;
     }
 
+    public override void OnStartHost() {
+        ClientDatas = new Dictionary<NetworkConnectionToClient, ClientData>();
+    }
+
     // Add new player to list and spawn them at the spawn points.
     public override void OnServerAddPlayer(NetworkConnectionToClient conn) {
         // Prevent player from joining if the game has already started.
@@ -39,11 +40,11 @@ public class CustomNetworkManager : RelayNetworkManager {
 
         SpawnHolder spawnHolder = FindObjectOfType<SpawnHolder>();
 
-        GameObject player = Instantiate(playerPrefab, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.position, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.rotation);
+        GameObject player = Instantiate(playerPrefab, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Count()].transform.position, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Count()].transform.rotation);
         NetworkServer.AddPlayerForConnection(conn, player);
 
-        players.Add(player);
-        connectionScores.Add(conn, 0);
+        ClientDatas[conn] = new ClientData(conn.connectionId);
+
         player.GetComponent<PlayerController>().TargetGetDisplayName();
         player.GetComponent<PlayerController>().TargetGetPlayerColorPref();
         initialSceneChange = false;
@@ -56,45 +57,15 @@ public class CustomNetworkManager : RelayNetworkManager {
 
         SpawnHolder spawnHolder = FindObjectOfType<SpawnHolder>();
 
-        foreach (NetworkConnectionToClient conn in connectionScores.Keys) {
-            GameObject player = Instantiate((spawnHolder.playerPrefab != null ? spawnHolder.playerPrefab : playerPrefab), spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.position, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Length].transform.rotation);
-            player.GetComponent<PlayerController>().playerName = connectionNames[conn];
-            player.GetComponent<PlayerController>().playerColor = connectionColors[conn];
+        foreach (NetworkConnectionToClient conn in ClientDatas.Keys) {
+            GameObject player = Instantiate((spawnHolder.playerPrefab != null ? spawnHolder.playerPrefab : playerPrefab), spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Count()].transform.position, spawnHolder.currentSpawns[numPlayers % spawnHolder.currentSpawns.Count()].transform.rotation);
+            player.GetComponent<PlayerController>().playerName = ClientDatas[conn].displayName;
+            player.GetComponent<PlayerController>().playerColor = ClientDatas[conn].playerColor;
 
             if (!NetworkClient.ready) NetworkClient.Ready();
             // TODO: Fix "There is already a player for this connection." error here. This is most likely because the connected clients haven't switched scenes yet.
             NetworkServer.ReplacePlayerForConnection(conn, player);
         }
-    }
-
-    /// <summary>Converts an IP address to bytes, then returns it as a string that can be used as a code to join the server.</summary>
-    public string ConvertIPAddressToCode(string ipAddress) {
-        IPAddress address = IPAddress.Parse(ipAddress);
-        byte[] bytes = address.GetAddressBytes();
-        return BitConverter.ToString(bytes).Replace("-", string.Empty);
-    }
-
-    /// <summary>Converts a code(converted IP address) into an array of bytes to return the IP address.</summary>
-    public string ConvertCodeToIPAddress(string code) {
-        string[] tempArray = new string[code.Length / 2];
-        for (int i = 0; i < tempArray.Length; i++) {
-            tempArray[i] = code[i*2].ToString() + code[i*2+1];
-        }
-
-        byte[] bytes = new byte[tempArray.Length];
-        for (int i = 0; i < tempArray.Length; i++) {
-            bytes[i] = Convert.ToByte(tempArray[i], 16);
-        }
-
-        return String.Join(".", bytes);
-    }
-
-    /// <summary>Uses a website's JSON string to find the host's public ip.</summary>
-    public string GetExternalIpAddress() {
-        string externalIpString = new WebClient().DownloadString("http://icanhazip.com").Replace("\\r\\n", "").Replace("\\n", "").Trim();
-        var externalIp = IPAddress.Parse(externalIpString);
-
-        return externalIp.ToString();
     }
 
     public async void UnityLogin() {
@@ -109,31 +80,47 @@ public class CustomNetworkManager : RelayNetworkManager {
         }
     }
 
-    public void DeterminePlayerColor(GameObject player, string playerColor) {
-        if (!connectionColors.ContainsValue(playerColor)) {
-            connectionColors.Add(player.GetComponent<NetworkIdentity>().connectionToClient, playerColor);
-            player.GetComponent<PlayerController>().playerColor = playerColor;
+    private bool ColorAlreadyChosen(string playerColor) {
+        foreach (var clientData in ClientDatas.Values) {
+            if (clientData.playerColor == playerColor) return true;
+        }
+
+        return false;
+    }
+
+    public void DeterminePlayerColor(NetworkConnectionToClient conn, string playerColor) {
+        if (!ColorAlreadyChosen(playerColor)) {
+            ClientDatas[conn].playerColor = playerColor;
+            conn.identity.GetComponent<PlayerController>().playerColor = playerColor;
         } else {
             foreach (var colorOption in PlayerColorOptions.options) {
-                if (!connectionColors.ContainsValue(colorOption.Key)) {
-                    connectionColors.Add(player.GetComponent<NetworkIdentity>().connectionToClient, colorOption.Key);
-                    player.GetComponent<PlayerController>().playerColor = colorOption.Key;
+                if (!ColorAlreadyChosen(colorOption.Key)) {
+                    ClientDatas[conn].playerColor = colorOption.Key;
+                    conn.identity.GetComponent<PlayerController>().playerColor = colorOption.Key;
                     break;
                 }
             }
         }
     }
 
-    public void DeterminePlayerName(GameObject player, string displayName) {
-        if (!connectionNames.ContainsValue(displayName)) {
-            connectionNames.Add(player.GetComponent<NetworkIdentity>().connectionToClient, displayName);
-            player.GetComponent<PlayerController>().playerName = displayName;
+    private bool NameAlreadyChosen(string displayName) {
+        foreach (var clientData in ClientDatas.Values) {
+            if (clientData.displayName == displayName) return true;
+        }
+
+        return false;
+    }
+
+    public void DeterminePlayerName(NetworkConnectionToClient conn, string displayName) {
+        if (!NameAlreadyChosen(displayName)) {
+            ClientDatas[conn].displayName = displayName;
+            conn.identity.GetComponent<PlayerController>().playerName = displayName;
         } else {
             for (int i = 2; i < 9; i++) {
                 string newName = displayName + " (" + i.ToString() + ")";
-                if (!connectionNames.ContainsValue(newName)) {
-                    connectionNames.Add(player.GetComponent<NetworkIdentity>().connectionToClient, newName);
-                    player.GetComponent<PlayerController>().playerName = newName;
+                if (!NameAlreadyChosen(newName)) {
+                    ClientDatas[conn].displayName = newName;
+                    conn.identity.GetComponent<PlayerController>().playerName = newName;
                     return;
                 }
             }

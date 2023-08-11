@@ -3,7 +3,7 @@ using Mirror;
 using UnityEngine.Events;
 
 public class CollectiblePoint : NetworkBehaviour {
-    public UnityEvent<GameObject,int> onPointsAdd = new();
+    [HideInInspector] public UnityEvent<GameObject, int> onPointsAdd = new();
 
     private void OnTriggerEnter(Collider other) {
         if (!other.CompareTag("Player")) return;

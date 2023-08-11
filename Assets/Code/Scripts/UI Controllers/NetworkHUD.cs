@@ -3,12 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class NetworkHUD : MonoBehaviour {
-    [SerializeField] private CustomNetworkManager networkManager = null;
+    [Header("References")]
+    [SerializeField] private CustomNetworkManager networkManager;
 
-    private string playerName = "";
-    private string playerColor = "";
-
-    [Header("UI")]
     [SerializeField] private TMP_InputField codeInputField = null;
 
     [SerializeField] private GameObject nameSelectPanel = null;
@@ -18,6 +15,10 @@ public class NetworkHUD : MonoBehaviour {
     [SerializeField] private GameObject colorSelectPanel = null;
     [SerializeField] private TextMeshProUGUI currentColorText = null;
     [SerializeField] private Button[] colorOptionButtons = null;
+
+
+    private string playerName = "";
+    private string playerColor = "";
 
     private void Awake() {
         int optionIndex = 0;
@@ -52,7 +53,6 @@ public class NetworkHUD : MonoBehaviour {
 
     public void HostLobby() {
         networkManager.StartRelayHost(networkManager.maxConnections);
-        //Debug.Log("code: " + networkManager.ConvertIPAddressToCode(networkManager.GetExternalIpAddress()));
     }
 
     public void JoinLobby() {

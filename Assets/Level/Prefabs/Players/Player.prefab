@@ -306,19 +306,18 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  playerName: Player
   nametagText: {fileID: 2149150474526092221}
-  points: 0
-  playerColor: N/A
   colorMaterial: {fileID: 1913241591649834000}
-  playerCamera: {fileID: 1913241592568134192}
-  lookSpeed: 2
-  lookXLimit: 90
-  isInteracting: 0
-  sightRayLenght: 5
   interactableLayerMask:
     serializedVersion: 2
     m_Bits: 8
+  playerCamera: {fileID: 1913241592568134192}
+  lookSpeed: 2
+  sightRayLength: 5
+  playerName: Player
+  playerColor: N/A
+  points: 0
+  isInteracting: 0
 --- !u!114 &3807872867980839782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1011,7 +1010,7 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -1044,7 +1043,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 5, y: 5, z: 5, w: 5}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

@@ -2,9 +2,10 @@ using Mirror;
 using UnityEngine;
 
 public class BombEffect : NetworkBehaviour {
-    public GameObject bombContainer = null;
+    [Header("References")]
+    public GameObject bombContainer;
 
-    [HideInInspector] public GameObject holdingBomb = null;
+    [HideInInspector] public GameObject holdingBomb;
 
 
     [ClientRpc]

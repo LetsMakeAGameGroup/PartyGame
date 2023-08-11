@@ -1,10 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ContainPlayersInsideCollider : MonoBehaviour {
+    [Header("Settings")]
+    [Tooltip("What percentage bonus of points should be applied when inside this collider. For example: 0.75f indicates a 75% increase in points given.")]
+    [Range(0f, 1f)] public float pointsMultiplier = 0.5f;
+
     [HideInInspector] public List<GameObject> playersInside = new();
-    public float pointsMultiplier = 0.5f;  // 0.5 indicates a 50% increase
 
     private void OnTriggerEnter(Collider other) {
         if (!other.CompareTag("Player")) return;

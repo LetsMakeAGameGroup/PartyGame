@@ -483,6 +483,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4677680826974001741, guid: 361035ff13bd68b4d964d9f97b7f9449,
+        type: 3}
+      propertyPath: m_KeyboardType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677680826974001741, guid: 361035ff13bd68b4d964d9f97b7f9449,
+        type: 3}
+      propertyPath: m_CharacterValidation
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677680826974001743, guid: 361035ff13bd68b4d964d9f97b7f9449,
+        type: 3}
+      propertyPath: m_Name
+      value: InputField (TMP)-LobbyCode
+      objectReference: {fileID: 0}
     - target: {fileID: 4677680827536345509, guid: 361035ff13bd68b4d964d9f97b7f9449,
         type: 3}
       propertyPath: m_Name

@@ -3,5 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FlowerSpiritNode : MonoBehaviour {
-    public GameObject[] neighborNodes = null;
+    [Header("References")]
+    public GameObject[] neighborNodes;
 }
