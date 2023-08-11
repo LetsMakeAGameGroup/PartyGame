@@ -22,6 +22,8 @@ public class WispWhiskManager : NetworkBehaviour {
     [SerializeField] private Vector2 maxWispSpawnLocation = Vector2.zero;
     [Tooltip("How far from the ground the wisp will spawn.")]
     [SerializeField] private float distanceFromGroundWispSpawn = 0.5f;
+    [Tooltip("The minimum distance between two wisps when spawning.")]
+    [SerializeField] private float distanceBetweenWisps = 1f;
 
     private Dictionary<GameObject, int> playerPoints = new();
 
@@ -37,20 +39,44 @@ public class WispWhiskManager : NetworkBehaviour {
         if (CustomNetworkManager.Instance.ClientDatas.Count > 6) wispCount = 3;
 
         for (int i = 0; i < wispCount; i++) {
-            Vector2 overheadLocation = Vector2.Lerp(minWispSpawnLocation, maxWispSpawnLocation, Random.value);
-
-            int excludePlayerLayerMask = ~LayerMask.GetMask("Player");
-            if (Physics.Raycast(new Vector3(overheadLocation.x, 10f, overheadLocation.y), Vector3.down, out RaycastHit hit, 15f, excludePlayerLayerMask)) {
-                GameObject wisp = Instantiate(wispPrefab, hit.point + new Vector3(0, distanceFromGroundWispSpawn, 0), Quaternion.identity);
-                NetworkServer.Spawn(wisp);
-            } else {
-                Debug.LogError("Unable to find a location to spawn wisp at " + overheadLocation + ". Will attempt to spawn another.", transform);
-                wispCount++;
-            } 
+            StartCoroutine(SpawnWisp());
         }
         RpcEnableScoreDisplay();
 
         StartCoroutine(AddPointsEveryInterval());
+    }
+
+    private IEnumerator SpawnWisp() {
+        while (true) {
+            Vector2 overheadLocation = new Vector2(Random.Range(minWispSpawnLocation.x, maxWispSpawnLocation.x + 1), Random.Range(minWispSpawnLocation.y, maxWispSpawnLocation.y + 1));
+
+            int excludePlayerLayerMask = ~LayerMask.GetMask("Player");
+            if (Physics.Raycast(new Vector3(overheadLocation.x, 10f, overheadLocation.y), Vector3.down, out RaycastHit hit, 15f, excludePlayerLayerMask)) {
+                // Check if there is already a wisp nearby. If there is, it will continue and get a new position.
+                bool isNearWisp = false;
+                Collider[] intersectingColliders = Physics.OverlapSphere(hit.point + new Vector3(0, distanceFromGroundWispSpawn, 0), distanceBetweenWisps);
+                if (intersectingColliders.Length > 0) {
+                    foreach (var intersectingCollider in intersectingColliders) {
+                        if (intersectingCollider.GetComponent<CollectiblePoint>() != null) {
+                            isNearWisp = true;
+                            break;
+                        }
+                    }
+                }
+                if (isNearWisp) {
+                    yield return null;
+                    continue;
+                }
+
+                GameObject wisp = Instantiate(wispPrefab, hit.point + new Vector3(0, distanceFromGroundWispSpawn, 0), Quaternion.identity);
+                NetworkServer.Spawn(wisp);
+                break;
+            }
+            yield return null;
+        }
+
+        yield return null;
+        StartCoroutine(SpawnWisp());
     }
 
     /// <summary>Enable score display on all clients.</summary>
