@@ -8,7 +8,9 @@ public class PlayerController : NetworkBehaviour, ICollector {
 
     [SyncVar(hook = nameof(SetNameTag))] public string playerName = "Player";
     [SerializeField] private TextMeshProUGUI nametagText;
+
     public int points = 0;
+
     [SyncVar(hook = nameof(SetColor))] public string playerColor = "N/A";
     [SerializeField] private Renderer colorMaterial = null;
     
@@ -31,7 +33,6 @@ public class PlayerController : NetworkBehaviour, ICollector {
     public PlayerMovementComponent MovementComponent { get { return playerMovementComponent; } }
 
     private void Start() {
-        //characterController = GetComponent<CharacterController>();
         playerMovementComponent = GetComponent<PlayerMovementComponent>();
     }
 

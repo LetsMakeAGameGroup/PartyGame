@@ -1,7 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using TMPro;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovementComponent : NetworkBehaviour
@@ -21,15 +22,23 @@ public class PlayerMovementComponent : NetworkBehaviour
     Vector3 launchVelocity;
     float launchTimeElapsed;
 
+    [SerializeField] private float voidYAxis = 0f;  // Below what Y-Axis will the player be considered inside the void in order to respawn.
+    [SerializeField] private int respawnTime = 3;
+    private bool isAttemptingToRespawn = false;
+    [SerializeField] private Canvas respawnWarningCanvas;
+    [SerializeField] private TMP_Text respawnTimeText;
+
     void Start()
     {
-        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Player"));
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Player"));  // Not sure why this is needed when they are set to ignore in project settings, but it is.
         characterController = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isLocalPlayer) return;
+
         // We are grounded, so recalculate move direction based on axes
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
@@ -62,6 +71,10 @@ public class PlayerMovementComponent : NetworkBehaviour
             launchTimeElapsed += Time.deltaTime;
             characterController.Move(launchVelocity * Time.deltaTime);
             launchVelocity = Vector3.Slerp(launchVelocity, Vector3.zero, launchTimeElapsed / 4);
+        }
+
+        if (!isAttemptingToRespawn && transform.position.y <= voidYAxis) {
+            StartCoroutine(PlayerInVoid());
         }
     }
 
@@ -102,5 +115,33 @@ public class PlayerMovementComponent : NetworkBehaviour
         canMove = false;
         yield return new WaitForSeconds(timeStunned);
         canMove = true;
+    }
+
+    private IEnumerator PlayerInVoid() {
+        float currentRespawnTime = respawnTime;
+
+        isAttemptingToRespawn = true;
+
+        respawnTimeText.text = $"Respawning in {Mathf.CeilToInt(currentRespawnTime)}...";
+        respawnWarningCanvas.enabled = true;
+        
+        while (currentRespawnTime > 0 && transform.position.y <= voidYAxis) {
+            respawnTimeText.text = $"Respawning in {Mathf.CeilToInt(currentRespawnTime)}...";
+            currentRespawnTime -= Time.deltaTime;
+            yield return null;
+        }
+
+        isAttemptingToRespawn = false;
+        respawnWarningCanvas.enabled = false;
+
+        if (transform.position.y <= voidYAxis) {
+            GameObject[] currentSpawns = FindObjectOfType(typeof(SpawnHolder)).GetComponent<SpawnHolder>().currentSpawns;
+            GameObject randomSpawn = currentSpawns[Random.Range(0, currentSpawns.Length)];
+
+            characterController.enabled = false;
+            transform.position = randomSpawn.transform.position;
+            transform.rotation = randomSpawn.transform.rotation;
+            characterController.enabled = true;
+        }
     }
 }
