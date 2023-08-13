@@ -2,22 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectableWithComponentExample : MonoBehaviour
-{
+public class CollectableWithComponentExample : MonoBehaviour {
     CollectableComponent collectableComponent;
 
-    private void Awake()
-    {
+    private void Awake() {
         collectableComponent = GetComponent<CollectableComponent>();
 
-        if (collectableComponent != null)
-        {
+        if (collectableComponent != null) {
             collectableComponent.onCollectDelegate += OnCollect;
         }
     }
 
-    public void OnCollect() 
-    {
+    public void OnCollect() {
         Debug.Log("Collected a coin!");
         //Logic here
 

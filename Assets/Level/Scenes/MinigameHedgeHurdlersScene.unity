@@ -96266,15 +96266,17 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   minigameHandler: {fileID: 1317486347}
-  mazePerSec: 15
+  startingMaze: {fileID: 1777370863}
   mazePresets:
   - {fileID: 7904054453926519631}
   - {fileID: 770222161}
   - {fileID: 500378331}
   - {fileID: 2631709746910488239}
-  startingMaze: {fileID: 1777370863}
-  wispsPerMaze: 2
   wisp: {fileID: 6716550575573206128, guid: aae9d59fdc3eb0042a9024800227096c, type: 3}
+  randomizeMazeInterval: 15
+  wispsPerRandomization: 2
+  gridSize: 10
+  containerLength: 10
 --- !u!4 &1953272850
 Transform:
   m_ObjectHideFlags: 0
@@ -106913,6 +106915,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b5dbf28f21b7c4aa40f36f40d95d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 3452310532601903974, guid: 8066cb79995da8e4f90da9b517eba4bf,
+    type: 3}
   currentSpawns:
   - {fileID: 2427841035926194024}
   - {fileID: 2427841035615666713}
@@ -106922,8 +106926,6 @@ MonoBehaviour:
   - {fileID: 2427841035669953781}
   - {fileID: 2427841037709503019}
   - {fileID: 2427841037288300681}
-  playerPrefab: {fileID: 3452310532601903974, guid: 8066cb79995da8e4f90da9b517eba4bf,
-    type: 3}
 --- !u!1 &2427841035926194024
 GameObject:
   m_ObjectHideFlags: 0

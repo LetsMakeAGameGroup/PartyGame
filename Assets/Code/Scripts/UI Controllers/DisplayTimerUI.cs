@@ -1,11 +1,10 @@
 using Mirror;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
 public class DisplayTimerUI : NetworkBehaviour {
-    [SerializeField] private TextMeshProUGUI timerText = null;
+    [Header("References")]
+    [SerializeField] private TextMeshProUGUI timerText;
 
     [ClientRpc]
     public void RpcStartCountdown(float duration) {

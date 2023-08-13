@@ -3,46 +3,96 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.Services.Authentication;
 using UnityEngine;
 
 public class WispWhiskManager : NetworkBehaviour {
-    [SerializeField] private MinigameHandler minigameHandler = null;
-    [SerializeField] private GameObject[] territories = null;
-    [SerializeField] private GameObject wispPrefab = null;
-    [SerializeField] private float timeBetweenGivenPoints = 0.25f;
-    private Dictionary<GameObject, int> playerPoints = new();
-
+    [Header("References")]
+    [SerializeField] private MinigameHandler minigameHandler;
+    [SerializeField] private GameObject territoryPrefab;
+    [SerializeField] private GameObject wispPrefab;
     [SerializeField] private Canvas scoreDisplayCanvas = null;
     [SerializeField] private TextMeshProUGUI scoreDisplayText = null;
 
-    // 2D vector of where wisps can spawn in an arena. Not 3D because wisps will always spawn at highest point.
-    [SerializeField] private Vector2 minWispSpawnLocation = Vector2.zero;
-    [SerializeField] private Vector2 maxWispSpawnLocation = Vector2.zero;
+    [Header("Settings")]
+    [Tooltip("How many seconds between wisps assign points to their holding player.")]
+    [SerializeField] private float timeBetweenGivenPoints = 0.25f;
+    [Tooltip("Minimum or bottom left 2D vector(X and Z-Axis) of where wisps/territories can spawn in an area.")]
+    [SerializeField] private Vector2 minSpawnLocation = Vector2.zero;
+    [Tooltip("Maximum or top right 2D vector(X and Z-Axis) of where wisps/territories can spawn in an area.")]
+    [SerializeField] private Vector2 maxSpawnLocation = Vector2.zero;
+    [Tooltip("How far from the ground the wisp will spawn.")]
     [SerializeField] private float distanceFromGroundWispSpawn = 0.5f;
+    [Tooltip("The minimum distance between two wisps when spawning.")]
+    [SerializeField] private float distanceBetweenWisps = 1f;
 
-    // Called by server.
+    [HideInInspector] public Dictionary<GameObject, int> playerPoints = new();
+
+    // Called by server when the minigame starts.
     public void SpawnWisps() {
-        //Spawnwisps here
+        foreach (var player in CustomNetworkManager.Instance.ClientDatas.Keys) {
+            playerPoints.Add(player.identity.gameObject, 0);
+        }
+
+        //Spawn wisps and territories here
         int wispCount = 1;
-        if (CustomNetworkManager.Instance.players.Count > 4) wispCount = 2;
-        if (CustomNetworkManager.Instance.players.Count > 6) wispCount = 3;
+        if (CustomNetworkManager.Instance.ClientDatas.Count > 4) wispCount = 2;
+        if (CustomNetworkManager.Instance.ClientDatas.Count > 6) wispCount = 3;
 
         for (int i = 0; i < wispCount; i++) {
-            Vector2 overheadLocation = Vector2.Lerp(minWispSpawnLocation, maxWispSpawnLocation, Random.value);
-
-            int excludePlayerLayerMask = ~LayerMask.GetMask("Player");
-            if (Physics.Raycast(new Vector3(overheadLocation.x, 10f, overheadLocation.y), Vector3.down, out RaycastHit hit, 15f, excludePlayerLayerMask)) {
-                GameObject wisp = Instantiate(wispPrefab, hit.point + new Vector3(0, distanceFromGroundWispSpawn, 0), Quaternion.identity);
-                NetworkServer.Spawn(wisp);
-            } else {
-                Debug.LogError("Unable to find a location to spawn wisp at " + overheadLocation + ". Will attempt to spawn another.", transform);
-                wispCount++;
-            } 
+            StartCoroutine(SpawnWisp());
+            StartCoroutine(SpawnTerritory());
         }
         RpcEnableScoreDisplay();
 
         StartCoroutine(AddPointsEveryInterval());
+    }
+
+    public IEnumerator SpawnWisp() {
+        while (true) {
+            Vector2 overheadLocation = new Vector2(Random.Range(minSpawnLocation.x, maxSpawnLocation.x + 1), Random.Range(minSpawnLocation.y, maxSpawnLocation.y + 1));
+
+            int excludePlayerLayerMask = ~LayerMask.GetMask("Player");
+            if (Physics.Raycast(new Vector3(overheadLocation.x, 10f, overheadLocation.y), Vector3.down, out RaycastHit hit, 15f, excludePlayerLayerMask)) {
+                // Check if there is already a wisp nearby. If there is, it will continue and get a new position.
+                bool isNearWisp = false;
+                Collider[] intersectingColliders = Physics.OverlapSphere(hit.point + new Vector3(0, distanceFromGroundWispSpawn, 0), distanceBetweenWisps);
+                if (intersectingColliders.Length > 0) {
+                    foreach (var intersectingCollider in intersectingColliders) {
+                        if (intersectingCollider.GetComponent<CollectiblePoint>() != null) {
+                            isNearWisp = true;
+                            break;
+                        }
+                    }
+                }
+                if (isNearWisp) {
+                    yield return null;
+                    continue;
+                }
+
+                GameObject wisp = Instantiate(wispPrefab, hit.point + new Vector3(0, distanceFromGroundWispSpawn, 0), Quaternion.identity);
+                NetworkServer.Spawn(wisp);
+                break;
+            }
+            yield return null;
+        }
+    }
+
+    public IEnumerator SpawnTerritory() {
+        while (true) {
+            Vector2 overheadLocation = new Vector2(Random.Range(minSpawnLocation.x, maxSpawnLocation.x + 1), Random.Range(minSpawnLocation.y, maxSpawnLocation.y + 1));
+
+            int excludePlayerLayerMask = ~LayerMask.GetMask("Player");
+            if (Physics.Raycast(new Vector3(overheadLocation.x, 10f, overheadLocation.y), Vector3.down, out RaycastHit hit, 15f, excludePlayerLayerMask)) {
+                // Don't need to check for nearby territories since they immediately start moving anyways.
+                GameObject territory = Instantiate(territoryPrefab, hit.point, Quaternion.identity);
+                territory.GetComponent<Territory>().wispWhiskManager = this;
+                NetworkServer.Spawn(territory);
+                StartCoroutine(territory.GetComponent<RandomlyMovingAgent>().MoveTowardsTrans());
+                break;
+            }
+
+            yield return null;
+        }
     }
 
     /// <summary>Enable score display on all clients.</summary>
@@ -52,22 +102,10 @@ public class WispWhiskManager : NetworkBehaviour {
     }
 
     public IEnumerator AddPointsEveryInterval() {
-        foreach (var player in CustomNetworkManager.Instance.connectionNames.Keys) {
+        foreach (var player in CustomNetworkManager.Instance.ClientDatas.Keys) {
             if (player.identity.GetComponent<WispEffect>() && player.identity.GetComponent<WispEffect>().holdingWisp) {
                 int pointsToAdd = player.identity.GetComponent<WispEffect>().holdingWisp.GetComponent<CollectableWispEffect>().pointsToAdd;
-                foreach (var territory in territories) {
-                    if (territory.GetComponent<ContainPlayersInsideCollider>().playersInside.Contains(player.identity.gameObject)) {
-                        pointsToAdd += (int)(pointsToAdd * territory.GetComponent<ContainPlayersInsideCollider>().pointsMultiplier);
-                        break;
-                    }
-                }
-
-                if (playerPoints.ContainsKey(player.identity.gameObject)) {
-                    playerPoints[player.identity.gameObject] += pointsToAdd;
-                } else {
-                    playerPoints.Add(player.identity.gameObject, pointsToAdd);
-                }
-
+                playerPoints[player.identity.gameObject] += pointsToAdd;
                 TargetSetScoreDisplay(player.identity.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[player.identity.gameObject]);
             }
         }
@@ -77,7 +115,7 @@ public class WispWhiskManager : NetworkBehaviour {
     }
 
     [TargetRpc]
-    private void TargetSetScoreDisplay(NetworkConnectionToClient target, int score) {
+    public void TargetSetScoreDisplay(NetworkConnectionToClient target, int score) {
         scoreDisplayText.text = score.ToString();
     }
 

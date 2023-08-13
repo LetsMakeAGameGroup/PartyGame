@@ -4,9 +4,10 @@ using Mirror;
 using UnityEngine.UI;
 
 public class ItemHUDController : NetworkBehaviour {
-    public Canvas canvas = null;
-    [SerializeField] private GameObject cooldownIndicator = null;
-    [SerializeField] private GameObject cooldownBackground = null;
+    [Header("References")]
+    public Canvas canvas;
+    [SerializeField] private GameObject cooldownIndicator;
+    [SerializeField] private GameObject cooldownBackground;
 
     private float cooldownFullWidth = 75f;
 

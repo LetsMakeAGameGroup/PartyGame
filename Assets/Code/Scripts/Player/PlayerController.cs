@@ -5,33 +5,37 @@ using TMPro;
 [RequireComponent(typeof(PlayerMovementComponent))]
 [RequireComponent(typeof(ItemController))]
 public class PlayerController : NetworkBehaviour, ICollector {
-
-    [SyncVar(hook = nameof(SetNameTag))] public string playerName = "Player";
+    [Header("References")]
     [SerializeField] private TextMeshProUGUI nametagText;
-    public int points = 0;
-    [SyncVar(hook = nameof(SetColor))] public string playerColor = "N/A";
-    [SerializeField] private Renderer colorMaterial = null;
-    
-    PlayerMovementComponent playerMovementComponent;
-
-    public Camera playerCamera;
-    public float lookSpeed = 2.0f;
-    public float lookXLimit = 90.0f;
-
-    float rotationX = 0;
-    [HideInInspector] public bool isInteracting = false;
-
-    [SerializeField] float sightRayLenght = 5f;
+    [SerializeField] private Renderer colorMaterial;
     [SerializeField] LayerMask interactableLayerMask;
-    RaycastHit sightRayHit;
-    Transform interactableInSightTransform;
-    IInteractable interactableInSight;
-    
+    public Camera playerCamera;
+
+    private PlayerMovementComponent playerMovementComponent;
+
+    [Header("Settings")]
+    [Tooltip("The camera sensitivity or speed.")]
+    [SerializeField] private float lookSpeed = 2.0f;
+    [Tooltip("How far the player can interact with something.")]
+    [SerializeField] private float sightRayLength = 5f;
+
+    private float lookXLimit = 90.0f;
+    private float rotationX = 0;
+
+    [Header("Information")]
+    [SyncVar(hook = nameof(SetNameTag)), HideInInspector] public string playerName = "Unknown Player";
+    [SyncVar(hook = nameof(SetColor)), HideInInspector] public string playerColor = "White";
+    [HideInInspector] public int points = 0;
+
+    [HideInInspector] public bool isInteracting = false;
+    private RaycastHit sightRayHit;
+    private Transform interactableInSightTransform;
+    private IInteractable interactableInSight;
+
     public GameObject GetCollectorGameObject { get { return gameObject; } }
     public PlayerMovementComponent MovementComponent { get { return playerMovementComponent; } }
 
     private void Start() {
-        //characterController = GetComponent<CharacterController>();
         playerMovementComponent = GetComponent<PlayerMovementComponent>();
     }
 
@@ -93,7 +97,7 @@ public class PlayerController : NetworkBehaviour, ICollector {
     {
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
 
-        if (Physics.Raycast(ray, out sightRayHit, sightRayLenght, interactableLayerMask, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(ray, out sightRayHit, sightRayLength, interactableLayerMask, QueryTriggerInteraction.Ignore))
         {
             if (interactableInSightTransform != sightRayHit.transform)
             {
@@ -142,7 +146,7 @@ public class PlayerController : NetworkBehaviour, ICollector {
 
     public void AddCameraPitch(float inputValue) 
     {
-        rotationX += -inputValue * lookSpeed;
+        rotationX -= inputValue * lookSpeed;
         rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
     }
@@ -181,8 +185,7 @@ public class PlayerController : NetworkBehaviour, ICollector {
     [Command]
     private void CmdSetDisplayName(string displayName) {
         this.playerName = displayName;
-        CustomNetworkManager.Instance.DeterminePlayerName(gameObject, displayName);
-        //CustomNetworkManager.Instance.connectionNames.Add(GetComponent<NetworkIdentity>().connectionToClient, playerName);
+        CustomNetworkManager.Instance.DeterminePlayerName(GetComponent<NetworkIdentity>().connectionToClient, displayName);
     }
 
     [TargetRpc]
@@ -193,7 +196,7 @@ public class PlayerController : NetworkBehaviour, ICollector {
     [Command]
     private void CmdTellPlayerColorPref(string _playerColor) {
         this.playerColor = _playerColor;
-        CustomNetworkManager.Instance.DeterminePlayerColor(gameObject, _playerColor);
+        CustomNetworkManager.Instance.DeterminePlayerColor(GetComponent<NetworkIdentity>().connectionToClient, _playerColor);
     }
 
     public bool CanCollect()

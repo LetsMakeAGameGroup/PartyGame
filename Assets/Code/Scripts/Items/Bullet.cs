@@ -5,7 +5,7 @@ public abstract class Bullet : NetworkBehaviour {
     [HideInInspector] public GameObject shooterPlayer = null;
     [HideInInspector] public int damage = 10;
 
-    [SyncVar(hook = nameof(SetVelocity))] public Vector3 bulletVelocity = Vector3.zero;
+    [SyncVar(hook = nameof(SetVelocity)), HideInInspector] public Vector3 bulletVelocity = Vector3.zero;
 
     private void OnTriggerEnter(Collider other) {
         if (!isServer || other.gameObject == shooterPlayer) return;

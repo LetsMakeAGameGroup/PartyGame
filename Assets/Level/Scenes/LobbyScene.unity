@@ -268,12 +268,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b5dbf28f21b7c4aa40f36f40d95d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 0}
   currentSpawns:
   - {fileID: 465987842}
   - {fileID: 729680185}
   - {fileID: 1981622069}
   - {fileID: 2133863157}
-  playerPrefab: {fileID: 0}
 --- !u!1 &174544466
 GameObject:
   m_ObjectHideFlags: 0
@@ -2588,56 +2588,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
-        type: 3}
-      propertyPath: codeText
-      value: 
-      objectReference: {fileID: 214283791}
-    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
-        type: 3}
-      propertyPath: minigames.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
-        type: 3}
-      propertyPath: minigames.Array.data[0]
-      value: MinigameHedgeHurdlersScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
-        type: 3}
-      propertyPath: minigames.Array.data[1]
-      value: MinigameHedgeHurdlersScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
-        type: 3}
-      propertyPath: minigames.Array.data[2]
-      value: MinigameHedgeHurdlersScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
-        type: 3}
-      propertyPath: minigames.Array.data[3]
-      value: MinigameHedgeHurdlersScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
-        type: 3}
-      propertyPath: minigames.Array.data[4]
-      value: MinigameHedgeHurdlersScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
-        type: 3}
-      propertyPath: minigames.Array.data[5]
-      value: MinigameWispWhiskScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
-        type: 3}
-      propertyPath: minigames.Array.data[6]
-      value: MinigameWispWhiskScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
-        type: 3}
-      propertyPath: minigames.Array.data[7]
-      value: MinigameWispWhiskScene
       objectReference: {fileID: 0}
     - target: {fileID: 4266590026886717783, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
         type: 3}

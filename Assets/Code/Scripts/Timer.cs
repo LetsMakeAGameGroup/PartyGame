@@ -6,10 +6,15 @@ using UnityEngine.Events;
 using Mirror;
 
 public class Timer : NetworkBehaviour {
-    public float duration = 1f;
-    public bool detonateOnDestroy = false;
+    [Header("References")]
     public UnityEvent onTimerEnd = new();
     public UnityEvent<string> onDisplayTime = new();
+
+    [Header("Settings")]
+    [Tooltip("How many seconds this timer will last.")]
+    public float duration = 1f;
+    [Tooltip("If this timer should invoke OnTimerEnd when this timer is destroyed prior to the time hitting zero.")]
+    public bool detonateOnDestroy = false;
 
     public void Initialize(float _duration, bool _detonateOnDestroy, UnityEvent _onTimerEnd, UnityEvent<string> _onDisplayTime) {
         _duration = duration;

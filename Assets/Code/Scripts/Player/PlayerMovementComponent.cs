@@ -1,35 +1,52 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using TMPro;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerMovementComponent : NetworkBehaviour
 {
-    CharacterController characterController;
+    [Header("References")]
+    [SerializeField] private Canvas respawnWarningCanvas;
+    [SerializeField] private TMP_Text respawnTimeText;
 
-    bool canMove = true;
+    [Header("Settings")]
+    [Tooltip("How fast the player walks.")]
+    public float walkingSpeed = 7.5f;
+    [Tooltip("How fast the player runs.")]
+    public float runningSpeed = 11.5f;
+    [Tooltip("The velocity speed upwards when the player jumps.")]
+    public float jumpSpeed = 8.0f;
+    [Tooltip("Below what Y-Axis will the player be considered in the void.")]
+    [SerializeField] private float voidYAxis = 0f;
+    [Tooltip("How many seconds before the player is respawned while in the void.")]
+    [SerializeField] private int respawnTime = 3;
+
+    private CharacterController characterController;
+
+    private bool canMove = true;
     public bool CanMove { get { return canMove; } set { canMove = value; } }
 
-    public float walkingSpeed = 7.5f;
-    public float runningSpeed = 11.5f;
-    public float jumpSpeed = 8.0f;
-    
-    Vector2 receivedInput = Vector2.zero;
-    Vector3 moveDirection = Vector3.zero;
+    private Vector2 receivedInput;
+    private Vector3 moveDirection;
 
-    Vector3 launchVelocity;
-    float launchTimeElapsed;
+    private Vector3 launchVelocity;
+    private float launchTimeElapsed;
+
+    private bool isAttemptingToRespawn = false;
 
     void Start()
     {
-        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Player"));
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Player"));  // Not sure why this is needed when they are set to ignore in project settings, but it is.
         characterController = GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!isLocalPlayer) return;
+
         // We are grounded, so recalculate move direction based on axes
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
@@ -62,6 +79,10 @@ public class PlayerMovementComponent : NetworkBehaviour
             launchTimeElapsed += Time.deltaTime;
             characterController.Move(launchVelocity * Time.deltaTime);
             launchVelocity = Vector3.Slerp(launchVelocity, Vector3.zero, launchTimeElapsed / 4);
+        }
+
+        if (!isAttemptingToRespawn && transform.position.y <= voidYAxis) {
+            StartCoroutine(PlayerInVoid());
         }
     }
 
@@ -102,5 +123,32 @@ public class PlayerMovementComponent : NetworkBehaviour
         canMove = false;
         yield return new WaitForSeconds(timeStunned);
         canMove = true;
+    }
+
+    private IEnumerator PlayerInVoid() {
+        float currentRespawnTime = respawnTime;
+
+        isAttemptingToRespawn = true;
+
+        respawnTimeText.text = $"Respawning in {Mathf.CeilToInt(currentRespawnTime)}...";
+        respawnWarningCanvas.enabled = true;
+        
+        while (currentRespawnTime > 0 && transform.position.y <= voidYAxis) {
+            respawnTimeText.text = $"Respawning in {Mathf.CeilToInt(currentRespawnTime)}...";
+            currentRespawnTime -= Time.deltaTime;
+            yield return null;
+        }
+
+        isAttemptingToRespawn = false;
+        respawnWarningCanvas.enabled = false;
+
+        if (transform.position.y <= voidYAxis) {
+            GameObject[] currentSpawns = FindObjectOfType(typeof(SpawnHolder)).GetComponent<SpawnHolder>().currentSpawns.ToArray();
+            GameObject randomSpawn = currentSpawns[Random.Range(0, currentSpawns.Length)];
+
+            characterController.enabled = false;
+            transform.SetPositionAndRotation(randomSpawn.transform.position, randomSpawn.transform.rotation);
+            characterController.enabled = true;
+        }
     }
 }

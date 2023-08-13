@@ -3,9 +3,14 @@ using UnityEngine;
 
 [RequireComponent(typeof(NetworkTransform))]
 public class MoveObjectOverTime : NetworkBehaviour {
+    [Header("References")]
+    [Tooltip("List of positions the object will move towards, even including the first position. Once the object is at the last position, it will loop back towards the first position and keep going.")]
+    [SerializeField] private Vector3[] pathLocations = null;
+
+    [Header("Settings")]
+    [Tooltip("How fast the object will move.")]
     [SerializeField] private float moveSpeed = 1f;
 
-    [SerializeField] private Vector3[] pathLocations = null;
     private int pathIndex = 0;
 
     private void Update() {

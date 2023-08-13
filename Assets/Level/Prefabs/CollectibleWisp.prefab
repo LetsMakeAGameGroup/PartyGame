@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6967305226212205205}
   - component: {fileID: 6950066621380594598}
   - component: {fileID: 171076688909143747}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1702133307698431236}
   - component: {fileID: 6071409251289780866}
   - component: {fileID: -1680980659263263569}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CollectibleWisp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,6 +178,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Particle System
+      objectReference: {fileID: 0}
+    - target: {fileID: 5645056254366794808, guid: 447eea1273680ed4ba2c93f6b4b823e9,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8815333484101708300, guid: 447eea1273680ed4ba2c93f6b4b823e9,
         type: 3}

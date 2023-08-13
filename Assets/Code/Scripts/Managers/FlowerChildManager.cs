@@ -3,28 +3,86 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.Services.Authentication;
 using UnityEngine;
 
 public class FlowerChildManager : NetworkBehaviour {
-    [SerializeField] private MinigameHandler minigameHandler = null;
-    [SerializeField] private GameObject flowerSpirit = null;
-    [SerializeField] private float timeBetweenGivenPoints = 0.25f;
-    private Dictionary<GameObject, int> playerPoints = new();
+    [Header("References")]
+    [SerializeField] private MinigameHandler minigameHandler;
+    [SerializeField] private GameObject wispPrefab;
+    [SerializeField] private GameObject tornado;
+    [SerializeField] private Canvas scoreDisplayCanvas;
+    [SerializeField] private TextMeshProUGUI scoreDisplayText;
 
-    [SerializeField] private Canvas scoreDisplayCanvas = null;
-    [SerializeField] private TextMeshProUGUI scoreDisplayText = null;
-
+    [Header("Settings")]
+    [Tooltip("Minimum or bottom left 2D vector(X and Z-Axis) of where wisps can spawn in an area.")]
+    [SerializeField] private Vector2 minWispSpawnLocation = Vector2.zero;
+    [Tooltip("Maximum or top right 2D vector(X and Z-Axis) of where wisps can spawn in an area.")]
+    [SerializeField] private Vector2 maxWispSpawnLocation = Vector2.zero;
+    [Tooltip("How many seconds between spawning a wisp.")]
+    [SerializeField] private float wispSpawnTimeInterval = 5f;
+    [Tooltip("How far from the ground the wisp will spawn.")]
+    [SerializeField] private float distanceFromGroundWispSpawn = 0.5f;
+    [Tooltip("The minimum distance between two wisps when spawning.")]
+    [SerializeField] private float distanceBetweenWisps = 1f;
+    [Tooltip("The amount of speed the Tornado will increase by.")]
     [SerializeField] private float speedIncrease = 2f;
+    [Tooltip("How many seconds between increasing the Tornado speed.")]
     [SerializeField] private float speedIncreaseTimeInterval = 30f;
 
-    // Called by server.
-    public void StartMovingFlowerSpirit() {
-        StartCoroutine(flowerSpirit.GetComponent<FlowerSpirit>().MoveTowardsTrans());
+    private Dictionary<GameObject, int> playerPoints = new();
+
+    // Called by server when the minigame is started.
+    public void StartGame() {
+        foreach (var player in CustomNetworkManager.Instance.ClientDatas.Keys) {
+            playerPoints.Add(player.identity.gameObject, 0);
+        }
+
+        StartCoroutine(SpawnWisp());
+
+        StartCoroutine(tornado.GetComponent<RandomlyMovingAgent>().MoveTowardsTrans());
         StartCoroutine(IncreaseSpeedAfterInterval());
 
         RpcEnableScoreDisplay();
-        StartCoroutine(AddPointsEveryInterval());
+    }
+
+    private IEnumerator SpawnWisp() {
+        while (true) {
+            Vector2 overheadLocation = new Vector2(Random.Range(minWispSpawnLocation.x, maxWispSpawnLocation.x + 1), Random.Range(minWispSpawnLocation.y, maxWispSpawnLocation.y + 1));
+
+            int excludePlayerLayerMask = ~LayerMask.GetMask("Player");
+            if (Physics.Raycast(new Vector3(overheadLocation.x, 10f, overheadLocation.y), Vector3.down, out RaycastHit hit, 15f, excludePlayerLayerMask)) {
+                // Check if there is already a wisp nearby. If there is, it will continue and get a new position.
+                bool isNearWisp = false;
+                Collider[] intersectingColliders = Physics.OverlapSphere(hit.point + new Vector3(0, distanceFromGroundWispSpawn, 0), distanceBetweenWisps);
+                if (intersectingColliders.Length > 0) {
+                    foreach (var intersectingCollider in intersectingColliders) {
+                        if (intersectingCollider.GetComponent<CollectiblePoint>() != null) {
+                            isNearWisp = true;
+                            break;
+                        }
+                    }
+                }
+                if (isNearWisp) {
+                    yield return null;
+                    continue;
+                }
+
+                GameObject wisp = Instantiate(wispPrefab, hit.point + new Vector3(0, distanceFromGroundWispSpawn, 0), Quaternion.identity);
+                wisp.GetComponent<CollectiblePoint>().onPointsAdd.AddListener(AddPoints);
+                NetworkServer.Spawn(wisp);
+                break;
+            }
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(wispSpawnTimeInterval);
+        StartCoroutine(SpawnWisp());
+    }
+
+    /// <summary>Gives a player points in the current minigame.</summary>
+    public void AddPoints(GameObject player, int points) {
+        playerPoints[player] += points;
+        TargetSetScoreDisplay(player.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[player]);
     }
 
     /// <summary>Enable score display on all clients.</summary>
@@ -36,24 +94,9 @@ public class FlowerChildManager : NetworkBehaviour {
     private IEnumerator IncreaseSpeedAfterInterval() {
         yield return new WaitForSeconds(speedIncreaseTimeInterval);
 
-        flowerSpirit.GetComponent<FlowerSpirit>().speed += speedIncrease;
+        tornado.GetComponent<RandomlyMovingAgent>().speed += speedIncrease;
 
         StartCoroutine(IncreaseSpeedAfterInterval());
-    }
-
-    public IEnumerator AddPointsEveryInterval() {
-        foreach (var player in flowerSpirit.GetComponent<ContainPlayersInsideCollider>().playersInside) {
-            if (playerPoints.ContainsKey(player)) {
-                playerPoints[player]++;
-            } else {
-                playerPoints.Add(player, 1);
-            }
-
-            TargetSetScoreDisplay(player.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[player]);
-        }
-
-        yield return new WaitForSeconds(timeBetweenGivenPoints);
-        StartCoroutine(AddPointsEveryInterval());
     }
 
     [TargetRpc]
