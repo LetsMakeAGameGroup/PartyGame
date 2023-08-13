@@ -36,11 +36,6 @@ public class PlayerMovementComponent : NetworkBehaviour
 
     private bool isAttemptingToRespawn = false;
 
-    [SerializeField] private float voidYAxis = 0f;  // Below what Y-Axis will the player be considered inside the void in order to respawn.
-    [SerializeField] private int respawnTime = 3;
-    private bool isAttemptingToRespawn = false;
-    [SerializeField] private Canvas respawnWarningCanvas;
-    [SerializeField] private TMP_Text respawnTimeText;
 
     void Start()
     {

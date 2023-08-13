@@ -44,14 +44,14 @@ public class WispMovement : MonoBehaviour {
     }
 
     private IEnumerator Bobbing() {
-        Vector3 topBobPosition = transform.position + new Vector3(0, bobDistance, 0);
-        Vector3 bottomBobPosition = transform.position - new Vector3(0, bobDistance, 0);
+        Vector3 topBobPosition = transform.localPosition + new Vector3(0, bobDistance, 0);
+        Vector3 bottomBobPosition = transform.localPosition - new Vector3(0, bobDistance, 0);
         float travelTime = 0.5f;
 
         while (true) {
             travelTime += Time.deltaTime * bobSpeed;
 
-            transform.position = Vector3.Slerp(bottomBobPosition, topBobPosition, Mathf.PingPong(travelTime, 1));
+            transform.localPosition = Vector3.Slerp(bottomBobPosition, topBobPosition, Mathf.PingPong(travelTime, 1));
             visualEffect.SetFloat("Height", transform.localPosition.y);
 
             yield return null;
