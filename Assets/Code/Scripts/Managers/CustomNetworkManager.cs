@@ -71,7 +71,9 @@ public class CustomNetworkManager : RelayNetworkManager {
     public async void UnityLogin() {
         try {
             await UnityServices.InitializeAsync();
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            if (!AuthenticationService.Instance.IsSignedIn) {
+                await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            }
             Debug.Log("Logged into Unity, player ID: " + AuthenticationService.Instance.PlayerId);
             isLoggedIn = true;
         } catch (Exception e) {

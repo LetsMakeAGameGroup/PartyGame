@@ -333,13 +333,13 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  respawnWarningCanvas: {fileID: 2941931275107318057}
+  respawnTimeText: {fileID: 1134378419520334607}
   walkingSpeed: 7.5
   runningSpeed: 11.5
   jumpSpeed: 8
   voidYAxis: 0
   respawnTime: 3
-  respawnWarningCanvas: {fileID: 2941931275107318057}
-  respawnTimeText: {fileID: 1134378419520334607}
 --- !u!114 &-3789001434578786540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1913241591815720157}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4965ede59c6359c46b135061f6e80944, type: 3}
   m_Name: 
@@ -388,7 +388,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 1
+  m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.0001

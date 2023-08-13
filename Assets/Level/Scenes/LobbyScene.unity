@@ -268,7 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b5dbf28f21b7c4aa40f36f40d95d32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 6847215794116320160, guid: 51734b244db22af4881b91235c5a2440,
+    type: 3}
   currentSpawns:
   - {fileID: 465987842}
   - {fileID: 729680185}
@@ -904,7 +905,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 469127343}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 29.05, y: 3, z: -4.46}
+  m_LocalPosition: {x: 29.05, y: 3.5, z: -4.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2588,21 +2589,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
-        type: 3}
-      propertyPath: availableMinigamesSceneNames.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
-        type: 3}
-      propertyPath: availableMinigamesSceneNames.Array.data[0]
-      value: MinigameHedgeHurdlersScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
-        type: 3}
-      propertyPath: availableMinigamesSceneNames.Array.data[1]
-      value: MinigameHedgeHurdlersScene
       objectReference: {fileID: 0}
     - target: {fileID: 4266590026886717783, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
         type: 3}
