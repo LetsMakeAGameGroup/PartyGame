@@ -49,7 +49,7 @@ public class MazeManager : NetworkBehaviour {
             while (true) {
                 randomSpawn = new Vector3(Random.Range(-(gridSize/2) + 1, (gridSize/2) + 1)*containerLength-(containerLength/2), 0.5f, Random.Range(-(gridSize/2) + 1, (gridSize/2) + 1)*containerLength-(containerLength/2));
 
-                Collider[] intersectingColliders = Physics.OverlapSphere(new Vector3(2, 4, 0), 0.01f);
+                Collider[] intersectingColliders = Physics.OverlapSphere(randomSpawn, 0.01f);
                 if (intersectingColliders.Length > 0) {
                     foreach (var intersectingCollider in intersectingColliders) {
                         if (intersectingCollider.GetComponent<CollectiblePoint>() != null) {
@@ -82,11 +82,7 @@ public class MazeManager : NetworkBehaviour {
 
     /// <summary>Gives a player points in the current minigame.</summary>
     public void AddPoints(GameObject player, int points) {
-        if (playerPoints.ContainsKey(player)) {
-            playerPoints[player] += points;
-        } else {
-            playerPoints.Add(player, points);
-        }
+        playerPoints[player] += points;
     }
 
     /// <summary>Determine order of most points to assign standings in the MinigameHandler.</summary>
