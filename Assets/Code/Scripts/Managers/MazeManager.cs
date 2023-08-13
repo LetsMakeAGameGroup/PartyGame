@@ -2,6 +2,7 @@ using Mirror;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class MazeManager : NetworkBehaviour {
     [Header("References")]
@@ -88,6 +89,7 @@ public class MazeManager : NetworkBehaviour {
     /// <summary>Determine order of most points to assign standings in the MinigameHandler.</summary>
     /// Sorts player's points and group ties together. Is there a better way of doing this?
     public void DetermineWinners() {
+        Debug.Log("determine");
         // Get a list of the scores without duplicates and order by descending.
         List<int> scores = new();
         foreach (var playerPoint in playerPoints) {
