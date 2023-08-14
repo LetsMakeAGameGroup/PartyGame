@@ -23,7 +23,7 @@ public class BerryBullet : Bullet {
             captureTarget.SetOwner(shooterPlayer);
         }
 
-        if (hitObject.TryGetComponent(out PlayerMovementComponent playerMovementComponent)) {
+        if (hitObject && hitObject.TryGetComponent(out PlayerMovementComponent playerMovementComponent)) {
             playerMovementComponent.TargetKnockbackCharacter(transform.TransformDirection(new Vector3(0, verticalForce, knockbackForce)));
             StartCoroutine(playerMovementComponent.StunPlayer(stunTime));
         }

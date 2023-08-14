@@ -10,7 +10,7 @@ public class Fist : MeleeWeapon {
     [SerializeField] private float stunTime = 0.5f;
 
     public override void HitTarget(GameObject target) {
-        if (target.TryGetComponent(out PlayerMovementComponent playerMovementComponent)) {
+        if (target && target.TryGetComponent(out PlayerMovementComponent playerMovementComponent)) {
             playerMovementComponent.TargetKnockbackCharacter(transform.TransformDirection(new Vector3(0, verticalForce, knockbackForce)));
             StartCoroutine(playerMovementComponent.StunPlayer(stunTime));
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 308279358604003781}
   - component: {fileID: 5876539937914642025}
   - component: {fileID: 7805341095756961872}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CollectableWispEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,6 +50,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  pointsToAdd: 2
 --- !u!114 &5876539937914642025
 MonoBehaviour:
   m_ObjectHideFlags: 0

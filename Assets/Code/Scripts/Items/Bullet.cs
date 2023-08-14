@@ -10,7 +10,7 @@ public abstract class Bullet : NetworkBehaviour {
     private void OnTriggerEnter(Collider other) {
         if (!isServer || other.gameObject == shooterPlayer) return;
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player") || other.gameObject.layer == LayerMask.NameToLayer("Hittable")) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("PlayerHitbox") || other.gameObject.layer == LayerMask.NameToLayer("Hittable")) {
             OnHit(other.gameObject);
         }
         Destroy(gameObject);
