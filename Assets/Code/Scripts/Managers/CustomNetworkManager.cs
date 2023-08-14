@@ -48,9 +48,6 @@ public class CustomNetworkManager : RelayNetworkManager {
         player.GetComponent<PlayerController>().TargetGetDisplayName();
         player.GetComponent<PlayerController>().TargetGetPlayerColorPref();
         initialSceneChange = false;
-
-        Debug.Log($"numPlayers: {numPlayers}");
-        Debug.Log($"ClientDatas.Count: {ClientDatas.Count}");
     }
 
     // After loading a new scene, teleport the players to the scene's spawn points.
