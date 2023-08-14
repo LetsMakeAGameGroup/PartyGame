@@ -42,7 +42,7 @@ public class VeiledThreatManager : NetworkBehaviour {
     }
 
     public IEnumerator AssignBombCarrier() {
-        if (activePlayerBombCarrierTime.Count() == 1) {
+        if (activePlayerBombCarrierTime.Count() < 2) {
             DetermineWinners();
             yield break;
         }
@@ -55,7 +55,17 @@ public class VeiledThreatManager : NetworkBehaviour {
             }
         }
 
-        GameObject bombCarrier = minBombCarriers[Random.Range(0, minBombCarriers.Count())];
+        GameObject bombCarrier;
+        while (true) {
+            bombCarrier = minBombCarriers[Random.Range(0, minBombCarriers.Count())];
+
+            if (bombCarrier != null) {
+                break;
+            } else {
+                yield return null;
+            }
+        }
+
         currentBomb = Instantiate(bombPrefab);
         NetworkServer.Spawn(currentBomb);
         bombCarrier.GetComponent<BombEffect>().RpcEquipBomb(currentBomb);
@@ -64,11 +74,14 @@ public class VeiledThreatManager : NetworkBehaviour {
         minigameHandler.displayTimerUI.RpcStartCountdown(currentBombTimeInterval);
         yield return new WaitForSeconds(currentBombTimeInterval);
 
-        activePlayerBombCarrierTime.Remove(currentBomb.transform.root.gameObject);
-        playerDeaths.Add(currentBomb.transform.root.gameObject.GetComponent<NetworkIdentity>().connectionToClient);
-        NetworkConnectionToClient bombCarrierConn = currentBomb.transform.root.gameObject.GetComponent<NetworkIdentity>().connectionToClient;
-        NetworkServer.Destroy(currentBomb.transform.root.gameObject);
-        TargetEnableSpectator(bombCarrierConn);
+        GameObject eliminatedPlayer = currentBomb.transform.root.gameObject;
+        if (eliminatedPlayer != null) {
+            activePlayerBombCarrierTime.Remove(eliminatedPlayer);
+            playerDeaths.Add(eliminatedPlayer.GetComponent<NetworkIdentity>().connectionToClient);
+            NetworkConnectionToClient bombCarrierConn = eliminatedPlayer.GetComponent<NetworkIdentity>().connectionToClient;
+            NetworkServer.Destroy(eliminatedPlayer);
+            TargetEnableSpectator(bombCarrierConn);
+        }
 
         StartCoroutine(AssignBombCarrier());
     }
@@ -91,7 +104,9 @@ public class VeiledThreatManager : NetworkBehaviour {
     public void DetermineWinners() {
         List<NetworkConnectionToClient> playerList = new();
         foreach (var player in activePlayerBombCarrierTime.Keys) {
-            playerList.Add(player.GetComponent<NetworkIdentity>().connectionToClient);
+            if (player != null) {
+                playerList.Add(player.GetComponent<NetworkIdentity>().connectionToClient);
+            }
         }
         minigameHandler.AddWinner(playerList);
 

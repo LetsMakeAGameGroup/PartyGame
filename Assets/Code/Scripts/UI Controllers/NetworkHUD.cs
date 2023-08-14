@@ -21,6 +21,9 @@ public class NetworkHUD : MonoBehaviour {
     private string playerColor = "";
 
     private void Awake() {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         int optionIndex = 0;
         foreach (var option in PlayerColorOptions.options) {
             colorOptionButtons[optionIndex].onClick.AddListener(delegate { SetColorPref(option.Key); });

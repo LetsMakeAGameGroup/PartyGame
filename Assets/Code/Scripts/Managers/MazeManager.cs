@@ -89,7 +89,6 @@ public class MazeManager : NetworkBehaviour {
     /// <summary>Determine order of most points to assign standings in the MinigameHandler.</summary>
     /// Sorts player's points and group ties together. Is there a better way of doing this?
     public void DetermineWinners() {
-        Debug.Log("determine");
         // Get a list of the scores without duplicates and order by descending.
         List<int> scores = new();
         foreach (var playerPoint in playerPoints) {
@@ -103,7 +102,7 @@ public class MazeManager : NetworkBehaviour {
         foreach (int score in scores) {
             List<NetworkConnectionToClient> currentStanding = new();
             foreach (var playerPoint in playerPoints) {
-                if (playerPoint.Value == score) {
+                if (playerPoint.Value == score && playerPoint.Key != null) {
                     currentStanding.Add(playerPoint.Key.GetComponent<NetworkIdentity>().connectionToClient);
                 }
             }

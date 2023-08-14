@@ -48,6 +48,9 @@ public class CustomNetworkManager : RelayNetworkManager {
         player.GetComponent<PlayerController>().TargetGetDisplayName();
         player.GetComponent<PlayerController>().TargetGetPlayerColorPref();
         initialSceneChange = false;
+
+        Debug.Log($"numPlayers: {numPlayers}");
+        Debug.Log($"ClientDatas.Count: {ClientDatas.Count}");
     }
 
     // After loading a new scene, teleport the players to the scene's spawn points.
@@ -66,6 +69,13 @@ public class CustomNetworkManager : RelayNetworkManager {
             // TODO: Fix "There is already a player for this connection." error here. This is most likely because the connected clients haven't switched scenes yet.
             NetworkServer.ReplacePlayerForConnection(conn, player);
         }
+    }
+
+    // Add new player to list and spawn them at the spawn points.
+    public override void OnServerDisconnect(NetworkConnectionToClient conn) {
+        ClientDatas.Remove(conn);
+
+        base.OnServerDisconnect(conn);
     }
 
     public async void UnityLogin() {
