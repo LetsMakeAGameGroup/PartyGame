@@ -108666,11 +108666,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
         type: 3}
-      propertyPath: minigameDuration
-      value: 45
-      objectReference: {fileID: 0}
-    - target: {fileID: 6752307203290812872, guid: 3afd7ff16db44e3488141989f06c8a58,
-        type: 3}
       propertyPath: scoreScreenController
       value: 
       objectReference: {fileID: 1329594577}
