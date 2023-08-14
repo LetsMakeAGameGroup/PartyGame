@@ -10,6 +10,8 @@ public class BombEffect : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcEquipBomb(GameObject bomb) {
+        if (bomb == null) return;
+
         holdingBomb = bomb;
 
         holdingBomb.transform.parent = bombContainer.transform;
@@ -21,6 +23,7 @@ public class BombEffect : NetworkBehaviour {
     [TargetRpc]
     public void TargetToggleVisability(bool isDaylight) {
         GameObject sun = GameObject.FindGameObjectWithTag("Sun");
+        if (sun == null) return;
 
         sun.transform.rotation = Quaternion.Euler(isDaylight ? 50 : -50, sun.transform.rotation.y, sun.transform.rotation.z);
     }
