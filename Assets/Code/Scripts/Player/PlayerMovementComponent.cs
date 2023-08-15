@@ -127,6 +127,7 @@ public class PlayerMovementComponent : NetworkBehaviour
         launchVelocity = forceDirection;
         launchTimeElapsed = 0;
         moveDirection.y = forceDirection.y;
+        networkAnimator.SetTrigger("GotHit");
     }
 
     public IEnumerator StunPlayer(float timeStunned) {

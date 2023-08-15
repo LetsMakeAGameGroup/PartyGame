@@ -4,6 +4,7 @@ using Mirror;
 using System.Linq;
 
 [RequireComponent(typeof(PlayerController))]
+[RequireComponent(typeof(NetworkAnimator))]
 public class ItemController : NetworkBehaviour {
     [Header("References")]
     public GameObject itemHolder;
@@ -11,6 +12,7 @@ public class ItemController : NetworkBehaviour {
     [SerializeField] private ItemHUDController itemHUDController;
 
     private PlayerController playerController;
+    private NetworkAnimator networkAnimator;
 
     private bool canUse = true;
 
@@ -19,6 +21,7 @@ public class ItemController : NetworkBehaviour {
 
     private void Start() {
         playerController = GetComponent<PlayerController>();
+        networkAnimator = GetComponent<NetworkAnimator>();
 
         if (holdingItem) {
             holdingItem.GetComponent<Item>().playerController = playerController;
@@ -51,6 +54,9 @@ public class ItemController : NetworkBehaviour {
     // Cooldown before attacking again
     IEnumerator StartUsing() {
         canUse = false;
+        if (holdingItem && holdingItem.GetComponent<MeleeWeapon>()) {
+            networkAnimator.SetTrigger("Punch");
+        }
         CmdUseItem();
         StartCoroutine(itemHUDController.EnableCooldownIndicator(holdingItem.GetComponent<Item>().useCooldown));
         yield return new WaitForSeconds(holdingItem.GetComponent<Item>().useCooldown);
