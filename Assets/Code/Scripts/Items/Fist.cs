@@ -21,7 +21,7 @@ public class Fist : MeleeWeapon {
             if (target.TryGetComponent(out BombEffect bombEffect) && !bombEffect.holdingBomb && playerController.GetComponent<BombEffect>().holdingBomb) {
                 bombEffect.RpcEquipBomb(playerController.GetComponent<BombEffect>().holdingBomb);
 
-                playerController.GetComponent<BombEffect>().TargetToggleVisability(true);
+                playerController.GetComponent<BombEffect>().TargetToggleVisability(playerController.GetComponent<BombEffect>().holdingBomb, false);
                 playerController.GetComponent<BombEffect>().holdingBomb = null;
             }
         }

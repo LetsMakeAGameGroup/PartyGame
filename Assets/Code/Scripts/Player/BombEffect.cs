@@ -14,14 +14,22 @@ public class BombEffect : NetworkBehaviour {
 
         holdingBomb.transform.parent = bombContainer.transform;
         holdingBomb.transform.localPosition = Vector3.zero;
+        holdingBomb.transform.localRotation = Quaternion.identity;
 
-        TargetToggleVisability(false);
+        TargetToggleVisability(bomb, true);
     }
 
     [TargetRpc]
-    public void TargetToggleVisability(bool isDaylight) {
+    public void TargetToggleVisability(GameObject bomb, bool isHoldingBomb) {
+        if (bomb != null) {
+            MeshRenderer[] bombRenderers = bomb.GetComponentsInChildren<MeshRenderer>();
+            foreach (MeshRenderer renderer in bombRenderers) {
+                renderer.enabled = !isHoldingBomb;
+            }
+        }
+
         GameObject sun = GameObject.FindGameObjectWithTag("Sun");
 
-        sun.transform.rotation = Quaternion.Euler(isDaylight ? 50 : -50, sun.transform.rotation.y, sun.transform.rotation.z);
+        sun.transform.rotation = Quaternion.Euler(isHoldingBomb ? -50 : 50, sun.transform.rotation.y, sun.transform.rotation.z);
     }
 }
