@@ -8,7 +8,7 @@ using UnityEngine;
 public class WispWhiskManager : NetworkBehaviour {
     [Header("References")]
     [SerializeField] private MinigameHandler minigameHandler;
-    [SerializeField] private GameObject territoryPrefab;
+    [SerializeField] private GameObject[] territories;
     [SerializeField] private GameObject wispPrefab;
     [SerializeField] private Canvas scoreDisplayCanvas = null;
     [SerializeField] private TextMeshProUGUI scoreDisplayText = null;
@@ -78,21 +78,19 @@ public class WispWhiskManager : NetworkBehaviour {
     }
 
     public IEnumerator SpawnTerritory() {
+        GameObject enabledTerritory;
         while (true) {
-            Vector2 overheadLocation = new Vector2(Random.Range(minSpawnLocation.x, maxSpawnLocation.x + 1), Random.Range(minSpawnLocation.y, maxSpawnLocation.y + 1));
+            enabledTerritory = territories[Random.Range(0, territories.Length)];
 
-            int excludePlayerLayerMask = ~LayerMask.GetMask("Player");
-            if (Physics.Raycast(new Vector3(overheadLocation.x, 10f, overheadLocation.y), Vector3.down, out RaycastHit hit, 15f, excludePlayerLayerMask)) {
-                // Don't need to check for nearby territories since they immediately start moving anyways.
-                GameObject territory = Instantiate(territoryPrefab, hit.point, Quaternion.identity);
-                territory.GetComponent<Territory>().wispWhiskManager = this;
-                NetworkServer.Spawn(territory);
-                StartCoroutine(territory.GetComponent<RandomlyMovingAgent>().MoveTowardsTrans());
+            if (!enabledTerritory.GetComponent<Territory>().isActive) {
                 break;
             }
 
             yield return null;
         }
+
+        enabledTerritory.GetComponent<Territory>().wispWhiskManager = this;
+        enabledTerritory.GetComponent<Territory>().isActive = true;
     }
 
     /// <summary>Enable score display on all clients.</summary>
