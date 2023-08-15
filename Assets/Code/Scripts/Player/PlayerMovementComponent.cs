@@ -5,11 +5,15 @@ using TMPro;
 using Unity.VisualScripting;
 
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(NetworkAnimator))]
 public class PlayerMovementComponent : NetworkBehaviour
 {
     [Header("References")]
     [SerializeField] private Canvas respawnWarningCanvas;
     [SerializeField] private TMP_Text respawnTimeText;
+    [SerializeField] private Animator animator;
+
+    private NetworkAnimator networkAnimator;
 
     [Header("Settings")]
     [Tooltip("How fast the player walks.")]
@@ -40,6 +44,7 @@ public class PlayerMovementComponent : NetworkBehaviour
     {
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Player"));  // Not sure why this is needed when they are set to ignore in project settings, but it is.
         characterController = GetComponent<CharacterController>();
+        networkAnimator = GetComponent<NetworkAnimator>();
     }
 
     // Update is called once per frame
@@ -84,6 +89,10 @@ public class PlayerMovementComponent : NetworkBehaviour
         if (!isAttemptingToRespawn && transform.position.y <= voidYAxis) {
             StartCoroutine(PlayerInVoid());
         }
+
+        animator.SetFloat("Velocity", characterController.velocity.magnitude);
+        animator.SetBool("Grounded", characterController.isGrounded);
+        animator.SetBool("IsFalling", characterController.velocity.y < 0.01f);
     }
 
     public Vector2 ConsumeInput() 
@@ -102,6 +111,7 @@ public class PlayerMovementComponent : NetworkBehaviour
     {
         if (canMove && characterController.isGrounded) 
         {
+            networkAnimator.SetTrigger("Jump");
             moveDirection.y = jumpSpeed;
         }
     }
