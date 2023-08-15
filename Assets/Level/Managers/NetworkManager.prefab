@@ -98,5 +98,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Port: 7777
   LoggerLevel: 3
-  TimeoutMS: 1000
+  TimeoutMS: 10000
   useRelay: 0
