@@ -18,13 +18,15 @@ public class BerryBullet : Bullet {
 
     public override void OnHit(GameObject hitObject) {
         base.OnHit(hitObject);
-        
+
         if (hitObject.TryGetComponent(out CaptureTarget captureTarget)) {
             captureTarget.SetOwner(shooterPlayer);
         }
 
-        if (hitObject && hitObject.TryGetComponent(out PlayerMovementComponent playerMovementComponent)) {
-            playerMovementComponent.TargetKnockbackCharacter(transform.TransformDirection(new Vector3(0, verticalForce, knockbackForce)));
+        if (hitObject.transform.parent && hitObject.transform.parent.TryGetComponent(out PlayerMovementComponent playerMovementComponent)) {
+            Vector3 direction = transform.forward * knockbackForce;
+            direction.y = verticalForce;
+            playerMovementComponent.TargetKnockbackCharacter(direction);
             StartCoroutine(playerMovementComponent.StunPlayer(stunTime));
         }
     }

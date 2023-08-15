@@ -11,7 +11,9 @@ public class Fist : MeleeWeapon {
 
     public override void HitTarget(GameObject target) {
         if (target && target.TryGetComponent(out PlayerMovementComponent playerMovementComponent)) {
-            playerMovementComponent.TargetKnockbackCharacter(transform.TransformDirection(new Vector3(0, verticalForce, knockbackForce)));
+            Vector3 direction = playerController.transform.forward * knockbackForce;
+            direction.y = verticalForce;
+            playerMovementComponent.TargetKnockbackCharacter(direction);
             StartCoroutine(playerMovementComponent.StunPlayer(stunTime));
 
             if (target.TryGetComponent(out WispEffect wispEffect) && wispEffect.holdingWisp) {

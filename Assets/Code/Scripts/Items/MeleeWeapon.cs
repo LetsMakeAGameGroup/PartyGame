@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public abstract class MeleeWeapon : Weapon {
@@ -8,11 +9,23 @@ public abstract class MeleeWeapon : Weapon {
     public override void Use() {
         // Checks if player is looking at an object within maxDistance.
         LayerMask layerMask = 1 << LayerMask.NameToLayer("PlayerHitbox") | 1 << LayerMask.NameToLayer("Hittable");
-        if (Physics.Raycast(playerController.playerCamera.gameObject.transform.position + playerController.playerCamera.gameObject.transform.forward * 0.5f, playerController.playerCamera.gameObject.transform.TransformDirection(Vector3.forward), out RaycastHit hit, hitDistance, layerMask)) {
+        var reverseHits = Physics.RaycastAll(playerController.playerCamera.gameObject.transform.position + playerController.playerCamera.gameObject.transform.forward * hitDistance, playerController.playerCamera.gameObject.transform.TransformDirection(Vector3.back), hitDistance - 0.5f, layerMask);
+
+        if (reverseHits.Length > 1) {
+            RaycastHit closestHit = reverseHits[reverseHits.Length - 1];
+            if (reverseHits.Length > 1) {
+                for (int i = 0; i < reverseHits.Length; i++) {
+                    if (reverseHits[i].collider.transform.parent && reverseHits[i].collider.transform.parent.gameObject == playerController.gameObject) continue;
+
+                    if (reverseHits[i].distance < closestHit.distance) {
+                        closestHit = reverseHits[i];
+                    }
+                }
+            }
+
             // If the hit object can be interacted with using on-hit, apply on-hit effects to it.
-            Debug.Log("Hit  " + hit.transform.gameObject.name);
             playerController.GetComponent<ItemController>().TargetStartItemCooldown(useCooldown);
-            HitTarget(hit.transform.gameObject);
+            HitTarget(closestHit.transform.gameObject);
         } else {
             playerController.GetComponent<ItemController>().TargetStartItemCooldown(missCooldown);
         }
