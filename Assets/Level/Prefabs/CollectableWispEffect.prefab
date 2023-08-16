@@ -50,7 +50,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  pointsToAdd: 2
+  pointsToAdd: 1
 --- !u!114 &5876539937914642025
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -48,7 +48,8 @@ MonoBehaviour:
   itemName: Fist
   useCooldown: 1
   baseDamage: 0
-  hitDistance: 5
-  knockbackForce: 22
-  verticalForce: 3
-  stunTime: 0.5
+  hitDistance: 8
+  missCooldown: 0.25
+  knockbackForce: 30
+  verticalForce: 5
+  stunTime: 0.75

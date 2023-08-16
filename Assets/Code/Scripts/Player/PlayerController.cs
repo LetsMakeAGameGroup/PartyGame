@@ -39,6 +39,10 @@ public class PlayerController : NetworkBehaviour, ICollector {
 
     private void Start() {
         playerMovementComponent = GetComponent<PlayerMovementComponent>();
+
+        if (TryGetComponent(out ItemController itemController) && TryGetComponent(out NetworkAnimator networkAnimator) && itemController.holdingItem && itemController.holdingItem.name != "Fist") {
+            networkAnimator.animator.SetBool("IsHoldingItem", true);
+        }
     }
 
     public override void OnStartLocalPlayer() {

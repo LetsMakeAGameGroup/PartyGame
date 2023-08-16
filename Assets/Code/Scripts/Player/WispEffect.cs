@@ -7,16 +7,12 @@ public class WispEffect : NetworkBehaviour {
 
     [HideInInspector] public GameObject holdingWisp;
 
-    [Header("Settings")]
-    [Tooltip("How far from the ground the wisp will be dropped.")]
-    [SerializeField] private float distanceDroppedFromGround = 0.5f;
-
     [ClientRpc]
     public void RpcDropWisp() {
         int excludePlayerLayerMask =~ LayerMask.GetMask("Player");
         Vector3 dropLocation;
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 100f, excludePlayerLayerMask)) {
-            dropLocation = hit.point + new Vector3(0, distanceDroppedFromGround, 0);
+            dropLocation = hit.point;
         } else {
             dropLocation = transform.position;
         }

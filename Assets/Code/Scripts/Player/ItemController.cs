@@ -4,7 +4,6 @@ using Mirror;
 using System.Linq;
 using Unity.VisualScripting;
 
-[RequireComponent(typeof(PlayerController))]
 [RequireComponent(typeof(NetworkAnimator))]
 public class ItemController : NetworkBehaviour {
     [Header("References")]

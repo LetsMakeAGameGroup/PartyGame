@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
   itemName: Berry Blaster
-  useCooldown: 2
+  useCooldown: 1
   baseDamage: 0
   hitDistance: 25
   bulletPrefab: {fileID: 7524440669711000338, guid: d5009c5ef37e7b04ca20d67569c28f95,

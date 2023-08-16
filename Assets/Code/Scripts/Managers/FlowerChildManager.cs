@@ -9,7 +9,7 @@ public class FlowerChildManager : NetworkBehaviour {
     [Header("References")]
     [SerializeField] private MinigameHandler minigameHandler;
     [SerializeField] private GameObject wispPrefab;
-    [SerializeField] private GameObject tornado;
+    [SerializeField] private GameObject[] tornados;
     [SerializeField] private Canvas scoreDisplayCanvas;
     [SerializeField] private TextMeshProUGUI scoreDisplayText;
 
@@ -37,7 +37,9 @@ public class FlowerChildManager : NetworkBehaviour {
 
         StartCoroutine(SpawnWisp());
 
-        StartCoroutine(tornado.GetComponent<RandomlyMovingAgent>().MoveTowardsTrans());
+        foreach (GameObject tornado in tornados) {
+            StartCoroutine(tornado.GetComponent<RandomlyMovingAgent>().MoveTowardsTrans());
+        }
         StartCoroutine(IncreaseSpeedAfterInterval());
 
         RpcEnableScoreDisplay();
@@ -92,7 +94,9 @@ public class FlowerChildManager : NetworkBehaviour {
     private IEnumerator IncreaseSpeedAfterInterval() {
         yield return new WaitForSeconds(speedIncreaseTimeInterval);
 
-        tornado.GetComponent<RandomlyMovingAgent>().speed += speedIncrease;
+        foreach (GameObject tornado in tornados) {
+            tornado.GetComponent<RandomlyMovingAgent>().speed += speedIncrease;
+        }
 
         StartCoroutine(IncreaseSpeedAfterInterval());
     }
