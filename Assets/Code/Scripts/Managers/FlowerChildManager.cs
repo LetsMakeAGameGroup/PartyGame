@@ -120,7 +120,7 @@ public class FlowerChildManager : NetworkBehaviour {
         foreach (int score in scores) {
             List<NetworkConnectionToClient> currentStanding = new();
             foreach (var playerPoint in playerPoints) {
-                if (playerPoint.Value == score) {
+                if (playerPoint.Value == score && playerPoint.Key != null) {
                     currentStanding.Add(playerPoint.Key.GetComponent<NetworkIdentity>().connectionToClient);
                 }
             }

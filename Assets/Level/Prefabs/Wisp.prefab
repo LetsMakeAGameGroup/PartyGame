@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8815333484101708300}
   - component: {fileID: 5594261502318120987}
   - component: {fileID: 814125035202178665}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Wisp
   m_TagString: Untagged
   m_Icon: {fileID: 0}

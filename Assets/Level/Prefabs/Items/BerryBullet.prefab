@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2005529211254197851}
   - component: {fileID: 6439241645861745432}
   - component: {fileID: -3656994852811221495}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BerryBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,6 +54,7 @@ MonoBehaviour:
   syncInterval: 0
   shooterPlayer: {fileID: 0}
   damage: 10
+  bulletVelocity: {x: 0, y: 0, z: 0}
   knockbackForce: 22
   verticalForce: 3
   stunTime: 0.5

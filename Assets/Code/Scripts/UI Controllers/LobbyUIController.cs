@@ -5,5 +5,9 @@ public class LobbyUIController : MonoBehaviour {
     [Header("References")]
     public TextMeshProUGUI codeText;
 
-    private void Start() => FindObjectOfType<LobbyUIController>().codeText.text = CustomNetworkManager.Instance.relayJoinCode.ToUpper();
+    private void Start() {
+        if (codeText.text != null && CustomNetworkManager.Instance.relayJoinCode != null) {
+            codeText.text = CustomNetworkManager.Instance.relayJoinCode.ToUpper();
+        }
+    }
 }

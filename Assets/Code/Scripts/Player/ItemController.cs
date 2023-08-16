@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Mirror;
 using System.Linq;
+using Unity.VisualScripting;
 
 [RequireComponent(typeof(PlayerController))]
 public class ItemController : NetworkBehaviour {
@@ -32,11 +33,13 @@ public class ItemController : NetworkBehaviour {
         if (holdingItem && canUse && playerController.MovementComponent && playerController.MovementComponent.CanMove) {
             if (holdingItem.GetComponent<MeleeWeapon>()) {
                 if (Input.GetButtonDown("Fire1")) {
-                    StartCoroutine(StartUsing());
+                    canUse = false;
+                    CmdUseItem();
                 }
             } else {
                 if (Input.GetButton("Fire1")) {
-                    StartCoroutine(StartUsing());
+                    canUse = false;
+                    CmdUseItem();
                 }
             }
         }
@@ -48,12 +51,16 @@ public class ItemController : NetworkBehaviour {
         holdingItem.GetComponent<Item>().Use();
     }
 
+    [TargetRpc]
+    public void TargetStartItemCooldown(float cooldown) {
+        StartCoroutine(ItemCooldown(cooldown));
+    }
+
     // Cooldown before attacking again
-    IEnumerator StartUsing() {
+    private IEnumerator ItemCooldown(float cooldown) {
         canUse = false;
-        CmdUseItem();
-        StartCoroutine(itemHUDController.EnableCooldownIndicator(holdingItem.GetComponent<Item>().useCooldown));
-        yield return new WaitForSeconds(holdingItem.GetComponent<Item>().useCooldown);
+        StartCoroutine(itemHUDController.EnableCooldownIndicator(cooldown));
+        yield return new WaitForSeconds(cooldown);
         canUse = true;
     }
 

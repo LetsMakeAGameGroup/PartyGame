@@ -8,9 +8,9 @@ public abstract class Bullet : NetworkBehaviour {
     [SyncVar(hook = nameof(SetVelocity)), HideInInspector] public Vector3 bulletVelocity = Vector3.zero;
 
     private void OnTriggerEnter(Collider other) {
-        if (!isServer || other.gameObject == shooterPlayer) return;
+        if (!isServer || other.gameObject == shooterPlayer || (other.transform.parent && other.transform.parent.gameObject == shooterPlayer)) return;
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player") || other.gameObject.layer == LayerMask.NameToLayer("Hittable")) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("PlayerHitbox") || other.gameObject.layer == LayerMask.NameToLayer("Hittable")) {
             OnHit(other.gameObject);
         }
         Destroy(gameObject);

@@ -22,6 +22,7 @@ public class MinigameHandler : MonoBehaviour {
     [SerializeField] private bool isTimerBased = true;
 
     private bool isRunning = false;
+    private int winnerCount = 0;
 
     // This is called once all players are ready to start the minigame. Starts a countdown before calling StartMinigame.
     public void StartCountdown() {
@@ -56,9 +57,10 @@ public class MinigameHandler : MonoBehaviour {
     public void AddWinner(List<NetworkConnectionToClient> players) {
         if (!isRunning) return;
 
+        winnerCount += players.Count;
         winners.Add(players);
 
-        if (winners.Count == CustomNetworkManager.Instance.ClientDatas.Count) {
+        if (winnerCount == CustomNetworkManager.Instance.ClientDatas.Count) {
             EndMinigame();
         }
     }
