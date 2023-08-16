@@ -9,7 +9,7 @@ public class FlowerChildManager : NetworkBehaviour {
     [Header("References")]
     [SerializeField] private MinigameHandler minigameHandler;
     [SerializeField] private GameObject wispPrefab;
-    [SerializeField] private GameObject tornado;
+    [SerializeField] private GameObject[] tornados;
     [SerializeField] private Canvas scoreDisplayCanvas;
     [SerializeField] private TextMeshProUGUI scoreDisplayText;
 
@@ -20,8 +20,6 @@ public class FlowerChildManager : NetworkBehaviour {
     [SerializeField] private Vector2 maxWispSpawnLocation = Vector2.zero;
     [Tooltip("How many seconds between spawning a wisp.")]
     [SerializeField] private float wispSpawnTimeInterval = 5f;
-    [Tooltip("How far from the ground the wisp will spawn.")]
-    [SerializeField] private float distanceFromGroundWispSpawn = 0.5f;
     [Tooltip("The minimum distance between two wisps when spawning.")]
     [SerializeField] private float distanceBetweenWisps = 1f;
     [Tooltip("The amount of speed the Tornado will increase by.")]
@@ -39,7 +37,9 @@ public class FlowerChildManager : NetworkBehaviour {
 
         StartCoroutine(SpawnWisp());
 
-        StartCoroutine(tornado.GetComponent<RandomlyMovingAgent>().MoveTowardsTrans());
+        foreach (GameObject tornado in tornados) {
+            StartCoroutine(tornado.GetComponent<RandomlyMovingAgent>().MoveTowardsTrans());
+        }
         StartCoroutine(IncreaseSpeedAfterInterval());
 
         RpcEnableScoreDisplay();
@@ -53,7 +53,7 @@ public class FlowerChildManager : NetworkBehaviour {
             if (Physics.Raycast(new Vector3(overheadLocation.x, 10f, overheadLocation.y), Vector3.down, out RaycastHit hit, 15f, excludePlayerLayerMask)) {
                 // Check if there is already a wisp nearby. If there is, it will continue and get a new position.
                 bool isNearWisp = false;
-                Collider[] intersectingColliders = Physics.OverlapSphere(hit.point + new Vector3(0, distanceFromGroundWispSpawn, 0), distanceBetweenWisps);
+                Collider[] intersectingColliders = Physics.OverlapSphere(hit.point, distanceBetweenWisps);
                 if (intersectingColliders.Length > 0) {
                     foreach (var intersectingCollider in intersectingColliders) {
                         if (intersectingCollider.GetComponent<CollectiblePoint>() != null) {
@@ -67,7 +67,7 @@ public class FlowerChildManager : NetworkBehaviour {
                     continue;
                 }
 
-                GameObject wisp = Instantiate(wispPrefab, hit.point + new Vector3(0, distanceFromGroundWispSpawn, 0), Quaternion.identity);
+                GameObject wisp = Instantiate(wispPrefab, hit.point, Quaternion.identity);
                 wisp.GetComponent<CollectiblePoint>().onPointsAdd.AddListener(AddPoints);
                 NetworkServer.Spawn(wisp);
                 break;
@@ -94,7 +94,9 @@ public class FlowerChildManager : NetworkBehaviour {
     private IEnumerator IncreaseSpeedAfterInterval() {
         yield return new WaitForSeconds(speedIncreaseTimeInterval);
 
-        tornado.GetComponent<RandomlyMovingAgent>().speed += speedIncrease;
+        foreach (GameObject tornado in tornados) {
+            tornado.GetComponent<RandomlyMovingAgent>().speed += speedIncrease;
+        }
 
         StartCoroutine(IncreaseSpeedAfterInterval());
     }
@@ -120,7 +122,7 @@ public class FlowerChildManager : NetworkBehaviour {
         foreach (int score in scores) {
             List<NetworkConnectionToClient> currentStanding = new();
             foreach (var playerPoint in playerPoints) {
-                if (playerPoint.Value == score) {
+                if (playerPoint.Value == score && playerPoint.Key != null) {
                     currentStanding.Add(playerPoint.Key.GetComponent<NetworkIdentity>().connectionToClient);
                 }
             }

@@ -8,7 +8,7 @@ using UnityEngine;
 public class WispWhiskManager : NetworkBehaviour {
     [Header("References")]
     [SerializeField] private MinigameHandler minigameHandler;
-    [SerializeField] private GameObject territoryPrefab;
+    [SerializeField] private GameObject[] territories;
     [SerializeField] private GameObject wispPrefab;
     [SerializeField] private Canvas scoreDisplayCanvas = null;
     [SerializeField] private TextMeshProUGUI scoreDisplayText = null;
@@ -20,8 +20,6 @@ public class WispWhiskManager : NetworkBehaviour {
     [SerializeField] private Vector2 minSpawnLocation = Vector2.zero;
     [Tooltip("Maximum or top right 2D vector(X and Z-Axis) of where wisps/territories can spawn in an area.")]
     [SerializeField] private Vector2 maxSpawnLocation = Vector2.zero;
-    [Tooltip("How far from the ground the wisp will spawn.")]
-    [SerializeField] private float distanceFromGroundWispSpawn = 0.5f;
     [Tooltip("The minimum distance between two wisps when spawning.")]
     [SerializeField] private float distanceBetweenWisps = 1f;
 
@@ -55,7 +53,7 @@ public class WispWhiskManager : NetworkBehaviour {
             if (Physics.Raycast(new Vector3(overheadLocation.x, 10f, overheadLocation.y), Vector3.down, out RaycastHit hit, 15f, excludePlayerLayerMask)) {
                 // Check if there is already a wisp nearby. If there is, it will continue and get a new position.
                 bool isNearWisp = false;
-                Collider[] intersectingColliders = Physics.OverlapSphere(hit.point + new Vector3(0, distanceFromGroundWispSpawn, 0), distanceBetweenWisps);
+                Collider[] intersectingColliders = Physics.OverlapSphere(hit.point, distanceBetweenWisps);
                 if (intersectingColliders.Length > 0) {
                     foreach (var intersectingCollider in intersectingColliders) {
                         if (intersectingCollider.GetComponent<CollectiblePoint>() != null) {
@@ -69,7 +67,7 @@ public class WispWhiskManager : NetworkBehaviour {
                     continue;
                 }
 
-                GameObject wisp = Instantiate(wispPrefab, hit.point + new Vector3(0, distanceFromGroundWispSpawn, 0), Quaternion.identity);
+                GameObject wisp = Instantiate(wispPrefab, hit.point, Quaternion.identity);
                 NetworkServer.Spawn(wisp);
                 break;
             }
@@ -78,21 +76,19 @@ public class WispWhiskManager : NetworkBehaviour {
     }
 
     public IEnumerator SpawnTerritory() {
+        GameObject enabledTerritory;
         while (true) {
-            Vector2 overheadLocation = new Vector2(Random.Range(minSpawnLocation.x, maxSpawnLocation.x + 1), Random.Range(minSpawnLocation.y, maxSpawnLocation.y + 1));
+            enabledTerritory = territories[Random.Range(0, territories.Length)];
 
-            int excludePlayerLayerMask = ~LayerMask.GetMask("Player");
-            if (Physics.Raycast(new Vector3(overheadLocation.x, 10f, overheadLocation.y), Vector3.down, out RaycastHit hit, 15f, excludePlayerLayerMask)) {
-                // Don't need to check for nearby territories since they immediately start moving anyways.
-                GameObject territory = Instantiate(territoryPrefab, hit.point, Quaternion.identity);
-                territory.GetComponent<Territory>().wispWhiskManager = this;
-                NetworkServer.Spawn(territory);
-                StartCoroutine(territory.GetComponent<RandomlyMovingAgent>().MoveTowardsTrans());
+            if (!enabledTerritory.GetComponent<Territory>().isActive) {
                 break;
             }
 
             yield return null;
         }
+
+        enabledTerritory.GetComponent<Territory>().wispWhiskManager = this;
+        enabledTerritory.GetComponent<Territory>().isActive = true;
     }
 
     /// <summary>Enable score display on all clients.</summary>
@@ -135,7 +131,7 @@ public class WispWhiskManager : NetworkBehaviour {
         foreach (int score in scores) {
             List<NetworkConnectionToClient> currentStanding = new();
             foreach (var playerPoint in playerPoints) {
-                if (playerPoint.Value == score) {
+                if (playerPoint.Value == score && playerPoint.Key != null) {
                     currentStanding.Add(playerPoint.Key.GetComponent<NetworkIdentity>().connectionToClient);
                 }
             }

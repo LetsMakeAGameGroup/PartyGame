@@ -1,6 +1,7 @@
 using Mirror;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class MazeManager : NetworkBehaviour {
@@ -8,7 +9,9 @@ public class MazeManager : NetworkBehaviour {
     [SerializeField] private MinigameHandler minigameHandler;
     [SerializeField] private GameObject startingMaze;
     [SerializeField] private GameObject[] mazePresets;
-    [SerializeField] private GameObject wisp;
+    [SerializeField] private GameObject wispPrefab;
+    [SerializeField] private Canvas scoreDisplayCanvas;
+    [SerializeField] private TextMeshProUGUI scoreDisplayText;
 
     [HideInInspector] public Dictionary<GameObject, int> playerPoints = new();
 
@@ -36,6 +39,8 @@ public class MazeManager : NetworkBehaviour {
             timer.duration = randomizeMazeInterval * i;
             timer.onTimerEnd.AddListener(RandomizeMaze);
         }
+
+        RpcEnableScoreDisplay();
     }
 
     /// <summary>Choose a random maze preset.</summary>
@@ -47,26 +52,40 @@ public class MazeManager : NetworkBehaviour {
         for (int i = 0; i < wispsPerRandomization; i++) {
             Vector3 randomSpawn;
             while (true) {
-                randomSpawn = new Vector3(Random.Range(-(gridSize/2) + 1, (gridSize/2) + 1)*containerLength-(containerLength/2), 1.5f, Random.Range(-(gridSize/2) + 1, (gridSize/2) + 1)*containerLength-(containerLength/2));
+                randomSpawn = new Vector3(Random.Range(-(gridSize/2) + 1, (gridSize/2) + 1)*containerLength-(containerLength/2), 0.5f, Random.Range(-(gridSize/2) + 1, (gridSize/2) + 1)*containerLength-(containerLength/2));
 
-                Collider[] intersectingColliders = Physics.OverlapSphere(randomSpawn, 0.01f);
+                Collider[] intersectingColliders = Physics.OverlapSphere(randomSpawn, 1f);
                 if (intersectingColliders.Length > 0) {
+                    bool isNearWisp = false;
                     foreach (var intersectingCollider in intersectingColliders) {
                         if (intersectingCollider.GetComponent<CollectiblePoint>() != null) {
-                            continue;
+                            isNearWisp = true;
+                            break;
                         }
                     }
+                    if (isNearWisp) continue;
                 }
 
                 break;
             }
 
-            GameObject currentWisp = Instantiate(wisp, randomSpawn, Quaternion.identity);
+            GameObject currentWisp = Instantiate(wispPrefab, randomSpawn, Quaternion.identity);
             currentWisp.GetComponent<CollectiblePoint>().onPointsAdd.AddListener(AddPoints);
             NetworkServer.Spawn(currentWisp);
         }
 
         RpcReplaceMazePreset(lastIndex, mazeIndex);
+    }
+
+    /// <summary>Enable score display on all clients.</summary>
+    [ClientRpc]
+    public void RpcEnableScoreDisplay() {
+        scoreDisplayCanvas.enabled = true;
+    }
+
+    [TargetRpc]
+    private void TargetSetScoreDisplay(NetworkConnectionToClient target, int score) {
+        scoreDisplayText.text = score.ToString();
     }
 
     /// <summary>Replace maze presets on all clients.</summary>
@@ -83,6 +102,7 @@ public class MazeManager : NetworkBehaviour {
     /// <summary>Gives a player points in the current minigame.</summary>
     public void AddPoints(GameObject player, int points) {
         playerPoints[player] += points;
+        TargetSetScoreDisplay(player.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[player]);
     }
 
     /// <summary>Determine order of most points to assign standings in the MinigameHandler.</summary>
@@ -101,7 +121,7 @@ public class MazeManager : NetworkBehaviour {
         foreach (int score in scores) {
             List<NetworkConnectionToClient> currentStanding = new();
             foreach (var playerPoint in playerPoints) {
-                if (playerPoint.Value == score) {
+                if (playerPoint.Value == score && playerPoint.Key != null) {
                     currentStanding.Add(playerPoint.Key.GetComponent<NetworkIdentity>().connectionToClient);
                 }
             }

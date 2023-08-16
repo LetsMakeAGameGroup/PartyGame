@@ -15,8 +15,8 @@ TagManager:
   - UI
   - Hittable
   - Player
-  - 
-  - 
+  - PlayerHitbox
+  - Bullet
   - 
   - 
   - 

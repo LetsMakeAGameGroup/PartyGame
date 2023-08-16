@@ -4,6 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BerryBlaster : RangedWeapon {
+    [Header("Berry Blaster References")]
+    [SerializeField] private Renderer ammoRenderer;
+
+    private void Start() {
+        ammoRenderer.material.color = PlayerColorOptions.options[playerController.playerColor];
+    }
+
     public override void SpawnBullet(Vector3 endPos) {
         // Instantiate the bullet across the server. Starting at bulletSpawnTrans's position and move towards endPos.
         GameObject bullet = Instantiate(bulletPrefab, bulletSpawnTrans.position, bulletSpawnTrans.rotation);

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1173496885271520577}
   - component: {fileID: 1173496885271520578}
   - component: {fileID: 4429846812453579608}
+  - component: {fileID: -8751744098615716215}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -56,17 +57,18 @@ MonoBehaviour:
   networkAddress: localhost
   maxConnections: 8
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 1913241591815720157, guid: b17abd573cf7763498436116a9104985,
+  playerPrefab: {fileID: 6847215794116320160, guid: 51734b244db22af4881b91235c5a2440,
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs:
   - {fileID: 6716550575573206128, guid: aae9d59fdc3eb0042a9024800227096c, type: 3}
-  - {fileID: 3452310532601903974, guid: 8066cb79995da8e4f90da9b517eba4bf, type: 3}
+  - {fileID: 1913241591815720157, guid: b17abd573cf7763498436116a9104985, type: 3}
   - {fileID: 3452310532601903974, guid: edf1a66a219c8d64b9996979cb0eea33, type: 3}
   - {fileID: 3452310532601903974, guid: 0244f9d70113e044991e2ad8653bf632, type: 3}
   - {fileID: 3452310532601903974, guid: 6624f024a3ccd26448c31dc77f0e6c3f, type: 3}
   - {fileID: 3452310532601903974, guid: 7cd99c65db1414b4cba03b0d68b39a6a, type: 3}
+  - {fileID: 3452310532601903974, guid: 8066cb79995da8e4f90da9b517eba4bf, type: 3}
   - {fileID: 7524440669711000338, guid: d5009c5ef37e7b04ca20d67569c28f95, type: 3}
   - {fileID: 9187142294380564760, guid: 727070cf41f2f4a4a9393778975def67, type: 3}
   - {fileID: 9187142294380564760, guid: 9225b341fda57a24abb690f3ada66242, type: 3}
@@ -98,5 +100,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Port: 7777
   LoggerLevel: 3
-  TimeoutMS: 1000
+  TimeoutMS: 10000
   useRelay: 0
+--- !u!114 &-8751744098615716215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173496885271520579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc654f29862fc2643b948f772ebb9e68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 1, b: 1, a: 1}
+  padding: 2
+  width: 150
+  height: 25

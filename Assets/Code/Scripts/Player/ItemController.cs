@@ -2,8 +2,9 @@ using System.Collections;
 using UnityEngine;
 using Mirror;
 using System.Linq;
+using Unity.VisualScripting;
 
-[RequireComponent(typeof(PlayerController))]
+[RequireComponent(typeof(NetworkAnimator))]
 public class ItemController : NetworkBehaviour {
     [Header("References")]
     public GameObject itemHolder;
@@ -11,6 +12,7 @@ public class ItemController : NetworkBehaviour {
     [SerializeField] private ItemHUDController itemHUDController;
 
     private PlayerController playerController;
+    private NetworkAnimator networkAnimator;
 
     private bool canUse = true;
 
@@ -19,6 +21,7 @@ public class ItemController : NetworkBehaviour {
 
     private void Start() {
         playerController = GetComponent<PlayerController>();
+        networkAnimator = GetComponent<NetworkAnimator>();
 
         if (holdingItem) {
             holdingItem.GetComponent<Item>().playerController = playerController;
@@ -32,11 +35,13 @@ public class ItemController : NetworkBehaviour {
         if (holdingItem && canUse && playerController.MovementComponent && playerController.MovementComponent.CanMove) {
             if (holdingItem.GetComponent<MeleeWeapon>()) {
                 if (Input.GetButtonDown("Fire1")) {
-                    StartCoroutine(StartUsing());
+                    canUse = false;
+                    CmdUseItem();
                 }
             } else {
                 if (Input.GetButton("Fire1")) {
-                    StartCoroutine(StartUsing());
+                    canUse = false;
+                    CmdUseItem();
                 }
             }
         }
@@ -48,12 +53,21 @@ public class ItemController : NetworkBehaviour {
         holdingItem.GetComponent<Item>().Use();
     }
 
+    [TargetRpc]
+    public void TargetStartItemCooldown(float cooldown) {
+        StartCoroutine(ItemCooldown(cooldown));
+    }
+
     // Cooldown before attacking again
-    IEnumerator StartUsing() {
+    private IEnumerator ItemCooldown(float cooldown) {
         canUse = false;
-        CmdUseItem();
-        StartCoroutine(itemHUDController.EnableCooldownIndicator(holdingItem.GetComponent<Item>().useCooldown));
-        yield return new WaitForSeconds(holdingItem.GetComponent<Item>().useCooldown);
+		if (holdingItem && holdingItem.GetComponent<MeleeWeapon>()) {
+            networkAnimator.SetTrigger("Punch");
+        }
+        StartCoroutine(itemHUDController.EnableCooldownIndicator(cooldown));
+		
+        yield return new WaitForSeconds(cooldown);
+		
         canUse = true;
     }
 

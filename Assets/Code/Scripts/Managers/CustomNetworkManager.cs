@@ -68,10 +68,19 @@ public class CustomNetworkManager : RelayNetworkManager {
         }
     }
 
+    // Add new player to list and spawn them at the spawn points.
+    public override void OnServerDisconnect(NetworkConnectionToClient conn) {
+        ClientDatas.Remove(conn);
+
+        base.OnServerDisconnect(conn);
+    }
+
     public async void UnityLogin() {
         try {
             await UnityServices.InitializeAsync();
-            await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            if (!AuthenticationService.Instance.IsSignedIn) {
+                await AuthenticationService.Instance.SignInAnonymouslyAsync();
+            }
             Debug.Log("Logged into Unity, player ID: " + AuthenticationService.Instance.PlayerId);
             isLoggedIn = true;
         } catch (Exception e) {

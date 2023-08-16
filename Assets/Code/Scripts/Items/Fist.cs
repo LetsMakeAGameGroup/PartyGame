@@ -10,8 +10,10 @@ public class Fist : MeleeWeapon {
     [SerializeField] private float stunTime = 0.5f;
 
     public override void HitTarget(GameObject target) {
-        if (target.TryGetComponent(out PlayerMovementComponent playerMovementComponent)) {
-            playerMovementComponent.TargetKnockbackCharacter(transform.TransformDirection(new Vector3(0, verticalForce, knockbackForce)));
+        if (target && target.TryGetComponent(out PlayerMovementComponent playerMovementComponent)) {
+            Vector3 direction = playerController.transform.forward * knockbackForce;
+            direction.y = verticalForce;
+            playerMovementComponent.TargetKnockbackCharacter(direction);
             StartCoroutine(playerMovementComponent.StunPlayer(stunTime));
 
             if (target.TryGetComponent(out WispEffect wispEffect) && wispEffect.holdingWisp) {
@@ -21,7 +23,7 @@ public class Fist : MeleeWeapon {
             if (target.TryGetComponent(out BombEffect bombEffect) && !bombEffect.holdingBomb && playerController.GetComponent<BombEffect>().holdingBomb) {
                 bombEffect.RpcEquipBomb(playerController.GetComponent<BombEffect>().holdingBomb);
 
-                playerController.GetComponent<BombEffect>().TargetToggleVisability(true);
+                playerController.GetComponent<BombEffect>().TargetToggleVisability(playerController.GetComponent<BombEffect>().holdingBomb, false);
                 playerController.GetComponent<BombEffect>().holdingBomb = null;
             }
         }

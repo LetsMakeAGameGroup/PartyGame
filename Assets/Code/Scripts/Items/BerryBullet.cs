@@ -2,6 +2,9 @@ using Mirror;
 using UnityEngine;
 
 public class BerryBullet : Bullet {
+    [Header("Berry Bullet References")]
+    [SerializeField] private Renderer berryRenderer;
+
     [Header("Berry Bullet Settings")]
     [Tooltip("The amount of force this will knock the hit entity backwards.")]
     [SerializeField] private float knockbackForce = 25f;
@@ -13,18 +16,20 @@ public class BerryBullet : Bullet {
     [SyncVar(hook = nameof(SetColor)), HideInInspector] public string bulletColor = "";
 
     public void SetColor(string oldColor, string newColor) {
-        GetComponent<Renderer>().material.color = PlayerColorOptions.options[newColor];
+        berryRenderer.material.color = PlayerColorOptions.options[newColor];
     }
 
     public override void OnHit(GameObject hitObject) {
         base.OnHit(hitObject);
-        
+
         if (hitObject.TryGetComponent(out CaptureTarget captureTarget)) {
             captureTarget.SetOwner(shooterPlayer);
         }
 
-        if (hitObject.TryGetComponent(out PlayerMovementComponent playerMovementComponent)) {
-            playerMovementComponent.TargetKnockbackCharacter(transform.TransformDirection(new Vector3(0, verticalForce, knockbackForce)));
+        if (hitObject.transform.parent && hitObject.transform.parent.TryGetComponent(out PlayerMovementComponent playerMovementComponent)) {
+            Vector3 direction = transform.forward * knockbackForce;
+            direction.y = verticalForce;
+            playerMovementComponent.TargetKnockbackCharacter(direction);
             StartCoroutine(playerMovementComponent.StunPlayer(stunTime));
         }
     }

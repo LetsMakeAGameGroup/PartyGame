@@ -34,8 +34,8 @@ public class RandomlyMovingAgent : NetworkBehaviour {
         Vector3 randomDest = RandomNavmeshLocation(destinationRadius);
         navMeshAgent.destination = randomDest;
 
-        while (Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(randomDest.x, randomDest.z)) > 0.001f) {
-            yield return null;
+        while (Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(randomDest.x, randomDest.z)) > 0.001f && navMeshAgent.CalculatePath(randomDest, navMeshAgent.path) && navMeshAgent.path.status == NavMeshPathStatus.PathComplete) {
+                yield return null;
         }
 
         StartCoroutine(MoveTowardsTrans());
