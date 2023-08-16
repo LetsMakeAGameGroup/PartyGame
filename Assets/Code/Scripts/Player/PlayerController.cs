@@ -10,6 +10,8 @@ public class PlayerController : NetworkBehaviour, ICollector {
     [SerializeField] private Renderer colorMaterial;
     [SerializeField] LayerMask interactableLayerMask;
     public Camera playerCamera;
+    [SerializeField] private Renderer[] playerRenderers;
+    [SerializeField] private Material transparentMaterial;
 
     private PlayerMovementComponent playerMovementComponent;
 
@@ -45,11 +47,8 @@ public class PlayerController : NetworkBehaviour, ICollector {
         Cursor.visible = false;
 
         // Disable meshes of self
-        MeshRenderer[] meshes = GetComponentsInChildren<MeshRenderer>();
-        foreach (MeshRenderer mesh in meshes) {
-            // TODO: Make this look cleaner once the player model is a single mesh and more polished
-            if (mesh.gameObject != this.gameObject && mesh.gameObject.transform.parent.gameObject != this.gameObject && mesh.gameObject.transform.parent.gameObject.transform.parent.gameObject == GetComponent<ItemController>().itemHolder) continue;  // Doesn't hide the gun model from local player
-            mesh.enabled = false;
+        foreach (Renderer renderer in playerRenderers) {
+            renderer.material = transparentMaterial;
         }
 
         // Have only self camera/audio enabled
@@ -212,6 +211,8 @@ public class PlayerController : NetworkBehaviour, ICollector {
     }
 
     private void SetColor(string oldColor, string newColor) {
+        if (isLocalPlayer) return;
+
         colorMaterial.material.color = PlayerColorOptions.options[newColor];
     }
 }

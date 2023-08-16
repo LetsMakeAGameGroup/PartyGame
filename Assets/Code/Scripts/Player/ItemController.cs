@@ -5,6 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 
 [RequireComponent(typeof(PlayerController))]
+[RequireComponent(typeof(NetworkAnimator))]
 public class ItemController : NetworkBehaviour {
     [Header("References")]
     public GameObject itemHolder;
@@ -12,6 +13,7 @@ public class ItemController : NetworkBehaviour {
     [SerializeField] private ItemHUDController itemHUDController;
 
     private PlayerController playerController;
+    private NetworkAnimator networkAnimator;
 
     private bool canUse = true;
 
@@ -20,6 +22,7 @@ public class ItemController : NetworkBehaviour {
 
     private void Start() {
         playerController = GetComponent<PlayerController>();
+        networkAnimator = GetComponent<NetworkAnimator>();
 
         if (holdingItem) {
             holdingItem.GetComponent<Item>().playerController = playerController;
@@ -59,8 +62,13 @@ public class ItemController : NetworkBehaviour {
     // Cooldown before attacking again
     private IEnumerator ItemCooldown(float cooldown) {
         canUse = false;
+		if (holdingItem && holdingItem.GetComponent<MeleeWeapon>()) {
+            networkAnimator.SetTrigger("Punch");
+        }
         StartCoroutine(itemHUDController.EnableCooldownIndicator(cooldown));
+		
         yield return new WaitForSeconds(cooldown);
+		
         canUse = true;
     }
 
