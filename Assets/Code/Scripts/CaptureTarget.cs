@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CaptureTarget : NetworkBehaviour {
     [Header("References")]
-    [SerializeField] private Renderer colorRenderer;
+    [SerializeField] private Renderer[] colorRenderers;
 
     [HideInInspector] public GameObject playerOwner;
 
@@ -18,6 +18,8 @@ public class CaptureTarget : NetworkBehaviour {
 
     [ClientRpc]
     private void RpcSetColor(string colorName) {
-        colorRenderer.material.color = PlayerColorOptions.options[colorName];
+        foreach (Renderer colorRenderer in colorRenderers) {
+            colorRenderer.material.color = PlayerColorOptions.options[colorName];
+        }
     }
 }

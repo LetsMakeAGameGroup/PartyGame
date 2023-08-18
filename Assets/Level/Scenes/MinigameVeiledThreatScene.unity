@@ -5793,7 +5793,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_text
       value: "\u2022 Press LMB to knock back players and transfer the bomb if you
-        have it."
+        have it.\n\n\u2022 Once the timer reaches 0, the player holding the bomb
+        will be eliminated.\n\n\u2022 Be the last player alive."
       objectReference: {fileID: 0}
     - target: {fileID: 7154445293407695392, guid: 44a5ecbb152267647b3caf9decbd7608,
         type: 3}
@@ -5928,12 +5929,13 @@ PrefabInstance:
     - target: {fileID: 7154445294456645421, guid: 44a5ecbb152267647b3caf9decbd7608,
         type: 3}
       propertyPath: m_Type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7154445294456645421, guid: 44a5ecbb152267647b3caf9decbd7608,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 6f97d99bfc1a08241b9e9db75b992d1a,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44a5ecbb152267647b3caf9decbd7608, type: 3}
