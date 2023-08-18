@@ -191,7 +191,7 @@ MonoBehaviour:
   playerNameText: {fileID: 3308082037521749970}
   scoreText: {fileID: 4497999695413875908}
   score: 0
-  selfCardTextColor: {r: 0.07471521, g: 0.55803144, b: 0.6886792, a: 1}
+  selfCardTextColor: {r: 0.029592399, g: 0.70854783, b: 0.8962264, a: 1}
 --- !u!222 &1860833988384173003
 CanvasRenderer:
   m_ObjectHideFlags: 0

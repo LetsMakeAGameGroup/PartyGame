@@ -51,7 +51,7 @@ public class WispWhiskManager : NetworkBehaviour {
             Vector2 overheadLocation = new Vector2(Random.Range(minSpawnLocation.x, maxSpawnLocation.x + 1), Random.Range(minSpawnLocation.y, maxSpawnLocation.y + 1));
 
             int excludePlayerLayerMask = ~LayerMask.GetMask("Player");
-            if (Physics.Raycast(new Vector3(overheadLocation.x, 10f, overheadLocation.y), Vector3.down, out RaycastHit hit, 15f, excludePlayerLayerMask)) {
+            if (Physics.Raycast(new Vector3(overheadLocation.x, 20f, overheadLocation.y), Vector3.down, out RaycastHit hit, 20f, excludePlayerLayerMask)) {
                 // Check if there is already a wisp nearby. If there is, it will continue and get a new position.
                 bool isNearWisp = false;
                 Collider[] intersectingColliders = Physics.OverlapSphere(hit.point, distanceBetweenWisps);
@@ -105,7 +105,6 @@ public class WispWhiskManager : NetworkBehaviour {
                 int pointsToAdd = player.identity.GetComponent<WispEffect>().holdingWisp.GetComponent<CollectableWispEffect>().pointsToAdd;
                 playerPoints[player.identity.gameObject] += pointsToAdd;
                 TargetSetScoreDisplay(player.identity.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[player.identity.gameObject]);
-                inGameScoreboardController.RpcUpdateScoreCard(player.identity.GetComponent<PlayerController>().playerName, playerPoints[player.identity.gameObject]);
             }
         }
 
@@ -116,6 +115,7 @@ public class WispWhiskManager : NetworkBehaviour {
     [TargetRpc]
     public void TargetSetScoreDisplay(NetworkConnectionToClient target, int score) {
         scoreDisplayText.text = score.ToString();
+        inGameScoreboardController.RpcUpdateScoreCard(target.identity.GetComponent<PlayerController>().playerName, playerPoints[target.identity.gameObject]);
     }
 
     /// <summary>Determine order of most points to assign standings in the MinigameHandler.</summary>
