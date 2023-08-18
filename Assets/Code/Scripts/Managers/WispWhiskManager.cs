@@ -12,6 +12,7 @@ public class WispWhiskManager : NetworkBehaviour {
     [SerializeField] private GameObject wispPrefab;
     [SerializeField] private Canvas scoreDisplayCanvas = null;
     [SerializeField] private TextMeshProUGUI scoreDisplayText = null;
+    [SerializeField] private InGameScoreboardController inGameScoreboardController;
 
     [Header("Settings")]
     [Tooltip("How many seconds between wisps assign points to their holding player.")]
@@ -95,6 +96,7 @@ public class WispWhiskManager : NetworkBehaviour {
     [ClientRpc]
     public void RpcEnableScoreDisplay() {
         scoreDisplayCanvas.enabled = true;
+        inGameScoreboardController.enabled = true;
     }
 
     public IEnumerator AddPointsEveryInterval() {
@@ -103,6 +105,7 @@ public class WispWhiskManager : NetworkBehaviour {
                 int pointsToAdd = player.identity.GetComponent<WispEffect>().holdingWisp.GetComponent<CollectableWispEffect>().pointsToAdd;
                 playerPoints[player.identity.gameObject] += pointsToAdd;
                 TargetSetScoreDisplay(player.identity.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[player.identity.gameObject]);
+                inGameScoreboardController.RpcUpdateScoreCard(player.identity.GetComponent<PlayerController>().playerName, playerPoints[player.identity.gameObject]);
             }
         }
 
