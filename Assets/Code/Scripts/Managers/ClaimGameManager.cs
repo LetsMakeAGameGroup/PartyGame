@@ -10,6 +10,7 @@ public class ClaimGameManager : NetworkBehaviour {
     [SerializeField] private MinigameHandler minigameHandler;
     [SerializeField] private Canvas scoreDisplayCanvas;
     [SerializeField] private TextMeshProUGUI scoreDisplayText;
+    [SerializeField] private InGameScoreboardController inGameScoreboardController;
     [SerializeField] private GameObject[] targets;
 
     [Header("Settings")]
@@ -33,6 +34,7 @@ public class ClaimGameManager : NetworkBehaviour {
     [ClientRpc]
     public void RpcEnableTargets() {
         scoreDisplayCanvas.enabled = true;
+        inGameScoreboardController.enabled = true;
 
         foreach (var target in targets) {
             target.SetActive(true);
@@ -47,6 +49,7 @@ public class ClaimGameManager : NetworkBehaviour {
                 playerPoints[targetOwner] += pointsToAdd;
 
                 TargetSetScoreDisplay(targetOwner.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[targetOwner]);
+                inGameScoreboardController.RpcUpdateScoreCard(targetOwner.GetComponent<PlayerController>().playerName, playerPoints[targetOwner]);
             }
         }
 

@@ -12,6 +12,7 @@ public class FlowerChildManager : NetworkBehaviour {
     [SerializeField] private GameObject[] tornados;
     [SerializeField] private Canvas scoreDisplayCanvas;
     [SerializeField] private TextMeshProUGUI scoreDisplayText;
+    [SerializeField] private InGameScoreboardController inGameScoreboardController;
 
     [Header("Settings")]
     [Tooltip("Minimum or bottom left 2D vector(X and Z-Axis) of where wisps can spawn in an area.")]
@@ -83,12 +84,14 @@ public class FlowerChildManager : NetworkBehaviour {
     public void AddPoints(GameObject player, int points) {
         playerPoints[player] += points;
         TargetSetScoreDisplay(player.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[player]);
+        inGameScoreboardController.RpcUpdateScoreCard(player.GetComponent<PlayerController>().playerName, playerPoints[player]);
     }
 
     /// <summary>Enable score display on all clients.</summary>
     [ClientRpc]
     public void RpcEnableScoreDisplay() {
         scoreDisplayCanvas.enabled = true;
+        inGameScoreboardController.enabled = true;
     }
 
     private IEnumerator IncreaseSpeedAfterInterval() {

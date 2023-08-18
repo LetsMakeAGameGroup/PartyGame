@@ -12,6 +12,7 @@ public class MazeManager : NetworkBehaviour {
     [SerializeField] private GameObject wispPrefab;
     [SerializeField] private Canvas scoreDisplayCanvas;
     [SerializeField] private TextMeshProUGUI scoreDisplayText;
+    [SerializeField] private InGameScoreboardController inGameScoreboardController;
 
     [HideInInspector] public Dictionary<GameObject, int> playerPoints = new();
 
@@ -81,6 +82,7 @@ public class MazeManager : NetworkBehaviour {
     [ClientRpc]
     public void RpcEnableScoreDisplay() {
         scoreDisplayCanvas.enabled = true;
+        inGameScoreboardController.enabled = true;
     }
 
     [TargetRpc]
@@ -103,6 +105,7 @@ public class MazeManager : NetworkBehaviour {
     public void AddPoints(GameObject player, int points) {
         playerPoints[player] += points;
         TargetSetScoreDisplay(player.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[player]);
+        inGameScoreboardController.RpcUpdateScoreCard(player.GetComponent<PlayerController>().playerName, playerPoints[player]);
     }
 
     /// <summary>Determine order of most points to assign standings in the MinigameHandler.</summary>
