@@ -115,7 +115,7 @@ Material:
     - _AmbientColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColor: {r: 0.6226415, g: 0.39444646, b: 0.18503025, a: 1}
     - _Color: {r: 0.62264144, g: 0.39444643, b: 0.18503022, a: 1}
-    - _EmissionColor: {r: 0.06100529, g: 0.022876985, b: 0.0048526935, a: 1}
+    - _EmissionColor: {r: 0.05, g: 0.05, b: 0.05, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 0, g: 0, b: 0, a: 1}
