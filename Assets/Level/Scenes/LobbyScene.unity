@@ -30818,6 +30818,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
+        type: 3}
+      propertyPath: availableMinigamesSceneNames.Array.data[0]
+      value: MinigameClaimGameScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
+        type: 3}
+      propertyPath: availableMinigamesSceneNames.Array.data[1]
+      value: MinigameFlowerChildScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
+        type: 3}
+      propertyPath: availableMinigamesSceneNames.Array.data[2]
+      value: MinigameHedgeHurdlersScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
+        type: 3}
+      propertyPath: availableMinigamesSceneNames.Array.data[3]
+      value: MinigameVeiledThreatScene
+      objectReference: {fileID: 0}
     - target: {fileID: 4266590026886717783, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
         type: 3}
       propertyPath: sceneId
