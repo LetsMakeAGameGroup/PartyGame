@@ -148,7 +148,9 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  colorRenderer: {fileID: 3808131426411011790}
+  colorRenderers:
+  - {fileID: 1243592165066638003}
+  - {fileID: 3808131426411011790}
   playerOwner: {fileID: 0}
   pointsGiven: 1
 --- !u!65 &3904821863456417461
@@ -270,6 +272,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2d2883561189b642a1adb01a2b9870a, type: 3}
+--- !u!23 &1243592165066638003 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5591641022069177670, guid: e2d2883561189b642a1adb01a2b9870a,
+    type: 3}
+  m_PrefabInstance: {fileID: 6691046803660275701}
+  m_PrefabAsset: {fileID: 0}
 --- !u!23 &3808131426411011790 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -1728699713012358853, guid: e2d2883561189b642a1adb01a2b9870a,
