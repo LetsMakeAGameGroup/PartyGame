@@ -48,7 +48,7 @@ public class PlayerMovementComponent : NetworkBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (!isLocalPlayer) return;
 
@@ -74,15 +74,15 @@ public class PlayerMovementComponent : NetworkBehaviour
 
         if (!characterController.isGrounded)
         {
-            moveDirection += Physics.gravity * Time.deltaTime;
+            moveDirection += Physics.gravity * Time.fixedDeltaTime;
         }
 
-        if (characterController.enabled) characterController.Move(moveDirection * Time.deltaTime);
+        if (characterController.enabled) characterController.Move(moveDirection * Time.fixedDeltaTime);
 
         if (launchVelocity != Vector3.zero)
         {
-            launchTimeElapsed += Time.deltaTime;
-            characterController.Move(launchVelocity * Time.deltaTime);
+            launchTimeElapsed += Time.fixedDeltaTime;
+            characterController.Move(launchVelocity * Time.fixedDeltaTime);
             launchVelocity = Vector3.Slerp(launchVelocity, Vector3.zero, launchTimeElapsed / 4);
         }
 
@@ -146,7 +146,7 @@ public class PlayerMovementComponent : NetworkBehaviour
         
         while (currentRespawnTime > 0 && transform.position.y <= voidYAxis) {
             respawnTimeText.text = $"Respawning in {Mathf.CeilToInt(currentRespawnTime)}...";
-            currentRespawnTime -= Time.deltaTime;
+            currentRespawnTime -= Time.fixedDeltaTime;
             yield return null;
         }
 
