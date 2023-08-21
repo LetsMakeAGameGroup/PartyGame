@@ -19,15 +19,12 @@ public class LobbyUIController : NetworkBehaviour {
         }
     }
 
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            escapeMenu.SetActive(NetworkClient.localPlayer.GetComponent<PlayerMovementComponent>().CanMove);
-        }
+    public void TogglePlayerPause() {
+        NetworkClient.localPlayer.GetComponent<PlayerController>().TogglePause();
     }
 
     public void ToggleMenu() {
-        escapeMenu.SetActive(NetworkClient.localPlayer.GetComponent<PlayerMovementComponent>().CanMove);
-        NetworkClient.localPlayer.GetComponent<PlayerController>().TogglePause();
+        escapeMenu.SetActive(NetworkClient.localPlayer.GetComponent<PlayerController>().isPaused);
     }
 
     public void CopyLobbyCode() {

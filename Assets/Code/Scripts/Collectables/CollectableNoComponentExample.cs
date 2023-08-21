@@ -11,7 +11,7 @@ public class CollectableNoComponentExample : MonoBehaviour, ICollectable {
         if (playerController != null) {
             Debug.Log("Launch Character");
             Vector3 launchDir = playerController.transform.position - transform.position;
-            playerController.MovementComponent.TargetKnockbackCharacter(launchDir * 100);
+            playerController.MovementComponent.TargetKnockbackCharacter(launchDir * 100, 0);
         }
 
     }

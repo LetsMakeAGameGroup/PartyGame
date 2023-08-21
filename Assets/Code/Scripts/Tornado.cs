@@ -16,8 +16,7 @@ public class Tornado : NetworkBehaviour {
         if (other.gameObject.TryGetComponent(out PlayerMovementComponent playerMovementComponent)) {
             Vector3 direction = (other.transform.position - transform.position).normalized * knockbackForce;
             direction.y = verticalForce;
-            playerMovementComponent.TargetKnockbackCharacter(direction);
-            StartCoroutine(playerMovementComponent.StunPlayer(stunTime));
+            playerMovementComponent.TargetKnockbackCharacter(direction, stunTime);
         }
     }
 }
