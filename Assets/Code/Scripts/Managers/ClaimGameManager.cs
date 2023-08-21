@@ -30,7 +30,6 @@ public class ClaimGameManager : NetworkBehaviour {
         StartCoroutine(AddPointsEverySecond());
     }
 
-    /// <summary>Replace maze presets on all clients.</summary>
     [ClientRpc]
     public void RpcEnableTargets() {
         scoreDisplayCanvas.enabled = true;
