@@ -28,6 +28,7 @@ public class PlayerMovementComponent : NetworkBehaviour
     [SerializeField] private int respawnTime = 3;
 
     private CharacterController characterController;
+    private PlayerController playerController;
 
     private bool canMove = true;
     public bool CanMove { get { return canMove; } set { canMove = value; } }
@@ -44,6 +45,7 @@ public class PlayerMovementComponent : NetworkBehaviour
     {
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Player"));  // Not sure why this is needed when they are set to ignore in project settings, but it is.
         characterController = GetComponent<CharacterController>();
+        playerController = GetComponent<PlayerController>();
         networkAnimator = GetComponent<NetworkAnimator>();
     }
 
@@ -61,8 +63,8 @@ public class PlayerMovementComponent : NetworkBehaviour
 
         Vector2 consumedInput = ConsumeInput();
 
-        float curSpeedX = canMove ? consumedInput.y : 0;
-        float curSpeedY = canMove ? consumedInput.x : 0;
+        float curSpeedX = canMove && !playerController.isPaused ? consumedInput.y : 0;
+        float curSpeedY = canMove && !playerController.isPaused ? consumedInput.x : 0;
 
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
@@ -109,7 +111,7 @@ public class PlayerMovementComponent : NetworkBehaviour
 
     public void Jump() 
     {
-        if (canMove && characterController.isGrounded) 
+        if (canMove && !playerController.isPaused && characterController.isGrounded) 
         {
             networkAnimator.SetTrigger("Jump");
             moveDirection.y = jumpSpeed;
@@ -118,8 +120,9 @@ public class PlayerMovementComponent : NetworkBehaviour
 
     /// <summary>Tell the player to knockback themselves.</summary>
     [TargetRpc]
-    public void TargetKnockbackCharacter(Vector3 forceDirection) {
+    public void TargetKnockbackCharacter(Vector3 forceDirection, float timeStunned) {
         KnockbackCharacter(forceDirection);
+        StartCoroutine(StunPlayer(timeStunned));
     }
 
     public void KnockbackCharacter(Vector3 forceDirection) 
@@ -146,7 +149,7 @@ public class PlayerMovementComponent : NetworkBehaviour
         
         while (currentRespawnTime > 0 && transform.position.y <= voidYAxis) {
             respawnTimeText.text = $"Respawning in {Mathf.CeilToInt(currentRespawnTime)}...";
-            currentRespawnTime -= Time.fixedDeltaTime;
+            currentRespawnTime -= Time.deltaTime;
             yield return null;
         }
 
