@@ -29,7 +29,7 @@ public class MinigameScoreScreenController : NetworkBehaviour {
 
     public void SetWinnerCard(string name, int points) {
         winnerNameText.text = name + " is the winner!";
-        winnerScoreText.text = "+" + points.ToString() + " Points";
+        winnerScoreText.text = "+" + points.ToString() + " Point" + (points == 1 ? " " : "s");
 
         playerCards++;
     }

@@ -12,6 +12,6 @@ public class PlayerScoreCardController : MonoBehaviour {
     public void SetupScoreCard(int standing, string name, int points) {
         standingText.text = standings[standing];
         nameText.text = name;
-        pointsText.text = '+' + points.ToString() + " Points";
+        pointsText.text = '+' + points.ToString() + " Point" + (points == 1 ? " " : "s");
     }
 }
