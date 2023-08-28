@@ -41,6 +41,8 @@ public class PlayerMovementComponent : NetworkBehaviour
 
     private bool isAttemptingToRespawn = false;
 
+    private int stunCount = 0;
+
     void Start()
     {
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Player"));  // Not sure why this is needed when they are set to ignore in project settings, but it is.
@@ -134,9 +136,13 @@ public class PlayerMovementComponent : NetworkBehaviour
     }
 
     public IEnumerator StunPlayer(float timeStunned) {
+        stunCount++;
         canMove = false;
+
         yield return new WaitForSeconds(timeStunned);
-        canMove = true;
+
+        stunCount--;
+        if (stunCount == 0) canMove = true;
     }
 
     private IEnumerator PlayerInVoid() {
