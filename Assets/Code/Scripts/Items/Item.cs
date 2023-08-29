@@ -1,6 +1,9 @@
 using UnityEngine;
 
 public abstract class Item : MonoBehaviour {
+    [Header("Item References")]
+    public AudioClip[] useItemClips;
+
     [HideInInspector] public PlayerController playerController;
 
     [Header("Item Settings")]

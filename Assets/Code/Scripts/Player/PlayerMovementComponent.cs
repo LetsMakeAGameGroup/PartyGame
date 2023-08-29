@@ -12,6 +12,10 @@ public class PlayerMovementComponent : NetworkBehaviour
     [SerializeField] private Canvas respawnWarningCanvas;
     [SerializeField] private TMP_Text respawnTimeText;
     [SerializeField] private Animator animator;
+    [SerializeField] private AudioSource jumpAudioSource;
+    [SerializeField] private AudioClip[] jumpAudioClips;
+    [SerializeField] private AudioSource footstepAudioSource;
+    [SerializeField] private AudioClip[] footstepAudioClips;
 
     private NetworkAnimator networkAnimator;
 
@@ -90,9 +94,72 @@ public class PlayerMovementComponent : NetworkBehaviour
             StartCoroutine(PlayerInVoid());
         }
 
-        animator.SetFloat("Velocity", characterController.velocity.magnitude);
+        animator.SetFloat("Velocity", characterController.velocity.x*characterController.velocity.x + characterController.velocity.z*characterController.velocity.z);
         animator.SetBool("Grounded", characterController.isGrounded);
         animator.SetBool("IsFalling", characterController.velocity.y < 0.01f);
+
+        if (footstepAudioClips.Length > 0 && characterController.velocity.magnitude > 0.01f) {
+            StartCoroutine(FootstepAudio());
+        }
+    }
+
+    private IEnumerator FootstepAudio() {
+        while (characterController.velocity.x*characterController.velocity.x + characterController.velocity.z*characterController.velocity.z > 0.01f && characterController.isGrounded && canMove) {
+            float pitch = Input.GetKey(KeyCode.LeftShift) ? runningSpeed/walkingSpeed : 1f;
+            footstepAudioSource.pitch = pitch;
+            CmdChangePitchFootstepAudio(pitch);
+
+            if (!footstepAudioSource.isPlaying) {
+                int footstepIndex = Random.Range(0, footstepAudioClips.Length);
+                footstepAudioSource.clip = footstepAudioClips[footstepIndex];
+                footstepAudioSource.Play();
+                CmdPlayFootstepAudio(footstepIndex);
+            }
+
+            yield return null;
+        }
+
+        footstepAudioSource.Stop();
+        CmdStopFootstepAudio();
+    }
+
+    [Command]
+    private void CmdChangePitchFootstepAudio(float pitch) {
+        RpcChangePitchFootstepAudio(pitch);
+    }
+
+    [ClientRpc]
+    private void RpcChangePitchFootstepAudio(float pitch) {
+        if (GetComponent<NetworkIdentity>().isLocalPlayer) return;
+
+        footstepAudioSource.pitch = pitch;
+    }
+
+    [Command]
+    private void CmdPlayFootstepAudio(int footstepIndex) {
+        RpcPlayFootstepAudio(footstepIndex);
+    }
+
+    [ClientRpc]
+    private void RpcPlayFootstepAudio(int footstepIndex) {
+        if (GetComponent<NetworkIdentity>().isLocalPlayer) return;
+
+        if (footstepAudioClips.Length > footstepIndex) {
+            footstepAudioSource.clip = footstepAudioClips[footstepIndex];
+            footstepAudioSource.Play();
+        }
+    }
+
+    [Command]
+    private void CmdStopFootstepAudio() {
+        RpcStopFootstepAudio();
+    }
+
+    [ClientRpc]
+    private void RpcStopFootstepAudio() {
+        if (GetComponent<NetworkIdentity>().isLocalPlayer) return;
+
+        footstepAudioSource.Stop();
     }
 
     public Vector2 ConsumeInput() 
@@ -113,6 +180,20 @@ public class PlayerMovementComponent : NetworkBehaviour
         {
             networkAnimator.SetTrigger("Jump");
             moveDirection.y = jumpSpeed;
+            CmdPlayJumpAudio();
+        }
+    }
+
+    [Command]
+    private void CmdPlayJumpAudio() {
+        RpcPlayJumpAudio();
+    }
+
+    [ClientRpc]
+    private void RpcPlayJumpAudio() {
+        if (jumpAudioClips.Length > 0) {
+            jumpAudioSource.clip = jumpAudioClips[Random.Range(0, jumpAudioClips.Length)];
+            jumpAudioSource.Play();
         }
     }
 
