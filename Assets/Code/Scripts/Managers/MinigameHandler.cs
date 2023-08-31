@@ -12,6 +12,7 @@ public class MinigameHandler : MonoBehaviour {
     public DisplayTimerUI displayTimerUI;
     public UnityEvent onMinigameStart = new();
     public UnityEvent onMinigameEnd = new();
+    [SerializeField] private CountdownMinigame countdownMinigame;
 
     [HideInInspector] public List<List<NetworkConnectionToClient>> winners = new();
 
@@ -34,6 +35,8 @@ public class MinigameHandler : MonoBehaviour {
         timer.onTimerEnd.AddListener(delegate { FindObjectOfType<MinigameStartScreenController>().RpcSetMovement(true); });
 
         displayTimerUI.RpcStartCountdown(5);
+
+        StartCoroutine(TimeTillCountdownAudio());
     }
 
     /// <summary>Buffer for starting a minigame.</summary>
@@ -88,5 +91,11 @@ public class MinigameHandler : MonoBehaviour {
         yield return new WaitForSeconds(5f);
 
         GameManager.Instance.StartNextRound();
+    }
+
+    private IEnumerator TimeTillCountdownAudio() {
+        yield return new WaitForSeconds(5 - countdownMinigame.countdownAudioSource.clip.length);
+
+        countdownMinigame.RpcPlayCountdownAudio();
     }
 }
