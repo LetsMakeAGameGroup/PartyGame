@@ -4,6 +4,7 @@ using UnityEngine;
 public class WispEffect : NetworkBehaviour {
     [Header("References")]
     public GameObject wispContainer;
+    [SerializeField] private AudioSource dropAudioSource;
 
     [HideInInspector] public GameObject holdingWisp;
 
@@ -21,5 +22,7 @@ public class WispEffect : NetworkBehaviour {
         holdingWisp.transform.position = dropLocation;
 
         holdingWisp = null;
+
+        dropAudioSource.Play();
     }
 }

@@ -1552,6 +1552,10 @@ MonoBehaviour:
   bombPrefab: {fileID: 9187142294380564760, guid: 9225b341fda57a24abb690f3ada66242,
     type: 3}
   spectatorCamera: {fileID: 1109872187}
+  bombAudioClip:
+  - {fileID: 8300000, guid: c4ef01901b55ea04a9d2040269062dfd, type: 3}
+  - {fileID: 8300000, guid: fb923acc50afc194fb5f5c8d5b446c7d, type: 3}
+  - {fileID: 8300000, guid: 4e6e325d00328c34eb9ffb7b9b6de66e, type: 3}
   bombTimeIntervals:
   - 15
   - 15

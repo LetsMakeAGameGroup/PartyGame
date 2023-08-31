@@ -4,6 +4,7 @@ using UnityEngine;
 public class CaptureTarget : NetworkBehaviour {
     [Header("References")]
     [SerializeField] private Renderer[] colorRenderers;
+    [SerializeField] private AudioSource captureAudioSource;
 
     [HideInInspector] public GameObject playerOwner;
 
@@ -14,6 +15,7 @@ public class CaptureTarget : NetworkBehaviour {
     public void SetOwner(GameObject player) {
         playerOwner = player;
         RpcSetColor(player.GetComponent<PlayerController>().playerColor);
+        TargetPlayCaptureAudio(player.GetComponent<NetworkIdentity>().connectionToClient);
     }
 
     [ClientRpc]
@@ -21,5 +23,10 @@ public class CaptureTarget : NetworkBehaviour {
         foreach (Renderer colorRenderer in colorRenderers) {
             colorRenderer.material.color = PlayerColorOptions.options[colorName];
         }
+    }
+
+    [TargetRpc]
+    private void TargetPlayCaptureAudio(NetworkConnectionToClient conn) {
+        captureAudioSource.Play();
     }
 }

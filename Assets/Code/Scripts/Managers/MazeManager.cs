@@ -1,4 +1,5 @@
 using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -13,6 +14,8 @@ public class MazeManager : NetworkBehaviour {
     [SerializeField] private Canvas scoreDisplayCanvas;
     [SerializeField] private TextMeshProUGUI scoreDisplayText;
     [SerializeField] private InGameScoreboardController inGameScoreboardController;
+    [SerializeField] private AudioSource mazeBuildupAudioSource;
+    [SerializeField] private AudioSource mazeCompleteAudioSource;
 
     [HideInInspector] public Dictionary<GameObject, int> playerPoints = new();
 
@@ -37,8 +40,8 @@ public class MazeManager : NetworkBehaviour {
         // Timers for each random maze generation in intervals since game has started.
         for (int i = 1; i < minigameHandler.minigameDuration / randomizeMazeInterval; i++) {
             Timer timer = gameObject.AddComponent(typeof(Timer)) as Timer;
-            timer.duration = randomizeMazeInterval * i;
-            timer.onTimerEnd.AddListener(RandomizeMaze);
+            timer.duration = randomizeMazeInterval * i - mazeBuildupAudioSource.clip.length;
+            timer.onTimerEnd.AddListener(CoroutineBuildupRandomizeMaze);
         }
 
         RpcEnableScoreDisplay();
@@ -78,6 +81,18 @@ public class MazeManager : NetworkBehaviour {
         RpcReplaceMazePreset(lastIndex, mazeIndex);
     }
 
+    public void CoroutineBuildupRandomizeMaze() {
+        StartCoroutine(BuildupRandomizeMaze());
+    }
+
+    public IEnumerator BuildupRandomizeMaze() {
+        RpcPlayMazeBuildupAudio();
+
+        yield return new WaitForSeconds(mazeBuildupAudioSource.clip.length);
+
+        RandomizeMaze();
+    }
+
     /// <summary>Enable score display on all clients.</summary>
     [ClientRpc]
     public void RpcEnableScoreDisplay() {
@@ -93,6 +108,8 @@ public class MazeManager : NetworkBehaviour {
     /// <summary>Replace maze presets on all clients.</summary>
     [ClientRpc]
     public void RpcReplaceMazePreset(int oldIndex, int newIndex) {
+        mazeCompleteAudioSource.Play();
+
         if (oldIndex == -1) {
             startingMaze.SetActive(false);
         } else {
@@ -130,5 +147,10 @@ public class MazeManager : NetworkBehaviour {
             }
             minigameHandler.AddWinner(currentStanding);
         }
+    }
+
+    [ClientRpc]
+    public void RpcPlayMazeBuildupAudio() {
+        mazeBuildupAudioSource.Play();
     }
 }
