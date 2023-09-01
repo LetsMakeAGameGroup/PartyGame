@@ -8,6 +8,8 @@ public class NetworkHUD : MonoBehaviour {
 
     [SerializeField] private TMP_InputField codeInputField = null;
 
+    [SerializeField] private GameObject mainMenuPanel = null;
+
     [SerializeField] private GameObject nameSelectPanel = null;
     [SerializeField] private TMP_InputField nameInputField = null;
     [SerializeField] private TextMeshProUGUI currentNameText = null;
@@ -41,16 +43,18 @@ public class NetworkHUD : MonoBehaviour {
             playerName = PlayerPrefs.GetString("PlayerName");
             currentNameText.text = $"Hello, {playerName}!";
             nameInputField.text = playerName;
+
+            if (PlayerPrefs.HasKey("PlayerColor")) {
+                playerColor = PlayerPrefs.GetString("PlayerColor");
+                currentColorText.text = playerColor;
+                currentColorText.color = PlayerColorOptions.options[playerColor];
+
+                mainMenuPanel.SetActive(true);
+            } else {
+                colorSelectPanel.SetActive(true);
+            }
         } else {
             nameSelectPanel.SetActive(true);
-        }
-
-        if (PlayerPrefs.HasKey("PlayerColor")) {
-            playerColor = PlayerPrefs.GetString("PlayerColor");
-            currentColorText.text = playerColor;
-            currentColorText.color = PlayerColorOptions.options[playerColor];
-        } else {
-            colorSelectPanel.SetActive(true);
         }
     }
 
@@ -68,6 +72,12 @@ public class NetworkHUD : MonoBehaviour {
         currentNameText.text = $"Hello, {playerName}!";
         nameSelectPanel.SetActive(false);
         PlayerPrefs.SetString("PlayerName", playerName);
+
+        if (PlayerPrefs.HasKey("PlayerColor")) {
+            mainMenuPanel.SetActive(true);
+        } else {
+            colorSelectPanel.SetActive(true);
+        }
     }
 
     public void SetColorPref(string colorName) {
@@ -76,5 +86,7 @@ public class NetworkHUD : MonoBehaviour {
         currentColorText.color = PlayerColorOptions.options[playerColor];
         colorSelectPanel.SetActive(false);
         PlayerPrefs.SetString("PlayerColor", colorName);
+
+        mainMenuPanel.SetActive(true);
     }
 }
