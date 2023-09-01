@@ -1,6 +1,7 @@
 using UnityEngine;
 using Mirror;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(PlayerMovementComponent))]
 [RequireComponent(typeof(ItemController))]
@@ -33,6 +34,8 @@ public class PlayerController : NetworkBehaviour, ICollector {
     private RaycastHit sightRayHit;
     private Transform interactableInSightTransform;
     private IInteractable interactableInSight;
+
+    [HideInInspector] public bool isPaused = false;
 
     public GameObject GetCollectorGameObject { get { return gameObject; } }
     public PlayerMovementComponent MovementComponent { get { return playerMovementComponent; } }
@@ -72,6 +75,11 @@ public class PlayerController : NetworkBehaviour, ICollector {
         if (Input.GetKeyDown(KeyCode.Escape)) 
         {
             TogglePause();
+
+            LobbyUIController lobbyUI = null;
+            if (SceneManager.GetActiveScene().name == "LobbyScene" && (lobbyUI = FindObjectOfType<LobbyUIController>()) != null) {
+                lobbyUI.ToggleMenu();
+            }
         }
 
         Vector2 playerInputs = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -82,7 +90,7 @@ public class PlayerController : NetworkBehaviour, ICollector {
             Jump();
         }
 
-        if (playerMovementComponent.CanMove) {
+        if (playerMovementComponent.CanMove && !isPaused) {
             AddCameraPitch(Input.GetAxisRaw("Mouse Y"));
             AddCameraYaw(Input.GetAxisRaw("Mouse X"));
         }
@@ -128,15 +136,14 @@ public class PlayerController : NetworkBehaviour, ICollector {
 
     public void TogglePause() 
     {
-        if (playerMovementComponent.CanMove)
+        isPaused = !isPaused;
+        if (isPaused)
         {
-            playerMovementComponent.CanMove = false;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
         else
         {
-            playerMovementComponent.CanMove = true;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }

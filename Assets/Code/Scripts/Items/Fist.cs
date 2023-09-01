@@ -13,8 +13,7 @@ public class Fist : MeleeWeapon {
         if (target && target.TryGetComponent(out PlayerMovementComponent playerMovementComponent)) {
             Vector3 direction = playerController.transform.forward * knockbackForce;
             direction.y = verticalForce;
-            playerMovementComponent.TargetKnockbackCharacter(direction);
-            StartCoroutine(playerMovementComponent.StunPlayer(stunTime));
+            playerMovementComponent.TargetKnockbackCharacter(direction, stunTime);
 
             if (target.TryGetComponent(out WispEffect wispEffect) && wispEffect.holdingWisp) {
                 wispEffect.RpcDropWisp();

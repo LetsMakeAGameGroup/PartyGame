@@ -17,14 +17,21 @@ public class WispWhiskManager : NetworkBehaviour {
     [Header("Settings")]
     [Tooltip("How many seconds between wisps assign points to their holding player.")]
     [SerializeField] private float timeBetweenGivenPoints = 0.25f;
-    [Tooltip("Minimum or bottom left 2D vector(X and Z-Axis) of where wisps/territories can spawn in an area.")]
-    [SerializeField] private Vector2 minSpawnLocation = Vector2.zero;
-    [Tooltip("Maximum or top right 2D vector(X and Z-Axis) of where wisps/territories can spawn in an area.")]
-    [SerializeField] private Vector2 maxSpawnLocation = Vector2.zero;
+    [Tooltip("Minimum or bottom left 3D vector of where wisps/territories can spawn in a cubed area.")]
+    [SerializeField] private Vector3 minSpawnLocation = Vector3.zero;
+    [Tooltip("Maximum or top right 3D vector of where wisps/territories can spawn in a cubed area.")]
+    [SerializeField] private Vector3 maxSpawnLocation = Vector3.zero;
     [Tooltip("The minimum distance between two wisps when spawning.")]
     [SerializeField] private float distanceBetweenWisps = 1f;
 
     [HideInInspector] public Dictionary<GameObject, int> playerPoints = new();
+
+    private void Awake() {
+        Vector3 bottomSquare = new Vector3(minSpawnLocation.x > maxSpawnLocation.x ? maxSpawnLocation.x : minSpawnLocation.x, minSpawnLocation.y > maxSpawnLocation.y ? maxSpawnLocation.y : minSpawnLocation.y, minSpawnLocation.z > maxSpawnLocation.z ? maxSpawnLocation.z : minSpawnLocation.z);
+        Vector3 topSquare = new Vector3(minSpawnLocation.x < maxSpawnLocation.x ? maxSpawnLocation.x : minSpawnLocation.x, minSpawnLocation.y < maxSpawnLocation.y ? maxSpawnLocation.y : minSpawnLocation.y, minSpawnLocation.z < maxSpawnLocation.z ? maxSpawnLocation.z : minSpawnLocation.z);
+        minSpawnLocation = bottomSquare;
+        maxSpawnLocation = topSquare;
+    }
 
     // Called by server when the minigame starts.
     public void SpawnWisps() {
@@ -48,10 +55,10 @@ public class WispWhiskManager : NetworkBehaviour {
 
     public IEnumerator SpawnWisp() {
         while (true) {
-            Vector2 overheadLocation = new Vector2(Random.Range(minSpawnLocation.x, maxSpawnLocation.x + 1), Random.Range(minSpawnLocation.y, maxSpawnLocation.y + 1));
+            Vector3 overheadLocation = new Vector3(Random.Range(minSpawnLocation.x, maxSpawnLocation.x), maxSpawnLocation.y, Random.Range(minSpawnLocation.z, maxSpawnLocation.z));
 
-            int excludePlayerLayerMask = ~LayerMask.GetMask("Player");
-            if (Physics.Raycast(new Vector3(overheadLocation.x, 20f, overheadLocation.y), Vector3.down, out RaycastHit hit, 20f, excludePlayerLayerMask)) {
+            int excludePlayerLayerMask = LayerMask.NameToLayer("Player") | LayerMask.NameToLayer("PlayerHitbox") | LayerMask.NameToLayer("PlayerHitbox") | LayerMask.NameToLayer("Ignore Raycast");
+            if (Physics.Raycast(overheadLocation, Vector3.down, out RaycastHit hit, Mathf.Abs(minSpawnLocation.y) + Mathf.Abs(maxSpawnLocation.y), excludePlayerLayerMask)) {
                 // Check if there is already a wisp nearby. If there is, it will continue and get a new position.
                 bool isNearWisp = false;
                 Collider[] intersectingColliders = Physics.OverlapSphere(hit.point, distanceBetweenWisps);
@@ -140,5 +147,13 @@ public class WispWhiskManager : NetworkBehaviour {
             }
             minigameHandler.AddWinner(currentStanding);
         }
+    }
+
+    void OnDrawGizmosSelected() {
+        // Display the cubed area of where boxes can spawn
+        Gizmos.color = Color.yellow;
+        Vector3 bottomSquare = new Vector3(minSpawnLocation.x > maxSpawnLocation.x ? maxSpawnLocation.x : minSpawnLocation.x, minSpawnLocation.y > maxSpawnLocation.y ? maxSpawnLocation.y : minSpawnLocation.y, minSpawnLocation.z > maxSpawnLocation.z ? maxSpawnLocation.z : minSpawnLocation.z);
+        Vector3 topSquare = new Vector3(minSpawnLocation.x < maxSpawnLocation.x ? maxSpawnLocation.x : minSpawnLocation.x, minSpawnLocation.y < maxSpawnLocation.y ? maxSpawnLocation.y : minSpawnLocation.y, minSpawnLocation.z < maxSpawnLocation.z ? maxSpawnLocation.z : minSpawnLocation.z);
+        Gizmos.DrawWireCube(new Vector3((topSquare.x + bottomSquare.x)/2, (topSquare.y + bottomSquare.y)/2, (topSquare.z + bottomSquare.z)/2), new Vector3((Mathf.Abs(topSquare.x) + Mathf.Abs(bottomSquare.x)), (Mathf.Abs(topSquare.y) + Mathf.Abs(bottomSquare.y)), (Mathf.Abs(topSquare.z) + Mathf.Abs(bottomSquare.z))));
     }
 }
