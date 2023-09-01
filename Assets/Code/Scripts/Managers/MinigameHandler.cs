@@ -15,6 +15,7 @@ public class MinigameHandler : MonoBehaviour {
     [SerializeField] private CountdownMinigame countdownMinigame;
 
     [HideInInspector] public List<List<NetworkConnectionToClient>> winners = new();
+    private List<GameObject> movableObjects = new();
 
     [Header("Settings")]
     [Tooltip("How many seconds the minigame should last before ending.")]
@@ -24,6 +25,18 @@ public class MinigameHandler : MonoBehaviour {
 
     private bool isRunning = false;
     private int winnerCount = 0;
+
+    private void Start() {
+        var moveObjectOverTimes = FindObjectsOfType<MoveObjectOverTime>();
+        foreach (var moveObjectOverTime in moveObjectOverTimes) {
+            movableObjects.Add(moveObjectOverTime.gameObject);
+        }
+
+        var constantRotations = FindObjectsOfType<ConstantRotation>();
+        foreach (var constantRotation in constantRotations) {
+            movableObjects.Add(constantRotation.gameObject);
+        }
+    }
 
     // This is called once all players are ready to start the minigame. Starts a countdown before calling StartMinigame.
     public void StartCountdown() {
@@ -48,6 +61,17 @@ public class MinigameHandler : MonoBehaviour {
             timer.onTimerEnd = onMinigameEnd;
 
             displayTimerUI.RpcStartCountdown(minigameDuration);
+        }
+
+        // Start moving all movable objects.
+        foreach (var movableObject in movableObjects) {
+            if (movableObject.TryGetComponent(out MoveObjectOverTime moveObjectOverTime)) {
+                moveObjectOverTime.canMove = true;
+            }
+
+            if (movableObject.TryGetComponent(out ConstantRotation constantRotation)) {
+                constantRotation.canMove = true;
+            }
         }
 
         onMinigameStart?.Invoke();

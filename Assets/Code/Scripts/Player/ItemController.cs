@@ -33,7 +33,7 @@ public class ItemController : NetworkBehaviour {
         if (!isLocalPlayer) return;
 
         // Shoot when the player presses the Fire1 button.
-        if (holdingItem && canUse && playerController.MovementComponent && playerController.MovementComponent.CanMove) {
+        if (holdingItem && canUse && !playerController.isPaused && playerController.MovementComponent && playerController.MovementComponent.CanMove) {
             if (holdingItem.GetComponent<MeleeWeapon>()) {
                 if (Input.GetButtonDown("Fire1")) {
                     canUse = false;
