@@ -11,6 +11,7 @@ public class PlayerController : NetworkBehaviour, ICollector {
     [SerializeField] private Renderer colorMaterial;
     [SerializeField] LayerMask interactableLayerMask;
     public Camera playerCamera;
+    [SerializeField] private Transform headTransform;
     [SerializeField] private Renderer[] playerRenderers;
     [SerializeField] private Material transparentMaterial;
 
@@ -161,6 +162,7 @@ public class PlayerController : NetworkBehaviour, ICollector {
         rotationX -= inputValue * lookSpeed;
         rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+        headTransform.transform.localRotation = Quaternion.Euler(rotationX - 25f, 0, 0);
     }
 
     public void AddCameraYaw(float inputValue) 
