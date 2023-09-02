@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Utp;
 
 public class NetworkHUD : MonoBehaviour {
     [Header("References")]
@@ -16,6 +17,7 @@ public class NetworkHUD : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI currentColorText = null;
     [SerializeField] private Button[] colorOptionButtons = null;
 
+    [SerializeField] private Text errorText;
 
     private string playerName = "";
     private string playerColor = "";
@@ -55,12 +57,38 @@ public class NetworkHUD : MonoBehaviour {
     }
 
     public void HostLobby() {
-        networkManager.StartRelayHost(networkManager.maxConnections);
+        if (!networkManager.isLoggedIn) return;
+
+        networkManager.GetComponent<UtpTransport>().useRelay = true;
+        networkManager.GetComponent<UtpTransport>().AllocateRelayServer(networkManager.maxConnections, null,
+        (string joinCode) => {
+            networkManager.relayJoinCode = joinCode;
+
+            networkManager.StartHost();
+        },
+        () => {
+            UtpLog.Error($"Failed to start a Relay host.");
+            errorText.text = "Failed to start a server. Try restarting the game.";
+        });
     }
 
     public void JoinLobby() {
-        networkManager.relayJoinCode = codeInputField.text != "" ? codeInputField.text : "localhost";  // Default to localhost if code inputfield is empty.
-        networkManager.JoinRelayServer();
+        if (!networkManager.isLoggedIn) return;
+
+        if (codeInputField.text == string.Empty) {
+            errorText.text = "Enter a lobby code before attempting to join.";
+            return;
+        }
+
+        networkManager.GetComponent<UtpTransport>().useRelay = true;
+        networkManager.GetComponent<UtpTransport>().ConfigureClientWithJoinCode(codeInputField.text,
+        () => {
+            networkManager.StartClient();
+        },
+        () => {
+            UtpLog.Error($"Failed to join Relay server.");
+            errorText.text = "Failed to find/join server. Is the lobby code correct?";
+        });
     }
 
     public void ChangeName() {
