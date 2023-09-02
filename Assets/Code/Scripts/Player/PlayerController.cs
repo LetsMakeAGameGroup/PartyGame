@@ -88,6 +88,8 @@ public class PlayerController : NetworkBehaviour, ICollector {
         if (Input.GetButton("Jump"))
         {
             Jump();
+        } else if (GetComponent<CharacterController>().isGrounded) {
+            playerMovementComponent.moveDirection.y = 0;
         }
 
         if (playerMovementComponent.CanMove && !isPaused) {
