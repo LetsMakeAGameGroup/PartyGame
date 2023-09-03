@@ -14,6 +14,8 @@ public class WispWhiskManager : NetworkBehaviour {
     [SerializeField] private TextMeshProUGUI scoreDisplayText = null;
     [SerializeField] private InGameScoreboardController inGameScoreboardController;
 
+    private List<GameObject> wisps = new();
+
     [Header("Settings")]
     [Tooltip("How many seconds between wisps assign points to their holding player.")]
     [SerializeField] private float timeBetweenGivenPoints = 0.25f;
@@ -23,6 +25,8 @@ public class WispWhiskManager : NetworkBehaviour {
     [SerializeField] private Vector3 maxSpawnLocation = Vector3.zero;
     [Tooltip("The minimum distance between two wisps when spawning.")]
     [SerializeField] private float distanceBetweenWisps = 1f;
+    [Tooltip("The height or below that a wisp will be forced to respawn if found at.")]
+    [SerializeField] private float wispRespawnHeight = 1f;
 
     [HideInInspector] public Dictionary<GameObject, int> playerPoints = new();
 
@@ -31,6 +35,23 @@ public class WispWhiskManager : NetworkBehaviour {
         Vector3 topSquare = new Vector3(minSpawnLocation.x < maxSpawnLocation.x ? maxSpawnLocation.x : minSpawnLocation.x, minSpawnLocation.y < maxSpawnLocation.y ? maxSpawnLocation.y : minSpawnLocation.y, minSpawnLocation.z < maxSpawnLocation.z ? maxSpawnLocation.z : minSpawnLocation.z);
         minSpawnLocation = bottomSquare;
         maxSpawnLocation = topSquare;
+    }
+
+    private void Update() {
+        if (!isServer) return;
+
+        List<int> removeWispIndex = new();
+        for (int i = 0; i < wisps.Count; i++) {
+            if (wisps[i].transform.position.y <= wispRespawnHeight) {
+                removeWispIndex.Add(i);
+                NetworkServer.Destroy(wisps[i]);
+                StartCoroutine(SpawnWisp());
+            }
+        }
+
+        foreach (var index in removeWispIndex) {
+            wisps.Remove(wisps[index]);
+        }
     }
 
     // Called by server when the minigame starts.
@@ -76,6 +97,7 @@ public class WispWhiskManager : NetworkBehaviour {
                 }
 
                 GameObject wisp = Instantiate(wispPrefab, hit.point, Quaternion.identity);
+                wisps.Add(wisp);
                 NetworkServer.Spawn(wisp);
                 break;
             }
@@ -154,6 +176,6 @@ public class WispWhiskManager : NetworkBehaviour {
         Gizmos.color = Color.yellow;
         Vector3 bottomSquare = new Vector3(minSpawnLocation.x > maxSpawnLocation.x ? maxSpawnLocation.x : minSpawnLocation.x, minSpawnLocation.y > maxSpawnLocation.y ? maxSpawnLocation.y : minSpawnLocation.y, minSpawnLocation.z > maxSpawnLocation.z ? maxSpawnLocation.z : minSpawnLocation.z);
         Vector3 topSquare = new Vector3(minSpawnLocation.x < maxSpawnLocation.x ? maxSpawnLocation.x : minSpawnLocation.x, minSpawnLocation.y < maxSpawnLocation.y ? maxSpawnLocation.y : minSpawnLocation.y, minSpawnLocation.z < maxSpawnLocation.z ? maxSpawnLocation.z : minSpawnLocation.z);
-        Gizmos.DrawWireCube(new Vector3((topSquare.x + bottomSquare.x)/2, (topSquare.y + bottomSquare.y)/2, (topSquare.z + bottomSquare.z)/2), new Vector3((Mathf.Abs(topSquare.x) + Mathf.Abs(bottomSquare.x)), (Mathf.Abs(topSquare.y) + Mathf.Abs(bottomSquare.y)), (Mathf.Abs(topSquare.z) + Mathf.Abs(bottomSquare.z))));
+        Gizmos.DrawWireCube(new Vector3((topSquare.x + bottomSquare.x)/2, (topSquare.y + bottomSquare.y)/2, (topSquare.z + bottomSquare.z)/2), new Vector3(Mathf.Abs(topSquare.x - bottomSquare.x), Mathf.Abs(topSquare.y - bottomSquare.y), Mathf.Abs(topSquare.z - bottomSquare.z)));
     }
 }
