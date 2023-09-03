@@ -154,6 +154,6 @@ public class WispWhiskManager : NetworkBehaviour {
         Gizmos.color = Color.yellow;
         Vector3 bottomSquare = new Vector3(minSpawnLocation.x > maxSpawnLocation.x ? maxSpawnLocation.x : minSpawnLocation.x, minSpawnLocation.y > maxSpawnLocation.y ? maxSpawnLocation.y : minSpawnLocation.y, minSpawnLocation.z > maxSpawnLocation.z ? maxSpawnLocation.z : minSpawnLocation.z);
         Vector3 topSquare = new Vector3(minSpawnLocation.x < maxSpawnLocation.x ? maxSpawnLocation.x : minSpawnLocation.x, minSpawnLocation.y < maxSpawnLocation.y ? maxSpawnLocation.y : minSpawnLocation.y, minSpawnLocation.z < maxSpawnLocation.z ? maxSpawnLocation.z : minSpawnLocation.z);
-        Gizmos.DrawWireCube(new Vector3((topSquare.x + bottomSquare.x)/2, (topSquare.y + bottomSquare.y)/2, (topSquare.z + bottomSquare.z)/2), new Vector3((Mathf.Abs(topSquare.x) + Mathf.Abs(bottomSquare.x)), (Mathf.Abs(topSquare.y) + Mathf.Abs(bottomSquare.y)), (Mathf.Abs(topSquare.z) + Mathf.Abs(bottomSquare.z))));
+        Gizmos.DrawWireCube(new Vector3((topSquare.x + bottomSquare.x)/2, (topSquare.y + bottomSquare.y)/2, (topSquare.z + bottomSquare.z)/2), new Vector3(Mathf.Abs(topSquare.x - bottomSquare.x), Mathf.Abs(topSquare.y - bottomSquare.y), Mathf.Abs(topSquare.z - bottomSquare.z)));
     }
 }
