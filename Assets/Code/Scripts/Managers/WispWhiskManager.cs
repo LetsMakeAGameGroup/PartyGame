@@ -12,7 +12,7 @@ public class WispWhiskManager : NetworkBehaviour {
     [SerializeField] private GameObject wispPrefab;
     [SerializeField] private Canvas scoreDisplayCanvas = null;
     [SerializeField] private TextMeshProUGUI scoreDisplayText = null;
-    [SerializeField] private InGameScoreboardController inGameScoreboardController;
+    public InGameScoreboardController inGameScoreboardController;
 
     private List<GameObject> wisps = new();
 
@@ -42,8 +42,16 @@ public class WispWhiskManager : NetworkBehaviour {
 
         List<int> removeWispIndex = new();
         for (int i = 0; i < wisps.Count; i++) {
+            if (wisps[i] == null) {
+                removeWispIndex.Add(i);
+                continue;
+            }
+
             if (wisps[i].transform.position.y <= wispRespawnHeight) {
                 removeWispIndex.Add(i);
+                if (wisps[i].transform.parent != null && wisps[i].transform.parent.parent != null && wisps[i].transform.parent.parent.TryGetComponent(out WispEffect wispEffect)) {
+                    wispEffect.TargetToggleGlowDisplay(false);
+                }
                 NetworkServer.Destroy(wisps[i]);
                 StartCoroutine(SpawnWisp());
             }
@@ -134,6 +142,7 @@ public class WispWhiskManager : NetworkBehaviour {
                 int pointsToAdd = player.identity.GetComponent<WispEffect>().holdingWisp.GetComponent<CollectableWispEffect>().pointsToAdd;
                 playerPoints[player.identity.gameObject] += pointsToAdd;
                 TargetSetScoreDisplay(player.identity.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[player.identity.gameObject]);
+                inGameScoreboardController.RpcUpdateScoreCard(player.identity.GetComponent<PlayerController>().playerName, playerPoints[player.identity.gameObject]);
             }
         }
 
@@ -144,7 +153,6 @@ public class WispWhiskManager : NetworkBehaviour {
     [TargetRpc]
     public void TargetSetScoreDisplay(NetworkConnectionToClient target, int score) {
         scoreDisplayText.text = score.ToString();
-        inGameScoreboardController.RpcUpdateScoreCard(target.identity.GetComponent<PlayerController>().playerName, playerPoints[target.identity.gameObject]);
     }
 
     /// <summary>Determine order of most points to assign standings in the MinigameHandler.</summary>

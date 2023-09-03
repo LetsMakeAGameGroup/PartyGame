@@ -1,11 +1,15 @@
 using Mirror;
+using System.Collections;
 using UnityEngine;
 
 public class WispEffect : NetworkBehaviour {
     [Header("References")]
     public GameObject wispContainer;
+    public Canvas glowDisplayCanvas;
 
     [HideInInspector] public GameObject holdingWisp;
+
+    [HideInInspector] public bool canPickup = true;
 
     [ClientRpc]
     public void RpcDropWisp() {
@@ -21,5 +25,20 @@ public class WispEffect : NetworkBehaviour {
         holdingWisp.transform.position = dropLocation;
 
         holdingWisp = null;
+
+        StartCoroutine(PickupBuffer());
+    }
+
+    private IEnumerator PickupBuffer() {
+        canPickup = false;
+
+        yield return new WaitForSeconds(0.1f);
+
+        canPickup = true;
+    }
+
+    [TargetRpc]
+    public void TargetToggleGlowDisplay(bool isEnabled) {
+        glowDisplayCanvas.enabled = isEnabled;
     }
 }

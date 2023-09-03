@@ -17,6 +17,7 @@ public class Fist : MeleeWeapon {
 
             if (target.TryGetComponent(out WispEffect wispEffect) && wispEffect.holdingWisp) {
                 wispEffect.RpcDropWisp();
+                wispEffect.TargetToggleGlowDisplay(false);
             }
 
             if (target.TryGetComponent(out BombEffect bombEffect) && !bombEffect.holdingBomb && playerController.GetComponent<BombEffect>().holdingBomb) {

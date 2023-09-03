@@ -10,9 +10,10 @@ public class CollectableWispEffect : NetworkBehaviour {
         if (!other.CompareTag("Player") || !isServer || !other.GetComponent<PlayerMovementComponent>() || !other.GetComponent<PlayerMovementComponent>().CanMove) return;
 
         if (other.TryGetComponent(out WispEffect wispEffect)) {
-            if (wispEffect.holdingWisp) return;
+            if (wispEffect.holdingWisp || !wispEffect.canPickup) return;
 
             RpcSetParent(other.gameObject);
+            wispEffect.TargetToggleGlowDisplay(true);
         }
     }
 
