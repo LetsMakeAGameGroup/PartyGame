@@ -123,6 +123,21 @@ PrefabInstance:
       propertyPath: jumpSpeed
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 3807872867980839782, guid: b17abd573cf7763498436116a9104985,
+        type: 3}
+      propertyPath: runningSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3807872867980839782, guid: b17abd573cf7763498436116a9104985,
+        type: 3}
+      propertyPath: walkingSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5950009156280605217, guid: b17abd573cf7763498436116a9104985,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b17abd573cf7763498436116a9104985, type: 3}
 --- !u!4 &3443280596671168678 stripped
@@ -172,7 +187,6 @@ MonoBehaviour:
   syncInterval: 0
   wispContainer: {fileID: 1113838010378508404}
   holdingWisp: {fileID: 0}
-  distanceDroppedFromGround: 0.5
 --- !u!1001 &5790166277721940979
 PrefabInstance:
   m_ObjectHideFlags: 0
