@@ -38,7 +38,7 @@ public class PlayerMovementComponent : NetworkBehaviour
     public bool CanMove { get { return canMove; } set { canMove = value; } }
 
     private Vector2 receivedInput;
-    private Vector3 moveDirection;
+    [HideInInspector] public Vector3 moveDirection;
 
     private Vector3 launchVelocity;
     private float launchTimeElapsed;
