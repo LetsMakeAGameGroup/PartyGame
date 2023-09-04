@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Canvas))]
+[RequireComponent(typeof(Animator))]
 public class InGameScoreboardController : NetworkBehaviour {
     [Header("References")]
     [SerializeField] private Transform playerCurrentScoreHolderTransform;
     [SerializeField] private GameObject playerCurrentScoreCardPrefab;
 
     private Dictionary<string, PlayerCurrentScoreCardController> playerCurrentScoreCards = new();
-    private Canvas canvas;
+    private Animator animator;
 
     private void OnEnable() {
-        canvas = GetComponent<Canvas>();
+        animator = GetComponent<Animator>();
         
         if (!isServer) return;
 
@@ -35,9 +36,9 @@ public class InGameScoreboardController : NetworkBehaviour {
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Tab)) {
-            canvas.enabled = true;
+            animator.SetBool("isEnabled", true);
         } else if (Input.GetKeyUp(KeyCode.Tab)) {
-            canvas.enabled = false;
+            animator.SetBool("isEnabled", false);
         }
     }
 
