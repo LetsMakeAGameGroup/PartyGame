@@ -29,6 +29,7 @@ public class Territory : NetworkBehaviour {
             NetworkServer.Destroy(other.GetComponent<WispEffect>().holdingWisp);
             wispWhiskManager.playerPoints[other.gameObject] += pointsToAdd;
             wispWhiskManager.TargetSetScoreDisplay(other.GetComponent<NetworkIdentity>().connectionToClient, wispWhiskManager.playerPoints[other.gameObject]);
+            wispWhiskManager.inGameScoreboardController.RpcUpdateScoreCard(other.GetComponent<PlayerController>().playerName, wispWhiskManager.playerPoints[other.gameObject]);
             StartCoroutine(wispWhiskManager.SpawnWisp());
             StartCoroutine(wispWhiskManager.SpawnTerritory());
             isActive = false;

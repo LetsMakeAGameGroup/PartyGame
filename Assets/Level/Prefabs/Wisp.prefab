@@ -66,7 +66,7 @@ VisualEffect:
       m_Array: []
     m_Vector3f:
       m_Array:
-      - m_Value: {x: 0.4, y: 6, z: 0.4}
+      - m_Value: {x: 0.25, y: 8, z: 0.25}
         m_Name: FlareSize
         m_Overridden: 1
     m_Vector4f:
@@ -85,7 +85,13 @@ VisualEffect:
     m_Gradient:
       m_Array: []
     m_NamedObject:
-      m_Array: []
+      m_Array:
+      - m_Value: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Name: Texture01_Glow
+        m_Overridden: 1
+      - m_Value: {fileID: 2800000, guid: 6fe48aef216ff7c4287bd3dfe7625f24, type: 3}
+        m_Name: Texture02_Flare
+        m_Overridden: 1
     m_Bool:
       m_Array: []
 --- !u!73398921 &441115351
