@@ -22,6 +22,8 @@ public class MinigameHandler : MonoBehaviour {
     public float minigameDuration = 120f;
     [Tooltip("If the game should automatically end after MinigameDuration seconds.")]
     [SerializeField] private bool isTimerBased = true;
+    [Tooltip("The amount of seconds the score screen is shown.")]
+    [SerializeField] private float scoreScreenTime = 10f;
 
     private bool isRunning = false;
     private int winnerCount = 0;
@@ -110,9 +112,9 @@ public class MinigameHandler : MonoBehaviour {
     }
 
     IEnumerator EndGameTransition() {
-        scoreScreenController.RpcEnableUI();
+        scoreScreenController.RpcEnableUI(scoreScreenTime);
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(scoreScreenTime);
 
         GameManager.Instance.StartNextRound();
     }

@@ -13,12 +13,14 @@ public abstract class MeleeWeapon : Weapon {
 
         if (reverseHits.Length > 1) {
             RaycastHit closestHit = reverseHits[reverseHits.Length - 1];
+            bool isDefaultHit = true;
             if (reverseHits.Length > 1) {
                 for (int i = 0; i < reverseHits.Length; i++) {
                     if (reverseHits[i].collider.transform.parent && reverseHits[i].collider.transform.parent.gameObject == playerController.gameObject) continue;
 
-                    if (reverseHits[i].distance < closestHit.distance) {
+                    if (isDefaultHit || reverseHits[i].distance < closestHit.distance) {
                         closestHit = reverseHits[i];
+                        isDefaultHit = false;
                     }
                 }
             }
