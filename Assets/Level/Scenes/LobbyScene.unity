@@ -34829,6 +34829,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 516234723998126791, guid: 8667665e927f64b4288e731ee8e3fb83,
+        type: 3}
+      propertyPath: m_text
+      value: Only Host Can Start
+      objectReference: {fileID: 0}
     - target: {fileID: 3457083343839586444, guid: 8667665e927f64b4288e731ee8e3fb83,
         type: 3}
       propertyPath: m_Name
@@ -34947,6 +34952,11 @@ PrefabInstance:
     - target: {fileID: 7525016239016876332, guid: 8667665e927f64b4288e731ee8e3fb83,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9078402021096584220, guid: 8667665e927f64b4288e731ee8e3fb83,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

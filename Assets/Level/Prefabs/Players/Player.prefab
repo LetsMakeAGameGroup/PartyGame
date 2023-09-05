@@ -1362,7 +1362,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Dannan
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8555e8b917a91b445b3639be86d4cfeb, type: 2}
   m_sharedMaterial: {fileID: 1600640875113745798, guid: 8555e8b917a91b445b3639be86d4cfeb,
@@ -1390,7 +1390,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.55
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

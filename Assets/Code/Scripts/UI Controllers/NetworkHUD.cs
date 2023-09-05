@@ -84,6 +84,7 @@ public class NetworkHUD : MonoBehaviour {
             return;
         }
 
+        networkManager.relayJoinCode = codeInputField.text;
         networkManager.GetComponent<UtpTransport>().useRelay = true;
         networkManager.GetComponent<UtpTransport>().ConfigureClientWithJoinCode(codeInputField.text,
         () => {

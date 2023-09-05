@@ -102,13 +102,13 @@ public class PlayerMovementComponent : NetworkBehaviour
         animator.SetBool("Grounded", characterController.isGrounded);
         animator.SetBool("IsFalling", characterController.velocity.y < 0.01f);
 
-        if (footstepAudioClips.Length > 0 && characterController.velocity.magnitude > 0.01f) {
+        if (footstepAudioClips.Length > 0 && !footstepAudioSource.isPlaying) {
             StartCoroutine(FootstepAudio());
         }
     }
 
     private IEnumerator FootstepAudio() {
-        while (characterController.velocity.x*characterController.velocity.x + characterController.velocity.z*characterController.velocity.z > 0.01f && characterController.isGrounded && canMove) {
+        while (characterController.velocity.x*characterController.velocity.x + characterController.velocity.z*characterController.velocity.z > 0.01f && (characterController.isGrounded || moveDirection.y == 0) && canMove) {
             float pitch = Input.GetKey(KeyCode.LeftShift) ? runningSpeed/walkingSpeed : 1f;
             footstepAudioSource.pitch = pitch;
             CmdChangePitchFootstepAudio(pitch);
