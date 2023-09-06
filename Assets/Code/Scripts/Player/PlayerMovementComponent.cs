@@ -3,6 +3,7 @@ using UnityEngine;
 using Mirror;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(NetworkAnimator))]
@@ -18,6 +19,7 @@ public class PlayerMovementComponent : NetworkBehaviour
     [SerializeField] private AudioClip[] footstepAudioClips;
 
     private NetworkAnimator networkAnimator;
+    private GameObject minigameManager;
 
     [Header("Settings")]
     [Tooltip("How fast the player walks.")]
@@ -250,6 +252,29 @@ public class PlayerMovementComponent : NetworkBehaviour
             characterController.enabled = false;
             transform.SetPositionAndRotation(randomSpawn.transform.position, randomSpawn.transform.rotation);
             characterController.enabled = true;
+
+            if (minigameManager != null) {
+                CmdReducePoints(minigameManager);
+            }
+        }
+    }
+
+    [TargetRpc]
+    public void TargetSetMinigameManagerObject(GameObject _minigameManager) {
+        this.minigameManager = _minigameManager;
+    }
+
+    [Command]
+    private void CmdReducePoints(GameObject _minigameManager) {
+        // Look away for this one...
+        if (_minigameManager.TryGetComponent(out ClaimGameManager claimGameManager)) {
+            claimGameManager.RespawnPointDeduction(gameObject);
+        } else if (_minigameManager.TryGetComponent(out FlowerChildManager flowerChildManager)) {
+            flowerChildManager.RespawnPointDeduction(gameObject);
+        } else if (_minigameManager.TryGetComponent(out MazeManager mazeManager)) {
+            mazeManager.RespawnPointDeduction(gameObject);
+        } else if (_minigameManager.TryGetComponent(out WispWhiskManager wispWhiskManager)) {
+            wispWhiskManager.RespawnPointDeduction(gameObject);
         }
     }
 }

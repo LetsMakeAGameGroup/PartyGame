@@ -27,6 +27,8 @@ public class FlowerChildManager : NetworkBehaviour {
     [SerializeField] private float speedIncrease = 2f;
     [Tooltip("How many seconds between increasing the Tornado speed.")]
     [SerializeField] private float speedIncreaseTimeInterval = 30f;
+    [Tooltip("How many points to reduce from the player when they fall. Player's points will not surpass 0.")]
+    [SerializeField] private int respawnPointDeduction = 0;
 
     private Dictionary<GameObject, int> playerPoints = new();
 
@@ -34,6 +36,7 @@ public class FlowerChildManager : NetworkBehaviour {
     public void StartGame() {
         foreach (var player in CustomNetworkManager.Instance.ClientDatas.Keys) {
             playerPoints.Add(player.identity.gameObject, 0);
+            player.identity.GetComponent<PlayerMovementComponent>().TargetSetMinigameManagerObject(gameObject);
         }
 
         StartCoroutine(SpawnWisp());
@@ -131,5 +134,17 @@ public class FlowerChildManager : NetworkBehaviour {
             }
             minigameHandler.AddWinner(currentStanding);
         }
+    }
+
+    public void RespawnPointDeduction(GameObject player) {
+        if (respawnPointDeduction == 0) return;
+
+        playerPoints[player] -= respawnPointDeduction;
+        if (playerPoints[player] < 0) {
+            playerPoints[player] = 0;
+        }
+
+        TargetSetScoreDisplay(player.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[player]);
+        inGameScoreboardController.RpcUpdateScoreCard(player.GetComponent<PlayerController>().playerName, playerPoints[player]);
     }
 }

@@ -28,6 +28,8 @@ public class MazeManager : NetworkBehaviour {
     [SerializeField] private int gridSize = 10;
     [Tooltip("How long one length is of each container.")]
     [SerializeField] private float containerLength = 10f;
+    [Tooltip("How many points to reduce from the player when they fall. Player's points will not surpass 0.")]
+    [SerializeField] private int respawnPointDeduction = 0;
 
     private int mazeIndex = -1;
 
@@ -35,6 +37,7 @@ public class MazeManager : NetworkBehaviour {
     public void StartMazeIntervals() {
         foreach (var player in CustomNetworkManager.Instance.ClientDatas.Keys) {
             playerPoints.Add(player.identity.gameObject, 0);
+            player.identity.GetComponent<PlayerMovementComponent>().TargetSetMinigameManagerObject(gameObject);
         }
 
         // Timers for each random maze generation in intervals since game has started.
@@ -152,5 +155,17 @@ public class MazeManager : NetworkBehaviour {
     [ClientRpc]
     public void RpcPlayMazeBuildupAudio() {
         mazeBuildupAudioSource.Play();
+    }
+
+    public void RespawnPointDeduction(GameObject player) {
+        if (respawnPointDeduction == 0) return;
+
+        playerPoints[player] -= respawnPointDeduction;
+        if (playerPoints[player] < 0) {
+            playerPoints[player] = 0;
+        }
+
+        TargetSetScoreDisplay(player.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[player]);
+        inGameScoreboardController.RpcUpdateScoreCard(player.GetComponent<PlayerController>().playerName, playerPoints[player]);
     }
 }

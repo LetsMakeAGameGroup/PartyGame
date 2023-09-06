@@ -27,6 +27,8 @@ public class WispWhiskManager : NetworkBehaviour {
     [SerializeField] private float distanceBetweenWisps = 1f;
     [Tooltip("The height or below that a wisp will be forced to respawn if found at.")]
     [SerializeField] private float wispRespawnHeight = 1f;
+    [Tooltip("How many points to reduce from the player when they fall. Player's points will not surpass 0.")]
+    [SerializeField] private int respawnPointDeduction = 0;
 
     [HideInInspector] public Dictionary<GameObject, int> playerPoints = new();
 
@@ -66,6 +68,7 @@ public class WispWhiskManager : NetworkBehaviour {
     public void SpawnWisps() {
         foreach (var player in CustomNetworkManager.Instance.ClientDatas.Keys) {
             playerPoints.Add(player.identity.gameObject, 0);
+            player.identity.GetComponent<PlayerMovementComponent>().TargetSetMinigameManagerObject(gameObject);
         }
 
         //Spawn wisps and territories here
@@ -177,6 +180,18 @@ public class WispWhiskManager : NetworkBehaviour {
             }
             minigameHandler.AddWinner(currentStanding);
         }
+    }
+
+    public void RespawnPointDeduction(GameObject player) {
+        if (respawnPointDeduction == 0) return;
+
+        playerPoints[player] -= respawnPointDeduction;
+        if (playerPoints[player] < 0) {
+            playerPoints[player] = 0;
+        }
+
+        TargetSetScoreDisplay(player.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[player]);
+        inGameScoreboardController.RpcUpdateScoreCard(player.GetComponent<PlayerController>().playerName, playerPoints[player]);
     }
 
     void OnDrawGizmosSelected() {
