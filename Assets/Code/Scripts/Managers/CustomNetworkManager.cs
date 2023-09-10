@@ -6,8 +6,13 @@ using System;
 using Utp;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
+using System.Threading.Tasks;
+using UnityEngine.UI;
 
 public class CustomNetworkManager : RelayNetworkManager {
+    [Header("Custom References")]
+    public Text errorText;
+
     public Dictionary<NetworkConnectionToClient, ClientData> ClientDatas { get; private set; }
 
     /// <summary>Prevents OnServerSceneChanged from being called when the server first goes online.</summary>
@@ -83,9 +88,17 @@ public class CustomNetworkManager : RelayNetworkManager {
             }
             Debug.Log("Logged into Unity, player ID: " + AuthenticationService.Instance.PlayerId);
             isLoggedIn = true;
+            if (errorText) {
+                errorText.text = "Logged in successfully!";
+            }
         } catch (Exception e) {
             isLoggedIn = false;
             Debug.Log(e);
+            if (errorText) {
+                errorText.text = "Failed to login to Authetication Services. Continuing to attempt...";
+            }
+            await Task.Delay(1000);
+            UnityLogin();
         }
     }
 

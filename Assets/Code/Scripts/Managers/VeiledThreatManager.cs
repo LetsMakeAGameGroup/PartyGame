@@ -9,6 +9,7 @@ public class VeiledThreatManager : NetworkBehaviour {
     [SerializeField] private MinigameHandler minigameHandler;
     [SerializeField] private GameObject bombPrefab;
     [SerializeField] private GameObject spectatorCamera;
+    [SerializeField] private AudioClip[] bombAudioClip;
 
     private GameObject currentBomb;
     private List<NetworkConnectionToClient> playerDeaths = new();
@@ -74,8 +75,11 @@ public class VeiledThreatManager : NetworkBehaviour {
         minigameHandler.displayTimerUI.RpcStartCountdown(currentBombTimeInterval);
         yield return new WaitForSeconds(currentBombTimeInterval);
 
+
+        // Eliminate the bomb holder.
         GameObject eliminatedPlayer = currentBomb.transform.root.gameObject;
         if (eliminatedPlayer != null) {
+            RpcPlayBombAudio(eliminatedPlayer.transform.position);
             activePlayerBombCarrierTime.Remove(eliminatedPlayer);
             playerDeaths.Add(eliminatedPlayer.GetComponent<NetworkIdentity>().connectionToClient);
             NetworkConnectionToClient bombCarrierConn = eliminatedPlayer.GetComponent<NetworkIdentity>().connectionToClient;
@@ -84,6 +88,13 @@ public class VeiledThreatManager : NetworkBehaviour {
         }
 
         StartCoroutine(AssignBombCarrier());
+    }
+
+    [ClientRpc]
+    private void RpcPlayBombAudio(Vector3 pos) {
+        if (bombAudioClip.Length > 0) {
+            AudioSource.PlayClipAtPoint(bombAudioClip[Random.Range(0, bombAudioClip.Length)], pos);
+        }
     }
 
     public IEnumerator AddBombCarrierTimer() {

@@ -47,6 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb1f46a6d6584fb4781a1ab6863dfe90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useItemClips:
+  - {fileID: 8300000, guid: 478b50113d3de664d867d0a186a72590, type: 3}
+  - {fileID: 8300000, guid: 3509db4c8cbe90543a6440ec4f83355f, type: 3}
+  - {fileID: 8300000, guid: 3d5b7660367eedd479f1f38a03ad0e33, type: 3}
   playerController: {fileID: 0}
   itemName: Berry Blaster
   useCooldown: 1

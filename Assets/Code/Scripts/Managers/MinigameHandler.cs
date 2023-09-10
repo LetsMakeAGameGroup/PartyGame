@@ -12,6 +12,7 @@ public class MinigameHandler : MonoBehaviour {
     public DisplayTimerUI displayTimerUI;
     public UnityEvent onMinigameStart = new();
     public UnityEvent onMinigameEnd = new();
+    [SerializeField] private CountdownMinigame countdownMinigame;
 
     [HideInInspector] public List<List<NetworkConnectionToClient>> winners = new();
     private List<GameObject> movableObjects = new();
@@ -21,6 +22,8 @@ public class MinigameHandler : MonoBehaviour {
     public float minigameDuration = 120f;
     [Tooltip("If the game should automatically end after MinigameDuration seconds.")]
     [SerializeField] private bool isTimerBased = true;
+    [Tooltip("The amount of seconds the score screen is shown.")]
+    [SerializeField] private float scoreScreenTime = 10f;
 
     private bool isRunning = false;
     private int winnerCount = 0;
@@ -47,6 +50,8 @@ public class MinigameHandler : MonoBehaviour {
         timer.onTimerEnd.AddListener(delegate { FindObjectOfType<MinigameStartScreenController>().RpcSetMovement(true); });
 
         displayTimerUI.RpcStartCountdown(5);
+
+        StartCoroutine(TimeTillCountdownAudio());
     }
 
     /// <summary>Buffer for starting a minigame.</summary>
@@ -107,10 +112,16 @@ public class MinigameHandler : MonoBehaviour {
     }
 
     IEnumerator EndGameTransition() {
-        scoreScreenController.RpcEnableUI();
+        scoreScreenController.RpcEnableUI(scoreScreenTime);
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(scoreScreenTime);
 
         GameManager.Instance.StartNextRound();
+    }
+
+    private IEnumerator TimeTillCountdownAudio() {
+        yield return new WaitForSeconds(5 - countdownMinigame.countdownAudioSource.clip.length);
+
+        countdownMinigame.RpcPlayCountdownAudio();
     }
 }

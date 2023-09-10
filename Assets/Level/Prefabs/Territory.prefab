@@ -4925,6 +4925,7 @@ MonoBehaviour:
   animators:
   - {fileID: 2710114318740105926}
   - {fileID: 2710114318350163170}
+  depositAudioClip: {fileID: 8300000, guid: 0d1bc6aefa66d60439c595fb3515943a, type: 3}
   wispWhiskManager: {fileID: 0}
   pointsToAdd: 10
   isActive: 0

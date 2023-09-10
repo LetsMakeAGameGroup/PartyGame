@@ -5,17 +5,18 @@ using UnityEngine.UI;
 
 public class LobbyUIController : NetworkBehaviour {
     [Header("References")]
-    public TextMeshProUGUI codeText;
+    public TMP_Text codeText;
     [SerializeField] private GameObject escapeMenu;
     [SerializeField] private Button startButton;
 
     private void Start() {
-        if (codeText.text != null && CustomNetworkManager.Instance.relayJoinCode != null) {
+        if (codeText != null && CustomNetworkManager.Instance.relayJoinCode != null) {
             codeText.text = CustomNetworkManager.Instance.relayJoinCode.ToUpper();
-		}
+        }
 
         if (isServer) {
             startButton.interactable = true;
+            startButton.GetComponentInChildren<TMP_Text>().text = "Start Game";
         }
     }
 

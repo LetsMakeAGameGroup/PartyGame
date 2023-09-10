@@ -2,9 +2,10 @@ using UnityEngine;
 using Mirror;
 
 public class Territory : NetworkBehaviour {
-    [Header("Settings")]
+    [Header("References")]
     [SerializeField] private GameObject territoryVisualToggle;
     [SerializeField] private Animator[] animators;
+    [SerializeField] private AudioClip depositAudioClip;
 
     [HideInInspector] public WispWhiskManager wispWhiskManager;
 
@@ -24,12 +25,21 @@ public class Territory : NetworkBehaviour {
         if (!isActive || !isServer || !other.CompareTag("Player")) return;
 
         if (other.GetComponent<WispEffect>() && other.GetComponent<WispEffect>().holdingWisp) {
+            RpcPlayDepositAudio(other.transform.position);
             NetworkServer.Destroy(other.GetComponent<WispEffect>().holdingWisp);
             wispWhiskManager.playerPoints[other.gameObject] += pointsToAdd;
             wispWhiskManager.TargetSetScoreDisplay(other.GetComponent<NetworkIdentity>().connectionToClient, wispWhiskManager.playerPoints[other.gameObject]);
+            wispWhiskManager.inGameScoreboardController.RpcUpdateScoreCard(other.GetComponent<PlayerController>().playerName, wispWhiskManager.playerPoints[other.gameObject]);
             StartCoroutine(wispWhiskManager.SpawnWisp());
             StartCoroutine(wispWhiskManager.SpawnTerritory());
             isActive = false;
+        }
+    }
+
+    [ClientRpc]
+    private void RpcPlayDepositAudio(Vector3 pos) {
+        if (depositAudioClip != null) {
+            AudioSource.PlayClipAtPoint(depositAudioClip, pos);
         }
     }
 

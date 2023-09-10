@@ -52,8 +52,8 @@ MonoBehaviour:
   - MinigameClaimGameScene
   - MinigameFlowerChildScene
   - MinigameHedgeHurdlersScene
-  - MinigameVeiledThreatScene
   - MinigameWispWhiskScene
+  - MinigameRiverRuckus
   maxRounds: 5
   round: 0
 --- !u!114 &4266590026886717783

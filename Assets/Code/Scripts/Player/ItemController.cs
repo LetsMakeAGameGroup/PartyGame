@@ -10,6 +10,7 @@ public class ItemController : NetworkBehaviour {
     public GameObject itemHolder;
     public GameObject holdingItem;
     [SerializeField] private ItemHUDController itemHUDController;
+    [SerializeField] private AudioSource useItemAudioSource;
 
     private PlayerController playerController;
     private NetworkAnimator networkAnimator;
@@ -51,6 +52,15 @@ public class ItemController : NetworkBehaviour {
     [Command]
     private void CmdUseItem() {
         holdingItem.GetComponent<Item>().Use();
+        RpcPlayUseAudio();
+    }
+
+    [ClientRpc]
+    public void RpcPlayUseAudio() {
+        if (holdingItem.GetComponent<Item>().useItemClips.Length > 0) {
+            useItemAudioSource.clip = holdingItem.GetComponent<Item>().useItemClips[Random.Range(0, holdingItem.GetComponent<Item>().useItemClips.Length)];
+            useItemAudioSource.Play();
+        }
     }
 
     [TargetRpc]
