@@ -69,6 +69,7 @@ MonoBehaviour:
   - {fileID: 3452310532601903974, guid: 6624f024a3ccd26448c31dc77f0e6c3f, type: 3}
   - {fileID: 3452310532601903974, guid: 7cd99c65db1414b4cba03b0d68b39a6a, type: 3}
   - {fileID: 3452310532601903974, guid: 8066cb79995da8e4f90da9b517eba4bf, type: 3}
+  - {fileID: 3452310532601903974, guid: 12c1db909c83f1f40b3fdf920ebff07e, type: 3}
   - {fileID: 7524440669711000338, guid: d5009c5ef37e7b04ca20d67569c28f95, type: 3}
   - {fileID: 9187142294380564760, guid: 727070cf41f2f4a4a9393778975def67, type: 3}
   - {fileID: 9187142294380564760, guid: 9225b341fda57a24abb690f3ada66242, type: 3}
@@ -85,6 +86,7 @@ MonoBehaviour:
     deliveryTimeEmaDuration: 2
   timeInterpolationGui: 0
   relayJoinCode: 
+  errorText: {fileID: 0}
   isLoggedIn: 0
 --- !u!114 &4429846812453579608
 MonoBehaviour:

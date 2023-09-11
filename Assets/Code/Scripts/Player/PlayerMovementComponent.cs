@@ -3,6 +3,7 @@ using UnityEngine;
 using Mirror;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.Rendering.PostProcessing;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(NetworkAnimator))]
@@ -16,6 +17,8 @@ public class PlayerMovementComponent : NetworkBehaviour
     [SerializeField] private AudioClip[] jumpAudioClips;
     [SerializeField] private AudioSource footstepAudioSource;
     [SerializeField] private AudioClip[] footstepAudioClips;
+    [SerializeField] private PostProcessProfile surfacePostProcessProfile;
+    [SerializeField] private PostProcessProfile voidPostProcessProfile;
 
     private NetworkAnimator networkAnimator;
 
@@ -233,6 +236,9 @@ public class PlayerMovementComponent : NetworkBehaviour
 
         respawnTimeText.text = $"Respawning in {Mathf.CeilToInt(currentRespawnTime)}...";
         respawnWarningCanvas.enabled = true;
+
+        playerController.playerCamera.GetComponent<PostProcessVolume>().profile = voidPostProcessProfile;
+        RenderSettings.fog = true;
         
         while (currentRespawnTime > 0 && transform.position.y <= voidYAxis) {
             respawnTimeText.text = $"Respawning in {Mathf.CeilToInt(currentRespawnTime)}...";
@@ -242,6 +248,9 @@ public class PlayerMovementComponent : NetworkBehaviour
 
         isAttemptingToRespawn = false;
         respawnWarningCanvas.enabled = false;
+
+        playerController.playerCamera.GetComponent<PostProcessVolume>().profile = surfacePostProcessProfile;
+        RenderSettings.fog = false;
 
         if (transform.position.y <= voidYAxis) {
             GameObject[] currentSpawns = FindObjectOfType(typeof(SpawnHolder)).GetComponent<SpawnHolder>().currentSpawns.ToArray();
