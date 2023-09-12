@@ -17,6 +17,7 @@ public class BerryBlaster : RangedWeapon {
         bullet.transform.LookAt(endPos);
         bullet.GetComponent<Bullet>().bulletVelocity = bullet.transform.forward * bulletSpeed;
         bullet.GetComponent<Bullet>().shooterPlayer = playerController.gameObject;
+        bullet.GetComponent<Bullet>().hitDistance = hitDistance;
         bullet.GetComponent<BerryBullet>().bulletColor = playerController.playerColor;
         NetworkServer.Spawn(bullet);
     }
