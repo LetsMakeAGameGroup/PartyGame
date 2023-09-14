@@ -30823,27 +30823,27 @@ PrefabInstance:
     - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
         type: 3}
       propertyPath: availableMinigamesSceneNames.Array.data[0]
-      value: MinigameClaimGameScene
+      value: MinigameHedgeHurdlersScene
       objectReference: {fileID: 0}
     - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
         type: 3}
       propertyPath: availableMinigamesSceneNames.Array.data[1]
-      value: MinigameClaimGameScene
+      value: MinigameHedgeHurdlersScene
       objectReference: {fileID: 0}
     - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
         type: 3}
       propertyPath: availableMinigamesSceneNames.Array.data[2]
-      value: MinigameClaimGameScene
+      value: MinigameHedgeHurdlersScene
       objectReference: {fileID: 0}
     - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
         type: 3}
       propertyPath: availableMinigamesSceneNames.Array.data[3]
-      value: MinigameClaimGameScene
+      value: MinigameHedgeHurdlersScene
       objectReference: {fileID: 0}
     - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
         type: 3}
       propertyPath: availableMinigamesSceneNames.Array.data[4]
-      value: MinigameClaimGameScene
+      value: MinigameHedgeHurdlersScene
       objectReference: {fileID: 0}
     - target: {fileID: 4266590026886717783, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
         type: 3}
