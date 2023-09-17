@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 /// <summary>Handles that status of a minigame. Will slightly change how this works soon.</summary>
 // TODO: Instead of handling this on every indivdual minigame, only one instance throughout the game would be better.
-public class MinigameHandler : MonoBehaviour {
+public class MinigameHandler : NetworkBehaviour {
     [Header("References")]
     [SerializeField] private MinigameScoreScreenController scoreScreenController;
     public DisplayTimerUI displayTimerUI;
@@ -29,6 +29,8 @@ public class MinigameHandler : MonoBehaviour {
     private int winnerCount = 0;
 
     private void Start() {
+        if (!isServer) return;
+
         var moveObjectOverTimes = FindObjectsOfType<MoveObjectOverTime>();
         foreach (var moveObjectOverTime in moveObjectOverTimes) {
             movableObjects.Add(moveObjectOverTime.gameObject);
