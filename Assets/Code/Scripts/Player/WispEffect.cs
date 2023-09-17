@@ -27,7 +27,7 @@ public class WispEffect : NetworkBehaviour {
 
         holdingWisp = null;
 
-        dropAudioSource.Play();
+        //dropAudioSource.Play();
         StartCoroutine(PickupBuffer());
     }
 
