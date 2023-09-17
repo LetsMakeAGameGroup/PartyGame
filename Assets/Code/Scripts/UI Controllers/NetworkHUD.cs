@@ -1,4 +1,8 @@
+using System;
+using System.Collections.Generic;
 using TMPro;
+using Unity.Services.Authentication;
+using Unity.Services.CloudSave;
 using UnityEngine;
 using UnityEngine.UI;
 using Utp;
@@ -52,11 +56,24 @@ public class NetworkHUD : MonoBehaviour {
                 currentColorText.color = PlayerColorOptions.options[playerColor];
 
                 mainMenuPanel.SetActive(true);
+
+                UpdateNameOnLaunch();
             } else {
                 colorSelectPanel.SetActive(true);
             }
         } else {
             nameSelectPanel.SetActive(true);
+        }
+    }
+
+    private async void UpdateNameOnLaunch() {
+        try {
+            if (await AuthenticationService.Instance.GetPlayerNameAsync() == null) {
+                SaveNameData();
+                SaveColorData();
+            }
+        } catch (Exception e) {
+            Debug.LogException(e);
         }
     }
 
@@ -98,10 +115,13 @@ public class NetworkHUD : MonoBehaviour {
 
     public void ChangeName() {
         playerName = nameInputField.text;
+        if (playerName != PlayerPrefs.GetString("PlayerName")) {
+            SaveNameData();
+        }
+
         currentNameText.text = $"Hello, {playerName}!";
         nameSelectPanel.SetActive(false);
-        PlayerPrefs.SetString("PlayerName", playerName);
-
+        ;
         if (PlayerPrefs.HasKey("PlayerColor")) {
             mainMenuPanel.SetActive(true);
         } else {
@@ -109,13 +129,40 @@ public class NetworkHUD : MonoBehaviour {
         }
     }
 
+    private async void SaveNameData() {
+        try {
+            PlayerPrefs.SetString("PlayerName", playerName);
+
+            string cloudPlayerName = await AuthenticationService.Instance.UpdatePlayerNameAsync(playerName);
+
+            var data = new Dictionary<string, object> { { "PlayerName", cloudPlayerName } };
+            await CloudSaveService.Instance.Data.ForceSaveAsync(data);
+        } catch (Exception e) {
+            Debug.LogException(e);
+        }
+    }
+
     public void SetColorPref(string colorName) {
         playerColor = colorName;
+        if (playerColor != PlayerPrefs.GetString("PlayerColor")) {
+            SaveColorData();
+        }
+
         currentColorText.text = playerColor;
         currentColorText.color = PlayerColorOptions.options[playerColor];
         colorSelectPanel.SetActive(false);
-        PlayerPrefs.SetString("PlayerColor", colorName);
 
         mainMenuPanel.SetActive(true);
+    }
+
+    private async void SaveColorData() {
+        try {
+            PlayerPrefs.SetString("PlayerColor", playerColor);
+
+            var data = new Dictionary<string, object> { { "PlayerColor", playerColor } };
+            await CloudSaveService.Instance.Data.ForceSaveAsync(data);
+        } catch (Exception e) {
+            Debug.LogException(e);
+        }
     }
 }

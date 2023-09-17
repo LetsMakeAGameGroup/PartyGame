@@ -43,4 +43,9 @@ public class WispEffect : NetworkBehaviour {
     public void TargetToggleGlowDisplay(bool isEnabled) {
         glowDisplayCanvas.enabled = isEnabled;
     }
+
+    [ClientRpc]
+    public void RpcPlayDropAudio() {
+        dropAudioSource.Play();
+    }
 }

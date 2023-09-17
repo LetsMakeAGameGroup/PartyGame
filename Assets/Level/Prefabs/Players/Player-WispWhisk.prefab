@@ -423,10 +423,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1913241591815720159, guid: b17abd573cf7763498436116a9104985,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3807872867980839782, guid: b17abd573cf7763498436116a9104985,
         type: 3}
       propertyPath: jumpSpeed
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3807872867980839782, guid: b17abd573cf7763498436116a9104985,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3807872867980839782, guid: b17abd573cf7763498436116a9104985,
         type: 3}
@@ -463,7 +473,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 3847236489704290235}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3452310532601903974}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b3d99d1f1e322b479211b056f303433, type: 3}
   m_Name: 

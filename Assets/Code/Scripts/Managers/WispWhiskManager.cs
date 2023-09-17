@@ -57,6 +57,7 @@ public class WispWhiskManager : NetworkBehaviour {
                 removeWispIndex.Add(i);
                 if (wisps[i].transform.parent != null && wisps[i].transform.parent.parent != null && wisps[i].transform.parent.parent.TryGetComponent(out WispEffect wispEffect)) {
                     wispEffect.TargetToggleGlowDisplay(false);
+                    wispEffect.RpcPlayDropAudio();
                 }
                 NetworkServer.Destroy(wisps[i]);
                 StartCoroutine(SpawnWisp());
@@ -72,6 +73,7 @@ public class WispWhiskManager : NetworkBehaviour {
     public void SpawnWisps() {
         foreach (var player in CustomNetworkManager.Instance.ClientDatas.Keys) {
             playerPoints.Add(player.identity.gameObject, 0);
+            player.identity.GetComponent<PlayerMovementComponent>().TargetSetMinigameManagerObject(gameObject);
         }
 
         // Get wisp spawn amount
@@ -206,6 +208,18 @@ public class WispWhiskManager : NetworkBehaviour {
             }
             minigameHandler.AddWinner(currentStanding);
         }
+    }
+
+    public void RespawnPointDeduction(GameObject player) {
+        if (respawnPointDeduction == 0) return;
+
+        playerPoints[player] -= respawnPointDeduction;
+        if (playerPoints[player] < 0) {
+            playerPoints[player] = 0;
+        }
+
+        TargetSetScoreDisplay(player.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[player]);
+        inGameScoreboardController.RpcUpdateScoreCard(player.GetComponent<PlayerController>().playerName, playerPoints[player]);
     }
 
     void OnDrawGizmosSelected() {
