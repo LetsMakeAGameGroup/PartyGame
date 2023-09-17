@@ -12,11 +12,11 @@ public class MinigameStartScreenController : NetworkBehaviour {
     [SyncVar] private int totalPlayers = 0;
 
     private void Start() {
-        if (isClient) {
+        /*if (isClient) {
             NetworkClient.localPlayer.GetComponent<PlayerMovementComponent>().enabled = false;
             NetworkClient.localPlayer.GetComponent<PlayerController>().enabled = false;
             NetworkClient.localPlayer.GetComponent<ItemController>().enabled = false;
-        }
+        }*/
 
         if (isServer) {
             totalPlayers = CustomNetworkManager.Instance.numPlayers;
