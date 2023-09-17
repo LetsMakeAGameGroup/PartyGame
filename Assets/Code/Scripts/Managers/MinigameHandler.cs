@@ -6,13 +6,13 @@ using UnityEngine.Events;
 
 /// <summary>Handles that status of a minigame. Will slightly change how this works soon.</summary>
 // TODO: Instead of handling this on every indivdual minigame, only one instance throughout the game would be better.
-public class MinigameHandler : MonoBehaviour {
+public class MinigameHandler : NetworkBehaviour {
     [Header("References")]
     [SerializeField] private MinigameScoreScreenController scoreScreenController;
     public DisplayTimerUI displayTimerUI;
     public UnityEvent onMinigameStart = new();
     public UnityEvent onMinigameEnd = new();
-    [SerializeField] private CountdownMinigame countdownMinigame;
+    [SerializeField] private AudioSource countdownAudioSource;
 
     [HideInInspector] public List<List<NetworkConnectionToClient>> winners = new();
     private List<GameObject> movableObjects = new();
@@ -29,6 +29,8 @@ public class MinigameHandler : MonoBehaviour {
     private int winnerCount = 0;
 
     private void Start() {
+        if (!isServer) return;
+
         var moveObjectOverTimes = FindObjectsOfType<MoveObjectOverTime>();
         foreach (var moveObjectOverTime in moveObjectOverTimes) {
             movableObjects.Add(moveObjectOverTime.gameObject);
@@ -120,8 +122,13 @@ public class MinigameHandler : MonoBehaviour {
     }
 
     private IEnumerator TimeTillCountdownAudio() {
-        yield return new WaitForSeconds(5 - countdownMinigame.countdownAudioSource.clip.length);
+        yield return new WaitForSeconds(5 - countdownAudioSource.clip.length);
 
-        countdownMinigame.RpcPlayCountdownAudio();
+        RpcPlayCountdownAudio();
+    }
+
+    [ClientRpc]
+    public void RpcPlayCountdownAudio() {
+        countdownAudioSource.Play();
     }
 }
