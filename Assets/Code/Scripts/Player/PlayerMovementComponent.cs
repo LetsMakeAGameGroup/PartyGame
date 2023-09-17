@@ -1,14 +1,13 @@
-using System.Collections;
-using UnityEngine;
 using Mirror;
+using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEngine.SceneManagement;
+using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(NetworkAnimator))]
-public class PlayerMovementComponent : NetworkBehaviour
-{
+public class PlayerMovementComponent : NetworkBehaviour {
     [Header("References")]
     [SerializeField] private Canvas respawnWarningCanvas;
     [SerializeField] private TMP_Text respawnTimeText;
@@ -17,6 +16,8 @@ public class PlayerMovementComponent : NetworkBehaviour
     [SerializeField] private AudioClip[] jumpAudioClips;
     [SerializeField] private AudioSource footstepAudioSource;
     [SerializeField] private AudioClip[] footstepAudioClips;
+    [SerializeField] private PostProcessProfile surfacePostProcessProfile;
+    [SerializeField] private PostProcessProfile voidPostProcessProfile;
 
     private NetworkAnimator networkAnimator;
     private GameObject minigameManager;
@@ -49,8 +50,7 @@ public class PlayerMovementComponent : NetworkBehaviour
 
     private int stunCount = 0;
 
-    void Start()
-    {
+    void Start() {
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Player"));  // Not sure why this is needed when they are set to ignore in project settings, but it is.
         characterController = GetComponent<CharacterController>();
         playerController = GetComponent<PlayerController>();
@@ -58,8 +58,7 @@ public class PlayerMovementComponent : NetworkBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
-    {
+    void FixedUpdate() {
         if (!isLocalPlayer) return;
 
         // We are grounded, so recalculate move direction based on axes
@@ -82,15 +81,13 @@ public class PlayerMovementComponent : NetworkBehaviour
 
         moveDirection.y = movementDirectionY;
 
-        if (!characterController.isGrounded)
-        {
+        if (!characterController.isGrounded) {
             moveDirection += Physics.gravity * Time.fixedDeltaTime;
         }
 
         if (characterController.enabled) characterController.Move(moveDirection * Time.fixedDeltaTime);
 
-        if (launchVelocity != Vector3.zero)
-        {
+        if (launchVelocity != Vector3.zero) {
             launchTimeElapsed += Time.fixedDeltaTime;
             characterController.Move(launchVelocity * Time.fixedDeltaTime);
             launchVelocity = Vector3.Slerp(launchVelocity, Vector3.zero, launchTimeElapsed / 4);
@@ -168,22 +165,18 @@ public class PlayerMovementComponent : NetworkBehaviour
         footstepAudioSource.Stop();
     }
 
-    public Vector2 ConsumeInput() 
-    {
+    public Vector2 ConsumeInput() {
         Vector2 temp = receivedInput;
         receivedInput = Vector2.zero;
         return temp;
     }
 
-    public void AddMovementInput(Vector2 input) 
-    {
+    public void AddMovementInput(Vector2 input) {
         receivedInput = input;
     }
 
-    public void Jump() 
-    {
-        if (canMove && playerController && !playerController.isPaused && characterController && characterController.isGrounded) 
-        {
+    public void Jump() {
+        if (canMove && playerController && !playerController.isPaused && characterController && characterController.isGrounded) {
             networkAnimator.SetTrigger("Jump");
             moveDirection.y = jumpSpeed;
             CmdPlayJumpAudio();
@@ -210,8 +203,7 @@ public class PlayerMovementComponent : NetworkBehaviour
         StartCoroutine(StunPlayer(timeStunned));
     }
 
-    public void KnockbackCharacter(Vector3 forceDirection) 
-    {
+    public void KnockbackCharacter(Vector3 forceDirection) {
         launchVelocity = forceDirection;
         launchTimeElapsed = 0;
         moveDirection.y = forceDirection.y;
@@ -235,7 +227,10 @@ public class PlayerMovementComponent : NetworkBehaviour
 
         respawnTimeText.text = $"Respawning in {Mathf.CeilToInt(currentRespawnTime)}...";
         respawnWarningCanvas.enabled = true;
-        
+
+        playerController.playerCamera.GetComponent<PostProcessVolume>().profile = voidPostProcessProfile;
+        RenderSettings.fog = true;
+
         while (currentRespawnTime > 0 && transform.position.y <= voidYAxis) {
             respawnTimeText.text = $"Respawning in {Mathf.CeilToInt(currentRespawnTime)}...";
             currentRespawnTime -= Time.deltaTime;
@@ -244,6 +239,9 @@ public class PlayerMovementComponent : NetworkBehaviour
 
         isAttemptingToRespawn = false;
         respawnWarningCanvas.enabled = false;
+
+        playerController.playerCamera.GetComponent<PostProcessVolume>().profile = surfacePostProcessProfile;
+        RenderSettings.fog = false;
 
         if (transform.position.y <= voidYAxis) {
             GameObject[] currentSpawns = FindObjectOfType(typeof(SpawnHolder)).GetComponent<SpawnHolder>().currentSpawns.ToArray();

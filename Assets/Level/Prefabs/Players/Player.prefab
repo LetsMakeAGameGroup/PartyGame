@@ -349,6 +349,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 73f03d3648fa68b4bab1c4a73a37254d, type: 3}
   - {fileID: 8300000, guid: e369b465b80a85b438e2364a7052d8eb, type: 3}
   - {fileID: 8300000, guid: 49aee6c1be3ed1a4799a3ca1495ea93f, type: 3}
+  surfacePostProcessProfile: {fileID: 11400000, guid: 49f7671a0a01eb4469dbf432ec00e805,
+    type: 2}
+  voidPostProcessProfile: {fileID: 11400000, guid: ae0913f8c4ac6bf48827701bf09b2be1,
+    type: 2}
   walkingSpeed: 7.5
   runningSpeed: 11.5
   jumpSpeed: 8
@@ -731,10 +735,10 @@ MonoBehaviour:
   volumeTrigger: {fileID: 1913241592568134207}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1024
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 0
-  antialiasingMode: 0
+  antialiasingMode: 1
   temporalAntialiasing:
     jitterSpread: 0.75
     sharpness: 0.25
