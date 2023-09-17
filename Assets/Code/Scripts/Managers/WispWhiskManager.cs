@@ -53,6 +53,7 @@ public class WispWhiskManager : NetworkBehaviour {
                 removeWispIndex.Add(i);
                 if (wisps[i].transform.parent != null && wisps[i].transform.parent.parent != null && wisps[i].transform.parent.parent.TryGetComponent(out WispEffect wispEffect)) {
                     wispEffect.TargetToggleGlowDisplay(false);
+                    wispEffect.RpcPlayDropAudio();
                 }
                 NetworkServer.Destroy(wisps[i]);
                 StartCoroutine(SpawnWisp());

@@ -182,7 +182,7 @@ public class PlayerMovementComponent : NetworkBehaviour
 
     public void Jump() 
     {
-        if (canMove && !playerController.isPaused && characterController.isGrounded) 
+        if (canMove && playerController && !playerController.isPaused && characterController && characterController.isGrounded) 
         {
             networkAnimator.SetTrigger("Jump");
             moveDirection.y = jumpSpeed;
