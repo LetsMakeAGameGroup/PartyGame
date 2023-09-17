@@ -2134,7 +2134,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: eda4477394dc548469e02f680c6b9c33, type: 2}
+  - {fileID: 2100000, guid: 62395c5c1909062498991b0301f2d9e7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2177,7 +2177,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3070320592687088229}
-  m_RootOrder: 20
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &40979301
 PrefabInstance:
@@ -39572,6 +39572,7 @@ Transform:
   - {fileID: 1457647281}
   - {fileID: 1646724409}
   - {fileID: 1600323602}
+  - {fileID: 33383479}
   - {fileID: 244588292}
   - {fileID: 1381739666}
   - {fileID: 783120976}
@@ -39585,7 +39586,6 @@ Transform:
   - {fileID: 325737425}
   - {fileID: 509438243}
   - {fileID: 552359949}
-  - {fileID: 33383479}
   - {fileID: 546450700}
   - {fileID: 1373872878}
   - {fileID: 817761419}
