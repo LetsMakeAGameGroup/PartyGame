@@ -85,6 +85,8 @@ public class WispWhiskManager : NetworkBehaviour {
             } else {
                 wispCount = wispSpawnAmounts[wispSpawnAmounts.Length - 1];
             }
+        } else {
+            wispCount = wispSpawnAmounts[CustomNetworkManager.Instance.ClientDatas.Count - 1];
         }
 
         // Spawn wisps
@@ -101,6 +103,8 @@ public class WispWhiskManager : NetworkBehaviour {
             } else {
                 territoryCount = territorySpawnAmounts[territorySpawnAmounts.Length - 1];
             }
+        } else {
+            territoryCount = territorySpawnAmounts[CustomNetworkManager.Instance.ClientDatas.Count - 1];
         }
 
         // Spawn territories
