@@ -24,9 +24,11 @@ public class Territory : NetworkBehaviour {
     private void OnTriggerEnter(Collider other) {
         if (!isActive || !isServer || !other.CompareTag("Player")) return;
 
-        if (other.GetComponent<WispEffect>() && other.GetComponent<WispEffect>().holdingWisp) {
+        if (other.TryGetComponent(out WispEffect wispEffect) && wispEffect.holdingWisp) {
             RpcPlayDepositAudio(other.transform.position);
-            NetworkServer.Destroy(other.GetComponent<WispEffect>().holdingWisp);
+            wispEffect.TargetToggleGlowDisplay(false);
+            NetworkServer.Destroy(wispEffect.holdingWisp);
+
             wispWhiskManager.playerPoints[other.gameObject] += pointsToAdd;
             wispWhiskManager.TargetSetScoreDisplay(other.GetComponent<NetworkIdentity>().connectionToClient, wispWhiskManager.playerPoints[other.gameObject]);
             wispWhiskManager.inGameScoreboardController.RpcUpdateScoreCard(other.GetComponent<PlayerController>().playerName, wispWhiskManager.playerPoints[other.gameObject]);

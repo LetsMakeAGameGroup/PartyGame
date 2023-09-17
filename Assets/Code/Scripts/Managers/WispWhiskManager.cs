@@ -27,6 +27,12 @@ public class WispWhiskManager : NetworkBehaviour {
     [SerializeField] private float distanceBetweenWisps = 1f;
     [Tooltip("The height or below that a wisp will be forced to respawn if found at.")]
     [SerializeField] private float wispRespawnHeight = 1f;
+    [Tooltip("How many points to reduce from the player when they fall. Player's points will not surpass 0.")]
+    [SerializeField] private int respawnPointDeduction = 0;
+    [Tooltip("List of the amount of wisps that spawn relative to player count. First item in the list is for 1 player, second is for 2 players, and so on...")]
+    [SerializeField] private int[] wispSpawnAmounts = { 2, 2, 2, 2, 3, 4, 5, 6 };
+    [Tooltip("List of the amount of territories that spawn relative to player count. First item in the list is for 1 player, second is for 2 players, and so on...")]
+    [SerializeField] private int[] territorySpawnAmounts = { 1, 1, 1, 1, 1, 2, 2, 3 };
 
     [HideInInspector] public Dictionary<GameObject, int> playerPoints = new();
 
@@ -51,6 +57,7 @@ public class WispWhiskManager : NetworkBehaviour {
                 removeWispIndex.Add(i);
                 if (wisps[i].transform.parent != null && wisps[i].transform.parent.parent != null && wisps[i].transform.parent.parent.TryGetComponent(out WispEffect wispEffect)) {
                     wispEffect.TargetToggleGlowDisplay(false);
+                    wispEffect.RpcPlayDropAudio();
                 }
                 NetworkServer.Destroy(wisps[i]);
                 StartCoroutine(SpawnWisp());
@@ -66,17 +73,45 @@ public class WispWhiskManager : NetworkBehaviour {
     public void SpawnWisps() {
         foreach (var player in CustomNetworkManager.Instance.ClientDatas.Keys) {
             playerPoints.Add(player.identity.gameObject, 0);
+            player.identity.GetComponent<PlayerMovementComponent>().TargetSetMinigameManagerObject(gameObject);
         }
 
-        //Spawn wisps and territories here
-        int wispCount = 1;
-        if (CustomNetworkManager.Instance.ClientDatas.Count > 4) wispCount = 2;
-        if (CustomNetworkManager.Instance.ClientDatas.Count > 6) wispCount = 3;
+        // Get wisp spawn amount
+        int wispCount = 0;
+        if (wispSpawnAmounts.Length != CustomNetworkManager.Instance.maxConnections) {
+            Debug.LogError($"wispSpawnAmounts ({wispSpawnAmounts.Length}) does not equal to max connections ({CustomNetworkManager.Instance.maxConnections}).");
+            if (CustomNetworkManager.Instance.ClientDatas.Count <= wispSpawnAmounts.Length) {
+                wispCount = wispSpawnAmounts[CustomNetworkManager.Instance.ClientDatas.Count - 1];
+            } else {
+                wispCount = wispSpawnAmounts[wispSpawnAmounts.Length - 1];
+            }
+        } else {
+            wispCount = wispSpawnAmounts[CustomNetworkManager.Instance.ClientDatas.Count - 1];
+        }
 
+        // Spawn wisps
         for (int i = 0; i < wispCount; i++) {
             StartCoroutine(SpawnWisp());
+        }
+
+        // Get territory spawn amount
+        int territoryCount = 0;
+        if (territorySpawnAmounts.Length != CustomNetworkManager.Instance.maxConnections) {
+            Debug.LogError($"territorySpawnAmounts ({territorySpawnAmounts.Length}) does not equal to max connections ({CustomNetworkManager.Instance.maxConnections}).");
+            if (CustomNetworkManager.Instance.ClientDatas.Count <= territorySpawnAmounts.Length) {
+                territoryCount = territorySpawnAmounts[CustomNetworkManager.Instance.ClientDatas.Count - 1];
+            } else {
+                territoryCount = territorySpawnAmounts[territorySpawnAmounts.Length - 1];
+            }
+        } else {
+            territoryCount = territorySpawnAmounts[CustomNetworkManager.Instance.ClientDatas.Count - 1];
+        }
+
+        // Spawn territories
+        for (int i = 0; i < territoryCount; i++) {
             StartCoroutine(SpawnTerritory());
         }
+
         RpcEnableScoreDisplay();
 
         StartCoroutine(AddPointsEveryInterval());
@@ -177,6 +212,18 @@ public class WispWhiskManager : NetworkBehaviour {
             }
             minigameHandler.AddWinner(currentStanding);
         }
+    }
+
+    public void RespawnPointDeduction(GameObject player) {
+        if (respawnPointDeduction == 0) return;
+
+        playerPoints[player] -= respawnPointDeduction;
+        if (playerPoints[player] < 0) {
+            playerPoints[player] = 0;
+        }
+
+        TargetSetScoreDisplay(player.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[player]);
+        inGameScoreboardController.RpcUpdateScoreCard(player.GetComponent<PlayerController>().playerName, playerPoints[player]);
     }
 
     void OnDrawGizmosSelected() {
