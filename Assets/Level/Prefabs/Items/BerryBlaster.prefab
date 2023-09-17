@@ -55,7 +55,7 @@ MonoBehaviour:
   itemName: Berry Blaster
   useCooldown: 1
   baseDamage: 0
-  hitDistance: 25
+  hitDistance: 100
   bulletPrefab: {fileID: 7524440669711000338, guid: d5009c5ef37e7b04ca20d67569c28f95,
     type: 3}
   bulletSpawnTrans: {fileID: 3374829496812933799}
