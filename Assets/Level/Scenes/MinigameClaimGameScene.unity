@@ -62116,7 +62116,7 @@ MonoBehaviour:
   - {fileID: 386162418}
   - {fileID: 1706742084}
   timeBetweenGivenPoints: 1
-  respawnPointDeduction: 0
+  respawnPointDeduction: 4
 --- !u!114 &1970324811
 MonoBehaviour:
   m_ObjectHideFlags: 0

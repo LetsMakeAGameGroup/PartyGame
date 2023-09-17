@@ -16873,7 +16873,7 @@ MonoBehaviour:
   maxSpawnLocation: {x: 47.5, y: 10, z: 32.5}
   distanceBetweenWisps: 1
   wispRespawnHeight: 1
-  respawnPointDeduction: 0
+  respawnPointDeduction: 10
   wispSpawnAmounts: 0200000002000000020000000200000003000000040000000500000006000000
   territorySpawnAmounts: 0100000001000000010000000100000001000000020000000200000003000000
 --- !u!114 &881027853

@@ -17590,6 +17590,9 @@ MonoBehaviour:
   maxSpawnLocation: {x: 36.5, y: 15, z: 36.5}
   distanceBetweenWisps: 1
   wispRespawnHeight: 1
+  respawnPointDeduction: 10
+  wispSpawnAmounts: 0200000002000000020000000200000003000000040000000500000006000000
+  territorySpawnAmounts: 0100000001000000010000000100000001000000020000000200000003000000
 --- !u!114 &881027853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43735,7 +43738,7 @@ Transform:
   - {fileID: 1066761602}
   - {fileID: 1415723936}
   m_Father: {fileID: 3070320592687088229}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1877527603
 GameObject:
@@ -77827,8 +77830,8 @@ Transform:
   - {fileID: 1023766200}
   - {fileID: 1121417065}
   - {fileID: 468374047}
-  - {fileID: 85731356}
   - {fileID: 1875476251}
+  - {fileID: 85731356}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
