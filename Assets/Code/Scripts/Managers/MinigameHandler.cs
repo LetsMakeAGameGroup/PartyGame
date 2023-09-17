@@ -12,7 +12,7 @@ public class MinigameHandler : NetworkBehaviour {
     public DisplayTimerUI displayTimerUI;
     public UnityEvent onMinigameStart = new();
     public UnityEvent onMinigameEnd = new();
-    [SerializeField] private AudioSource countdownAudioSource;
+    //[SerializeField] private AudioSource countdownAudioSource;
 
     [HideInInspector] public List<List<NetworkConnectionToClient>> winners = new();
     private List<GameObject> movableObjects = new();
@@ -53,7 +53,7 @@ public class MinigameHandler : NetworkBehaviour {
 
         displayTimerUI.RpcStartCountdown(5);
 
-        StartCoroutine(TimeTillCountdownAudio());
+        //StartCoroutine(TimeTillCountdownAudio());
     }
 
     /// <summary>Buffer for starting a minigame.</summary>
@@ -121,14 +121,14 @@ public class MinigameHandler : NetworkBehaviour {
         GameManager.Instance.StartNextRound();
     }
 
-    private IEnumerator TimeTillCountdownAudio() {
+    /*private IEnumerator TimeTillCountdownAudio() {
         yield return new WaitForSeconds(5 - countdownAudioSource.clip.length);
 
-        RpcPlayCountdownAudio();
-    }
+        //RpcPlayCountdownAudio();
+    }*/
 
-    [ClientRpc]
+    /*[ClientRpc]
     public void RpcPlayCountdownAudio() {
         countdownAudioSource.Play();
-    }
+    }*/
 }
