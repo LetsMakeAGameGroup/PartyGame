@@ -1141,7 +1141,7 @@ namespace Mirror
 
             if (conn.identity != null)
             {
-                Debug.LogError("There is already a player for this connection.");
+                //Debug.LogError("There is already a player for this connection.");
                 return;
             }
 

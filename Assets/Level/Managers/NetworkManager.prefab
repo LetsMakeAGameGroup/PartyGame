@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1173496885271520577}
   - component: {fileID: 1173496885271520578}
-  - component: {fileID: 4429846812453579608}
+  - component: {fileID: 7214066653005961880}
+  - component: {fileID: 3973370332140837876}
   - component: {fileID: -8751744098615716215}
   m_Layer: 0
   m_Name: NetworkManager
@@ -53,7 +54,7 @@ MonoBehaviour:
   sendRate: 30
   offlineScene: Assets/Level/Scenes/LobbyScene.unity
   onlineScene: Assets/Level/Scenes/LobbyScene.unity
-  transport: {fileID: 4429846812453579608}
+  transport: {fileID: 3973370332140837876}
   networkAddress: localhost
   maxConnections: 8
   authenticator: {fileID: 0}
@@ -88,7 +89,7 @@ MonoBehaviour:
   relayJoinCode: 
   errorText: {fileID: 0}
   isLoggedIn: 0
---- !u!114 &4429846812453579608
+--- !u!114 &7214066653005961880
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,9 +102,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Port: 7777
-  LoggerLevel: 3
-  TimeoutMS: 10000
-  useRelay: 0
+  LoggerLevel: 1
+  TimeoutMS: 1000
+  useRelay: 1
+--- !u!114 &3973370332140837876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173496885271520579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  port: 7777
+  DualMode: 1
+  NoDelay: 1
+  Interval: 10
+  Timeout: 10000
+  RecvBufferSize: 7361536
+  SendBufferSize: 7361536
+  FastResend: 2
+  ReceiveWindowSize: 4096
+  SendWindowSize: 4096
+  MaxRetransmit: 40
+  MaximizeSocketBuffers: 1
+  ReliableMaxMessageSize: 297433
+  UnreliableMaxMessageSize: 1195
+  debugLog: 0
+  statisticsGUI: 0
+  statisticsLog: 0
 --- !u!114 &-8751744098615716215
 MonoBehaviour:
   m_ObjectHideFlags: 0
