@@ -506,7 +506,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   wispContainer: {fileID: 1113838010378508404}
-  dropAudioSource: {fileID: 0}
+  dropAudioSource: {fileID: 6358654617557960468}
   glowDisplayCanvas: {fileID: 1656433418673866291}
   holdingWisp: {fileID: 0}
   canPickup: 1
