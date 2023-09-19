@@ -48,12 +48,12 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  availableMinigamesSceneNames:
-  - MinigameClaimGameScene
-  - MinigameFlowerChildScene
-  - MinigameHedgeHurdlersScene
-  - MinigameWispWhiskScene
-  - MinigameRiverRuckus
+  availableMinigamesScenes:
+  - Assets/Level/Scenes/MinigameClaimGameScene.unity
+  - Assets/Level/Scenes/MinigameFlowerChildScene.unity
+  - Assets/Level/Scenes/MinigameHedgeHurdlersScene.unity
+  - Assets/Level/Scenes/MinigameRiverRuckus.unity
+  - Assets/Level/Scenes/MinigameWispWhiskScene.unity
   maxRounds: 5
   round: 0
 --- !u!114 &4266590026886717783
