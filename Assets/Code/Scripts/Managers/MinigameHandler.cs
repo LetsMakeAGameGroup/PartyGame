@@ -74,7 +74,7 @@ public class MinigameHandler : NetworkBehaviour {
             }
 
             if (movableObject.TryGetComponent(out ConstantRotation constantRotation)) {
-                constantRotation.canMove = true;
+                constantRotation.RpcStartRotation(constantRotation.transform.rotation);
             }
         }
 

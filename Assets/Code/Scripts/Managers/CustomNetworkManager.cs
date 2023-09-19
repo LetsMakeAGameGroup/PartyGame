@@ -52,6 +52,12 @@ public class CustomNetworkManager : RelayNetworkManager {
 
         player.GetComponent<PlayerController>().TargetGetDisplayName();
         player.GetComponent<PlayerController>().TargetGetPlayerColorPref();
+
+        var constantRotations = FindObjectsOfType<ConstantRotation>();
+        foreach (var constantRotation in constantRotations) {
+            constantRotation.RpcStartRotation(constantRotation.transform.rotation);
+        }
+
         initialSceneChange = false;
     }
 
