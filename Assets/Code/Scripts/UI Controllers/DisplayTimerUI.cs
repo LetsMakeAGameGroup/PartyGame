@@ -7,10 +7,11 @@ public class DisplayTimerUI : NetworkBehaviour {
     [SerializeField] private TextMeshProUGUI timerText;
 
     [ClientRpc]
-    public void RpcStartCountdown(float duration) {
+    public void RpcStartCountdown(float duration, bool disableUI) {
         Timer timer = gameObject.AddComponent(typeof(Timer)) as Timer;
-        timer.duration = duration;
-        timer.onTimerEnd.AddListener(DisableUI);
+        float delay = (float)(NetworkClient.connection.remoteTimeStamp / 1000);
+        timer.duration = duration - delay;
+        if (disableUI) timer.onTimerEnd.AddListener(DisableUI);
         timer.onDisplayTime.AddListener(UpdateUI);
         timerText.enabled = true;
     }

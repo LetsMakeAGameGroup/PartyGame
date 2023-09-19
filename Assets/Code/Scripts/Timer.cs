@@ -35,15 +35,26 @@ public class Timer : NetworkBehaviour {
     }
 
     private IEnumerator StartTimer() {
+        onDisplayTime?.Invoke(Mathf.CeilToInt(duration).ToString());
+
+        float interval = duration % 1;
+        float nextEventTime = Time.time + interval;
+        while (Time.time < nextEventTime) {
+            yield return null;
+        }
+        duration -= duration % 1;
         onDisplayTime?.Invoke(duration.ToString());
 
-        yield return new WaitForSeconds(duration % 1);
-
+        interval = 1;
+        nextEventTime = Time.time + interval;
         while (duration > 0f) {
-            onDisplayTime?.Invoke(duration.ToString());
+            if (Time.time >= nextEventTime) {
+                nextEventTime += interval;
+                duration--;
 
-            duration--;
-            yield return new WaitForSeconds(1f);
+                if (duration > 0) onDisplayTime?.Invoke(duration.ToString());
+            }
+            yield return null;
         }
 
         onTimerEnd?.Invoke();

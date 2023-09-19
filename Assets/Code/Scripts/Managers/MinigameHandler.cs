@@ -51,9 +51,9 @@ public class MinigameHandler : NetworkBehaviour {
         timer.onTimerEnd.AddListener(StartMinigame);
         timer.onTimerEnd.AddListener(delegate { FindObjectOfType<MinigameStartScreenController>().RpcSetMovement(true); });
 
-        displayTimerUI.RpcStartCountdown(5);
+        displayTimerUI.RpcStartCountdown(5, false);
 
-        StartCoroutine(TimeTillCountdownAudio());
+        RpcCountdownAudio();
     }
 
     /// <summary>Buffer for starting a minigame.</summary>
@@ -64,7 +64,7 @@ public class MinigameHandler : NetworkBehaviour {
             timer.duration = minigameDuration;
             timer.onTimerEnd = onMinigameEnd;
 
-            displayTimerUI.RpcStartCountdown(minigameDuration);
+            displayTimerUI.RpcStartCountdown(minigameDuration, true);
         }
 
         // Start moving all movable objects.
@@ -116,18 +116,19 @@ public class MinigameHandler : NetworkBehaviour {
     IEnumerator EndGameTransition() {
         scoreScreenController.RpcEnableUI(scoreScreenTime);
 
-        yield return new WaitForSeconds(scoreScreenTime);
+        yield return new WaitForSecondsRealtime(scoreScreenTime);
 
         GameManager.Instance.StartNextRound();
     }
 
-    private IEnumerator TimeTillCountdownAudio() {
-        yield return new WaitForSeconds(5 - countdownAudioSource.clip.length);
-
-        RpcPlayCountdownAudio();
+    private void RpcCountdownAudio() {
+        float delay = (float)(NetworkClient.connection.remoteTimeStamp / 1000);
+        StartCoroutine(TimeTillCountdownAudio(5 - countdownAudioSource.clip.length - delay));
     }
 
-    private void RpcPlayCountdownAudio() {
+    private IEnumerator TimeTillCountdownAudio(float duration) {
+        yield return new WaitForSecondsRealtime(duration);
+
         countdownAudioSource.Play();
     }
 }
