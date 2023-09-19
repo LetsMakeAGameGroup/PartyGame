@@ -70,7 +70,7 @@ public class MinigameHandler : NetworkBehaviour {
         // Start moving all movable objects.
         foreach (var movableObject in movableObjects) {
             if (movableObject.TryGetComponent(out MoveObjectOverTime moveObjectOverTime)) {
-                moveObjectOverTime.canMove = true;
+                moveObjectOverTime.RpcStartMovement(movableObject.transform.position, moveObjectOverTime.pathIndex);
             }
 
             if (movableObject.TryGetComponent(out ConstantRotation constantRotation)) {

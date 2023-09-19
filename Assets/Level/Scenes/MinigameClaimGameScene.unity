@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.014393571, g: 0.057465144, b: 0.105482936, a: 1}
+  m_IndirectSpecularColor: {r: 0.0143936025, g: 0.057465218, b: 0.10548298, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2406,7 +2406,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh86904
+  m_Name: pb_Mesh120138
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2806,7 +2806,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh86786
+  m_Name: pb_Mesh42944
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -3502,7 +3502,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh86360
+  m_Name: pb_Mesh119596
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4457,7 +4457,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh86868
+  m_Name: pb_Mesh120102
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4787,38 +4787,7 @@ MonoBehaviour:
   moveSpeed: 5
   pauseDuration: 1
   canMove: 0
---- !u!114 &386162420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 386162418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 386162417}
-  clientAuthority: 0
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 1
-  bufferResetMultiplier: 5
-  positionSensitivity: 0.01
-  rotationSensitivity: 0.01
-  scaleSensitivity: 0.01
-  timelineOffset: 0
+  pathIndex: 0
 --- !u!1001 &388727998
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5248,7 +5217,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh86816
+  m_Name: pb_Mesh42974
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5412,7 +5381,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh85792
+  m_Name: pb_Mesh119028
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5745,7 +5714,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh85858
+  m_Name: pb_Mesh119094
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9326,7 +9295,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh86102
+  m_Name: pb_Mesh119338
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10162,7 +10131,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh86548
+  m_Name: pb_Mesh119782
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14412,7 +14381,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh86990
+  m_Name: pb_Mesh120224
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14853,7 +14822,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh86932
+  m_Name: pb_Mesh43090
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15276,7 +15245,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh86836
+  m_Name: pb_Mesh42994
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16285,7 +16254,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh86880
+  m_Name: pb_Mesh43038
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -17234,7 +17203,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh86774
+  m_Name: pb_Mesh120008
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18216,7 +18185,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh86954
+  m_Name: pb_Mesh120188
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20741,38 +20710,7 @@ MonoBehaviour:
   moveSpeed: 5
   pauseDuration: 0
   canMove: 0
---- !u!114 &1525823230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1525823228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 1525823227}
-  clientAuthority: 0
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 1
-  bufferResetMultiplier: 5
-  positionSensitivity: 0.01
-  rotationSensitivity: 0.01
-  scaleSensitivity: 0.01
-  timelineOffset: 0
+  pathIndex: 0
 --- !u!4 &1526591262 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5785024724163929087, guid: 5a7193b88ce93fd45ab1d0b1a42f4d35,
@@ -20893,38 +20831,7 @@ MonoBehaviour:
   moveSpeed: 5
   pauseDuration: 0
   canMove: 0
---- !u!114 &1529792817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1529792815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 1529792814}
-  clientAuthority: 0
-  syncPosition: 1
-  syncRotation: 0
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 0
-  interpolateScale: 0
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 1
-  bufferResetMultiplier: 5
-  positionSensitivity: 0.01
-  rotationSensitivity: 0.01
-  scaleSensitivity: 0.01
-  timelineOffset: 0
+  pathIndex: 0
 --- !u!1001 &1535787716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21361,38 +21268,7 @@ MonoBehaviour:
   moveSpeed: 5
   pauseDuration: 0
   canMove: 0
---- !u!114 &1555557435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1555557433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 1555557432}
-  clientAuthority: 0
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 1
-  bufferResetMultiplier: 5
-  positionSensitivity: 0.01
-  rotationSensitivity: 0.01
-  scaleSensitivity: 0.01
-  timelineOffset: 0
+  pathIndex: 0
 --- !u!1001 &1564233893
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55853,7 +55729,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh86970
+  m_Name: pb_Mesh43128
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -56629,38 +56505,7 @@ MonoBehaviour:
   moveSpeed: 5
   pauseDuration: 0
   canMove: 0
---- !u!114 &1609199856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1609199854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 1609199853}
-  clientAuthority: 0
-  syncPosition: 1
-  syncRotation: 0
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 0
-  interpolateScale: 0
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 1
-  bufferResetMultiplier: 5
-  positionSensitivity: 0.01
-  rotationSensitivity: 0.01
-  scaleSensitivity: 0.01
-  timelineOffset: 0
+  pathIndex: 0
 --- !u!1001 &1610991799
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -57838,38 +57683,7 @@ MonoBehaviour:
   moveSpeed: 10
   pauseDuration: 1
   canMove: 0
---- !u!114 &1706742086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1706742084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 1706742083}
-  clientAuthority: 0
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 1
-  bufferResetMultiplier: 5
-  positionSensitivity: 0.01
-  rotationSensitivity: 0.01
-  scaleSensitivity: 0.01
-  timelineOffset: 0
+  pathIndex: 0
 --- !u!1001 &1719618015
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60867,7 +60681,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh86756
+  m_Name: pb_Mesh119990
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -61370,7 +61184,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh86856
+  m_Name: pb_Mesh43014
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -61893,7 +61707,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh87008
+  m_Name: pb_Mesh120242
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -63082,7 +62896,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh86916
+  m_Name: pb_Mesh43074
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -64460,7 +64274,6 @@ GameObject:
   - component: {fileID: 2503326928678101850}
   - component: {fileID: 2503326928678101851}
   - component: {fileID: 2503326928678101859}
-  - component: {fileID: 2503326928678101858}
   - component: {fileID: 2503326928678101856}
   m_Layer: 0
   m_Name: Cube
@@ -64798,38 +64611,7 @@ MonoBehaviour:
   moveSpeed: 2
   pauseDuration: 0
   canMove: 0
---- !u!114 &2503326928678101858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2503326928678101829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 2503326928678101828}
-  clientAuthority: 0
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 1
-  bufferResetMultiplier: 5
-  positionSensitivity: 0.01
-  rotationSensitivity: 0.01
-  scaleSensitivity: 0.01
-  timelineOffset: 0
+  pathIndex: 0
 --- !u!114 &2503326928678101859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65186,7 +64968,6 @@ GameObject:
   - component: {fileID: 2503326928824864611}
   - component: {fileID: 2503326928824864620}
   - component: {fileID: 2503326928824864625}
-  - component: {fileID: 2503326928824864624}
   - component: {fileID: 2503326928824864623}
   m_Layer: 0
   m_Name: Cube (1)
@@ -65216,38 +64997,7 @@ MonoBehaviour:
   moveSpeed: 2
   pauseDuration: 0
   canMove: 0
---- !u!114 &2503326928824864624
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2503326928824864622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 2503326928824864621}
-  clientAuthority: 0
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 1
-  bufferResetMultiplier: 5
-  positionSensitivity: 0.01
-  rotationSensitivity: 0.01
-  scaleSensitivity: 0.01
-  timelineOffset: 0
+  pathIndex: 0
 --- !u!114 &2503326928824864625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65605,7 +65355,6 @@ GameObject:
   - component: {fileID: 2503326929073498524}
   - component: {fileID: 2503326929073498525}
   - component: {fileID: 2503326929073498530}
-  - component: {fileID: 2503326929073498529}
   - component: {fileID: 2503326929073498528}
   m_Layer: 0
   m_Name: Cube
@@ -65635,38 +65384,7 @@ MonoBehaviour:
   moveSpeed: 2
   pauseDuration: 0
   canMove: 0
---- !u!114 &2503326929073498529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2503326929073498527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 2503326929073498526}
-  clientAuthority: 0
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 1
-  bufferResetMultiplier: 5
-  positionSensitivity: 0.01
-  rotationSensitivity: 0.01
-  scaleSensitivity: 0.01
-  timelineOffset: 0
+  pathIndex: 0
 --- !u!114 &2503326929073498530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66024,7 +65742,6 @@ GameObject:
   - component: {fileID: 2503326929157814236}
   - component: {fileID: 2503326929157814237}
   - component: {fileID: 2503326929157814242}
-  - component: {fileID: 2503326929157814241}
   - component: {fileID: 2503326929157814240}
   m_Layer: 0
   m_Name: Cube (1)
@@ -66054,38 +65771,7 @@ MonoBehaviour:
   moveSpeed: 2
   pauseDuration: 0
   canMove: 0
---- !u!114 &2503326929157814241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2503326929157814239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 2503326929157814238}
-  clientAuthority: 0
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 1
-  bufferResetMultiplier: 5
-  positionSensitivity: 0.01
-  rotationSensitivity: 0.01
-  scaleSensitivity: 0.01
-  timelineOffset: 0
+  pathIndex: 0
 --- !u!114 &2503326929157814242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68221,7 +67907,6 @@ GameObject:
   - component: {fileID: 2503326929404548170}
   - component: {fileID: 2503326929404548171}
   - component: {fileID: 2503326929404548178}
-  - component: {fileID: 2503326929404548177}
   - component: {fileID: 2503326929404548176}
   m_Layer: 0
   m_Name: Cube
@@ -68559,38 +68244,7 @@ MonoBehaviour:
   moveSpeed: 2
   pauseDuration: 0
   canMove: 0
---- !u!114 &2503326929404548177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2503326929404548149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 2503326929404548148}
-  clientAuthority: 0
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 1
-  bufferResetMultiplier: 5
-  positionSensitivity: 0.01
-  rotationSensitivity: 0.01
-  scaleSensitivity: 0.01
-  timelineOffset: 0
+  pathIndex: 0
 --- !u!114 &2503326929404548178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70149,7 +69803,6 @@ GameObject:
   - component: {fileID: 2503326929753299351}
   - component: {fileID: 2503326929753299344}
   - component: {fileID: 2503326929753299354}
-  - component: {fileID: 2503326929753299353}
   - component: {fileID: 2503326929753299352}
   m_Layer: 0
   m_Name: Cube
@@ -70473,38 +70126,7 @@ MonoBehaviour:
   moveSpeed: 2
   pauseDuration: 0
   canMove: 0
---- !u!114 &2503326929753299353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2503326929753299346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 2503326929753299345}
-  clientAuthority: 0
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 1
-  bufferResetMultiplier: 5
-  positionSensitivity: 0.01
-  rotationSensitivity: 0.01
-  scaleSensitivity: 0.01
-  timelineOffset: 0
+  pathIndex: 0
 --- !u!114 &2503326929753299354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70537,7 +70159,6 @@ GameObject:
   - component: {fileID: 2503326929916983417}
   - component: {fileID: 2503326929916983418}
   - component: {fileID: 2503326929916983426}
-  - component: {fileID: 2503326929916983425}
   - component: {fileID: 2503326929916983424}
   m_Layer: 0
   m_Name: Cube (1)
@@ -70892,38 +70513,7 @@ MonoBehaviour:
   moveSpeed: 2
   pauseDuration: 0
   canMove: 0
---- !u!114 &2503326929916983425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2503326929916983396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 2503326929916983419}
-  clientAuthority: 0
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 1
-  bufferResetMultiplier: 5
-  positionSensitivity: 0.01
-  rotationSensitivity: 0.01
-  scaleSensitivity: 0.01
-  timelineOffset: 0
+  pathIndex: 0
 --- !u!114 &2503326929916983426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71558,7 +71148,6 @@ GameObject:
   - component: {fileID: 2503326929990753099}
   - component: {fileID: 2503326929990753076}
   - component: {fileID: 2503326929990753103}
-  - component: {fileID: 2503326929990753102}
   - component: {fileID: 2503326929990753100}
   m_Layer: 0
   m_Name: Cube (1)
@@ -71882,38 +71471,7 @@ MonoBehaviour:
   moveSpeed: 2
   pauseDuration: 0
   canMove: 0
---- !u!114 &2503326929990753102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2503326929990753078}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  target: {fileID: 2503326929990753077}
-  clientAuthority: 0
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 1
-  bufferResetMultiplier: 5
-  positionSensitivity: 0.01
-  rotationSensitivity: 0.01
-  scaleSensitivity: 0.01
-  timelineOffset: 0
+  pathIndex: 0
 --- !u!114 &2503326929990753103
 MonoBehaviour:
   m_ObjectHideFlags: 0

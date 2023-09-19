@@ -58,6 +58,11 @@ public class CustomNetworkManager : RelayNetworkManager {
             constantRotation.RpcStartRotation(constantRotation.transform.rotation);
         }
 
+        var movingObjects = FindObjectsOfType<MoveObjectOverTime>();
+        foreach (var movingObject in movingObjects) {
+            movingObject.RpcStartMovement(movingObject.transform.position, movingObject.pathIndex);
+        }
+
         initialSceneChange = false;
     }
 
