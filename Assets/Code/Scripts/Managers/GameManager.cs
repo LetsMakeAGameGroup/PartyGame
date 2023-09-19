@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameManager : NetworkBehaviour {
     [Header("References")]
-    [SerializeField] private List<string> availableMinigamesSceneNames = new();
+    [SerializeField, Scene] private List<string> availableMinigamesScenes = new();
 
     private List<string> currentMinigamesSceneNames = new();
 
@@ -22,9 +22,9 @@ public class GameManager : NetworkBehaviour {
         if (Instance != null && Instance != this) Destroy(this);
         else Instance = this;
 
-        if (maxRounds > availableMinigamesSceneNames.Count()) {
-            Debug.LogError($"MaxRounds is more than the amount of AvailableMinigamesSceneNames referenced in GameManager. Setting MaxRounds to max: {availableMinigamesSceneNames.Count()}", transform);
-            maxRounds = availableMinigamesSceneNames.Count();
+        if (maxRounds > availableMinigamesScenes.Count()) {
+            Debug.LogError($"MaxRounds is more than the amount of AvailableMinigamesScenes referenced in GameManager. Setting MaxRounds to max: {availableMinigamesScenes.Count()}", transform);
+            maxRounds = availableMinigamesScenes.Count();
         }
     }
 
@@ -59,7 +59,6 @@ public class GameManager : NetworkBehaviour {
 
     /// <summary>Randomize list of minigames available order chosen into the current set.</summary>
     private void RandomizeCurrentMinigames() {
-        // TODO: There should be a more efficient way of picking random minigames that fall under maxRounds. Once we have a LOT of minigames to randomize, there should be a better way. Look more into this later.
-        currentMinigamesSceneNames = availableMinigamesSceneNames.OrderBy(x => Random.value).ToList();
+        currentMinigamesSceneNames = availableMinigamesScenes.OrderBy(x => Random.value).ToList();
     }
 }
