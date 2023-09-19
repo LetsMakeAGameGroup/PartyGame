@@ -101,7 +101,7 @@ public class PlayerMovementComponent : NetworkBehaviour {
         animator.SetBool("Grounded", characterController.isGrounded);
         animator.SetBool("IsFalling", characterController.velocity.y < 0.01f);
 
-        if (footstepAudioClips.Length > 0 && !footstepAudioSource.isPlaying) {
+        if (footstepAudioClips.Length > 0 && !footstepAudioSource.isPlaying && NetworkClient.ready) {
             StartCoroutine(FootstepAudio());
         }
     }
