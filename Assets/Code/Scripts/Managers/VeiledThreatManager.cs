@@ -72,7 +72,7 @@ public class VeiledThreatManager : NetworkBehaviour {
         bombCarrier.GetComponent<BombEffect>().RpcEquipBomb(currentBomb);
 
         float currentBombTimeInterval = bombTimeIntervals[8 - activePlayerBombCarrierTime.Count];
-        minigameHandler.displayTimerUI.RpcStartCountdown(currentBombTimeInterval);
+        minigameHandler.displayTimerUI.RpcStartCountdown(currentBombTimeInterval, false);
         yield return new WaitForSeconds(currentBombTimeInterval);
 
 
