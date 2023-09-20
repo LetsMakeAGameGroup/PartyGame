@@ -44,7 +44,7 @@ public class NetworkHUD : MonoBehaviour {
     }
 
     private void Start() {
-        networkManager.UnityLogin();
+        networkManager.UnityLogin(this);
 
         if (PlayerPrefs.HasKey("PlayerName")) {
             playerName = PlayerPrefs.GetString("PlayerName");
@@ -57,8 +57,6 @@ public class NetworkHUD : MonoBehaviour {
                 currentColorText.color = PlayerColorOptions.options[playerColor];
 
                 mainMenuPanel.SetActive(true);
-
-                UpdateNameOnLaunch();
             } else {
                 colorSelectPanel.SetActive(true);
             }
@@ -67,15 +65,11 @@ public class NetworkHUD : MonoBehaviour {
         }
     }
 
-    private async void UpdateNameOnLaunch() {
-        try {
-            if (await AuthenticationService.Instance.GetPlayerNameAsync() == null) {
-                SaveNameData();
-                SaveColorData();
-            }
-        } catch (Exception e) {
-            Debug.LogException(e);
-        }
+    public void UpdateNameOnLaunch() {
+        if (!PlayerPrefs.HasKey("PlayerName")) return;
+
+        SaveNameData();
+        SaveColorData();
     }
 
     public void HostLobby() {

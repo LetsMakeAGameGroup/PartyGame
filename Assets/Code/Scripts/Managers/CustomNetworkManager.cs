@@ -91,7 +91,7 @@ public class CustomNetworkManager : RelayNetworkManager {
         base.OnServerDisconnect(conn);
     }
 
-    public async void UnityLogin() {
+    public async void UnityLogin(NetworkHUD networkHUD) {
         try {
             await UnityServices.InitializeAsync();
             if (!AuthenticationService.Instance.IsSignedIn) {
@@ -102,6 +102,7 @@ public class CustomNetworkManager : RelayNetworkManager {
             if (errorText) {
                 errorText.text = "Logged in successfully!";
             }
+            networkHUD.UpdateNameOnLaunch();
         } catch (Exception e) {
             isLoggedIn = false;
             Debug.Log(e);
@@ -109,7 +110,7 @@ public class CustomNetworkManager : RelayNetworkManager {
                 errorText.text = "Failed to login to Authetication Services. Continuing to attempt...";
             }
             await Task.Delay(1000);
-            UnityLogin();
+            UnityLogin(networkHUD);
         }
     }
 
