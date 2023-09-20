@@ -108,7 +108,9 @@ public class MinigameHandler : NetworkBehaviour {
                 CustomNetworkManager.Instance.ClientDatas[player].score += assignPoints;
                 scoreScreenController.RpcAddScoreCard(CustomNetworkManager.Instance.ClientDatas[player].displayName, assignPoints);
 
-                player.identity.GetComponent<PlayerMovementComponent>().CanMove = false;
+                player.identity.GetComponent<PlayerController>().enabled = false;
+                player.identity.GetComponent<PlayerMovementComponent>().enabled = false;
+                player.identity.GetComponent<ItemController>().enabled = false;
             }
             assignPoints -= position.Count;
         }
