@@ -54,7 +54,7 @@ MonoBehaviour:
   sendRate: 30
   offlineScene: Assets/Level/Scenes/LobbyScene.unity
   onlineScene: Assets/Level/Scenes/LobbyScene.unity
-  transport: {fileID: 3973370332140837876}
+  transport: {fileID: 7214066653005961880}
   networkAddress: localhost
   maxConnections: 8
   authenticator: {fileID: 0}
@@ -148,5 +148,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 1, g: 1, b: 1, a: 1}
   padding: 2
-  width: 150
-  height: 25
+  width: 300
+  height: 50
