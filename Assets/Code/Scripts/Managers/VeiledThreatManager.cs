@@ -21,7 +21,7 @@ public class VeiledThreatManager : NetworkBehaviour {
     private Dictionary<GameObject, int> activePlayerBombCarrierTime = new();
 
     private void FixedUpdate() {
-        if (!isServer) return;
+        if (!isServer || !minigameHandler.isRunning) return;
 
         if (currentBomb) {
             RpcSpectateBomb(currentBomb.transform.position);

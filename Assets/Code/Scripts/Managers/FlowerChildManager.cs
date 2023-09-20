@@ -52,7 +52,7 @@ public class FlowerChildManager : NetworkBehaviour {
     }
 
     private IEnumerator SpawnWisp() {
-        while (true) {
+        while (this) {
             Vector2 overheadLocation = new Vector2(Random.Range(minWispSpawnLocation.x, maxWispSpawnLocation.x + 1), Random.Range(minWispSpawnLocation.y, maxWispSpawnLocation.y + 1));
 
             int excludePlayerLayerMask = ~LayerMask.GetMask("Player");
@@ -82,7 +82,10 @@ public class FlowerChildManager : NetworkBehaviour {
         }
 
         yield return new WaitForSeconds(wispSpawnTimeInterval);
-        StartCoroutine(SpawnWisp());
+
+        if (minigameHandler.isRunning) {
+            StartCoroutine(SpawnWisp());
+        }
     }
 
     /// <summary>Gives a player points in the current minigame.</summary>

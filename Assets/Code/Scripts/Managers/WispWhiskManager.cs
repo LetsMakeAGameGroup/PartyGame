@@ -44,7 +44,7 @@ public class WispWhiskManager : NetworkBehaviour {
     }
 
     private void Update() {
-        if (!isServer) return;
+        if (!isServer || !minigameHandler.isRunning) return;
 
         List<int> removeWispIndex = new();
         for (int i = 0; i < wisps.Count; i++) {
@@ -64,8 +64,12 @@ public class WispWhiskManager : NetworkBehaviour {
             }
         }
 
-        foreach (var index in removeWispIndex) {
-            wisps.Remove(wisps[index]);
+        if (removeWispIndex.Count > 0) {
+            foreach (var index in removeWispIndex) {
+                if (index < wisps.Count) {
+                    wisps.Remove(wisps[index]);
+                }
+            }
         }
     }
 
