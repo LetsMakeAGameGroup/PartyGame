@@ -8,10 +8,12 @@ using Unity.Services.Authentication;
 using Unity.Services.Core;
 using System.Threading.Tasks;
 using UnityEngine.UI;
+using Unity.Services.CloudSave;
 
 public class CustomNetworkManager : RelayNetworkManager {
     [Header("Custom References")]
     public Text errorText;
+    public NetworkHUD networkHUD;
 
     public Dictionary<NetworkConnectionToClient, ClientData> ClientDatas { get; private set; }
 
@@ -91,7 +93,7 @@ public class CustomNetworkManager : RelayNetworkManager {
         base.OnServerDisconnect(conn);
     }
 
-    public async void UnityLogin(NetworkHUD networkHUD) {
+    public async void UnityLogin() {
         try {
             await UnityServices.InitializeAsync();
             if (!AuthenticationService.Instance.IsSignedIn) {
@@ -102,7 +104,11 @@ public class CustomNetworkManager : RelayNetworkManager {
             if (errorText) {
                 errorText.text = "Logged in successfully!";
             }
-            networkHUD.UpdateNameOnLaunch();
+
+            var data = await CloudSaveService.Instance.Data.LoadAllAsync();
+            var playerName = (data.ContainsKey("PlayerName") ? data["PlayerName"] : "");
+            var playerColor = (data.ContainsKey("PlayerColor") ? data["PlayerColor"] : "");
+            networkHUD.ApplyData(playerName, playerColor);
         } catch (Exception e) {
             isLoggedIn = false;
             Debug.Log(e);
@@ -110,7 +116,7 @@ public class CustomNetworkManager : RelayNetworkManager {
                 errorText.text = "Failed to login to Authetication Services. Continuing to attempt...";
             }
             await Task.Delay(1000);
-            UnityLogin(networkHUD);
+            UnityLogin();
         }
     }
 

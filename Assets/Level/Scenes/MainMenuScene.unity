@@ -2056,6 +2056,11 @@ PrefabInstance:
       objectReference: {fileID: 4677680827878622835}
     - target: {fileID: 1173496885271520578, guid: 317fec66f1acc7f4eb655af8e503c7bf,
         type: 3}
+      propertyPath: networkHUD
+      value: 
+      objectReference: {fileID: 4677680827878622836}
+    - target: {fileID: 1173496885271520578, guid: 317fec66f1acc7f4eb655af8e503c7bf,
+        type: 3}
       propertyPath: offlineScene
       value: Assets/Level/Scenes/MainMenuScene.unity
       objectReference: {fileID: 0}
@@ -3908,6 +3913,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4677680827878622836 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4677680827536345518, guid: 361035ff13bd68b4d964d9f97b7f9449,
+    type: 3}
+  m_PrefabInstance: {fileID: 4677680827878622834}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765223b1f58fa2d4fbace1dac269f063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &4835473101952874089

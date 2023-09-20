@@ -1,11 +1,13 @@
-using UnityEngine;
 using Mirror;
+using System.Collections.Generic;
 using TMPro;
+using Unity.Services.CloudSave;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(PlayerMovementComponent))]
 [RequireComponent(typeof(ItemController))]
-public class PlayerController : NetworkBehaviour, ICollector {
+public class PlayerController : NetworkBehaviour {
     [Header("References")]
     [SerializeField] private TextMeshProUGUI nametagText;
     [SerializeField] private Renderer colorMaterial;
@@ -38,7 +40,6 @@ public class PlayerController : NetworkBehaviour, ICollector {
 
     [HideInInspector] public bool isPaused = false;
 
-    public GameObject GetCollectorGameObject { get { return gameObject; } }
     public PlayerMovementComponent MovementComponent { get { return playerMovementComponent; } }
 
     private void Start() {
@@ -68,13 +69,11 @@ public class PlayerController : NetworkBehaviour, ICollector {
         if (!isLocalPlayer) return;
 
         // Allow the host to start the game when in the lobby.
-        if (GameManager.Instance.round == 0 && isServer && Input.GetKeyDown(KeyCode.M)) 
-        {
+        if (GameManager.Instance.round == 0 && isServer && Input.GetKeyDown(KeyCode.M)) {
             GameManager.Instance.StartNextRound();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape)) 
-        {
+        if (Input.GetKeyDown(KeyCode.Escape)) {
             TogglePause();
 
             LobbyUIController lobbyUI = null;
@@ -86,8 +85,7 @@ public class PlayerController : NetworkBehaviour, ICollector {
         Vector2 playerInputs = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         playerMovementComponent.AddMovementInput(playerInputs);
 
-        if (Input.GetButton("Jump"))
-        {
+        if (Input.GetButton("Jump")) {
             Jump();
         } else if (GetComponent<CharacterController>().isGrounded) {
             playerMovementComponent.moveDirection.y = 0;
@@ -101,27 +99,21 @@ public class PlayerController : NetworkBehaviour, ICollector {
         //Interaction Ray
         InteractionRayOnSight();
 
-        if (Input.GetButtonDown("Interact"))
-        {
+        if (Input.GetButtonDown("Interact")) {
             Interact();
         }
     }
 
-    public void InteractionRayOnSight() 
-    {
+    public void InteractionRayOnSight() {
         Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
 
-        if (Physics.Raycast(ray, out sightRayHit, sightRayLength, interactableLayerMask, QueryTriggerInteraction.Ignore))
-        {
-            if (interactableInSightTransform != sightRayHit.transform)
-            {
-                if (interactableInSight == null)
-                {
+        if (Physics.Raycast(ray, out sightRayHit, sightRayLength, interactableLayerMask, QueryTriggerInteraction.Ignore)) {
+            if (interactableInSightTransform != sightRayHit.transform) {
+                if (interactableInSight == null) {
                     interactableInSightTransform = sightRayHit.transform;
                     IInteractable interactable = sightRayHit.transform.GetComponent<IInteractable>();
 
-                    if (interactable != null)
-                    {
+                    if (interactable != null) {
                         interactableInSight = interactable;
 
                         //Logic to show anything on player screen when looking at the object.
@@ -129,71 +121,58 @@ public class PlayerController : NetworkBehaviour, ICollector {
                     }
                 }
             }
-        }
-        else
-        {
+        } else {
             interactableInSight = null;
             interactableInSightTransform = null;
         }
     }
 
-    public void TogglePause() 
-    {
+    public void TogglePause() {
         isPaused = !isPaused;
-        if (isPaused)
-        {
+        if (isPaused) {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-        }
-        else
-        {
+        } else {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
     }
 
-    public void Jump() 
-    {
+    public void Jump() {
         playerMovementComponent?.Jump();
     }
 
-    public void AddCameraPitch(float inputValue) 
-    {
+    public void AddCameraPitch(float inputValue) {
         rotationX -= inputValue * lookSpeed;
         rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
         headTransform.transform.localRotation = Quaternion.Euler(rotationX - 25f, 0, 0);
     }
 
-    public void AddCameraYaw(float inputValue) 
-    {
+    public void AddCameraYaw(float inputValue) {
         transform.rotation *= Quaternion.Euler(0, inputValue * lookSpeed, 0);
     }
 
-    public void Interact() 
-    {
-        if (interactableInSight != null) 
-        {
-            if (interactableInSight.CanBeInteracted) 
-            {
+    public void Interact() {
+        if (interactableInSight != null) {
+            if (interactableInSight.CanBeInteracted) {
                 interactableInSight.Interact(this);
             }
         }
     }
 
-    public Vector3 GetPlayerCameraSight() 
-    {
+    public Vector3 GetPlayerCameraSight() {
         return playerCamera.transform.forward;
     }
-	
-	private void SetNameTag(string oldName, string newName) 
-	{
+
+    private void SetNameTag(string oldName, string newName) {
         nametagText.text = newName;
     }
 
     [TargetRpc]
-    public void TargetGetDisplayName() {
-        CmdSetDisplayName(PlayerPrefs.GetString("PlayerName"));
+    public async void TargetGetDisplayName() {
+        var data = await CloudSaveService.Instance.Data.LoadAllAsync();
+        CmdSetDisplayName(data["PlayerName"]);
     }
 
     [Command]
@@ -203,26 +182,15 @@ public class PlayerController : NetworkBehaviour, ICollector {
     }
 
     [TargetRpc]
-    public void TargetGetPlayerColorPref() {
-        CmdTellPlayerColorPref(PlayerPrefs.GetString("PlayerColor"));
+    public async void TargetGetPlayerColorPref() {
+        var data = await CloudSaveService.Instance.Data.LoadAllAsync();
+        CmdTellPlayerColorPref(data["PlayerColor"]);
     }
 
     [Command]
     private void CmdTellPlayerColorPref(string _playerColor) {
         this.playerColor = _playerColor;
         CustomNetworkManager.Instance.DeterminePlayerColor(GetComponent<NetworkIdentity>().connectionToClient, _playerColor);
-    }
-
-    public bool CanCollect()
-    {
-        return true;
-    }
-
-    public void OnCollectableCollect(ICollectable collected)
-    {
-        //What do we want to do if we collect that collectable
-        //Example:
-        //Collect Animation
     }
 
     private void SetColor(string oldColor, string newColor) {
