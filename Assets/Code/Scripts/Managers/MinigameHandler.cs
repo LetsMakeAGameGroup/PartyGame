@@ -25,7 +25,7 @@ public class MinigameHandler : NetworkBehaviour {
     [Tooltip("The amount of seconds the score screen is shown.")]
     [SerializeField] private float scoreScreenTime = 10f;
 
-    private bool isRunning = false;
+    [HideInInspector] public bool isRunning = false;
     private int winnerCount = 0;
 
     private void Start() {
@@ -99,6 +99,7 @@ public class MinigameHandler : NetworkBehaviour {
     /// <summary>Ready to end the minigame and start the next round.</summary>
     public void EndMinigame() {
         if (!isRunning) return;
+        isRunning = false;
 
         // Assign points to winners accordingly
         int assignPoints = CustomNetworkManager.Instance.ClientDatas.Count;
@@ -106,10 +107,11 @@ public class MinigameHandler : NetworkBehaviour {
             foreach (NetworkConnectionToClient player in position) {
                 CustomNetworkManager.Instance.ClientDatas[player].score += assignPoints;
                 scoreScreenController.RpcAddScoreCard(CustomNetworkManager.Instance.ClientDatas[player].displayName, assignPoints);
+
+                player.identity.GetComponent<PlayerMovementComponent>().CanMove = false;
             }
             assignPoints -= position.Count;
         }
-
         StartCoroutine(EndGameTransition());
     }
 
@@ -121,6 +123,7 @@ public class MinigameHandler : NetworkBehaviour {
         GameManager.Instance.StartNextRound();
     }
 
+    [ClientRpc]
     private void RpcCountdownAudio() {
         float delay = (float)(NetworkClient.connection.remoteTimeStamp / 1000);
         StartCoroutine(TimeTillCountdownAudio(5 - countdownAudioSource.clip.length - delay));

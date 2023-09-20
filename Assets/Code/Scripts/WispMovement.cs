@@ -21,7 +21,7 @@ public class WispMovement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (players.Length == 0) return;
+        if (players.Length == 0 || !FindAnyObjectByType<MinigameHandler>().isRunning) return;
 
         Vector3 closestPlayerPosition = players[0].transform.position;
         float closestPlayerDistance = Vector3.Distance(transform.position, closestPlayerPosition);
