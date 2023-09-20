@@ -7,7 +7,8 @@ public class LobbyUIController : NetworkBehaviour {
     [Header("References")]
     public TMP_Text codeText;
     [SerializeField] private GameObject escapeMenu;
-    [SerializeField] private Button startButton;
+    [SerializeField] private GameObject startButtonObject;
+    [SerializeField] private TMP_Text disconnectText;
 
     private void Start() {
         if (codeText != null && CustomNetworkManager.Instance.relayJoinCode != null) {
@@ -15,8 +16,8 @@ public class LobbyUIController : NetworkBehaviour {
         }
 
         if (isServer) {
-            startButton.interactable = true;
-            startButton.GetComponentInChildren<TMP_Text>().text = "Start Game";
+            startButtonObject.SetActive(true);
+            disconnectText.text = "Stop Server";
         }
     }
 
@@ -35,6 +36,14 @@ public class LobbyUIController : NetworkBehaviour {
     public void StartGame() {
         if (GameManager.Instance.round == 0) {
             GameManager.Instance.StartNextRound();
+        }
+    }
+
+    public void DisconnectLobby() {
+        if (isServer) {
+            CustomNetworkManager.Instance.StopHost();
+        } else {
+            CustomNetworkManager.Instance.StopClient();
         }
     }
 }
