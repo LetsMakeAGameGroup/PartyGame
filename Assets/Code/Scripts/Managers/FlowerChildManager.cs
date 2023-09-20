@@ -42,7 +42,9 @@ public class FlowerChildManager : NetworkBehaviour {
         StartCoroutine(SpawnWisp());
 
         foreach (GameObject tornado in tornados) {
-            StartCoroutine(tornado.GetComponent<RandomlyMovingAgent>().MoveTowardsTrans());
+            if (tornado.TryGetComponent(out RandomlyMovingAgent randomlyMovingAgent)) {
+                randomlyMovingAgent.RpcSetDestination(randomlyMovingAgent.transform.position, randomlyMovingAgent.RandomNavmeshLocation());
+            }
         }
         StartCoroutine(IncreaseSpeedAfterInterval());
 
@@ -101,7 +103,9 @@ public class FlowerChildManager : NetworkBehaviour {
         yield return new WaitForSeconds(speedIncreaseTimeInterval);
 
         foreach (GameObject tornado in tornados) {
-            tornado.GetComponent<RandomlyMovingAgent>().speed += speedIncrease;
+            if (tornado.TryGetComponent(out RandomlyMovingAgent randomlyMovingAgent)) {
+                randomlyMovingAgent.speed += speedIncrease;
+            }
         }
 
         StartCoroutine(IncreaseSpeedAfterInterval());
