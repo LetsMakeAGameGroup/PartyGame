@@ -22,14 +22,18 @@ public class MinigameEscapeUIController : NetworkBehaviour {
         }
     }
 
-    private void Update() {
-        if (Input.GetButtonDown("Cancel")) {
-            canvas.enabled = !canvas.enabled;
-        }
+    public void TogglePlayerPause() {
+        NetworkClient.localPlayer.GetComponent<PlayerController>().TogglePause();
     }
 
-    public void ResumeGame() {
-        canvas.enabled = false;
+    public void ToggleMenu() {
+        bool isPaused = NetworkClient.localPlayer.GetComponent<PlayerController>().isPaused;
+        canvas.enabled = isPaused;
+
+        if (!isPaused) {
+            GameObject myEventSystem = GameObject.Find("EventSystem");
+            myEventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
+        }
     }
 
     public void CopyLobbyCode() {

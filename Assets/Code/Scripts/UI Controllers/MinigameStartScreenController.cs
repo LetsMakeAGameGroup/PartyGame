@@ -9,7 +9,7 @@ public class MinigameStartScreenController : NetworkBehaviour {
     [SerializeField] private TextMeshProUGUI playersReadyText;
     [SerializeField] private UnityEvent onStartMinigame = new();
 
-    private List<string> readyPlayers = new();
+    private readonly List<string> readyPlayers = new();
     [SyncVar] private int totalPlayers = 0;
 
     private void Start() {
@@ -17,10 +17,10 @@ public class MinigameStartScreenController : NetworkBehaviour {
             totalPlayers = CustomNetworkManager.Instance.numPlayers;
         }
 
-        UpdatePlayersReady(0);
-
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        UpdatePlayersReady(0);
     }
 
     public void ReadyUp() {
