@@ -50,7 +50,7 @@ public class PlayerMovementComponent : NetworkBehaviour {
 
     private int stunCount = 0;
 
-    void Start() {
+    private void Start() {
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Player"));  // Not sure why this is needed when they are set to ignore in project settings, but it is.
         characterController = GetComponent<CharacterController>();
         playerController = GetComponent<PlayerController>();
@@ -58,7 +58,7 @@ public class PlayerMovementComponent : NetworkBehaviour {
     }
 
     // Update is called once per frame
-    void FixedUpdate() {
+    private void Update() {
         if (!isLocalPlayer) return;
 
         // We are grounded, so recalculate move direction based on axes
@@ -81,6 +81,16 @@ public class PlayerMovementComponent : NetworkBehaviour {
 
         moveDirection.y = movementDirectionY;
 
+        animator.SetFloat("Velocity", characterController.velocity.x*characterController.velocity.x + characterController.velocity.z*characterController.velocity.z);
+        animator.SetBool("Grounded", characterController.isGrounded);
+        animator.SetBool("IsFalling", characterController.velocity.y < 0.01f);
+
+        if (footstepAudioClips.Length > 0 && !footstepAudioSource.isPlaying && NetworkClient.ready) {
+            StartCoroutine(FootstepAudio());
+        }
+    }
+
+    private void FixedUpdate() {
         if (!characterController.isGrounded) {
             moveDirection += Physics.gravity * Time.fixedDeltaTime;
         }
@@ -95,14 +105,6 @@ public class PlayerMovementComponent : NetworkBehaviour {
 
         if (!isAttemptingToRespawn && transform.position.y <= voidYAxis) {
             StartCoroutine(PlayerInVoid());
-        }
-
-        animator.SetFloat("Velocity", characterController.velocity.x*characterController.velocity.x + characterController.velocity.z*characterController.velocity.z);
-        animator.SetBool("Grounded", characterController.isGrounded);
-        animator.SetBool("IsFalling", characterController.velocity.y < 0.01f);
-
-        if (footstepAudioClips.Length > 0 && !footstepAudioSource.isPlaying && NetworkClient.ready) {
-            StartCoroutine(FootstepAudio());
         }
     }
 
