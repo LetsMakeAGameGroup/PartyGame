@@ -1,14 +1,14 @@
-using System.Collections.Generic;
-using UnityEngine;
 using Mirror;
-using System.Linq;
 using System;
-using Utp;
-using Unity.Services.Authentication;
-using Unity.Services.Core;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using UnityEngine.UI;
+using Unity.Services.Authentication;
 using Unity.Services.CloudSave;
+using Unity.Services.Core;
+using UnityEngine;
+using UnityEngine.UI;
+using Utp;
 
 public class CustomNetworkManager : RelayNetworkManager {
     [Header("Custom References")]
@@ -86,9 +86,13 @@ public class CustomNetworkManager : RelayNetworkManager {
         }
     }
 
-    // Add new player to list and spawn them at the spawn points.
     public override void OnServerDisconnect(NetworkConnectionToClient conn) {
         ClientDatas.Remove(conn);
+
+        MinigameStartScreenController minigameStartScreenController = FindFirstObjectByType<MinigameStartScreenController>();
+        if (minigameStartScreenController != null) {
+            minigameStartScreenController.DisconnectedPlayer(conn.identity.gameObject.GetComponent<PlayerController>().playerName);
+        }
 
         base.OnServerDisconnect(conn);
     }

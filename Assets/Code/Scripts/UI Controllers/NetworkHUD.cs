@@ -45,6 +45,10 @@ public class NetworkHUD : MonoBehaviour {
 
     private void Start() {
         networkManager.UnityLogin();
+
+        if (GameManager.Instance != null) {
+            Destroy(GameManager.Instance.gameObject);
+        }
     }
 
     public void ApplyData(string _playerName, string _playerColor) {
