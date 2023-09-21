@@ -52,8 +52,10 @@ public class PlayerController : NetworkBehaviour {
 
     public override void OnStartLocalPlayer() {
         // Lock cursor
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("LobbyScene")) {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
 
         // Disable meshes of self
         foreach (Renderer renderer in playerRenderers) {
@@ -76,9 +78,16 @@ public class PlayerController : NetworkBehaviour {
         if (Input.GetKeyDown(KeyCode.Escape)) {
             TogglePause();
 
-            LobbyUIController lobbyUI = null;
-            if (SceneManager.GetActiveScene().name == "LobbyScene" && (lobbyUI = FindObjectOfType<LobbyUIController>()) != null) {
-                lobbyUI.ToggleMenu();
+            if (SceneManager.GetActiveScene().name == "LobbyScene") {
+                LobbyUIController lobbyUI;
+                if ((lobbyUI = FindObjectOfType<LobbyUIController>()) != null) {
+                    lobbyUI.ToggleMenu();
+                }
+            } else {
+                MinigameEscapeUIController minigameEscapeUI;
+                if ((minigameEscapeUI = FindObjectOfType<MinigameEscapeUIController>()) != null) {
+                    minigameEscapeUI.ToggleMenu();
+                }
             }
         }
 
