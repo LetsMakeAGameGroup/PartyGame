@@ -1,7 +1,6 @@
 using Mirror;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class LobbyUIController : NetworkBehaviour {
     [Header("References")]
@@ -30,7 +29,7 @@ public class LobbyUIController : NetworkBehaviour {
     }
 
     public void CopyLobbyCode() {
-        GUIUtility.systemCopyBuffer = CustomNetworkManager.Instance.relayJoinCode.ToUpper();
+        GUIUtility.systemCopyBuffer = codeText.text;
     }
 
     public void StartGame() {

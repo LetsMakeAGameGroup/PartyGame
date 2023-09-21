@@ -9,6 +9,7 @@ using UnityEngine.Events;
 public class MinigameHandler : NetworkBehaviour {
     [Header("References")]
     [SerializeField] private MinigameScoreScreenController scoreScreenController;
+    [SerializeField] private MinigameEscapeUIController escapeUIController;
     public DisplayTimerUI displayTimerUI;
     public UnityEvent onMinigameStart = new();
     public UnityEvent onMinigameEnd = new();
@@ -26,6 +27,7 @@ public class MinigameHandler : NetworkBehaviour {
     [SerializeField] private float scoreScreenTime = 10f;
 
     [HideInInspector] public bool isRunning = false;
+    [HideInInspector] public bool isStarting = true;
     private int winnerCount = 0;
 
     private void Start() {
@@ -45,6 +47,7 @@ public class MinigameHandler : NetworkBehaviour {
     // This is called once all players are ready to start the minigame. Starts a countdown before calling StartMinigame.
     public void StartCountdown() {
         FindObjectOfType<MinigameStartScreenController>().RpcSetPlayerController(true);
+        escapeUIController.GetComponent<Canvas>().enabled = false;
 
         Timer timer = gameObject.AddComponent(typeof(Timer)) as Timer;
         timer.duration = 5f;
@@ -81,6 +84,7 @@ public class MinigameHandler : NetworkBehaviour {
         onMinigameStart?.Invoke();
 
         isRunning = true;
+        isStarting = false;
     }
 
     /// <summary>Adds player to the winners list according to position placed.</summary>
