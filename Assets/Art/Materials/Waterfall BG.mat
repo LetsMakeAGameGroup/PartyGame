@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7638368472478527576
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 5
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -20,20 +7,28 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Waterfall
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Name: Waterfall BG
+  m_Shader: {fileID: -6465566751694194690, guid: b7a2bdda8af3ae043b270ceee5f7df96,
+    type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap:
-    RenderType: Opaque
+  stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_7625495:
+        m_Texture: {fileID: 2800000, guid: 0146d52b333906640a74484b50a4f6d4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_B23D3796:
+        m_Texture: {fileID: 2800000, guid: b8d845896844cf8498543fcea723ab24, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -92,6 +87,26 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - BOOLEAN_3B4DE909: 0
+    - Vector1_25A87481: 0.027
+    - Vector1_2D2F8B59: 0.163
+    - Vector1_36EC8EBD: 0
+    - Vector1_41C335B8: 0.51
+    - Vector1_523CF9F9: 0.001
+    - Vector1_5AAC92D2: 0.07
+    - Vector1_82AFA5C7: -0.04
+    - Vector1_928B3B41: 35
+    - Vector1_960E898F: 0
+    - Vector1_96CBBEA4: 0.078
+    - Vector1_A77710BF: 6.52
+    - Vector1_D1DAD1FD: 0.002
+    - Vector1_DABF4AC1: 0.138
+    - Vector1_E285A04C: 0.044
+    - Vector1_E551740D: 1
+    - Vector1_E649B5B1: 4
+    - Vector1_E76F4BD3: 0
+    - Vector1_F278FEE0: 0.992
+    - Vector1_FA7C3821: 0.13
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -106,9 +121,15 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _HeightNoiseScale: 0
+    - _HeightNoiseSpeed: 0
     - _Metallic: 0
+    - _NoiseGradient: 30
+    - _NoiseScale: 0
+    - _NoiseSpeed: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
@@ -119,8 +140,26 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_1DEAAAEB: {r: 1, g: 1, b: 1, a: 0.9019608}
+    - Color_51316B18: {r: 0.15419187, g: 0.5732076, b: 0.9339623, a: 1}
+    - Color_A038EF66: {r: 0.6886792, g: 0.613964, b: 0.613964, a: 0}
+    - Color_B3D1197F: {r: 0.033018887, g: 0.9713016, b: 1, a: 1}
+    - Vector2_BDC8430A: {r: 0.3, g: 0.3, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
+--- !u!114 &4067374131490799389
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
