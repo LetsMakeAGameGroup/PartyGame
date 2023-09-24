@@ -93,7 +93,7 @@ Material:
     - Vector1_36EC8EBD: 0
     - Vector1_41C335B8: 0.51
     - Vector1_523CF9F9: 0.001
-    - Vector1_5AAC92D2: 0.07
+    - Vector1_5AAC92D2: 0.14
     - Vector1_82AFA5C7: 0.04
     - Vector1_928B3B41: 10.66
     - Vector1_960E898F: 0
@@ -121,7 +121,7 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _HeightNoiseScale: 1
+    - _HeightNoiseScale: 0.00001
     - _HeightNoiseSpeed: 0.00001
     - _Metallic: 0
     - _NoiseGradient: 30
