@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Clouds
+  m_Name: Fog Test 2
   m_Shader: {fileID: -6465566751694194690, guid: 6e257658429affa43bde04eb0d7b81cd,
     type: 3}
   m_ValidKeywords: []
@@ -41,19 +41,19 @@ Material:
     - _CurvatureRadius: 650
     - _EmissionStrength: 2
     - _FadeDepth: 50
-    - _FresnelOpacity: 1
+    - _FresnelOpacity: 0.1
     - _FresnelPower: 8
-    - _NoiseEdge1: -1
+    - _NoiseEdge1: 0.19
     - _NoiseEdge2: 2
-    - _NoiseHeight: 35
+    - _NoiseHeight: -10
     - _NoisePower: 33.4
     - _NoiseScale: 0.02
-    - _Noise_Speed: 30
+    - _Noise_Speed: 50
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _ColorPeak: {r: 0.6745283, g: 0.83240646, b: 1, a: 0}
-    - _ColorValley: {r: 0, g: 0.35748792, b: 1, a: 0}
+    - _ColorPeak: {r: 0, g: 0, b: 0, a: 0}
+    - _ColorValley: {r: 0, g: 0, b: 0, a: 0}
     - _NoiseRemap: {r: 0, g: 1, b: -0.3, a: 180}
     - _RotateProjection: {r: 1, g: 0, b: 0, a: 90}
     - _TestProperty: {r: 1, g: 0, b: 0, a: 90}
