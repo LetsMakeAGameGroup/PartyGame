@@ -55,7 +55,7 @@ public class FlowerChildManager : NetworkBehaviour {
         while (this) {
             Vector2 overheadLocation = new Vector2(Random.Range(minWispSpawnLocation.x, maxWispSpawnLocation.x + 1), Random.Range(minWispSpawnLocation.y, maxWispSpawnLocation.y + 1));
 
-            int excludePlayerLayerMask = ~LayerMask.GetMask("Player");
+            int excludePlayerLayerMask = LayerMask.NameToLayer("Player") | LayerMask.NameToLayer("PlayerHitbox") | LayerMask.NameToLayer("Ignore Raycast");
             if (Physics.Raycast(new Vector3(overheadLocation.x, 10f, overheadLocation.y), Vector3.down, out RaycastHit hit, 15f, excludePlayerLayerMask)) {
                 // Check if there is already a wisp nearby. If there is, it will continue and get a new position.
                 bool isNearSomething = false;

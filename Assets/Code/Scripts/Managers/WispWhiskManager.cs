@@ -125,7 +125,7 @@ public class WispWhiskManager : NetworkBehaviour {
         while (true) {
             Vector3 overheadLocation = new Vector3(Random.Range(minSpawnLocation.x, maxSpawnLocation.x), maxSpawnLocation.y, Random.Range(minSpawnLocation.z, maxSpawnLocation.z));
 
-            int excludePlayerLayerMask = LayerMask.NameToLayer("Player") | LayerMask.NameToLayer("PlayerHitbox") | LayerMask.NameToLayer("PlayerHitbox") | LayerMask.NameToLayer("Ignore Raycast");
+            int excludePlayerLayerMask = LayerMask.NameToLayer("Player") | LayerMask.NameToLayer("PlayerHitbox") | LayerMask.NameToLayer("Ignore Raycast");
             if (Physics.Raycast(overheadLocation, Vector3.down, out RaycastHit hit, Mathf.Abs(minSpawnLocation.y) + Mathf.Abs(maxSpawnLocation.y), excludePlayerLayerMask)) {
                 // Check if there is already a wisp nearby. If there is, it will continue and get a new position.
                 bool isNearSomething = false;

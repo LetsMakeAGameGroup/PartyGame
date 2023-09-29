@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1702133307698431236}
   - component: {fileID: 6071409251289780866}
   - component: {fileID: -1680980659263263569}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CollectibleWisp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
