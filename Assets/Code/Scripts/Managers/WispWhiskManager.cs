@@ -128,17 +128,17 @@ public class WispWhiskManager : NetworkBehaviour {
             int excludePlayerLayerMask = LayerMask.NameToLayer("Player") | LayerMask.NameToLayer("PlayerHitbox") | LayerMask.NameToLayer("PlayerHitbox") | LayerMask.NameToLayer("Ignore Raycast");
             if (Physics.Raycast(overheadLocation, Vector3.down, out RaycastHit hit, Mathf.Abs(minSpawnLocation.y) + Mathf.Abs(maxSpawnLocation.y), excludePlayerLayerMask)) {
                 // Check if there is already a wisp nearby. If there is, it will continue and get a new position.
-                bool isNearWisp = false;
+                bool isNearSomething = false;
                 Collider[] intersectingColliders = Physics.OverlapSphere(hit.point, distanceBetweenWisps);
                 if (intersectingColliders.Length > 0) {
                     foreach (var intersectingCollider in intersectingColliders) {
-                        if (intersectingCollider.GetComponent<CollectiblePoint>() != null) {
-                            isNearWisp = true;
+                        if (intersectingCollider.GetComponent<CollectiblePoint>() != null || intersectingCollider.GetComponent<PlayerController>() != null) {
+                            isNearSomething = true;
                             break;
                         }
                     }
                 }
-                if (isNearWisp) {
+                if (isNearSomething) {
                     yield return null;
                     continue;
                 }

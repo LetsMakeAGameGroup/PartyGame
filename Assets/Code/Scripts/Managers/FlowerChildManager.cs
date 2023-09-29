@@ -58,17 +58,17 @@ public class FlowerChildManager : NetworkBehaviour {
             int excludePlayerLayerMask = ~LayerMask.GetMask("Player");
             if (Physics.Raycast(new Vector3(overheadLocation.x, 10f, overheadLocation.y), Vector3.down, out RaycastHit hit, 15f, excludePlayerLayerMask)) {
                 // Check if there is already a wisp nearby. If there is, it will continue and get a new position.
-                bool isNearWisp = false;
+                bool isNearSomething = false;
                 Collider[] intersectingColliders = Physics.OverlapSphere(hit.point, distanceBetweenWisps);
                 if (intersectingColliders.Length > 0) {
                     foreach (var intersectingCollider in intersectingColliders) {
-                        if (intersectingCollider.GetComponent<CollectiblePoint>() != null) {
-                            isNearWisp = true;
+                        if (intersectingCollider.GetComponent<CollectiblePoint>() != null || intersectingCollider.GetComponent<PlayerController>() != null) {
+                            isNearSomething = true;
                             break;
                         }
                     }
                 }
-                if (isNearWisp) {
+                if (isNearSomething) {
                     yield return null;
                     continue;
                 }
