@@ -7,6 +7,7 @@ public class WispMovement : MonoBehaviour {
     [SerializeField] private VisualEffect visualEffect;
 
     private GameObject[] players;
+    private MinigameHandler minigameHandler;
 
     [Header("Settings")]
     [Tooltip("Speed of bobbing up and down.")]
@@ -16,12 +17,13 @@ public class WispMovement : MonoBehaviour {
 
     private void OnEnable() {
         players = GameObject.FindGameObjectsWithTag("Player");
+        minigameHandler = FindFirstObjectByType<MinigameHandler>();
 
         StartCoroutine(Bobbing());
     }
 
     private void FixedUpdate() {
-        if (players.Length == 0 || !FindAnyObjectByType<MinigameHandler>().isRunning) return;
+        if (players.Length == 0 || !minigameHandler.isRunning) return;
 
         Vector3 closestPlayerPosition = players[0].transform.position;
         float closestPlayerDistance = Vector3.Distance(transform.position, closestPlayerPosition);
@@ -38,7 +40,6 @@ public class WispMovement : MonoBehaviour {
             }
         }
 
-        //transform.rotation = Quaternion.LookRotation((closestPlayerPosition - transform.position).normalized);
         transform.LookAt(closestPlayerPosition);
         transform.rotation *= Quaternion.FromToRotation(Vector3.left, Vector3.forward);
     }
