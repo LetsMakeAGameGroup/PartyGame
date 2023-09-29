@@ -57,6 +57,12 @@ public class FlowerChildManager : NetworkBehaviour {
 
             int excludePlayerLayerMask = LayerMask.NameToLayer("Player") | LayerMask.NameToLayer("PlayerHitbox") | LayerMask.NameToLayer("Ignore Raycast");
             if (Physics.Raycast(new Vector3(overheadLocation.x, 10f, overheadLocation.y), Vector3.down, out RaycastHit hit, 15f, excludePlayerLayerMask)) {
+                // Prevent spawning on top of movable objects.
+                if (hit.collider.GetComponent<MoveObjectOverTime>() != null || hit.collider.GetComponent<ConstantRotation>() != null) {
+                    yield return null;
+                    continue;
+                }
+
                 // Check if there is already a wisp nearby. If there is, it will continue and get a new position.
                 bool isNearSomething = false;
                 Collider[] intersectingColliders = Physics.OverlapSphere(hit.point, distanceBetweenWisps);
