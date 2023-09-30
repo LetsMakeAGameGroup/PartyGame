@@ -153,9 +153,6 @@ public class FlowerChildManager : NetworkBehaviour {
         if (respawnPointDeduction == 0) return;
 
         playerPoints[player] -= respawnPointDeduction;
-        if (playerPoints[player] < 0) {
-            playerPoints[player] = 0;
-        }
 
         TargetSetScoreDisplay(player.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[player]);
         inGameScoreboardController.RpcUpdateScoreCard(player.GetComponent<PlayerController>().playerName, playerPoints[player]);
