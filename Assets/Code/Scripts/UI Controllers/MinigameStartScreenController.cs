@@ -8,6 +8,7 @@ public class MinigameStartScreenController : NetworkBehaviour {
     [Header("References")]
     [SerializeField] private TextMeshProUGUI playersReadyText;
     [SerializeField] private UnityEvent onStartMinigame = new();
+    [SerializeField] private Camera thumbnailCamera;
 
     private readonly List<string> readyPlayers = new();
     [SyncVar] private int totalPlayers = 0;
@@ -50,6 +51,7 @@ public class MinigameStartScreenController : NetworkBehaviour {
     [ClientRpc]
     private void RpcDisableUI() {
         GetComponent<Canvas>().enabled = false;
+        thumbnailCamera.enabled = false;
         if (!NetworkClient.localPlayer.GetComponent<PlayerController>().isPaused) {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
