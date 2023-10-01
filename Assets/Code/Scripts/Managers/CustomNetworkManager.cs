@@ -1,17 +1,19 @@
-using System.Collections.Generic;
-using UnityEngine;
 using Mirror;
-using System.Linq;
 using System;
-using Utp;
-using Unity.Services.Authentication;
-using Unity.Services.Core;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Unity.Services.Authentication;
+using Unity.Services.CloudSave;
+using Unity.Services.Core;
+using UnityEngine;
 using UnityEngine.UI;
+using Utp;
 
 public class CustomNetworkManager : RelayNetworkManager {
     [Header("Custom References")]
     public Text errorText;
+    public NetworkHUD networkHUD;
 
     public Dictionary<NetworkConnectionToClient, ClientData> ClientDatas { get; private set; }
 
@@ -52,6 +54,17 @@ public class CustomNetworkManager : RelayNetworkManager {
 
         player.GetComponent<PlayerController>().TargetGetDisplayName();
         player.GetComponent<PlayerController>().TargetGetPlayerColorPref();
+
+        var constantRotations = FindObjectsOfType<ConstantRotation>();
+        foreach (var constantRotation in constantRotations) {
+            constantRotation.RpcStartRotation(constantRotation.transform.rotation);
+        }
+
+        var movingObjects = FindObjectsOfType<MoveObjectOverTime>();
+        foreach (var movingObject in movingObjects) {
+            movingObject.RpcStartMovement(movingObject.transform.position, movingObject.pathIndex);
+        }
+
         initialSceneChange = false;
     }
 
@@ -73,9 +86,13 @@ public class CustomNetworkManager : RelayNetworkManager {
         }
     }
 
-    // Add new player to list and spawn them at the spawn points.
     public override void OnServerDisconnect(NetworkConnectionToClient conn) {
         ClientDatas.Remove(conn);
+
+        MinigameStartScreenController minigameStartScreenController = FindFirstObjectByType<MinigameStartScreenController>();
+        if (minigameStartScreenController != null) {
+            minigameStartScreenController.DisconnectedPlayer(conn.identity.gameObject.GetComponent<PlayerController>().playerName);
+        }
 
         base.OnServerDisconnect(conn);
     }
@@ -91,6 +108,11 @@ public class CustomNetworkManager : RelayNetworkManager {
             if (errorText) {
                 errorText.text = "Logged in successfully!";
             }
+
+            var data = await CloudSaveService.Instance.Data.LoadAllAsync();
+            var playerName = (data.ContainsKey("PlayerName") ? data["PlayerName"] : "");
+            var playerColor = (data.ContainsKey("PlayerColor") ? data["PlayerColor"] : "");
+            networkHUD.ApplyData(playerName, playerColor);
         } catch (Exception e) {
             isLoggedIn = false;
             Debug.Log(e);

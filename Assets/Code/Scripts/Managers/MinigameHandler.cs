@@ -9,10 +9,11 @@ using UnityEngine.Events;
 public class MinigameHandler : NetworkBehaviour {
     [Header("References")]
     [SerializeField] private MinigameScoreScreenController scoreScreenController;
+    [SerializeField] private MinigameEscapeUIController escapeUIController;
     public DisplayTimerUI displayTimerUI;
     public UnityEvent onMinigameStart = new();
     public UnityEvent onMinigameEnd = new();
-    //[SerializeField] private AudioSource countdownAudioSource;
+    [SerializeField] private AudioSource countdownAudioSource;
 
     [HideInInspector] public List<List<NetworkConnectionToClient>> winners = new();
     private List<GameObject> movableObjects = new();
@@ -25,7 +26,8 @@ public class MinigameHandler : NetworkBehaviour {
     [Tooltip("The amount of seconds the score screen is shown.")]
     [SerializeField] private float scoreScreenTime = 10f;
 
-    private bool isRunning = false;
+    [HideInInspector] public bool isRunning = false;
+    [HideInInspector] public bool isStarting = true;
     private int winnerCount = 0;
 
     private void Start() {
@@ -45,15 +47,16 @@ public class MinigameHandler : NetworkBehaviour {
     // This is called once all players are ready to start the minigame. Starts a countdown before calling StartMinigame.
     public void StartCountdown() {
         FindObjectOfType<MinigameStartScreenController>().RpcSetPlayerController(true);
+        escapeUIController.GetComponent<Canvas>().enabled = false;
 
         Timer timer = gameObject.AddComponent(typeof(Timer)) as Timer;
         timer.duration = 5f;
         timer.onTimerEnd.AddListener(StartMinigame);
         timer.onTimerEnd.AddListener(delegate { FindObjectOfType<MinigameStartScreenController>().RpcSetMovement(true); });
 
-        displayTimerUI.RpcStartCountdown(5);
+        displayTimerUI.RpcStartCountdown(5, false);
 
-        //StartCoroutine(TimeTillCountdownAudio());
+        RpcCountdownAudio();
     }
 
     /// <summary>Buffer for starting a minigame.</summary>
@@ -64,23 +67,24 @@ public class MinigameHandler : NetworkBehaviour {
             timer.duration = minigameDuration;
             timer.onTimerEnd = onMinigameEnd;
 
-            displayTimerUI.RpcStartCountdown(minigameDuration);
+            displayTimerUI.RpcStartCountdown(minigameDuration, true);
         }
 
         // Start moving all movable objects.
         foreach (var movableObject in movableObjects) {
             if (movableObject.TryGetComponent(out MoveObjectOverTime moveObjectOverTime)) {
-                moveObjectOverTime.canMove = true;
+                moveObjectOverTime.RpcStartMovement(movableObject.transform.position, moveObjectOverTime.pathIndex);
             }
 
             if (movableObject.TryGetComponent(out ConstantRotation constantRotation)) {
-                constantRotation.canMove = true;
+                constantRotation.RpcStartRotation(constantRotation.transform.rotation);
             }
         }
 
         onMinigameStart?.Invoke();
 
         isRunning = true;
+        isStarting = false;
     }
 
     /// <summary>Adds player to the winners list according to position placed.</summary>
@@ -99,6 +103,7 @@ public class MinigameHandler : NetworkBehaviour {
     /// <summary>Ready to end the minigame and start the next round.</summary>
     public void EndMinigame() {
         if (!isRunning) return;
+        isRunning = false;
 
         // Assign points to winners accordingly
         int assignPoints = CustomNetworkManager.Instance.ClientDatas.Count;
@@ -106,29 +111,33 @@ public class MinigameHandler : NetworkBehaviour {
             foreach (NetworkConnectionToClient player in position) {
                 CustomNetworkManager.Instance.ClientDatas[player].score += assignPoints;
                 scoreScreenController.RpcAddScoreCard(CustomNetworkManager.Instance.ClientDatas[player].displayName, assignPoints);
+
+                player.identity.GetComponent<PlayerController>().enabled = false;
+                player.identity.GetComponent<PlayerMovementComponent>().enabled = false;
+                player.identity.GetComponent<ItemController>().enabled = false;
             }
             assignPoints -= position.Count;
         }
-
         StartCoroutine(EndGameTransition());
     }
 
     IEnumerator EndGameTransition() {
         scoreScreenController.RpcEnableUI(scoreScreenTime);
 
-        yield return new WaitForSeconds(scoreScreenTime);
+        yield return new WaitForSecondsRealtime(scoreScreenTime);
 
         GameManager.Instance.StartNextRound();
     }
 
-    /*private IEnumerator TimeTillCountdownAudio() {
-        yield return new WaitForSeconds(5 - countdownAudioSource.clip.length);
+    [ClientRpc]
+    private void RpcCountdownAudio() {
+        float delay = (float)(NetworkClient.connection.remoteTimeStamp / 1000);
+        StartCoroutine(TimeTillCountdownAudio(5 - countdownAudioSource.clip.length - delay));
+    }
 
-        //RpcPlayCountdownAudio();
-    }*/
+    private IEnumerator TimeTillCountdownAudio(float duration) {
+        yield return new WaitForSecondsRealtime(duration);
 
-    /*[ClientRpc]
-    public void RpcPlayCountdownAudio() {
         countdownAudioSource.Play();
-    }*/
+    }
 }

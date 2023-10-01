@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1702133307698431236}
   - component: {fileID: 6071409251289780866}
   - component: {fileID: -1680980659263263569}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CollectibleWisp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +83,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &4124711961849086701
 PrefabInstance:

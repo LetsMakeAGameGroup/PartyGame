@@ -1,5 +1,6 @@
 using Mirror;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class JumpingFish : NetworkBehaviour {
@@ -28,12 +29,16 @@ public class JumpingFish : NetworkBehaviour {
     private Vector3 endArcPos;
     private Vector3 midArcPos;
 
+    private float time = 0;
+    private bool isJumping = false;
+    private float currentJumpDuration = 0;
+    private float endJumpDuration = 0;
+
     private void Start() {
-        if (!isServer) return;
-
-        RpcToggleFishActive(false);
-
+        fishModel.SetActive(false);
         SetupArcPositions();
+
+        if (!isServer) return;
 
         StartCoroutine(FishJump());
     }
@@ -60,30 +65,46 @@ public class JumpingFish : NetworkBehaviour {
 
     }
 
-    private IEnumerator FishJump() {
-        yield return new WaitForSeconds(Random.Range(minRandomJumpTime, maxRandomJumpTime));
+    private void FixedUpdate() {
+        if (!isJumping) {
+            time = Time.time;
+            return;
+        }
 
-        RpcToggleFishActive(true);
+        time = Time.time - time;
 
-        float currentJumpDuration = 0;
-        float endJumpDuration = jumpEndDistance * jumpHeightDistance * jumpSpeed;
-        while (currentJumpDuration < endJumpDuration) {
+        if (currentJumpDuration < endJumpDuration) {
             float timeRatio = currentJumpDuration / endJumpDuration;
             transform.position = GetArcCoordinates(timeRatio);
             transform.LookAt(GetArcCoordinates(timeRatio + 0.1f));
 
             currentJumpDuration += Time.deltaTime;
-            yield return null;
+        } else {
+            fishModel.SetActive(false);
+            isJumping = false;
+
+            if (isServer) {
+                StartCoroutine(FishJump());
+            }
         }
 
-        RpcToggleFishActive(false);
+        time = Time.time;
+    }
 
-        StartCoroutine(FishJump());
+    private IEnumerator FishJump() {
+        yield return new WaitForSeconds(Random.Range(minRandomJumpTime, maxRandomJumpTime));
+
+        RpcEnableFish();
     }
 
     [ClientRpc]
-    private void RpcToggleFishActive(bool isActive) {
-        fishModel.SetActive(isActive);
+    private void RpcEnableFish() {
+        transform.position = startArcPos;
+        fishModel.SetActive(true);
+
+        currentJumpDuration = (float)(NetworkClient.connection.remoteTimeStamp / 1000);
+        endJumpDuration = jumpEndDistance * jumpHeightDistance * jumpSpeed;
+        isJumping = true;
     }
 
     private void OnDrawGizmosSelected() {

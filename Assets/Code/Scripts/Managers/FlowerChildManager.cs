@@ -42,7 +42,9 @@ public class FlowerChildManager : NetworkBehaviour {
         StartCoroutine(SpawnWisp());
 
         foreach (GameObject tornado in tornados) {
-            StartCoroutine(tornado.GetComponent<RandomlyMovingAgent>().MoveTowardsTrans());
+            if (tornado.TryGetComponent(out RandomlyMovingAgent randomlyMovingAgent)) {
+                randomlyMovingAgent.RpcSetDestination(randomlyMovingAgent.transform.position, randomlyMovingAgent.RandomNavmeshLocation());
+            }
         }
         StartCoroutine(IncreaseSpeedAfterInterval());
 
@@ -50,23 +52,29 @@ public class FlowerChildManager : NetworkBehaviour {
     }
 
     private IEnumerator SpawnWisp() {
-        while (true) {
+        while (this) {
             Vector2 overheadLocation = new Vector2(Random.Range(minWispSpawnLocation.x, maxWispSpawnLocation.x + 1), Random.Range(minWispSpawnLocation.y, maxWispSpawnLocation.y + 1));
 
-            int excludePlayerLayerMask = ~LayerMask.GetMask("Player");
+            int excludePlayerLayerMask = LayerMask.NameToLayer("Player") | LayerMask.NameToLayer("PlayerHitbox") | LayerMask.NameToLayer("Ignore Raycast");
             if (Physics.Raycast(new Vector3(overheadLocation.x, 10f, overheadLocation.y), Vector3.down, out RaycastHit hit, 15f, excludePlayerLayerMask)) {
+                // Prevent spawning on top of movable objects.
+                if (hit.collider.GetComponent<MoveObjectOverTime>() != null || hit.collider.GetComponent<ConstantRotation>() != null) {
+                    yield return null;
+                    continue;
+                }
+
                 // Check if there is already a wisp nearby. If there is, it will continue and get a new position.
-                bool isNearWisp = false;
+                bool isNearSomething = false;
                 Collider[] intersectingColliders = Physics.OverlapSphere(hit.point, distanceBetweenWisps);
                 if (intersectingColliders.Length > 0) {
                     foreach (var intersectingCollider in intersectingColliders) {
-                        if (intersectingCollider.GetComponent<CollectiblePoint>() != null) {
-                            isNearWisp = true;
+                        if (intersectingCollider.GetComponent<CollectiblePoint>() != null || intersectingCollider.GetComponent<PlayerController>() != null) {
+                            isNearSomething = true;
                             break;
                         }
                     }
                 }
-                if (isNearWisp) {
+                if (isNearSomething) {
                     yield return null;
                     continue;
                 }
@@ -80,7 +88,10 @@ public class FlowerChildManager : NetworkBehaviour {
         }
 
         yield return new WaitForSeconds(wispSpawnTimeInterval);
-        StartCoroutine(SpawnWisp());
+
+        if (minigameHandler.isRunning) {
+            StartCoroutine(SpawnWisp());
+        }
     }
 
     /// <summary>Gives a player points in the current minigame.</summary>
@@ -101,7 +112,9 @@ public class FlowerChildManager : NetworkBehaviour {
         yield return new WaitForSeconds(speedIncreaseTimeInterval);
 
         foreach (GameObject tornado in tornados) {
-            tornado.GetComponent<RandomlyMovingAgent>().speed += speedIncrease;
+            if (tornado.TryGetComponent(out RandomlyMovingAgent randomlyMovingAgent)) {
+                randomlyMovingAgent.speed += speedIncrease;
+            }
         }
 
         StartCoroutine(IncreaseSpeedAfterInterval());
@@ -140,9 +153,6 @@ public class FlowerChildManager : NetworkBehaviour {
         if (respawnPointDeduction == 0) return;
 
         playerPoints[player] -= respawnPointDeduction;
-        if (playerPoints[player] < 0) {
-            playerPoints[player] = 0;
-        }
 
         TargetSetScoreDisplay(player.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[player]);
         inGameScoreboardController.RpcUpdateScoreCard(player.GetComponent<PlayerController>().playerName, playerPoints[player]);

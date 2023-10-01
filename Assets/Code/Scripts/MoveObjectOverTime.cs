@@ -1,8 +1,6 @@
 using Mirror;
-using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(NetworkTransform))]
 public class MoveObjectOverTime : NetworkBehaviour {
     [Header("References")]
     [Tooltip("List of positions the object will move towards, even including the first position. Once the object is at the last position, it will loop back towards the first position and keep going.")]
@@ -16,7 +14,10 @@ public class MoveObjectOverTime : NetworkBehaviour {
     [Tooltip("If this object should immediately start moving. If not, it will only start moving once the current minigame starts.")]
     public bool canMove = false;
 
-    private int pathIndex = 0;
+    [HideInInspector] public int pathIndex = 0;
+
+    private float pauseCurrentTime = 0;
+    private float time = 0;
 
     private void Awake() {
         if (pathLocations.Length == 0) {
@@ -25,27 +26,61 @@ public class MoveObjectOverTime : NetworkBehaviour {
         }
     }
 
-    private void Start() {
-        if (!isServer) return;
+    private void FixedUpdate() {
+        if (!canMove) {
+            time = Time.time;
+            return;
+        }
 
-        StartCoroutine(UpdateObject());
+        time = Time.time - time;
+
+        if (pauseCurrentTime > 0) {
+            pauseCurrentTime -= time;
+            if (pauseCurrentTime >= 0) {
+                time = Time.time;
+                return;
+            } else {
+                time *= -1;
+            }
+        }
+
+        if (Vector3.Distance(transform.position, pathLocations[pathIndex]) > 0.01f) {
+            transform.position = Vector3.MoveTowards(transform.position, pathLocations[pathIndex], time * moveSpeed);
+        } else {
+            pauseCurrentTime = pauseDuration;
+
+            transform.position = pathLocations[pathIndex];
+
+            pathIndex++;
+            pathIndex %= pathLocations.Length;
+        }
+
+        time = Time.time;
     }
 
-    private IEnumerator UpdateObject() {
-        while (!canMove) yield return null;  // Wait till the object can move.
 
-        while (true) {
-            if (Vector3.Distance(gameObject.transform.position, pathLocations[pathIndex]) > 0.01f) {
-                gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, pathLocations[pathIndex], Time.deltaTime * moveSpeed);
-            } else {
-                yield return new WaitForSeconds(pauseDuration);
+    [ClientRpc]
+    public void RpcStartMovement(Vector3 currentPosition, int index) {
+        float delay = (float)(NetworkClient.connection.remoteTimeStamp / 1000);
 
-                gameObject.transform.position = pathLocations[pathIndex];
+        pathIndex = index;
+        transform.position = currentPosition;
 
-                pathIndex++;
-                pathIndex %= pathLocations.Length;
-            }
-            yield return null;
+        int whileLoopBreak = 0;
+        float distance = delay * moveSpeed;
+        while (Vector3.Distance(transform.position, pathLocations[pathIndex]) < distance) {
+            distance -= Vector3.Distance(transform.position, pathLocations[pathIndex]);
+            transform.position = pathLocations[pathIndex];
+
+            pathIndex++;
+            pathIndex %= pathLocations.Length;
+
+            whileLoopBreak++;
+            if (whileLoopBreak > 10) break;
         }
+
+        transform.position = Vector3.MoveTowards(transform.position, pathLocations[pathIndex], distance);
+
+        canMove = true;
     }
 }

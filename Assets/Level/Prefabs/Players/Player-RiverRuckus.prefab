@@ -218,7 +218,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_TargetDisplay: 0
 --- !u!114 &3880709049684401262
 MonoBehaviour:
@@ -430,6 +430,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3807872867980839782, guid: b17abd573cf7763498436116a9104985,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3807872867980839782, guid: b17abd573cf7763498436116a9104985,
+        type: 3}
       propertyPath: runningSpeed
       value: 12
       objectReference: {fileID: 0}
@@ -502,7 +507,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   wispContainer: {fileID: 1113838010378508404}
-  dropAudioSource: {fileID: 0}
+  dropAudioSource: {fileID: 6358654617557960468}
   glowDisplayCanvas: {fileID: 1656433418673866291}
   holdingWisp: {fileID: 0}
   canPickup: 1

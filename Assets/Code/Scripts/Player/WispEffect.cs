@@ -18,11 +18,11 @@ public class WispEffect : NetworkBehaviour {
         Vector3 dropLocation;
         if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 100f, excludePlayerLayerMask)) {
             dropLocation = hit.point;
+            holdingWisp.transform.SetParent(hit.transform);
         } else {
             dropLocation = transform.position;
         }
 
-        holdingWisp.transform.parent = null;
         holdingWisp.transform.position = dropLocation;
 
         holdingWisp = null;

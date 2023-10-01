@@ -21,8 +21,8 @@ public class FinalScoreScreenController : NetworkBehaviour {
 
     private int playerCards = 0;
     private float timerWidth = 1350f;
-    private SyncDictionary<string, int> scoresInOrder = new();
-    private List<GameObject> finalScoreCards = new();
+    private readonly SyncDictionary<string, int> scoresInOrder = new();
+    private readonly List<GameObject> finalScoreCards = new();
     
     private void Start() {
         if (isServer) {
