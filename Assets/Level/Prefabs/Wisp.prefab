@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 441115350}
   - component: {fileID: 441115352}
   - component: {fileID: 441115351}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: vfx_Wisp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 5100875430724064260}
   - component: {fileID: 1013335748}
   - component: {fileID: 1013335747}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WispBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8815333484101708300}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Wisp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,6 +348,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WispFace
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3a6f985461890504f947bbdea2cd8d8d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a6f985461890504f947bbdea2cd8d8d, type: 3}

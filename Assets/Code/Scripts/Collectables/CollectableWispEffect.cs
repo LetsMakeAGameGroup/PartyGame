@@ -17,7 +17,7 @@ public class CollectableWispEffect : NetworkBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (!other.CompareTag("Player") || !isServer || !other.GetComponent<PlayerMovementComponent>() || !other.GetComponent<PlayerMovementComponent>().CanMove || transform.parent != null) return;
+        if (!other.CompareTag("Player") || !isServer || !other.GetComponent<PlayerMovementComponent>() || !other.GetComponent<PlayerMovementComponent>().CanMove || transform.root.CompareTag("Player")) return;
 
         if (other.TryGetComponent(out WispEffect wispEffect)) {
             if (wispEffect.holdingWisp || !wispEffect.canPickup) return;

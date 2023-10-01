@@ -218,7 +218,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_TargetDisplay: 0
 --- !u!114 &3880709049684401262
 MonoBehaviour:
@@ -427,6 +427,11 @@ PrefabInstance:
         type: 3}
       propertyPath: jumpSpeed
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3807872867980839782, guid: b17abd573cf7763498436116a9104985,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3807872867980839782, guid: b17abd573cf7763498436116a9104985,
         type: 3}

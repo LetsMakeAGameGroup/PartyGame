@@ -44,7 +44,7 @@ public class WispWhiskManager : NetworkBehaviour {
     }
 
     private void Update() {
-        if (!isServer) return;
+        if (!isServer || !minigameHandler.isRunning) return;
 
         List<int> removeWispIndex = new();
         for (int i = 0; i < wisps.Count; i++) {
@@ -64,8 +64,12 @@ public class WispWhiskManager : NetworkBehaviour {
             }
         }
 
-        foreach (var index in removeWispIndex) {
-            wisps.Remove(wisps[index]);
+        if (removeWispIndex.Count > 0) {
+            foreach (var index in removeWispIndex) {
+                if (index < wisps.Count) {
+                    wisps.Remove(wisps[index]);
+                }
+            }
         }
     }
 
@@ -121,20 +125,26 @@ public class WispWhiskManager : NetworkBehaviour {
         while (true) {
             Vector3 overheadLocation = new Vector3(Random.Range(minSpawnLocation.x, maxSpawnLocation.x), maxSpawnLocation.y, Random.Range(minSpawnLocation.z, maxSpawnLocation.z));
 
-            int excludePlayerLayerMask = LayerMask.NameToLayer("Player") | LayerMask.NameToLayer("PlayerHitbox") | LayerMask.NameToLayer("PlayerHitbox") | LayerMask.NameToLayer("Ignore Raycast");
+            int excludePlayerLayerMask = LayerMask.NameToLayer("Player") | LayerMask.NameToLayer("PlayerHitbox") | LayerMask.NameToLayer("Ignore Raycast");
             if (Physics.Raycast(overheadLocation, Vector3.down, out RaycastHit hit, Mathf.Abs(minSpawnLocation.y) + Mathf.Abs(maxSpawnLocation.y), excludePlayerLayerMask)) {
+                // Prevent spawning on top of movable objects.
+                if (hit.collider.GetComponent<MoveObjectOverTime>() != null || hit.collider.GetComponent<ConstantRotation>() != null) {
+                    yield return null;
+                    continue;
+                }
+
                 // Check if there is already a wisp nearby. If there is, it will continue and get a new position.
-                bool isNearWisp = false;
+                bool isNearSomething = false;
                 Collider[] intersectingColliders = Physics.OverlapSphere(hit.point, distanceBetweenWisps);
                 if (intersectingColliders.Length > 0) {
                     foreach (var intersectingCollider in intersectingColliders) {
-                        if (intersectingCollider.GetComponent<CollectiblePoint>() != null) {
-                            isNearWisp = true;
+                        if (intersectingCollider.GetComponent<CollectiblePoint>() != null || intersectingCollider.GetComponent<PlayerController>() != null) {
+                            isNearSomething = true;
                             break;
                         }
                     }
                 }
-                if (isNearWisp) {
+                if (isNearSomething) {
                     yield return null;
                     continue;
                 }
@@ -218,9 +228,6 @@ public class WispWhiskManager : NetworkBehaviour {
         if (respawnPointDeduction == 0) return;
 
         playerPoints[player] -= respawnPointDeduction;
-        if (playerPoints[player] < 0) {
-            playerPoints[player] = 0;
-        }
 
         TargetSetScoreDisplay(player.GetComponent<NetworkIdentity>().connectionToClient, playerPoints[player]);
         inGameScoreboardController.RpcUpdateScoreCard(player.GetComponent<PlayerController>().playerName, playerPoints[player]);

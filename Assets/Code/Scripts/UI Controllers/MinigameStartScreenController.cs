@@ -1,62 +1,61 @@
+using Mirror;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using Mirror;
 using UnityEngine.Events;
 
 public class MinigameStartScreenController : NetworkBehaviour {
     [Header("References")]
     [SerializeField] private TextMeshProUGUI playersReadyText;
     [SerializeField] private UnityEvent onStartMinigame = new();
+    [SerializeField] private Camera thumbnailCamera;
 
-    [SyncVar] private int playersReady = 0;
+    private readonly List<string> readyPlayers = new();
     [SyncVar] private int totalPlayers = 0;
 
     private void Start() {
-        /*if (isClient) {
-            NetworkClient.localPlayer.GetComponent<PlayerMovementComponent>().enabled = false;
-            NetworkClient.localPlayer.GetComponent<PlayerController>().enabled = false;
-            NetworkClient.localPlayer.GetComponent<ItemController>().enabled = false;
-        }*/
-
         if (isServer) {
             totalPlayers = CustomNetworkManager.Instance.numPlayers;
         }
 
-        UpdatePlayersReady();
-
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        UpdatePlayersReady(0);
     }
 
     public void ReadyUp() {
-        CmdReadyUp();
+        CmdReadyUp(NetworkClient.localPlayer.gameObject.GetComponent<PlayerController>().playerName);
     }
 
     [Command(requiresAuthority = false)]
-    public void CmdReadyUp() {
-        playersReady++;
-        RpcReadyUp();
+    public void CmdReadyUp(string playerNameReady) {
+        readyPlayers.Add(playerNameReady);
+        RpcUpdatePlayers(readyPlayers.Count);
 
-        if (playersReady == totalPlayers) {
+        if (readyPlayers.Count == totalPlayers) {
             RpcDisableUI();
             onStartMinigame?.Invoke();
         }
     }
 
     [ClientRpc]
-    private void RpcReadyUp() {
-        UpdatePlayersReady();
+    private void RpcUpdatePlayers(int playersReady) {
+        UpdatePlayersReady(playersReady);
     }
 
-    private void UpdatePlayersReady() {
+    private void UpdatePlayersReady(int playersReady) {
         playersReadyText.text = playersReady + " / " + totalPlayers + " Players Ready";
     }
 
     [ClientRpc]
     private void RpcDisableUI() {
         GetComponent<Canvas>().enabled = false;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        thumbnailCamera.enabled = false;
+        if (!NetworkClient.localPlayer.GetComponent<PlayerController>().isPaused) {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
     [ClientRpc]
@@ -69,5 +68,19 @@ public class MinigameStartScreenController : NetworkBehaviour {
     [ClientRpc]
     public void RpcSetPlayerController(bool canMove) {
         NetworkClient.localPlayer.GetComponent<PlayerController>().enabled = canMove;
+    }
+
+    public void DisconnectedPlayer(string playerNameDisconnected) {
+        if (readyPlayers.Contains(playerNameDisconnected)) {
+            readyPlayers.Remove(playerNameDisconnected);
+        }
+        totalPlayers--;
+
+        RpcUpdatePlayers(readyPlayers.Count);
+
+        if (readyPlayers.Count == totalPlayers) {
+            RpcDisableUI();
+            onStartMinigame?.Invoke();
+        }
     }
 }

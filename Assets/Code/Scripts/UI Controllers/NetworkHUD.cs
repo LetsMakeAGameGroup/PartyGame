@@ -1,3 +1,4 @@
+using kcp2k;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -45,35 +46,29 @@ public class NetworkHUD : MonoBehaviour {
     private void Start() {
         networkManager.UnityLogin();
 
-        if (PlayerPrefs.HasKey("PlayerName")) {
-            playerName = PlayerPrefs.GetString("PlayerName");
+        if (GameManager.Instance != null) {
+            Destroy(GameManager.Instance.gameObject);
+        }
+    }
+
+    public void ApplyData(string _playerName, string _playerColor) {
+        playerName = _playerName;
+        playerColor = _playerColor;
+
+        if (playerName != "") {
             currentNameText.text = $"Hello, {playerName}!";
             nameInputField.text = playerName;
 
-            if (PlayerPrefs.HasKey("PlayerColor")) {
-                playerColor = PlayerPrefs.GetString("PlayerColor");
+            if (playerColor != "") {
                 currentColorText.text = playerColor;
                 currentColorText.color = PlayerColorOptions.options[playerColor];
 
                 mainMenuPanel.SetActive(true);
-
-                UpdateNameOnLaunch();
             } else {
                 colorSelectPanel.SetActive(true);
             }
         } else {
             nameSelectPanel.SetActive(true);
-        }
-    }
-
-    private async void UpdateNameOnLaunch() {
-        try {
-            if (await AuthenticationService.Instance.GetPlayerNameAsync() == null) {
-                SaveNameData();
-                SaveColorData();
-            }
-        } catch (Exception e) {
-            Debug.LogException(e);
         }
     }
 
@@ -86,6 +81,8 @@ public class NetworkHUD : MonoBehaviour {
             networkManager.relayJoinCode = joinCode;
 
             networkManager.StartHost();
+
+            networkManager.transport = networkManager.GetComponent<KcpTransport>();
         },
         () => {
             UtpLog.Error($"Failed to start a Relay host.");
@@ -106,23 +103,23 @@ public class NetworkHUD : MonoBehaviour {
         networkManager.GetComponent<UtpTransport>().ConfigureClientWithJoinCode(codeInputField.text,
         () => {
             networkManager.StartClient();
+
+            networkManager.transport = networkManager.GetComponent<KcpTransport>();
         },
         () => {
-            UtpLog.Error($"Failed to join Relay server.");
+            UtpLog.Error($"Failed to join Relay server with code: {codeInputField.text}.");
             errorText.text = "Failed to find/join server. Is the lobby code correct?";
         });
     }
 
     public void ChangeName() {
         playerName = nameInputField.text;
-        if (playerName != PlayerPrefs.GetString("PlayerName")) {
-            SaveNameData();
-        }
+        SaveNameData();
 
         currentNameText.text = $"Hello, {playerName}!";
         nameSelectPanel.SetActive(false);
-        ;
-        if (PlayerPrefs.HasKey("PlayerColor")) {
+
+        if (playerColor != "") {
             mainMenuPanel.SetActive(true);
         } else {
             colorSelectPanel.SetActive(true);
@@ -131,11 +128,7 @@ public class NetworkHUD : MonoBehaviour {
 
     private async void SaveNameData() {
         try {
-            PlayerPrefs.SetString("PlayerName", playerName);
-
-            string cloudPlayerName = await AuthenticationService.Instance.UpdatePlayerNameAsync(playerName);
-
-            var data = new Dictionary<string, object> { { "PlayerName", cloudPlayerName } };
+            var data = new Dictionary<string, object> { { "PlayerName", playerName } };
             await CloudSaveService.Instance.Data.ForceSaveAsync(data);
         } catch (Exception e) {
             Debug.LogException(e);
@@ -144,9 +137,7 @@ public class NetworkHUD : MonoBehaviour {
 
     public void SetColorPref(string colorName) {
         playerColor = colorName;
-        if (playerColor != PlayerPrefs.GetString("PlayerColor")) {
-            SaveColorData();
-        }
+        SaveColorData();
 
         currentColorText.text = playerColor;
         currentColorText.color = PlayerColorOptions.options[playerColor];
@@ -157,8 +148,6 @@ public class NetworkHUD : MonoBehaviour {
 
     private async void SaveColorData() {
         try {
-            PlayerPrefs.SetString("PlayerColor", playerColor);
-
             var data = new Dictionary<string, object> { { "PlayerColor", playerColor } };
             await CloudSaveService.Instance.Data.ForceSaveAsync(data);
         } catch (Exception e) {
