@@ -4196,16 +4196,16 @@ MonoBehaviour:
   scoreDisplayText: {fileID: 805902994}
   inGameScoreboardController: {fileID: 1575734449}
   targets:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6847506005076291410}
+  - {fileID: 6847506006300401226}
+  - {fileID: 6847506004996363923}
+  - {fileID: 6847506006622864235}
+  - {fileID: 6847506005047234693}
+  - {fileID: 6847506005269934173}
+  - {fileID: 6847506005018020424}
+  - {fileID: 6847506005653323084}
+  - {fileID: 6847506006214686863}
+  - {fileID: 6847506005437790013}
   timeBetweenGivenPoints: 1
   respawnPointDeduction: 4
 --- !u!114 &1970324811
@@ -61420,7 +61420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 4279177417
-  _assetId: 1079253759
+  _assetId: 0
   serverOnly: 0
   visible: 0
   hasSpawned: 0
@@ -64059,7 +64059,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 2870141794
-  _assetId: 1181180468
+  _assetId: 0
   serverOnly: 0
   visible: 0
   hasSpawned: 0
@@ -64076,7 +64076,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 909819889
-  _assetId: 1181180468
+  _assetId: 0
   serverOnly: 0
   visible: 0
   hasSpawned: 0
@@ -64093,7 +64093,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 974541105
-  _assetId: 1181180468
+  _assetId: 0
   serverOnly: 0
   visible: 0
   hasSpawned: 0
@@ -64110,7 +64110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 522883500
-  _assetId: 1181180468
+  _assetId: 0
   serverOnly: 0
   visible: 0
   hasSpawned: 0
@@ -64127,7 +64127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 2544907664
-  _assetId: 1181180468
+  _assetId: 0
   serverOnly: 0
   visible: 0
   hasSpawned: 0
@@ -64144,7 +64144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 4294603854
-  _assetId: 1181180468
+  _assetId: 0
   serverOnly: 0
   visible: 0
   hasSpawned: 0
@@ -64161,7 +64161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 2423004995
-  _assetId: 1181180468
+  _assetId: 0
   serverOnly: 0
   visible: 0
   hasSpawned: 0
@@ -64178,7 +64178,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 2213695192
-  _assetId: 1181180468
+  _assetId: 0
   serverOnly: 0
   visible: 0
   hasSpawned: 0
@@ -64195,7 +64195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 3823443409
-  _assetId: 1181180468
+  _assetId: 0
   serverOnly: 0
   visible: 0
   hasSpawned: 0
@@ -64212,7 +64212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 487155086
-  _assetId: 1181180468
+  _assetId: 0
   serverOnly: 0
   visible: 0
   hasSpawned: 0
@@ -67273,7 +67273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 2793087939
-  _assetId: 1012048703
+  _assetId: 0
   serverOnly: 0
   visible: 0
   hasSpawned: 0
@@ -67344,7 +67344,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 3228351950
-  _assetId: 1012048703
+  _assetId: 0
   serverOnly: 0
   visible: 0
   hasSpawned: 0
@@ -68143,7 +68143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 3810392815
-  _assetId: 1012048703
+  _assetId: 0
   serverOnly: 0
   visible: 0
   hasSpawned: 0
@@ -68584,7 +68584,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 112054298
-  _assetId: 1012048703
+  _assetId: 0
   serverOnly: 0
   visible: 0
   hasSpawned: 0
@@ -68633,7 +68633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 2413878821
-  _assetId: 1012048703
+  _assetId: 0
   serverOnly: 0
   visible: 0
   hasSpawned: 0
@@ -69368,7 +69368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 1326845676
-  _assetId: 1012048703
+  _assetId: 0
   serverOnly: 0
   visible: 0
   hasSpawned: 0
@@ -69439,7 +69439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 3313385940
-  _assetId: 1012048703
+  _assetId: 0
   serverOnly: 0
   visible: 0
   hasSpawned: 0
@@ -69859,7 +69859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 4045273125
-  _assetId: 1012048703
+  _assetId: 0
   serverOnly: 0
   visible: 0
   hasSpawned: 0
