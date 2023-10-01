@@ -91,6 +91,8 @@ public class PlayerMovementComponent : NetworkBehaviour {
     }
 
     private void FixedUpdate() {
+        if (!isLocalPlayer) return;
+
         if (!characterController.isGrounded) {
             moveDirection += Physics.gravity * Time.fixedDeltaTime;
         }
