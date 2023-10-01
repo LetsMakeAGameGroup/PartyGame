@@ -81,8 +81,6 @@ public class NetworkHUD : MonoBehaviour {
             networkManager.relayJoinCode = joinCode;
 
             networkManager.StartHost();
-
-            networkManager.transport = networkManager.GetComponent<KcpTransport>();
         },
         () => {
             UtpLog.Error($"Failed to start a Relay host.");
@@ -103,8 +101,6 @@ public class NetworkHUD : MonoBehaviour {
         networkManager.GetComponent<UtpTransport>().ConfigureClientWithJoinCode(codeInputField.text,
         () => {
             networkManager.StartClient();
-
-            networkManager.transport = networkManager.GetComponent<KcpTransport>();
         },
         () => {
             UtpLog.Error($"Failed to join Relay server with code: {codeInputField.text}.");
