@@ -45,7 +45,7 @@ Material:
     - _FresnelPower: 8
     - _NoiseEdge1: -1
     - _NoiseEdge2: 2
-    - _NoiseHeight: 30
+    - _NoiseHeight: 35
     - _NoisePower: 33.4
     - _NoiseScale: 0.02
     - _Noise_Speed: 30
