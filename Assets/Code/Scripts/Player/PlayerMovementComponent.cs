@@ -5,7 +5,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
-[RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(NetworkAnimator))]
 public class PlayerMovementComponent : NetworkBehaviour {
     [Header("References")]
@@ -55,6 +54,11 @@ public class PlayerMovementComponent : NetworkBehaviour {
         characterController = GetComponent<CharacterController>();
         playerController = GetComponent<PlayerController>();
         networkAnimator = GetComponent<NetworkAnimator>();
+
+        if (!isLocalPlayer) {
+            Destroy(characterController);
+            Destroy(GetComponent<Rigidbody>());
+        }
     }
 
     // Update is called once per frame
@@ -91,6 +95,8 @@ public class PlayerMovementComponent : NetworkBehaviour {
     }
 
     private void FixedUpdate() {
+        if (!isLocalPlayer) return;
+
         if (!characterController.isGrounded) {
             moveDirection += Physics.gravity * Time.fixedDeltaTime;
         }
