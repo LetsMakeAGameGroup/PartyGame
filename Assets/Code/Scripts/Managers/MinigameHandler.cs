@@ -18,6 +18,11 @@ public class MinigameHandler : NetworkBehaviour {
     [HideInInspector] public List<List<NetworkConnectionToClient>> winners = new();
     private List<GameObject> movableObjects = new();
 
+    [Header("Music References")]
+    [SerializeField] private AudioSource startMusicAudioSource;
+    [SerializeField] private AudioSource minigameMusicAudioSource;
+    [SerializeField] private AudioSource endMusicAudioSource;
+
     [Header("Settings")]
     [Tooltip("How many seconds the minigame should last before ending.")]
     public float minigameDuration = 120f;
@@ -123,6 +128,7 @@ public class MinigameHandler : NetworkBehaviour {
 
     IEnumerator EndGameTransition() {
         scoreScreenController.RpcEnableUI(scoreScreenTime);
+        RpcPlayEndMusic();
 
         yield return new WaitForSecondsRealtime(scoreScreenTime);
 
@@ -131,6 +137,7 @@ public class MinigameHandler : NetworkBehaviour {
 
     [ClientRpc]
     private void RpcCountdownAudio() {
+        startMusicAudioSource.Stop();
         float delay = (float)(NetworkClient.connection.remoteTimeStamp / 1000);
         StartCoroutine(TimeTillCountdownAudio(5 - countdownAudioSource.clip.length - delay));
     }
@@ -139,5 +146,15 @@ public class MinigameHandler : NetworkBehaviour {
         yield return new WaitForSecondsRealtime(duration);
 
         countdownAudioSource.Play();
+
+        yield return new WaitForSecondsRealtime(countdownAudioSource.clip.length);
+
+        minigameMusicAudioSource.Play();
+    }
+
+    [ClientRpc]
+    private void RpcPlayEndMusic() {
+        minigameMusicAudioSource.Stop();
+        endMusicAudioSource.Play();
     }
 }
