@@ -338,7 +338,7 @@ MonoBehaviour:
   maxRandomJumpTime: 5
   jumpEndDistance: 10
   jumpHeightDistance: 7.5
-  jumpSpeed: 0.012
+  jumpSpeed: 0.01
   knockbackForce: 25
   verticalForce: 5
   stunTime: 0.5

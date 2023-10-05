@@ -9,9 +9,7 @@ public class PlayerSync : NetworkBehaviour {
     [SyncVar] private Vector3 syncPosition;
     [SyncVar] private Quaternion syncRotation;
 
-
-
-    private void Awake() {
+    private void Start() {
         syncPosition = transform.position;
         syncRotation = transform.rotation;
     }

@@ -10,10 +10,10 @@ public class Fist : MeleeWeapon {
     [SerializeField] private float stunTime = 0.5f;
 
     public override void HitTarget(GameObject target) {
-        if (target && target.TryGetComponent(out PlayerMovementComponent playerMovementComponent)) {
+        if (target && target.GetComponent<PlayerMovementComponent>()) {
             Vector3 direction = playerController.transform.forward * knockbackForce;
             direction.y = verticalForce;
-            playerMovementComponent.TargetKnockbackCharacter(direction, stunTime);
+            playerController.GetComponent<ItemController>().CmdKnockbackCharacter(target, direction, stunTime);
 
             if (target.TryGetComponent(out WispEffect wispEffect) && wispEffect.holdingWisp) {
                 wispEffect.RpcDropWisp();

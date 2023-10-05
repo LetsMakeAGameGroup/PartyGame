@@ -7,5 +7,5 @@ public class Weapon : Item {
     [Tooltip("How far this weapon can hit for.")]
     public float hitDistance = 25f;
 
-    public override void Use() {}
+    public override void Use() { }
 }

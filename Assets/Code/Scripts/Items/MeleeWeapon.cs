@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 
 public abstract class MeleeWeapon : Weapon {
@@ -26,10 +25,10 @@ public abstract class MeleeWeapon : Weapon {
             }
 
             // If the hit object can be interacted with using on-hit, apply on-hit effects to it.
-            playerController.GetComponent<ItemController>().TargetStartItemCooldown(useCooldown);
+            playerController.GetComponent<ItemController>().StartItemCooldown(useCooldown);
             HitTarget(closestHit.transform.gameObject);
         } else {
-            playerController.GetComponent<ItemController>().TargetStartItemCooldown(missCooldown);
+            playerController.GetComponent<ItemController>().StartItemCooldown(missCooldown);
         }
     }
 

@@ -36,22 +36,24 @@ public class ItemController : NetworkBehaviour {
         if (holdingItem && canUse && !playerController.isPaused && playerController.MovementComponent && playerController.MovementComponent.CanMove) {
             if (holdingItem.GetComponent<MeleeWeapon>()) {
                 if (Input.GetButtonDown("Fire1")) {
-                    canUse = false;
-                    CmdUseItem();
+                    UseItem();
                 }
             } else {
                 if (Input.GetButton("Fire1")) {
-                    canUse = false;
-                    CmdUseItem();
+                    UseItem();
                 }
             }
         }
     }
 
-    // Tell the server the player wants to hit
-    [Command]
-    private void CmdUseItem() {
+    // The player wants to hit
+    private void UseItem() {
         holdingItem.GetComponent<Item>().Use();
+        CmdPlayUseAudio();
+    }
+
+    [Command]
+    public void CmdPlayUseAudio() {
         RpcPlayUseAudio();
     }
 
@@ -63,8 +65,7 @@ public class ItemController : NetworkBehaviour {
         }
     }
 
-    [TargetRpc]
-    public void TargetStartItemCooldown(float cooldown) {
+    public void StartItemCooldown(float cooldown) {
         StartCoroutine(ItemCooldown(cooldown));
     }
 
@@ -104,5 +105,29 @@ public class ItemController : NetworkBehaviour {
             item.transform.SetParent(itemHolder.transform, false);
         }
         holdingItem = item;
+    }
+
+    [Command]
+    public void CmdKnockbackCharacter(GameObject target, Vector3 direction, float stunTime) {
+        target.GetComponent<PlayerMovementComponent>().TargetKnockbackCharacter(direction, stunTime);
+    }
+
+    public void SpawnBullet(Vector3 endPos) {
+        CmdSpawnBullet(endPos);
+    }
+
+    [Command]
+    public void CmdSpawnBullet(Vector3 endPos) {
+        RangedWeapon weapon = holdingItem.GetComponent<RangedWeapon>();
+
+        // Instantiate the bullet across the server. Starting at bulletSpawnTrans's position and move towards endPos.
+        GameObject bullet = Instantiate(weapon.bulletPrefab, weapon.bulletSpawnTrans.position, weapon.bulletSpawnTrans.rotation);
+        bullet.transform.LookAt(endPos);
+        bullet.GetComponent<Bullet>().bulletVelocity = bullet.transform.forward * weapon.bulletSpeed;
+        bullet.GetComponent<Bullet>().shooterPlayer = gameObject;
+        bullet.GetComponent<Bullet>().hitDistance = weapon.hitDistance;
+        bullet.GetComponent<Bullet>().bulletColor = GetComponent<PlayerController>().playerColor;
+
+        NetworkServer.Spawn(bullet);
     }
 }

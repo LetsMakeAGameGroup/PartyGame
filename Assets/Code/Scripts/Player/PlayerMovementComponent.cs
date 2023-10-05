@@ -54,11 +54,6 @@ public class PlayerMovementComponent : NetworkBehaviour {
         characterController = GetComponent<CharacterController>();
         playerController = GetComponent<PlayerController>();
         networkAnimator = GetComponent<NetworkAnimator>();
-
-        if (!isLocalPlayer) {
-            Destroy(characterController);
-            Destroy(GetComponent<Rigidbody>());
-        }
     }
 
     // Update is called once per frame
@@ -207,11 +202,11 @@ public class PlayerMovementComponent : NetworkBehaviour {
     /// <summary>Tell the player to knockback themselves.</summary>
     [TargetRpc]
     public void TargetKnockbackCharacter(Vector3 forceDirection, float timeStunned) {
-        KnockbackCharacter(forceDirection);
-        StartCoroutine(StunPlayer(timeStunned));
+        KnockbackCharacter(forceDirection, timeStunned);
     }
 
-    public void KnockbackCharacter(Vector3 forceDirection) {
+    public void KnockbackCharacter(Vector3 forceDirection, float timeStunned) {
+        StartCoroutine(StunPlayer(timeStunned));
         launchVelocity = forceDirection;
         launchTimeElapsed = 0;
         moveDirection.y = forceDirection.y;

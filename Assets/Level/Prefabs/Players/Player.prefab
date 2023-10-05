@@ -254,6 +254,7 @@ GameObject:
   - component: {fileID: 1913241591815720156}
   - component: {fileID: 33998944466195850}
   - component: {fileID: 5385759795732652742}
+  - component: {fileID: -4105487620676779219}
   - component: {fileID: 7876793073482905806}
   - component: {fileID: 5128869810030628217}
   - component: {fileID: 3306933139664286026}
@@ -437,7 +438,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1913241591815720157}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a66646c345dea94fb39a5d798340a80, type: 3}
   m_Name: 
@@ -446,6 +447,38 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   lerpRate: 15
+--- !u!114 &-4105487620676779219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913241591815720157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 1
+  syncMode: 0
+  syncInterval: 0
+  target: {fileID: 1913241591815720158}
+  clientAuthority: 0
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+  onlySyncOnChange: 1
+  bufferResetMultiplier: 5
+  positionSensitivity: 0.01
+  rotationSensitivity: 0.01
+  scaleSensitivity: 0.01
+  timelineOffset: 0
 --- !u!114 &7876793073482905806
 MonoBehaviour:
   m_ObjectHideFlags: 0

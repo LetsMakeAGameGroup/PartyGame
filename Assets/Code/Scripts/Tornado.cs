@@ -11,12 +11,12 @@ public class Tornado : NetworkBehaviour {
     [SerializeField] private float stunTime = 0.5f;
 
     private void OnTriggerEnter(Collider other) {
-        if (!isServer || !other.CompareTag("Player")) return;
+        if (!other.CompareTag("Player")) return;
 
         if (other.gameObject.TryGetComponent(out PlayerMovementComponent playerMovementComponent)) {
             Vector3 direction = (other.transform.position - transform.position).normalized * knockbackForce;
             direction.y = verticalForce;
-            playerMovementComponent.TargetKnockbackCharacter(direction, stunTime);
+            playerMovementComponent.KnockbackCharacter(direction, stunTime);
         }
     }
 }

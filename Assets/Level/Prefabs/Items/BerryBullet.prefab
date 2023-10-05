@@ -51,14 +51,15 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  colorRenderer: {fileID: 2616302144594660857}
   shooterPlayer: {fileID: 0}
   damage: 10
+  hitDistance: 3.4028235e+38
   bulletVelocity: {x: 0, y: 0, z: 0}
-  berryRenderer: {fileID: 2616302144594660857}
+  bulletColor: 
   knockbackForce: 30
   verticalForce: 5
   stunTime: 0.75
-  bulletColor: 
 --- !u!135 &2005529211254197851
 SphereCollider:
   m_ObjectHideFlags: 0

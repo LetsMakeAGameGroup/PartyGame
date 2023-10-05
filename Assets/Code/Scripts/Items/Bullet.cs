@@ -1,12 +1,16 @@
-using UnityEngine;
 using Mirror;
+using UnityEngine;
 
 public abstract class Bullet : NetworkBehaviour {
+    [Header("Bullet References")]
+    [SerializeField] private Renderer colorRenderer;
+
     [HideInInspector] public GameObject shooterPlayer = null;
     [HideInInspector] public int damage = 10;
     [HideInInspector] public float hitDistance = float.MaxValue;
 
     [SyncVar(hook = nameof(SetVelocity)), HideInInspector] public Vector3 bulletVelocity = Vector3.zero;
+    [SyncVar(hook = nameof(SetColor)), HideInInspector] public string bulletColor = "";
 
     private Vector3 initialSpawnPos;
 
@@ -17,9 +21,13 @@ public abstract class Bullet : NetworkBehaviour {
     private void Update() {
         if (!isServer) return;
 
-        if (Vector3.Distance(initialSpawnPos, transform.position) >= hitDistance ) {
+        if (Vector3.Distance(initialSpawnPos, transform.position) >= hitDistance) {
             NetworkServer.Destroy(gameObject);
         }
+    }
+
+    public void SetColor(string oldColor, string newColor) {
+        colorRenderer.material.color = PlayerColorOptions.options[newColor];
     }
 
     private void OnTriggerEnter(Collider other) {
