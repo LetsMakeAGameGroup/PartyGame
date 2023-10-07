@@ -1895,6 +1895,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
         type: 3}
+      propertyPath: availableMinigamesScenes.Array.data[0]
+      value: Assets/Level/Scenes/MinigameFlowerChildScene.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
+        type: 3}
+      propertyPath: availableMinigamesScenes.Array.data[2]
+      value: Assets/Level/Scenes/MinigameFlowerChildScene.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
+        type: 3}
+      propertyPath: availableMinigamesScenes.Array.data[3]
+      value: Assets/Level/Scenes/MinigameFlowerChildScene.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
+        type: 3}
+      propertyPath: availableMinigamesScenes.Array.data[4]
+      value: Assets/Level/Scenes/MinigameFlowerChildScene.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 4266590026886717781, guid: 4bf61acadb7d1fa44bec3c3834b6074c,
+        type: 3}
       propertyPath: availableMinigamesSceneNames.Array.size
       value: 5
       objectReference: {fileID: 0}
