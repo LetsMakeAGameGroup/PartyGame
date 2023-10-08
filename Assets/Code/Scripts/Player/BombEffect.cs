@@ -7,6 +7,15 @@ public class BombEffect : NetworkBehaviour {
 
     [HideInInspector] public GameObject holdingBomb;
 
+    public void EquipBomb(GameObject bomb) {
+        CmdEquipBomb(bomb);
+    }
+
+    [Command]
+    public void CmdEquipBomb(GameObject bomb) {
+        RpcEquipBomb(bomb);
+        TargetToggleVisability(bomb, true);
+    }
 
     [ClientRpc]
     public void RpcEquipBomb(GameObject bomb) {
@@ -17,12 +26,14 @@ public class BombEffect : NetworkBehaviour {
         holdingBomb.transform.parent = bombContainer.transform;
         holdingBomb.transform.localPosition = Vector3.zero;
         holdingBomb.transform.localRotation = Quaternion.identity;
-
-        TargetToggleVisability(bomb, true);
     }
 
     [TargetRpc]
     public void TargetToggleVisability(GameObject bomb, bool isHoldingBomb) {
+        ToggleVisability(bomb, isHoldingBomb);
+    }
+
+    public void ToggleVisability(GameObject bomb, bool isHoldingBomb) {
         if (bomb != null) {
             MeshRenderer[] bombRenderers = bomb.GetComponentsInChildren<MeshRenderer>();
             foreach (MeshRenderer renderer in bombRenderers) {

@@ -130,4 +130,17 @@ public class ItemController : NetworkBehaviour {
 
         NetworkServer.Spawn(bullet);
     }
+
+    [Command]
+    public void CmdDropWisp(WispEffect wispEffect) {
+        wispEffect.RpcDropWisp();
+        wispEffect.TargetToggleGlowDisplay(false);
+    }
+
+    [Command]
+    public void CmdEquipBomb(BombEffect bombEffect) {
+        GameObject holdingBomb = GetComponent<BombEffect>().holdingBomb;
+        bombEffect.RpcEquipBomb(holdingBomb);
+        bombEffect.TargetToggleVisability(holdingBomb, true);
+    }
 }

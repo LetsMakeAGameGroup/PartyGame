@@ -354,9 +354,9 @@ MonoBehaviour:
     type: 2}
   voidPostProcessProfile: {fileID: 11400000, guid: ae0913f8c4ac6bf48827701bf09b2be1,
     type: 2}
-  walkingSpeed: 7.5
-  runningSpeed: 11.5
-  jumpSpeed: 8
+  walkingSpeed: 8
+  runningSpeed: 12
+  jumpSpeed: 9
   voidYAxis: 0
   respawnTime: 3
   moveDirection: {x: 0, y: 0, z: 0}

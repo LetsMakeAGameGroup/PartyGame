@@ -1,3 +1,4 @@
+using Mirror;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.VFX;
@@ -6,7 +7,6 @@ public class WispMovement : MonoBehaviour {
     [Header("References")]
     [SerializeField] private VisualEffect visualEffect;
 
-    private GameObject[] players;
     private MinigameHandler minigameHandler;
 
     [Header("Settings")]
@@ -16,31 +16,15 @@ public class WispMovement : MonoBehaviour {
     [SerializeField] private float bobDistance = 0.25f;
 
     private void OnEnable() {
-        players = GameObject.FindGameObjectsWithTag("Player");
         minigameHandler = FindFirstObjectByType<MinigameHandler>();
 
         StartCoroutine(Bobbing());
     }
 
     private void FixedUpdate() {
-        if (players.Length == 0 || !minigameHandler.isRunning) return;
+        if (!minigameHandler) return;
 
-        Vector3 closestPlayerPosition = players[0].transform.position;
-        float closestPlayerDistance = Vector3.Distance(transform.position, closestPlayerPosition);
-
-        if (players.Length > 1) {
-            for (int i = 1; i < players.Length; i++) {
-                Vector3 tempPlayerPosition = players[i].transform.position;
-                float tempPlayerDistance = Vector3.Distance(transform.position, tempPlayerPosition);
-
-                if (tempPlayerDistance < closestPlayerDistance) {
-                    closestPlayerPosition = tempPlayerPosition;
-                    closestPlayerDistance = tempPlayerDistance;
-                }
-            }
-        }
-
-        transform.LookAt(closestPlayerPosition);
+        transform.LookAt(NetworkClient.localPlayer.transform.position);
         transform.rotation *= Quaternion.FromToRotation(Vector3.left, Vector3.forward);
     }
 

@@ -166,7 +166,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh132440
+  m_Name: pb_Mesh33732
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -973,7 +973,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh132474
+  m_Name: pb_Mesh33766
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1137,7 +1137,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh133408
+  m_Name: pb_Mesh34700
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1465,7 +1465,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh133130
+  m_Name: pb_Mesh34422
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1757,7 +1757,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh132308
+  m_Name: pb_Mesh33600
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16184,7 +16184,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  rotateDirection: {x: 0, y: 45, z: 0}
+  rotateDirection: {x: 45, y: 45, z: 45}
   canMove: 1
 --- !u!1 &2953473893077515765
 GameObject:
@@ -19720,7 +19720,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  rotateDirection: {x: 0, y: 45, z: 0}
+  rotateDirection: {x: 45, y: 45, z: 45}
   canMove: 1
 --- !u!1 &2953473893225454170
 GameObject:
@@ -22045,7 +22045,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  rotateDirection: {x: 0, y: 45, z: 0}
+  rotateDirection: {x: 45, y: 45, z: 45}
   canMove: 1
 --- !u!1 &2953473893246156657
 GameObject:
@@ -69836,7 +69836,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  rotateDirection: {x: 0, y: 45, z: 0}
+  rotateDirection: {x: 45, y: 45, z: 45}
   canMove: 1
 --- !u!1 &2953473894870492936
 GameObject:
