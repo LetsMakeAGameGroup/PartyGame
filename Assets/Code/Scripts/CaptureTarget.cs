@@ -13,6 +13,7 @@ public class CaptureTarget : NetworkBehaviour {
     public int pointsGiven = 1;
 
     public void SetOwner(GameObject player) {
+        if (playerOwner == player) return;
         playerOwner = player;
         RpcSetColor(player.GetComponent<PlayerController>().playerColor);
         TargetPlayCaptureAudio(player.GetComponent<NetworkIdentity>().connectionToClient);

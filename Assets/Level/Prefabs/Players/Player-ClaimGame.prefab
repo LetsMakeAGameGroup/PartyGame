@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3443280596671168678}
     m_Modifications:
+    - target: {fileID: 399091890427366190, guid: e9897bceb84bfe2449a4919768a8e713,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5326383479309974412, guid: e9897bceb84bfe2449a4919768a8e713,
         type: 3}
       propertyPath: m_RootOrder
@@ -67,6 +72,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BerryBlaster
       objectReference: {fileID: 0}
+    - target: {fileID: 5486836831000250791, guid: e9897bceb84bfe2449a4919768a8e713,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6129038538188248023, guid: e9897bceb84bfe2449a4919768a8e713,
         type: 3}
       propertyPath: playerController
@@ -77,6 +87,16 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 3452310532601903972}
+    - target: {fileID: 6953997715873075839, guid: e9897bceb84bfe2449a4919768a8e713,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7064641767536758194, guid: e9897bceb84bfe2449a4919768a8e713,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9897bceb84bfe2449a4919768a8e713, type: 3}
 --- !u!1 &5003963917900629584 stripped

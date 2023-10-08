@@ -12,6 +12,16 @@ public class WispEffect : NetworkBehaviour {
 
     [HideInInspector] public bool canPickup = true;
 
+    public void DropWisp() {
+        CmdDropWisp();
+    }
+
+    [Command]
+    public void CmdDropWisp() {
+        RpcDropWisp();
+        TargetToggleGlowDisplay(false);
+    }
+
     [ClientRpc]
     public void RpcDropWisp() {
         int excludePlayerLayerMask =~ LayerMask.GetMask("Player");
@@ -27,7 +37,7 @@ public class WispEffect : NetworkBehaviour {
 
         holdingWisp = null;
 
-        //dropAudioSource.Play();
+        dropAudioSource.Play();
         StartCoroutine(PickupBuffer());
     }
 

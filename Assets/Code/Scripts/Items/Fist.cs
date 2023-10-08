@@ -13,17 +13,18 @@ public class Fist : MeleeWeapon {
         if (target && target.GetComponent<PlayerMovementComponent>()) {
             Vector3 direction = playerController.transform.forward * knockbackForce;
             direction.y = verticalForce;
-            playerController.GetComponent<ItemController>().CmdKnockbackCharacter(target, direction, stunTime);
+
+            ItemController itemController = playerController.GetComponent<ItemController>();
+            itemController.CmdKnockbackCharacter(target, direction, stunTime);
 
             if (target.TryGetComponent(out WispEffect wispEffect) && wispEffect.holdingWisp) {
-                wispEffect.RpcDropWisp();
-                wispEffect.TargetToggleGlowDisplay(false);
+                itemController.CmdDropWisp(wispEffect);
             }
 
             if (target.TryGetComponent(out BombEffect bombEffect) && !bombEffect.holdingBomb && playerController.GetComponent<BombEffect>().holdingBomb) {
-                bombEffect.RpcEquipBomb(playerController.GetComponent<BombEffect>().holdingBomb);
+                itemController.CmdEquipBomb(bombEffect);
 
-                playerController.GetComponent<BombEffect>().TargetToggleVisability(playerController.GetComponent<BombEffect>().holdingBomb, false);
+                playerController.GetComponent<BombEffect>().ToggleVisability(playerController.GetComponent<BombEffect>().holdingBomb, false);
                 playerController.GetComponent<BombEffect>().holdingBomb = null;
             }
         }

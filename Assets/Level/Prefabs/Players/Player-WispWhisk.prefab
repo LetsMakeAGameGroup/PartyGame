@@ -430,23 +430,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3807872867980839782, guid: b17abd573cf7763498436116a9104985,
         type: 3}
-      propertyPath: jumpSpeed
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3807872867980839782, guid: b17abd573cf7763498436116a9104985,
-        type: 3}
       propertyPath: m_Enabled
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3807872867980839782, guid: b17abd573cf7763498436116a9104985,
-        type: 3}
-      propertyPath: runningSpeed
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 3807872867980839782, guid: b17abd573cf7763498436116a9104985,
-        type: 3}
-      propertyPath: walkingSpeed
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5950009156280605217, guid: b17abd573cf7763498436116a9104985,
         type: 3}

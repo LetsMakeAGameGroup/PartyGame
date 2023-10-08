@@ -14,6 +14,7 @@ public class MinigameHandler : NetworkBehaviour {
     public UnityEvent onMinigameStart = new();
     public UnityEvent onMinigameEnd = new();
     [SerializeField] private AudioSource countdownAudioSource;
+    [SerializeField] private AudioSource whistleStopAudioSource;
 
     [HideInInspector] public List<List<NetworkConnectionToClient>> winners = new();
     private List<GameObject> movableObjects = new();
@@ -109,6 +110,7 @@ public class MinigameHandler : NetworkBehaviour {
     public void EndMinigame() {
         if (!isRunning) return;
         isRunning = false;
+        RpcPlayWhistleStopAudio();
 
         // Assign points to winners accordingly
         int assignPoints = CustomNetworkManager.Instance.ClientDatas.Count;
@@ -156,5 +158,10 @@ public class MinigameHandler : NetworkBehaviour {
     private void RpcPlayEndMusic() {
         minigameMusicAudioSource.Stop();
         endMusicAudioSource.Play();
+    }
+
+    [ClientRpc]
+    private void RpcPlayWhistleStopAudio() {
+        whistleStopAudioSource.Play();
     }
 }
