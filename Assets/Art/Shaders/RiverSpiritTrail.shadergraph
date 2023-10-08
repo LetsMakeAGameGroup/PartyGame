@@ -398,7 +398,7 @@
                 "m_Node": {
                     "m_Id": "c28adab104af45df965449e772d8d036"
                 },
-                "m_SlotId": 3
+                "m_SlotId": 1
             },
             "m_InputSlot": {
                 "m_Node": {
@@ -1114,7 +1114,7 @@
     "m_ActiveSubTarget": {
         "m_Id": "09ff4df162bb42af83ef3abc8b3d8e60"
     },
-    "m_AllowMaterialOverride": false,
+    "m_AllowMaterialOverride": true,
     "m_SurfaceType": 1,
     "m_ZTestMode": 4,
     "m_ZWriteControl": 0,
@@ -1124,7 +1124,7 @@
     "m_CastShadows": true,
     "m_ReceiveShadows": true,
     "m_CustomEditorGUI": "",
-    "m_SupportVFX": false
+    "m_SupportVFX": true
 }
 
 {
@@ -2322,7 +2322,7 @@
     ],
     "synonyms": [],
     "m_Precision": 0,
-    "m_PreviewExpanded": false,
+    "m_PreviewExpanded": true,
     "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
@@ -3146,7 +3146,7 @@
     "m_Hidden": false,
     "m_Value": {
         "r": 0.0,
-        "g": 0.6093214750289917,
+        "g": 0.6501842737197876,
         "b": 0.9490196108818054,
         "a": 1.0
     },
@@ -3265,9 +3265,9 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "r": 0.0,
-        "g": 0.12997722625732423,
-        "b": 1.0,
+        "r": 0.0666666328907013,
+        "g": 0.5406204462051392,
+        "b": 0.9333333373069763,
         "a": 1.0
     },
     "isMainColor": false,

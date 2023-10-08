@@ -23,14 +23,18 @@ Material:
   m_Name: RiverSpiritTrail
   m_Shader: {fileID: -6465566751694194690, guid: 3d1d529c98539b94da612127adf639ef,
     type: 3}
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _ALPHATEST_ON
+  - _SURFACE_TYPE_TRANSPARENT
   m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
+  stringTagMap:
+    RenderType: Transparent
+  disabledShaderPasses:
+  - DepthOnly
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -52,12 +56,22 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AlphaClip: 1
+    - _Blend: 0
+    - _CastShadows: 1
+    - _Cull: 0
     - _DissolveScale: 35
+    - _DstBlend: 10
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _SrcBlend: 5
+    - _Surface: 1
+    - _ZTest: 4
+    - _ZWrite: 0
+    - _ZWriteControl: 0
     m_Colors:
-    - _Color01: {r: 1.2112367, g: 8.332856, b: 16.524736, a: 1}
-    - _Color02: {r: 0.031372547, g: 0.87862456, b: 1, a: 1}
+    - _Color01: {r: 0, g: 0.21549156, b: 0.5849056, a: 1}
+    - _Color02: {r: 3.0290985, g: 28.908583, b: 91.73836, a: 0.8352941}
     - _DissolveSpeed: {r: -0.5, g: 0, b: 0, a: 0}
     - _MainTextSpeed: {r: -0.1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

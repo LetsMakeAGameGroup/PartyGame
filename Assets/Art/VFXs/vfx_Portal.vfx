@@ -2817,7 +2817,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Color, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"r":0.5176470875740051,"g":1.5372549295425416,"b":1.984313726425171,"a":1.0}'
+      m_SerializableObject: '{"r":3.1372549533843996,"g":9.286274909973145,"b":11.98431396484375,"a":1.0}'
     m_Space: 2147483647
   m_Property:
     name: _Color
@@ -3121,7 +3121,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector2, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":0.0,"y":-0.5}'
+      m_SerializableObject: '{"x":0.20000000298023225,"y":-0.5}'
     m_Space: 2147483647
   m_Property:
     name: _MainTextureSpeed
@@ -3221,7 +3221,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.92
+      m_SerializableObject: 2
     m_Space: 2147483647
   m_Property:
     name: _Edge_Power

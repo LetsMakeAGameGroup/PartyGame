@@ -9999,7 +9999,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1784834634253119604
 Transform:
   m_ObjectHideFlags: 0
@@ -10381,12 +10381,17 @@ PrefabInstance:
     - target: {fileID: 6470197735345496812, guid: dade1e762e8037b44bf914828b799cee,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6470197735345496813, guid: dade1e762e8037b44bf914828b799cee,
         type: 3}
       propertyPath: m_Name
       value: vfx_Portal
+      objectReference: {fileID: 0}
+    - target: {fileID: 6470197735345496813, guid: dade1e762e8037b44bf914828b799cee,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dade1e762e8037b44bf914828b799cee, type: 3}
