@@ -95828,6 +95828,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 19306616584569248, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19306616584569248, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19306616584569248, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: f429adb402e9b904cb350e5f386b279f, type: 3}
+    - target: {fileID: 2081945807901537919, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2081945807901537919, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2081945807901537919, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7742b655256f1234a962a08fbb7deaf9, type: 3}
     - target: {fileID: 3036967725991499902, guid: 3afd7ff16db44e3488141989f06c8a58,
         type: 3}
       propertyPath: sceneId
