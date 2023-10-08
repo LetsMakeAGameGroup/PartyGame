@@ -37,6 +37,7 @@ public class JumpingFish : NetworkBehaviour {
     private void Start() {
         fishModel.SetActive(false);
         SetupArcPositions();
+        endJumpDuration = jumpEndDistance * jumpHeightDistance * jumpSpeed;
 
         if (!isServer) return;
 
@@ -44,12 +45,12 @@ public class JumpingFish : NetworkBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (!isServer || !other.CompareTag("Player")) return;
+        if (!other.CompareTag("Player") || !other.GetComponent<NetworkIdentity>().isLocalPlayer) return;
 
         if (other.gameObject.TryGetComponent(out PlayerMovementComponent playerMovementComponent)) {
             Vector3 direction = transform.forward * knockbackForce;
             direction.y = verticalForce;
-            playerMovementComponent.TargetKnockbackCharacter(direction, stunTime);
+            playerMovementComponent.KnockbackCharacter(direction, stunTime);
         }
     }
 
@@ -102,8 +103,8 @@ public class JumpingFish : NetworkBehaviour {
         transform.position = startArcPos;
         fishModel.SetActive(true);
 
-        currentJumpDuration = (float)(NetworkClient.connection.remoteTimeStamp / 1000);
-        endJumpDuration = jumpEndDistance * jumpHeightDistance * jumpSpeed;
+        //currentJumpDuration = (float)(NetworkClient.connection.remoteTimeStamp / 1000);
+        currentJumpDuration = 0;
         isJumping = true;
     }
 
