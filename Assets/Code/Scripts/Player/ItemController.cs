@@ -1,8 +1,7 @@
-using System.Collections;
-using UnityEngine;
 using Mirror;
+using System.Collections;
 using System.Linq;
-using Unity.VisualScripting;
+using UnityEngine;
 
 [RequireComponent(typeof(NetworkAnimator))]
 public class ItemController : NetworkBehaviour {
@@ -18,7 +17,10 @@ public class ItemController : NetworkBehaviour {
     private bool canUse = true;
 
     private void OnEnable() => itemHUDController.canvas.enabled = true;
-    private void OnDisable() => itemHUDController.canvas.enabled = false;
+    private void OnDisable() {
+        itemHUDController.canvas.enabled = false;
+        useItemAudioSource.enabled = false;
+    }
 
     private void Start() {
         playerController = GetComponent<PlayerController>();
@@ -72,13 +74,13 @@ public class ItemController : NetworkBehaviour {
     // Cooldown before attacking again
     private IEnumerator ItemCooldown(float cooldown) {
         canUse = false;
-		if (holdingItem && holdingItem.GetComponent<MeleeWeapon>()) {
+        if (holdingItem && holdingItem.GetComponent<MeleeWeapon>()) {
             networkAnimator.SetTrigger("Punch");
         }
         StartCoroutine(itemHUDController.EnableCooldownIndicator(cooldown));
-		
+
         yield return new WaitForSeconds(cooldown);
-		
+
         canUse = true;
     }
 

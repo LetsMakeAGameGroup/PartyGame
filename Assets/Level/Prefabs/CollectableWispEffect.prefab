@@ -51,7 +51,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   collectAudioClip: {fileID: 8300000, guid: 54fb0699700846b468a9f23283265a9b, type: 3}
-  spawnAudioClip: {fileID: 8300000, guid: 23d80095da600c54788e9d59e2fa1189, type: 3}
+  spawnAudioClip: {fileID: 8300000, guid: 3399a64c283a674449840b2cc0542e5a, type: 3}
   pointsToAdd: 1
 --- !u!114 &5876539937914642025
 MonoBehaviour:

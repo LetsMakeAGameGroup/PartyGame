@@ -109,6 +109,11 @@ public class PlayerMovementComponent : NetworkBehaviour {
         }
     }
 
+    private void OnDisable() {
+        jumpAudioSource.enabled = false;
+        footstepAudioSource.enabled = false;
+    }
+
     private IEnumerator FootstepAudio() {
         while (characterController.velocity.x*characterController.velocity.x + characterController.velocity.z*characterController.velocity.z > 0.01f && (characterController.isGrounded || moveDirection.y == 0) && canMove) {
             float pitch = Input.GetKey(KeyCode.LeftShift) ? runningSpeed/walkingSpeed : 1f;
@@ -210,7 +215,7 @@ public class PlayerMovementComponent : NetworkBehaviour {
         launchVelocity = forceDirection;
         launchTimeElapsed = 0;
         moveDirection.y = forceDirection.y;
-        if (networkAnimator || TryGetComponent(out networkAnimator)) networkAnimator.SetTrigger("GotHit");
+        if (networkAnimator) networkAnimator.SetTrigger("GotHit");
     }
 
     public IEnumerator StunPlayer(float timeStunned) {

@@ -22,10 +22,10 @@ public class WispMovement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (!minigameHandler) return;
+        if (!minigameHandler || !NetworkClient.localPlayer) return;
 
         transform.LookAt(NetworkClient.localPlayer.transform.position);
-        transform.rotation *= Quaternion.FromToRotation(Vector3.left, Vector3.forward);
+        transform.localRotation *= Quaternion.FromToRotation(Vector3.left, Vector3.forward);
     }
 
     private IEnumerator Bobbing() {
