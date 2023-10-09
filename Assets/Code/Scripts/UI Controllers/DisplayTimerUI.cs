@@ -9,8 +9,8 @@ public class DisplayTimerUI : NetworkBehaviour {
     [ClientRpc]
     public void RpcStartCountdown(float duration, bool disableUI) {
         Timer timer = gameObject.AddComponent(typeof(Timer)) as Timer;
-        float delay = (float)(NetworkClient.connection.remoteTimeStamp / 1000);
-        timer.duration = duration - delay;
+
+        timer.duration = duration;
         if (disableUI) timer.onTimerEnd.AddListener(DisableUI);
         timer.onDisplayTime.AddListener(UpdateUI);
         timerText.enabled = true;

@@ -152,8 +152,7 @@ public class MinigameHandler : NetworkBehaviour {
     [ClientRpc]
     private void RpcCountdownAudio() {
         startMusicAudioSource.Stop();
-        float delay = (float)(NetworkClient.connection.remoteTimeStamp / 1000);
-        StartCoroutine(TimeTillCountdownAudio(5 - countdownAudioSource.clip.length - delay));
+        StartCoroutine(TimeTillCountdownAudio(5 - countdownAudioSource.clip.length));
     }
 
     private IEnumerator TimeTillCountdownAudio(float duration) {

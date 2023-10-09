@@ -61,25 +61,8 @@ public class MoveObjectOverTime : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcStartMovement(Vector3 currentPosition, int index) {
-        float delay = (float)(NetworkClient.connection.remoteTimeStamp / 1000);
-
         pathIndex = index;
         transform.position = currentPosition;
-
-        int whileLoopBreak = 0;
-        float distance = delay * moveSpeed;
-        while (Vector3.Distance(transform.position, pathLocations[pathIndex]) < distance) {
-            distance -= Vector3.Distance(transform.position, pathLocations[pathIndex]);
-            transform.position = pathLocations[pathIndex];
-
-            pathIndex++;
-            pathIndex %= pathLocations.Length;
-
-            whileLoopBreak++;
-            if (whileLoopBreak > 10) break;
-        }
-
-        transform.position = Vector3.MoveTowards(transform.position, pathLocations[pathIndex], distance);
 
         canMove = true;
     }
