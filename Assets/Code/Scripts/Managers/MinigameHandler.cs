@@ -1,6 +1,7 @@
 using Mirror;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -35,6 +36,17 @@ public class MinigameHandler : NetworkBehaviour {
     [HideInInspector] public bool isRunning = false;
     [HideInInspector] public bool isStarting = true;
     private int winnerCount = 0;
+
+    public static MinigameHandler Instance { get; private set; }
+    private void Awake() {
+        // If there is an instance, and it's not me, delete myself.
+
+        if (Instance != null && Instance != this) {
+            Destroy(this);
+        } else {
+            Instance = this;
+        }
+    }
 
     private void Start() {
         if (!isServer) return;
@@ -140,8 +152,7 @@ public class MinigameHandler : NetworkBehaviour {
     [ClientRpc]
     private void RpcCountdownAudio() {
         startMusicAudioSource.Stop();
-        float delay = (float)(NetworkClient.connection.remoteTimeStamp / 1000);
-        StartCoroutine(TimeTillCountdownAudio(5 - countdownAudioSource.clip.length - delay));
+        StartCoroutine(TimeTillCountdownAudio(5 - countdownAudioSource.clip.length));
     }
 
     private IEnumerator TimeTillCountdownAudio(float duration) {

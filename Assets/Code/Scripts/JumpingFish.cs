@@ -8,8 +8,6 @@ public class JumpingFish : NetworkBehaviour {
     [SerializeField] private GameObject fishModel;
     [SerializeField] private AudioSource splashAudioSource;
 
-    private MinigameHandler minigameHandler;
-
     [Header("Settings")]
     [Tooltip("The minumum amount of seconds before the fish randomly jumps again after entering the water.")]
     [SerializeField] private float minRandomJumpTime;
@@ -38,8 +36,6 @@ public class JumpingFish : NetworkBehaviour {
     private float endJumpDuration = 0;
 
     private void Start() {
-        minigameHandler = FindObjectOfType<MinigameHandler>();
-
         fishModel.SetActive(false);
         SetupArcPositions();
         endJumpDuration = jumpEndDistance * jumpHeightDistance * jumpSpeed;
@@ -72,7 +68,7 @@ public class JumpingFish : NetworkBehaviour {
     }
 
     private void FixedUpdate() {
-        if (isServer && !minigameHandler.isRunning && !minigameHandler.isStarting) NetworkServer.Destroy(gameObject);
+        if (isServer && !MinigameHandler.Instance.isRunning && !MinigameHandler.Instance.isStarting) NetworkServer.Destroy(gameObject);
 
         if (!isJumping) {
             time = Time.time;
@@ -109,7 +105,8 @@ public class JumpingFish : NetworkBehaviour {
     private void RpcEnableFish() {
         transform.position = startArcPos;
         fishModel.SetActive(true);
-        if (minigameHandler.isRunning) splashAudioSource.Play();
+        // TODO: Figure out why minigameHandler or splashAudioSource is null here on clients.
+        if (MinigameHandler.Instance.isRunning && splashAudioSource) splashAudioSource.Play();
 
         //currentJumpDuration = (float)(NetworkClient.connection.remoteTimeStamp / 1000);
         currentJumpDuration = 0;

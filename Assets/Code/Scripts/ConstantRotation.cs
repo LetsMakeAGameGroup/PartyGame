@@ -23,10 +23,7 @@ public class ConstantRotation : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcStartRotation(Quaternion currentRotation) {
-        float delay = (float)(NetworkClient.connection.remoteTimeStamp / 1000);
-
         transform.rotation = currentRotation;
-        transform.Rotate(delay * rotateDirection);
 
         canMove = true;
     }
