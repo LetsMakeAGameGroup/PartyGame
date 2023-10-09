@@ -7,8 +7,6 @@ public class WispMovement : MonoBehaviour {
     [Header("References")]
     [SerializeField] private VisualEffect visualEffect;
 
-    private MinigameHandler minigameHandler;
-
     [Header("Settings")]
     [Tooltip("Speed of bobbing up and down.")]
     [SerializeField] private float bobSpeed = 1f;
@@ -16,13 +14,11 @@ public class WispMovement : MonoBehaviour {
     [SerializeField] private float bobDistance = 0.25f;
 
     private void OnEnable() {
-        minigameHandler = FindFirstObjectByType<MinigameHandler>();
-
         StartCoroutine(Bobbing());
     }
 
     private void FixedUpdate() {
-        if (!minigameHandler || !NetworkClient.localPlayer) return;
+        if (!MinigameHandler.Instance || !NetworkClient.localPlayer) return;
 
         transform.LookAt(NetworkClient.localPlayer.transform.position);
         transform.localRotation *= Quaternion.FromToRotation(Vector3.left, Vector3.forward);

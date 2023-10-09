@@ -71,6 +71,8 @@ public class MinigameStartScreenController : NetworkBehaviour {
     }
 
     public void DisconnectedPlayer(string playerNameDisconnected) {
+        if (!MinigameHandler.Instance.isStarting) return;
+
         if (readyPlayers.Contains(playerNameDisconnected)) {
             readyPlayers.Remove(playerNameDisconnected);
         }
