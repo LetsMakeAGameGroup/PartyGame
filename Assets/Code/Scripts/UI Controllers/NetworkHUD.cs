@@ -25,6 +25,7 @@ public class NetworkHUD : MonoBehaviour {
     [SerializeField] private Button[] colorOptionButtons = null;
 
     [SerializeField] private Text errorText;
+    [SerializeField] private TMP_Text versionText;
 
     private string playerName = "";
     private string playerColor = "";
@@ -41,6 +42,8 @@ public class NetworkHUD : MonoBehaviour {
             colorOptionButtons[optionIndex].interactable = true;
             optionIndex++;
         }
+
+        versionText.text = "v" + Application.version;
     }
 
     private void Start() {
