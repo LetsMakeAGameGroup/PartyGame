@@ -24,11 +24,15 @@ public class WispEffect : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcDropWisp() {
-        int excludePlayerLayerMask =~ LayerMask.GetMask("Player");
+        int playerLayerMask = 1 << LayerMask.GetMask("Player");
         Vector3 dropLocation;
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 100f, excludePlayerLayerMask)) {
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 100f, playerLayerMask)) {
             dropLocation = hit.point;
-            holdingWisp.transform.SetParent(hit.transform);
+            if (hit.collider.GetComponent<MoveObjectOverTime>() || hit.collider.GetComponent<ConstantRotation>()) {
+                holdingWisp.transform.SetParent(hit.transform);
+            } else {
+                holdingWisp.transform.parent = null;
+            }
         } else {
             dropLocation = transform.position;
         }
