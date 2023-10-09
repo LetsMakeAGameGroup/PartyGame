@@ -45,7 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useItemClips:
-  - {fileID: 8300000, guid: a79b0f50ad516234a93b569b2381c218, type: 3}
+  - {fileID: 8300000, guid: cb86eab80327c794581ce7469265f8f5, type: 3}
+  - {fileID: 8300000, guid: c9b6f2e1300600f4ea5a88ce0ab5acc2, type: 3}
+  - {fileID: 8300000, guid: 4dfc4dd1b0d2f214d84c2bbced121243, type: 3}
   playerController: {fileID: 0}
   itemName: Fist
   useCooldown: 1
