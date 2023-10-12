@@ -314,6 +314,8 @@ MonoBehaviour:
   playerRenderers:
   - {fileID: 3651883250303376574}
   - {fileID: 134898649481468661}
+  - {fileID: 950608632272169059}
+  - {fileID: 1107144056671917102}
   transparentMaterial: {fileID: 2100000, guid: e80d741d53bd4c145bbb860a618ccc5d, type: 2}
   lookSpeed: 2
   sightRayLength: 5
@@ -1653,9 +1655,8 @@ GameObject:
   - component: {fileID: 5018348877396432729}
   - component: {fileID: 7253267338135072898}
   - component: {fileID: 950608632272169059}
-  - component: {fileID: 1534372656177295878}
   m_Layer: 7
-  m_Name: Sphere (1)
+  m_Name: Eye.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1674,7 +1675,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2823684847024942548}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7253267338135072898
 MeshFilter:
@@ -1726,19 +1727,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &1534372656177295878
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3786569310038072796}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3800390257693802741
 GameObject:
   m_ObjectHideFlags: 0
@@ -1831,8 +1819,8 @@ Transform:
   m_LocalScale: {x: 1, y: 0.9999999, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6543033658201707120}
   - {fileID: 5018348877396432729}
+  - {fileID: 6543033658201707120}
   - {fileID: 6649791842225607182}
   - {fileID: 1358119568726676660}
   - {fileID: 797144789936309282}
@@ -1850,9 +1838,8 @@ GameObject:
   - component: {fileID: 6543033658201707120}
   - component: {fileID: 236101094170010337}
   - component: {fileID: 1107144056671917102}
-  - component: {fileID: 6956717241066687778}
   m_Layer: 7
-  m_Name: Sphere
+  m_Name: Eye.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1871,7 +1858,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2823684847024942548}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &236101094170010337
 MeshFilter:
@@ -1923,19 +1910,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &6956717241066687778
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4677751371688079151}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4929075228441150027
 GameObject:
   m_ObjectHideFlags: 0
