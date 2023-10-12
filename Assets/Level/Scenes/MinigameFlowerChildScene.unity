@@ -65053,6 +65053,21 @@ PrefabInstance:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: f429adb402e9b904cb350e5f386b279f, type: 3}
+    - target: {fileID: 2081945807901537919, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2081945807901537919, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2081945807901537919, guid: 3afd7ff16db44e3488141989f06c8a58,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9e6afa5c5a6846a428c0cd5380dc3f8b, type: 3}
     - target: {fileID: 3036967725991499902, guid: 3afd7ff16db44e3488141989f06c8a58,
         type: 3}
       propertyPath: sceneId
@@ -65432,7 +65447,7 @@ PrefabInstance:
     - target: {fileID: 7154445294101958805, guid: 44a5ecbb152267647b3caf9decbd7608,
         type: 3}
       propertyPath: m_text
-      value: Flower Child
+      value: Gusty Grotto
       objectReference: {fileID: 0}
     - target: {fileID: 7154445294101958805, guid: 44a5ecbb152267647b3caf9decbd7608,
         type: 3}
