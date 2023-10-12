@@ -27130,6 +27130,7 @@ MonoBehaviour:
   minWispSpawnLocation: {x: -35, y: -35}
   maxWispSpawnLocation: {x: 35, y: 35}
   wispSpawnTimeInterval: 5
+  wispSpawnAmount: 4
   distanceBetweenWisps: 1
   speedIncrease: 3
   speedIncreaseTimeInterval: 10

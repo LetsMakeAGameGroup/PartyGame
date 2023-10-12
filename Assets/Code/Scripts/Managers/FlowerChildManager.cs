@@ -21,6 +21,8 @@ public class FlowerChildManager : NetworkBehaviour {
     [SerializeField] private Vector2 maxWispSpawnLocation = Vector2.zero;
     [Tooltip("How many seconds between spawning a wisp.")]
     [SerializeField] private float wispSpawnTimeInterval = 5f;
+    [Tooltip("How many wisps spawn at a time.")]
+    [SerializeField] private float wispSpawnAmount;
     [Tooltip("The minimum distance between two wisps when spawning.")]
     [SerializeField] private float distanceBetweenWisps = 1f;
     [Tooltip("The amount of speed the Tornado will increase by.")]
@@ -39,7 +41,9 @@ public class FlowerChildManager : NetworkBehaviour {
             player.identity.GetComponent<PlayerMovementComponent>().TargetSetMinigameManagerObject(gameObject);
         }
 
-        StartCoroutine(SpawnWisp());
+        for (int i = 0; i < wispSpawnAmount; i++) {
+            StartCoroutine(SpawnWisp());
+        }
 
         foreach (GameObject tornado in tornados) {
             if (tornado.TryGetComponent(out RandomlyMovingAgent randomlyMovingAgent)) {
