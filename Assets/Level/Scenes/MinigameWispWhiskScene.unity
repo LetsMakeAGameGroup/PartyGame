@@ -96736,7 +96736,7 @@ PrefabInstance:
     - target: {fileID: 2081945807901537919, guid: 3afd7ff16db44e3488141989f06c8a58,
         type: 3}
       propertyPath: m_Volume
-      value: 0.25
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2081945807901537919, guid: 3afd7ff16db44e3488141989f06c8a58,
         type: 3}
@@ -97144,7 +97144,7 @@ PrefabInstance:
     - target: {fileID: 7154445294101958805, guid: 44a5ecbb152267647b3caf9decbd7608,
         type: 3}
       propertyPath: m_text
-      value: Wisp Whisk
+      value: Fey Line Shrine
       objectReference: {fileID: 0}
     - target: {fileID: 7154445294101958805, guid: 44a5ecbb152267647b3caf9decbd7608,
         type: 3}
