@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2200333347530877691, guid: e9897bceb84bfe2449a4919768a8e713,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5326383479309974412, guid: e9897bceb84bfe2449a4919768a8e713,
         type: 3}
       propertyPath: m_RootOrder
@@ -84,6 +89,11 @@ PrefabInstance:
       objectReference: {fileID: 3452310532601903972}
     - target: {fileID: 6508505242184299341, guid: e9897bceb84bfe2449a4919768a8e713,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6508505242184299341, guid: e9897bceb84bfe2449a4919768a8e713,
+        type: 3}
       propertyPath: playerController
       value: 
       objectReference: {fileID: 3452310532601903972}
@@ -122,6 +132,16 @@ PrefabInstance:
       propertyPath: holdingItem
       value: 
       objectReference: {fileID: 5003963917900629584}
+    - target: {fileID: 950608632272169059, guid: b17abd573cf7763498436116a9104985,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1107144056671917102, guid: b17abd573cf7763498436116a9104985,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1160618003541792385, guid: b17abd573cf7763498436116a9104985,
         type: 3}
       propertyPath: _assetId
@@ -195,6 +215,16 @@ PrefabInstance:
     - target: {fileID: 1913241591815720159, guid: b17abd573cf7763498436116a9104985,
         type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651883250303376574, guid: b17abd573cf7763498436116a9104985,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651883250303376574, guid: b17abd573cf7763498436116a9104985,
+        type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3807872867980839782, guid: b17abd573cf7763498436116a9104985,
