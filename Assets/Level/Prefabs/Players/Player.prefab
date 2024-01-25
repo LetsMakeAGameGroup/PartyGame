@@ -319,6 +319,7 @@ MonoBehaviour:
   transparentMaterial: {fileID: 2100000, guid: e80d741d53bd4c145bbb860a618ccc5d, type: 2}
   lookSpeed: 2
   sightRayLength: 5
+  lockCameraCoordinates: {x: 0, y: 0, z: 0}
   playerName: Player
   playerColor: N/A
   points: 0
