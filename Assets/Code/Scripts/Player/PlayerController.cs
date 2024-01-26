@@ -24,9 +24,12 @@ public class PlayerController : NetworkBehaviour {
     [SerializeField] private float lookSpeed = 2.0f;
     [Tooltip("How far the player can interact with something.")]
     [SerializeField] private float sightRayLength = 5f;
+    [Tooltip("The coordinates that the player will lock in at.")]
+    [SerializeField] private Vector3 lockCameraCoordinates;
 
     private float lookXLimit = 90.0f;
     private float rotationX = 0;
+    private bool isCameraLockedIn = false;
 
     [Header("Information")]
     [SyncVar(hook = nameof(SetNameTag)), HideInInspector] public string playerName = "Unknown Player";
@@ -100,9 +103,20 @@ public class PlayerController : NetworkBehaviour {
             playerMovementComponent.moveDirection.y = 0;
         }
 
+        if (Input.GetKeyDown(KeyCode.L)) isCameraLockedIn = !isCameraLockedIn;
+
         if (playerMovementComponent.CanMove && !isPaused) {
-            AddCameraPitch(Input.GetAxisRaw("Mouse Y"));
-            AddCameraYaw(Input.GetAxisRaw("Mouse X"));
+            if (isCameraLockedIn) {
+                //playerCamera.transform.LookAt(lockCameraCoordinates);
+                //transform.rotation = Quaternion.Euler(transform.rotation.x, playerCamera.transform.rotation.eulerAngles.y, transform.rotation.z);
+                transform.LookAt(lockCameraCoordinates);
+                transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f);
+
+                playerCamera.transform.LookAt(lockCameraCoordinates);
+            } else {
+                AddCameraPitch(Input.GetAxisRaw("Mouse Y"));
+                AddCameraYaw(Input.GetAxisRaw("Mouse X"));
+            }
         }
 
         //Interaction Ray
